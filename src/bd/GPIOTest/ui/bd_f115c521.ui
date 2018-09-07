@@ -21,7 +21,7 @@ preplace netloc axi_gpio_0_ip2intc_irpt 1 0 4 0 -50 NJ -50 NJ -50 1130
 preplace netloc processing_system7_0_FCLK_CLK0 1 0 3 -10 -60 450 -700 850
 preplace netloc ps7_0_axi_periph_M00_AXI 1 2 1 N
 preplace netloc rst_ps7_0_100M_interconnect_aresetn 1 1 2 470 -450 830
-levelinfo -pg 1 -30 220 660 1010 1160 -top -710 -bot 180
+levelinfo -pg 1 -30 220 660 1010 1170 -top -710 -bot 180
 ",
 }
 {
