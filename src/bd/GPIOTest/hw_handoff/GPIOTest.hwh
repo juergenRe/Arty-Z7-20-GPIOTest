@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Sep  7 18:53:51 2018" VIVADOVERSION="2017.4">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Sep  9 12:27:13 2018" VIVADOVERSION="2017.4">
 
   <SYSTEMINFO ARCH="zynq" BOARD="digilentinc.com:arty-z7-20:part0:1.0" DEVICE="7z020" NAME="GPIOTest" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -25,9 +25,8 @@
     <PORT DIR="IO" NAME="FIXED_IO_ps_srstb" SIGIS="undef"/>
     <PORT DIR="IO" NAME="FIXED_IO_ps_clk" SIGIS="undef"/>
     <PORT DIR="IO" NAME="FIXED_IO_ps_porb" SIGIS="undef"/>
-    <PORT DIR="I" NAME="GPIO_0_tri_i" SIGIS="undef"/>
-    <PORT DIR="I" LEFT="3" NAME="GPIO2_0_tri_i" RIGHT="0" SIGIS="undef"/>
     <PORT DIR="O" LEFT="3" NAME="GPIO_0_tri_o" RIGHT="0" SIGIS="undef"/>
+    <PORT DIR="I" LEFT="3" NAME="GPIO2_0_tri_i" RIGHT="0" SIGIS="undef"/>
   </EXTERNALPORTS>
 
   <EXTERNALINTERFACES>
@@ -77,7 +76,6 @@
     </BUSINTERFACE>
     <BUSINTERFACE BUSNAME="axi_gpio_0_GPIO" NAME="GPIO_0" TYPE="INITIATOR">
       <PORTMAPS>
-        <PORTMAP LOGICAL="TRI_I" PHYSICAL="GPIO_0_tri_i"/>
         <PORTMAP LOGICAL="TRI_O" PHYSICAL="GPIO_0_tri_o"/>
       </PORTMAPS>
     </BUSINTERFACE>
@@ -276,7 +274,7 @@
         <PARAMETER NAME="C_DOUT_DEFAULT_2" VALUE="0x00000000"/>
         <PARAMETER NAME="C_TRI_DEFAULT_2" VALUE="0xFFFFFFFF"/>
         <PARAMETER NAME="Component_Name" VALUE="GPIOTest_axi_gpio_0_0"/>
-        <PARAMETER NAME="USE_BOARD_FLOW" VALUE="true"/>
+        <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
         <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="GPIO2_BOARD_INTERFACE" VALUE="Custom"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
@@ -457,7 +455,7 @@
       </DOCUMENTS>
       <PARAMETERS>
         <PARAMETER NAME="C_EN_EMIO_PJTAG" VALUE="0"/>
-        <PARAMETER NAME="C_EN_EMIO_ENET0" VALUE="1"/>
+        <PARAMETER NAME="C_EN_EMIO_ENET0" VALUE="0"/>
         <PARAMETER NAME="C_EN_EMIO_ENET1" VALUE="0"/>
         <PARAMETER NAME="C_EN_EMIO_TRACE" VALUE="0"/>
         <PARAMETER NAME="C_INCLUDE_TRACE_BUFFER" VALUE="0"/>
@@ -630,7 +628,7 @@
         <PARAMETER NAME="PCW_CAN_PERIPHERAL_FREQMHZ" VALUE="100"/>
         <PARAMETER NAME="PCW_CAN0_PERIPHERAL_FREQMHZ" VALUE="-1"/>
         <PARAMETER NAME="PCW_CAN1_PERIPHERAL_FREQMHZ" VALUE="-1"/>
-        <PARAMETER NAME="PCW_I2C_PERIPHERAL_FREQMHZ" VALUE="108.333336"/>
+        <PARAMETER NAME="PCW_I2C_PERIPHERAL_FREQMHZ" VALUE="25"/>
         <PARAMETER NAME="PCW_WDT_PERIPHERAL_FREQMHZ" VALUE="133.333333"/>
         <PARAMETER NAME="PCW_TTC_PERIPHERAL_FREQMHZ" VALUE="50"/>
         <PARAMETER NAME="PCW_TTC0_CLK0_PERIPHERAL_FREQMHZ" VALUE="133.333333"/>
@@ -683,28 +681,28 @@
         <PARAMETER NAME="PCW_CPU_PERIPHERAL_DIVISOR0" VALUE="2"/>
         <PARAMETER NAME="PCW_DDR_PERIPHERAL_DIVISOR0" VALUE="2"/>
         <PARAMETER NAME="PCW_SMC_PERIPHERAL_DIVISOR0" VALUE="1"/>
-        <PARAMETER NAME="PCW_QSPI_PERIPHERAL_DIVISOR0" VALUE="8"/>
-        <PARAMETER NAME="PCW_SDIO_PERIPHERAL_DIVISOR0" VALUE="32"/>
-        <PARAMETER NAME="PCW_UART_PERIPHERAL_DIVISOR0" VALUE="16"/>
+        <PARAMETER NAME="PCW_QSPI_PERIPHERAL_DIVISOR0" VALUE="5"/>
+        <PARAMETER NAME="PCW_SDIO_PERIPHERAL_DIVISOR0" VALUE="20"/>
+        <PARAMETER NAME="PCW_UART_PERIPHERAL_DIVISOR0" VALUE="10"/>
         <PARAMETER NAME="PCW_SPI_PERIPHERAL_DIVISOR0" VALUE="1"/>
         <PARAMETER NAME="PCW_CAN_PERIPHERAL_DIVISOR0" VALUE="1"/>
         <PARAMETER NAME="PCW_CAN_PERIPHERAL_DIVISOR1" VALUE="1"/>
-        <PARAMETER NAME="PCW_FCLK0_PERIPHERAL_DIVISOR0" VALUE="4"/>
+        <PARAMETER NAME="PCW_FCLK0_PERIPHERAL_DIVISOR0" VALUE="5"/>
         <PARAMETER NAME="PCW_FCLK1_PERIPHERAL_DIVISOR0" VALUE="1"/>
         <PARAMETER NAME="PCW_FCLK2_PERIPHERAL_DIVISOR0" VALUE="1"/>
         <PARAMETER NAME="PCW_FCLK3_PERIPHERAL_DIVISOR0" VALUE="1"/>
-        <PARAMETER NAME="PCW_FCLK0_PERIPHERAL_DIVISOR1" VALUE="4"/>
+        <PARAMETER NAME="PCW_FCLK0_PERIPHERAL_DIVISOR1" VALUE="2"/>
         <PARAMETER NAME="PCW_FCLK1_PERIPHERAL_DIVISOR1" VALUE="1"/>
         <PARAMETER NAME="PCW_FCLK2_PERIPHERAL_DIVISOR1" VALUE="1"/>
         <PARAMETER NAME="PCW_FCLK3_PERIPHERAL_DIVISOR1" VALUE="1"/>
-        <PARAMETER NAME="PCW_ENET0_PERIPHERAL_DIVISOR0" VALUE="1"/>
+        <PARAMETER NAME="PCW_ENET0_PERIPHERAL_DIVISOR0" VALUE="8"/>
         <PARAMETER NAME="PCW_ENET1_PERIPHERAL_DIVISOR0" VALUE="1"/>
         <PARAMETER NAME="PCW_ENET0_PERIPHERAL_DIVISOR1" VALUE="1"/>
         <PARAMETER NAME="PCW_ENET1_PERIPHERAL_DIVISOR1" VALUE="1"/>
         <PARAMETER NAME="PCW_TPIU_PERIPHERAL_DIVISOR0" VALUE="1"/>
         <PARAMETER NAME="PCW_DCI_PERIPHERAL_DIVISOR0" VALUE="52"/>
         <PARAMETER NAME="PCW_DCI_PERIPHERAL_DIVISOR1" VALUE="2"/>
-        <PARAMETER NAME="PCW_PCAP_PERIPHERAL_DIVISOR0" VALUE="8"/>
+        <PARAMETER NAME="PCW_PCAP_PERIPHERAL_DIVISOR0" VALUE="5"/>
         <PARAMETER NAME="PCW_TTC0_CLK0_PERIPHERAL_DIVISOR0" VALUE="1"/>
         <PARAMETER NAME="PCW_TTC0_CLK1_PERIPHERAL_DIVISOR0" VALUE="1"/>
         <PARAMETER NAME="PCW_TTC0_CLK2_PERIPHERAL_DIVISOR0" VALUE="1"/>
@@ -713,10 +711,10 @@
         <PARAMETER NAME="PCW_TTC1_CLK2_PERIPHERAL_DIVISOR0" VALUE="1"/>
         <PARAMETER NAME="PCW_WDT_PERIPHERAL_DIVISOR0" VALUE="1"/>
         <PARAMETER NAME="PCW_ARMPLL_CTRL_FBDIV" VALUE="26"/>
-        <PARAMETER NAME="PCW_IOPLL_CTRL_FBDIV" VALUE="32"/>
+        <PARAMETER NAME="PCW_IOPLL_CTRL_FBDIV" VALUE="20"/>
         <PARAMETER NAME="PCW_DDRPLL_CTRL_FBDIV" VALUE="21"/>
         <PARAMETER NAME="PCW_CPU_CPU_PLL_FREQMHZ" VALUE="1300.000"/>
-        <PARAMETER NAME="PCW_IO_IO_PLL_FREQMHZ" VALUE="1600.000"/>
+        <PARAMETER NAME="PCW_IO_IO_PLL_FREQMHZ" VALUE="1000.000"/>
         <PARAMETER NAME="PCW_DDR_DDR_PLL_FREQMHZ" VALUE="1050.000"/>
         <PARAMETER NAME="PCW_SMC_PERIPHERAL_VALID" VALUE="0"/>
         <PARAMETER NAME="PCW_SDIO_PERIPHERAL_VALID" VALUE="1"/>
@@ -725,7 +723,7 @@
         <PARAMETER NAME="PCW_UART_PERIPHERAL_VALID" VALUE="1"/>
         <PARAMETER NAME="PCW_EN_EMIO_CAN0" VALUE="0"/>
         <PARAMETER NAME="PCW_EN_EMIO_CAN1" VALUE="0"/>
-        <PARAMETER NAME="PCW_EN_EMIO_ENET0" VALUE="1"/>
+        <PARAMETER NAME="PCW_EN_EMIO_ENET0" VALUE="0"/>
         <PARAMETER NAME="PCW_EN_EMIO_ENET1" VALUE="0"/>
         <PARAMETER NAME="PCW_EN_PTP_ENET0" VALUE="0"/>
         <PARAMETER NAME="PCW_EN_PTP_ENET1" VALUE="0"/>
@@ -838,7 +836,7 @@
         <PARAMETER NAME="PCW_EN_CAN1" VALUE="0"/>
         <PARAMETER NAME="PCW_EN_ENET0" VALUE="1"/>
         <PARAMETER NAME="PCW_EN_ENET1" VALUE="0"/>
-        <PARAMETER NAME="PCW_EN_GPIO" VALUE="0"/>
+        <PARAMETER NAME="PCW_EN_GPIO" VALUE="1"/>
         <PARAMETER NAME="PCW_EN_I2C0" VALUE="0"/>
         <PARAMETER NAME="PCW_EN_I2C1" VALUE="0"/>
         <PARAMETER NAME="PCW_EN_PJTAG" VALUE="0"/>
@@ -977,13 +975,13 @@
         <PARAMETER NAME="PCW_QSPI_GRP_FBCLK_IO" VALUE="MIO 8"/>
         <PARAMETER NAME="PCW_QSPI_INTERNAL_HIGHADDRESS" VALUE="0xFCFFFFFF"/>
         <PARAMETER NAME="PCW_ENET0_PERIPHERAL_ENABLE" VALUE="1"/>
-        <PARAMETER NAME="PCW_ENET0_ENET0_IO" VALUE="EMIO"/>
-        <PARAMETER NAME="PCW_ENET0_GRP_MDIO_ENABLE" VALUE="0"/>
-        <PARAMETER NAME="PCW_ENET0_GRP_MDIO_IO" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_ENET_RESET_ENABLE" VALUE="0"/>
-        <PARAMETER NAME="PCW_ENET_RESET_SELECT" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_ENET0_RESET_ENABLE" VALUE="0"/>
-        <PARAMETER NAME="PCW_ENET0_RESET_IO" VALUE="&lt;Select>"/>
+        <PARAMETER NAME="PCW_ENET0_ENET0_IO" VALUE="MIO 16 .. 27"/>
+        <PARAMETER NAME="PCW_ENET0_GRP_MDIO_ENABLE" VALUE="1"/>
+        <PARAMETER NAME="PCW_ENET0_GRP_MDIO_IO" VALUE="MIO 52 .. 53"/>
+        <PARAMETER NAME="PCW_ENET_RESET_ENABLE" VALUE="1"/>
+        <PARAMETER NAME="PCW_ENET_RESET_SELECT" VALUE="Share reset pin"/>
+        <PARAMETER NAME="PCW_ENET0_RESET_ENABLE" VALUE="1"/>
+        <PARAMETER NAME="PCW_ENET0_RESET_IO" VALUE="MIO 9"/>
         <PARAMETER NAME="PCW_ENET1_PERIPHERAL_ENABLE" VALUE="0"/>
         <PARAMETER NAME="PCW_ENET1_ENET1_IO" VALUE="&lt;Select>"/>
         <PARAMETER NAME="PCW_ENET1_GRP_MDIO_ENABLE" VALUE="0"/>
@@ -1061,10 +1059,10 @@
         <PARAMETER NAME="PCW_PJTAG_PJTAG_IO" VALUE="&lt;Select>"/>
         <PARAMETER NAME="PCW_USB0_PERIPHERAL_ENABLE" VALUE="1"/>
         <PARAMETER NAME="PCW_USB0_USB0_IO" VALUE="MIO 28 .. 39"/>
-        <PARAMETER NAME="PCW_USB_RESET_ENABLE" VALUE="0"/>
-        <PARAMETER NAME="PCW_USB_RESET_SELECT" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_USB0_RESET_ENABLE" VALUE="0"/>
-        <PARAMETER NAME="PCW_USB0_RESET_IO" VALUE="&lt;Select>"/>
+        <PARAMETER NAME="PCW_USB_RESET_ENABLE" VALUE="1"/>
+        <PARAMETER NAME="PCW_USB_RESET_SELECT" VALUE="Share reset pin"/>
+        <PARAMETER NAME="PCW_USB0_RESET_ENABLE" VALUE="1"/>
+        <PARAMETER NAME="PCW_USB0_RESET_IO" VALUE="MIO 46"/>
         <PARAMETER NAME="PCW_USB1_PERIPHERAL_ENABLE" VALUE="0"/>
         <PARAMETER NAME="PCW_USB1_USB1_IO" VALUE="&lt;Select>"/>
         <PARAMETER NAME="PCW_USB1_RESET_ENABLE" VALUE="0"/>
@@ -1084,8 +1082,8 @@
         <PARAMETER NAME="PCW_I2C1_RESET_ENABLE" VALUE="0"/>
         <PARAMETER NAME="PCW_I2C1_RESET_IO" VALUE="&lt;Select>"/>
         <PARAMETER NAME="PCW_GPIO_PERIPHERAL_ENABLE" VALUE="0"/>
-        <PARAMETER NAME="PCW_GPIO_MIO_GPIO_ENABLE" VALUE="0"/>
-        <PARAMETER NAME="PCW_GPIO_MIO_GPIO_IO" VALUE="&lt;Select>"/>
+        <PARAMETER NAME="PCW_GPIO_MIO_GPIO_ENABLE" VALUE="1"/>
+        <PARAMETER NAME="PCW_GPIO_MIO_GPIO_IO" VALUE="MIO"/>
         <PARAMETER NAME="PCW_GPIO_EMIO_GPIO_ENABLE" VALUE="0"/>
         <PARAMETER NAME="PCW_GPIO_EMIO_GPIO_IO" VALUE="&lt;Select>"/>
         <PARAMETER NAME="PCW_APU_CLK_RATIO_ENABLE" VALUE="6:2:1"/>
@@ -1103,7 +1101,7 @@
         <PARAMETER NAME="PCW_FCLK1_PERIPHERAL_CLKSRC" VALUE="IO PLL"/>
         <PARAMETER NAME="PCW_FCLK2_PERIPHERAL_CLKSRC" VALUE="IO PLL"/>
         <PARAMETER NAME="PCW_FCLK3_PERIPHERAL_CLKSRC" VALUE="IO PLL"/>
-        <PARAMETER NAME="PCW_ENET0_PERIPHERAL_CLKSRC" VALUE="External"/>
+        <PARAMETER NAME="PCW_ENET0_PERIPHERAL_CLKSRC" VALUE="IO PLL"/>
         <PARAMETER NAME="PCW_ENET1_PERIPHERAL_CLKSRC" VALUE="IO PLL"/>
         <PARAMETER NAME="PCW_CAN0_PERIPHERAL_CLKSRC" VALUE="External"/>
         <PARAMETER NAME="PCW_CAN1_PERIPHERAL_CLKSRC" VALUE="External"/>
@@ -1120,10 +1118,10 @@
         <PARAMETER NAME="PCW_USB_RESET_POLARITY" VALUE="Active Low"/>
         <PARAMETER NAME="PCW_ENET_RESET_POLARITY" VALUE="Active Low"/>
         <PARAMETER NAME="PCW_I2C_RESET_POLARITY" VALUE="Active Low"/>
-        <PARAMETER NAME="PCW_MIO_0_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_0_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_0_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_0_SLEW" VALUE="&lt;Select>"/>
+        <PARAMETER NAME="PCW_MIO_0_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_0_IOTYPE" VALUE="LVCMOS 3.3V"/>
+        <PARAMETER NAME="PCW_MIO_0_DIRECTION" VALUE="inout"/>
+        <PARAMETER NAME="PCW_MIO_0_SLEW" VALUE="slow"/>
         <PARAMETER NAME="PCW_MIO_1_PULLUP" VALUE="enabled"/>
         <PARAMETER NAME="PCW_MIO_1_IOTYPE" VALUE="LVCMOS 3.3V"/>
         <PARAMETER NAME="PCW_MIO_1_DIRECTION" VALUE="out"/>
@@ -1148,34 +1146,34 @@
         <PARAMETER NAME="PCW_MIO_6_IOTYPE" VALUE="LVCMOS 3.3V"/>
         <PARAMETER NAME="PCW_MIO_6_DIRECTION" VALUE="out"/>
         <PARAMETER NAME="PCW_MIO_6_SLEW" VALUE="slow"/>
-        <PARAMETER NAME="PCW_MIO_7_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_7_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_7_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_7_SLEW" VALUE="&lt;Select>"/>
+        <PARAMETER NAME="PCW_MIO_7_PULLUP" VALUE="disabled"/>
+        <PARAMETER NAME="PCW_MIO_7_IOTYPE" VALUE="LVCMOS 3.3V"/>
+        <PARAMETER NAME="PCW_MIO_7_DIRECTION" VALUE="out"/>
+        <PARAMETER NAME="PCW_MIO_7_SLEW" VALUE="slow"/>
         <PARAMETER NAME="PCW_MIO_8_PULLUP" VALUE="disabled"/>
         <PARAMETER NAME="PCW_MIO_8_IOTYPE" VALUE="LVCMOS 3.3V"/>
         <PARAMETER NAME="PCW_MIO_8_DIRECTION" VALUE="out"/>
         <PARAMETER NAME="PCW_MIO_8_SLEW" VALUE="slow"/>
-        <PARAMETER NAME="PCW_MIO_9_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_9_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_9_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_9_SLEW" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_10_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_10_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_10_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_10_SLEW" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_11_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_11_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_11_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_11_SLEW" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_12_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_12_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_12_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_12_SLEW" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_13_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_13_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_13_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_13_SLEW" VALUE="&lt;Select>"/>
+        <PARAMETER NAME="PCW_MIO_9_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_9_IOTYPE" VALUE="LVCMOS 3.3V"/>
+        <PARAMETER NAME="PCW_MIO_9_DIRECTION" VALUE="out"/>
+        <PARAMETER NAME="PCW_MIO_9_SLEW" VALUE="slow"/>
+        <PARAMETER NAME="PCW_MIO_10_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_10_IOTYPE" VALUE="LVCMOS 3.3V"/>
+        <PARAMETER NAME="PCW_MIO_10_DIRECTION" VALUE="inout"/>
+        <PARAMETER NAME="PCW_MIO_10_SLEW" VALUE="slow"/>
+        <PARAMETER NAME="PCW_MIO_11_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_11_IOTYPE" VALUE="LVCMOS 3.3V"/>
+        <PARAMETER NAME="PCW_MIO_11_DIRECTION" VALUE="inout"/>
+        <PARAMETER NAME="PCW_MIO_11_SLEW" VALUE="slow"/>
+        <PARAMETER NAME="PCW_MIO_12_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_12_IOTYPE" VALUE="LVCMOS 3.3V"/>
+        <PARAMETER NAME="PCW_MIO_12_DIRECTION" VALUE="inout"/>
+        <PARAMETER NAME="PCW_MIO_12_SLEW" VALUE="slow"/>
+        <PARAMETER NAME="PCW_MIO_13_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_13_IOTYPE" VALUE="LVCMOS 3.3V"/>
+        <PARAMETER NAME="PCW_MIO_13_DIRECTION" VALUE="inout"/>
+        <PARAMETER NAME="PCW_MIO_13_SLEW" VALUE="slow"/>
         <PARAMETER NAME="PCW_MIO_14_PULLUP" VALUE="enabled"/>
         <PARAMETER NAME="PCW_MIO_14_IOTYPE" VALUE="LVCMOS 3.3V"/>
         <PARAMETER NAME="PCW_MIO_14_DIRECTION" VALUE="in"/>
@@ -1184,54 +1182,54 @@
         <PARAMETER NAME="PCW_MIO_15_IOTYPE" VALUE="LVCMOS 3.3V"/>
         <PARAMETER NAME="PCW_MIO_15_DIRECTION" VALUE="out"/>
         <PARAMETER NAME="PCW_MIO_15_SLEW" VALUE="slow"/>
-        <PARAMETER NAME="PCW_MIO_16_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_16_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_16_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_16_SLEW" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_17_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_17_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_17_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_17_SLEW" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_18_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_18_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_18_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_18_SLEW" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_19_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_19_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_19_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_19_SLEW" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_20_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_20_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_20_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_20_SLEW" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_21_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_21_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_21_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_21_SLEW" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_22_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_22_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_22_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_22_SLEW" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_23_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_23_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_23_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_23_SLEW" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_24_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_24_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_24_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_24_SLEW" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_25_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_25_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_25_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_25_SLEW" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_26_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_26_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_26_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_26_SLEW" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_27_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_27_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_27_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_27_SLEW" VALUE="&lt;Select>"/>
+        <PARAMETER NAME="PCW_MIO_16_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_16_IOTYPE" VALUE="LVCMOS 1.8V"/>
+        <PARAMETER NAME="PCW_MIO_16_DIRECTION" VALUE="out"/>
+        <PARAMETER NAME="PCW_MIO_16_SLEW" VALUE="slow"/>
+        <PARAMETER NAME="PCW_MIO_17_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_17_IOTYPE" VALUE="LVCMOS 1.8V"/>
+        <PARAMETER NAME="PCW_MIO_17_DIRECTION" VALUE="out"/>
+        <PARAMETER NAME="PCW_MIO_17_SLEW" VALUE="slow"/>
+        <PARAMETER NAME="PCW_MIO_18_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_18_IOTYPE" VALUE="LVCMOS 1.8V"/>
+        <PARAMETER NAME="PCW_MIO_18_DIRECTION" VALUE="out"/>
+        <PARAMETER NAME="PCW_MIO_18_SLEW" VALUE="slow"/>
+        <PARAMETER NAME="PCW_MIO_19_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_19_IOTYPE" VALUE="LVCMOS 1.8V"/>
+        <PARAMETER NAME="PCW_MIO_19_DIRECTION" VALUE="out"/>
+        <PARAMETER NAME="PCW_MIO_19_SLEW" VALUE="slow"/>
+        <PARAMETER NAME="PCW_MIO_20_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_20_IOTYPE" VALUE="LVCMOS 1.8V"/>
+        <PARAMETER NAME="PCW_MIO_20_DIRECTION" VALUE="out"/>
+        <PARAMETER NAME="PCW_MIO_20_SLEW" VALUE="slow"/>
+        <PARAMETER NAME="PCW_MIO_21_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_21_IOTYPE" VALUE="LVCMOS 1.8V"/>
+        <PARAMETER NAME="PCW_MIO_21_DIRECTION" VALUE="out"/>
+        <PARAMETER NAME="PCW_MIO_21_SLEW" VALUE="slow"/>
+        <PARAMETER NAME="PCW_MIO_22_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_22_IOTYPE" VALUE="LVCMOS 1.8V"/>
+        <PARAMETER NAME="PCW_MIO_22_DIRECTION" VALUE="in"/>
+        <PARAMETER NAME="PCW_MIO_22_SLEW" VALUE="slow"/>
+        <PARAMETER NAME="PCW_MIO_23_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_23_IOTYPE" VALUE="LVCMOS 1.8V"/>
+        <PARAMETER NAME="PCW_MIO_23_DIRECTION" VALUE="in"/>
+        <PARAMETER NAME="PCW_MIO_23_SLEW" VALUE="slow"/>
+        <PARAMETER NAME="PCW_MIO_24_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_24_IOTYPE" VALUE="LVCMOS 1.8V"/>
+        <PARAMETER NAME="PCW_MIO_24_DIRECTION" VALUE="in"/>
+        <PARAMETER NAME="PCW_MIO_24_SLEW" VALUE="slow"/>
+        <PARAMETER NAME="PCW_MIO_25_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_25_IOTYPE" VALUE="LVCMOS 1.8V"/>
+        <PARAMETER NAME="PCW_MIO_25_DIRECTION" VALUE="in"/>
+        <PARAMETER NAME="PCW_MIO_25_SLEW" VALUE="slow"/>
+        <PARAMETER NAME="PCW_MIO_26_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_26_IOTYPE" VALUE="LVCMOS 1.8V"/>
+        <PARAMETER NAME="PCW_MIO_26_DIRECTION" VALUE="in"/>
+        <PARAMETER NAME="PCW_MIO_26_SLEW" VALUE="slow"/>
+        <PARAMETER NAME="PCW_MIO_27_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_27_IOTYPE" VALUE="LVCMOS 1.8V"/>
+        <PARAMETER NAME="PCW_MIO_27_DIRECTION" VALUE="in"/>
+        <PARAMETER NAME="PCW_MIO_27_SLEW" VALUE="slow"/>
         <PARAMETER NAME="PCW_MIO_28_PULLUP" VALUE="enabled"/>
         <PARAMETER NAME="PCW_MIO_28_IOTYPE" VALUE="LVCMOS 1.8V"/>
         <PARAMETER NAME="PCW_MIO_28_DIRECTION" VALUE="inout"/>
@@ -1304,42 +1302,42 @@
         <PARAMETER NAME="PCW_MIO_45_IOTYPE" VALUE="LVCMOS 1.8V"/>
         <PARAMETER NAME="PCW_MIO_45_DIRECTION" VALUE="inout"/>
         <PARAMETER NAME="PCW_MIO_45_SLEW" VALUE="slow"/>
-        <PARAMETER NAME="PCW_MIO_46_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_46_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_46_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_46_SLEW" VALUE="&lt;Select>"/>
+        <PARAMETER NAME="PCW_MIO_46_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_46_IOTYPE" VALUE="LVCMOS 1.8V"/>
+        <PARAMETER NAME="PCW_MIO_46_DIRECTION" VALUE="out"/>
+        <PARAMETER NAME="PCW_MIO_46_SLEW" VALUE="slow"/>
         <PARAMETER NAME="PCW_MIO_47_PULLUP" VALUE="enabled"/>
         <PARAMETER NAME="PCW_MIO_47_IOTYPE" VALUE="LVCMOS 1.8V"/>
         <PARAMETER NAME="PCW_MIO_47_DIRECTION" VALUE="in"/>
         <PARAMETER NAME="PCW_MIO_47_SLEW" VALUE="slow"/>
-        <PARAMETER NAME="PCW_MIO_48_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_48_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_48_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_48_SLEW" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_49_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_49_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_49_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_49_SLEW" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_50_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_50_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_50_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_50_SLEW" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_51_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_51_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_51_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_51_SLEW" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_52_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_52_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_52_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_52_SLEW" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_53_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_53_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_53_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_53_SLEW" VALUE="&lt;Select>"/>
+        <PARAMETER NAME="PCW_MIO_48_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_48_IOTYPE" VALUE="LVCMOS 1.8V"/>
+        <PARAMETER NAME="PCW_MIO_48_DIRECTION" VALUE="inout"/>
+        <PARAMETER NAME="PCW_MIO_48_SLEW" VALUE="slow"/>
+        <PARAMETER NAME="PCW_MIO_49_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_49_IOTYPE" VALUE="LVCMOS 1.8V"/>
+        <PARAMETER NAME="PCW_MIO_49_DIRECTION" VALUE="inout"/>
+        <PARAMETER NAME="PCW_MIO_49_SLEW" VALUE="slow"/>
+        <PARAMETER NAME="PCW_MIO_50_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_50_IOTYPE" VALUE="LVCMOS 1.8V"/>
+        <PARAMETER NAME="PCW_MIO_50_DIRECTION" VALUE="inout"/>
+        <PARAMETER NAME="PCW_MIO_50_SLEW" VALUE="slow"/>
+        <PARAMETER NAME="PCW_MIO_51_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_51_IOTYPE" VALUE="LVCMOS 1.8V"/>
+        <PARAMETER NAME="PCW_MIO_51_DIRECTION" VALUE="inout"/>
+        <PARAMETER NAME="PCW_MIO_51_SLEW" VALUE="slow"/>
+        <PARAMETER NAME="PCW_MIO_52_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_52_IOTYPE" VALUE="LVCMOS 1.8V"/>
+        <PARAMETER NAME="PCW_MIO_52_DIRECTION" VALUE="out"/>
+        <PARAMETER NAME="PCW_MIO_52_SLEW" VALUE="slow"/>
+        <PARAMETER NAME="PCW_MIO_53_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_53_IOTYPE" VALUE="LVCMOS 1.8V"/>
+        <PARAMETER NAME="PCW_MIO_53_DIRECTION" VALUE="inout"/>
+        <PARAMETER NAME="PCW_MIO_53_SLEW" VALUE="slow"/>
         <PARAMETER NAME="preset" VALUE="None"/>
         <PARAMETER NAME="PCW_UIPARAM_GENERATE_SUMMARY" VALUE="NA"/>
-        <PARAMETER NAME="PCW_MIO_TREE_PERIPHERALS" VALUE="unassigned#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#unassigned#Quad SPI Flash#unassigned#unassigned#unassigned#unassigned#unassigned#UART 0#UART 0#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#unassigned#SD 0#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned"/>
-        <PARAMETER NAME="PCW_MIO_TREE_SIGNALS" VALUE="unassigned#qspi0_ss_b#qspi0_io[0]#qspi0_io[1]#qspi0_io[2]#qspi0_io[3]/HOLD_B#qspi0_sclk#unassigned#qspi_fbclk#unassigned#unassigned#unassigned#unassigned#unassigned#rx#tx#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#data[4]#dir#stp#nxt#data[0]#data[1]#data[2]#data[3]#clk#data[5]#data[6]#data[7]#clk#cmd#data[0]#data[1]#data[2]#data[3]#unassigned#cd#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned"/>
+        <PARAMETER NAME="PCW_MIO_TREE_PERIPHERALS" VALUE="GPIO#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#GPIO#Quad SPI Flash#ENET Reset#GPIO#GPIO#GPIO#GPIO#UART 0#UART 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#USB Reset#SD 0#GPIO#GPIO#GPIO#GPIO#Enet 0#Enet 0"/>
+        <PARAMETER NAME="PCW_MIO_TREE_SIGNALS" VALUE="gpio[0]#qspi0_ss_b#qspi0_io[0]#qspi0_io[1]#qspi0_io[2]#qspi0_io[3]/HOLD_B#qspi0_sclk#gpio[7]#qspi_fbclk#reset#gpio[10]#gpio[11]#gpio[12]#gpio[13]#rx#tx#tx_clk#txd[0]#txd[1]#txd[2]#txd[3]#tx_ctl#rx_clk#rxd[0]#rxd[1]#rxd[2]#rxd[3]#rx_ctl#data[4]#dir#stp#nxt#data[0]#data[1]#data[2]#data[3]#clk#data[5]#data[6]#data[7]#clk#cmd#data[0]#data[1]#data[2]#data[3]#reset#cd#gpio[48]#gpio[49]#gpio[50]#gpio[51]#mdc#mdio"/>
         <PARAMETER NAME="PCW_PS7_SI_REV" VALUE="PRODUCTION"/>
         <PARAMETER NAME="PCW_FPGA_FCLK0_ENABLE" VALUE="1"/>
         <PARAMETER NAME="PCW_FPGA_FCLK1_ENABLE" VALUE="0"/>
@@ -1393,17 +1391,6 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="O" LEFT="0" NAME="ENET0_GMII_TX_EN" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="O" LEFT="0" NAME="ENET0_GMII_TX_ER" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="O" LEFT="7" NAME="ENET0_GMII_TXD" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" NAME="ENET0_GMII_COL" SIGIS="undef"/>
-        <PORT DIR="I" NAME="ENET0_GMII_CRS" SIGIS="undef"/>
-        <PORT DIR="I" NAME="ENET0_GMII_RX_CLK" SIGIS="clk"/>
-        <PORT DIR="I" NAME="ENET0_GMII_RX_DV" SIGIS="undef"/>
-        <PORT DIR="I" NAME="ENET0_GMII_RX_ER" SIGIS="undef"/>
-        <PORT DIR="I" NAME="ENET0_GMII_TX_CLK" SIGIS="clk"/>
-        <PORT DIR="I" NAME="ENET0_EXT_INTIN" SENSITIVITY="LEVEL_HIGH" SIGIS="INTERRUPT"/>
-        <PORT DIR="I" LEFT="7" NAME="ENET0_GMII_RXD" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" LEFT="1" NAME="USB0_PORT_INDCTL" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" NAME="USB0_VBUS_PWRSELECT" SIGIS="undef"/>
         <PORT DIR="I" NAME="USB0_VBUS_PWRFAULT" SIGIS="undef"/>
@@ -1610,9 +1597,9 @@
         <PORT CLKFREQUENCY="100000000" DIR="O" NAME="FCLK_CLK0" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
           <CONNECTIONS>
             <CONNECTION INSTANCE="processing_system7_0" PORT="M_AXI_GP0_ACLK"/>
+            <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="S00_ACLK"/>
             <CONNECTION INSTANCE="rst_ps7_0_100M" PORT="slowest_sync_clk"/>
             <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_aclk"/>
-            <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="S00_ACLK"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M00_ACLK"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="ACLK"/>
           </CONNECTIONS>
@@ -1645,20 +1632,6 @@
         <PORT DIR="IO" NAME="PS_PORB" SIGIS="undef"/>
       </PORTS>
       <BUSINTERFACES>
-        <BUSINTERFACE BUSNAME="__NOC__" NAME="GMII_ETHERNET_0" TYPE="INITIATOR" VLNV="xilinx.com:interface:gmii:1.0">
-          <PORTMAPS>
-            <PORTMAP LOGICAL="TX_EN" PHYSICAL="ENET0_GMII_TX_EN"/>
-            <PORTMAP LOGICAL="TX_ER" PHYSICAL="ENET0_GMII_TX_ER"/>
-            <PORTMAP LOGICAL="TXD" PHYSICAL="ENET0_GMII_TXD"/>
-            <PORTMAP LOGICAL="COL" PHYSICAL="ENET0_GMII_COL"/>
-            <PORTMAP LOGICAL="CRS" PHYSICAL="ENET0_GMII_CRS"/>
-            <PORTMAP LOGICAL="RX_CLK" PHYSICAL="ENET0_GMII_RX_CLK"/>
-            <PORTMAP LOGICAL="RX_DV" PHYSICAL="ENET0_GMII_RX_DV"/>
-            <PORTMAP LOGICAL="RX_ER" PHYSICAL="ENET0_GMII_RX_ER"/>
-            <PORTMAP LOGICAL="TX_CLK" PHYSICAL="ENET0_GMII_TX_CLK"/>
-            <PORTMAP LOGICAL="RXD" PHYSICAL="ENET0_GMII_RXD"/>
-          </PORTMAPS>
-        </BUSINTERFACE>
         <BUSINTERFACE BUSNAME="processing_system7_0_DDR" DATAWIDTH="8" NAME="DDR" TYPE="INITIATOR" VLNV="xilinx.com:interface:ddrx:1.0">
           <PARAMETER NAME="CAN_DEBUG" VALUE="false"/>
           <PARAMETER NAME="TIMEPERIOD_PS" VALUE="1250"/>
@@ -2333,29 +2306,9 @@
             <CONNECTION INSTANCE="processing_system7_0" PORT="M_AXI_GP0_RDATA"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M00_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_araddr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_araddr"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M00_AXI_arready" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_arready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_arready"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT DIR="O" NAME="M00_AXI_arvalid" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_arvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_arvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M00_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_awaddr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_awaddr"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M00_AXI_awready" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_awready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_awready"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="M00_AXI_awvalid" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_awvalid">
@@ -2368,34 +2321,36 @@
             <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_bready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="M00_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_bresp">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_bresp"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M00_AXI_bvalid" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_bvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_bvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="31" NAME="M00_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_rdata">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_rdata"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT DIR="O" NAME="M00_AXI_rready" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_rready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_rready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="M00_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_rresp">
+        <PORT DIR="O" NAME="M00_AXI_wlast" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_wvalid" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_wvalid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_rresp"/>
+            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_wvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M00_AXI_rvalid" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_rvalid">
+        <PORT DIR="O" NAME="M00_AXI_arid" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_awid" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_wid" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_arburst" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_arlock" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_arsize" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_awburst" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_awlock" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_awsize" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_arprot" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_awprot" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="31" NAME="M00_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_araddr">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_rvalid"/>
+            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_araddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M00_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_awaddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_awaddr"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="31" NAME="M00_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_wdata">
@@ -2403,19 +2358,58 @@
             <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_wdata"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M00_AXI_wready" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_wready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_wready"/>
-          </CONNECTIONS>
-        </PORT>
+        <PORT DIR="O" NAME="M00_AXI_arcache" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_arlen" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_arqos" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_awcache" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_awlen" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_awqos" SIGIS="undef"/>
         <PORT DIR="O" LEFT="3" NAME="M00_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_wstrb">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_wstrb"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M00_AXI_wvalid" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_wvalid">
+        <PORT DIR="I" NAME="M00_AXI_arready" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_arready">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_wvalid"/>
+            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_arready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M00_AXI_awready" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_awready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_awready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M00_AXI_bvalid" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_bvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_bvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M00_AXI_rlast" SIGIS="undef"/>
+        <PORT DIR="I" NAME="M00_AXI_rvalid" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_rvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_rvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M00_AXI_wready" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_wready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_wready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M00_AXI_bid" SIGIS="undef"/>
+        <PORT DIR="I" NAME="M00_AXI_rid" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="1" NAME="M00_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_bresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_bresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M00_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_rresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_rresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="M00_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_rdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_rdata"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -2464,23 +2458,44 @@
         </BUSINTERFACE>
         <BUSINTERFACE BUSNAME="ps7_0_axi_periph_M00_AXI" DATAWIDTH="32" NAME="M00_AXI" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
           <PORTMAPS>
-            <PORTMAP LOGICAL="ARADDR" PHYSICAL="M00_AXI_araddr"/>
-            <PORTMAP LOGICAL="ARREADY" PHYSICAL="M00_AXI_arready"/>
             <PORTMAP LOGICAL="ARVALID" PHYSICAL="M00_AXI_arvalid"/>
-            <PORTMAP LOGICAL="AWADDR" PHYSICAL="M00_AXI_awaddr"/>
-            <PORTMAP LOGICAL="AWREADY" PHYSICAL="M00_AXI_awready"/>
             <PORTMAP LOGICAL="AWVALID" PHYSICAL="M00_AXI_awvalid"/>
             <PORTMAP LOGICAL="BREADY" PHYSICAL="M00_AXI_bready"/>
-            <PORTMAP LOGICAL="BRESP" PHYSICAL="M00_AXI_bresp"/>
-            <PORTMAP LOGICAL="BVALID" PHYSICAL="M00_AXI_bvalid"/>
-            <PORTMAP LOGICAL="RDATA" PHYSICAL="M00_AXI_rdata"/>
             <PORTMAP LOGICAL="RREADY" PHYSICAL="M00_AXI_rready"/>
-            <PORTMAP LOGICAL="RRESP" PHYSICAL="M00_AXI_rresp"/>
-            <PORTMAP LOGICAL="RVALID" PHYSICAL="M00_AXI_rvalid"/>
-            <PORTMAP LOGICAL="WDATA" PHYSICAL="M00_AXI_wdata"/>
-            <PORTMAP LOGICAL="WREADY" PHYSICAL="M00_AXI_wready"/>
-            <PORTMAP LOGICAL="WSTRB" PHYSICAL="M00_AXI_wstrb"/>
+            <PORTMAP LOGICAL="WLAST" PHYSICAL="M00_AXI_wlast"/>
             <PORTMAP LOGICAL="WVALID" PHYSICAL="M00_AXI_wvalid"/>
+            <PORTMAP LOGICAL="ARID" PHYSICAL="M00_AXI_arid"/>
+            <PORTMAP LOGICAL="AWID" PHYSICAL="M00_AXI_awid"/>
+            <PORTMAP LOGICAL="WID" PHYSICAL="M00_AXI_wid"/>
+            <PORTMAP LOGICAL="ARBURST" PHYSICAL="M00_AXI_arburst"/>
+            <PORTMAP LOGICAL="ARLOCK" PHYSICAL="M00_AXI_arlock"/>
+            <PORTMAP LOGICAL="ARSIZE" PHYSICAL="M00_AXI_arsize"/>
+            <PORTMAP LOGICAL="AWBURST" PHYSICAL="M00_AXI_awburst"/>
+            <PORTMAP LOGICAL="AWLOCK" PHYSICAL="M00_AXI_awlock"/>
+            <PORTMAP LOGICAL="AWSIZE" PHYSICAL="M00_AXI_awsize"/>
+            <PORTMAP LOGICAL="ARPROT" PHYSICAL="M00_AXI_arprot"/>
+            <PORTMAP LOGICAL="AWPROT" PHYSICAL="M00_AXI_awprot"/>
+            <PORTMAP LOGICAL="ARADDR" PHYSICAL="M00_AXI_araddr"/>
+            <PORTMAP LOGICAL="AWADDR" PHYSICAL="M00_AXI_awaddr"/>
+            <PORTMAP LOGICAL="WDATA" PHYSICAL="M00_AXI_wdata"/>
+            <PORTMAP LOGICAL="ARCACHE" PHYSICAL="M00_AXI_arcache"/>
+            <PORTMAP LOGICAL="ARLEN" PHYSICAL="M00_AXI_arlen"/>
+            <PORTMAP LOGICAL="ARQOS" PHYSICAL="M00_AXI_arqos"/>
+            <PORTMAP LOGICAL="AWCACHE" PHYSICAL="M00_AXI_awcache"/>
+            <PORTMAP LOGICAL="AWLEN" PHYSICAL="M00_AXI_awlen"/>
+            <PORTMAP LOGICAL="AWQOS" PHYSICAL="M00_AXI_awqos"/>
+            <PORTMAP LOGICAL="WSTRB" PHYSICAL="M00_AXI_wstrb"/>
+            <PORTMAP LOGICAL="ARREADY" PHYSICAL="M00_AXI_arready"/>
+            <PORTMAP LOGICAL="AWREADY" PHYSICAL="M00_AXI_awready"/>
+            <PORTMAP LOGICAL="BVALID" PHYSICAL="M00_AXI_bvalid"/>
+            <PORTMAP LOGICAL="RLAST" PHYSICAL="M00_AXI_rlast"/>
+            <PORTMAP LOGICAL="RVALID" PHYSICAL="M00_AXI_rvalid"/>
+            <PORTMAP LOGICAL="WREADY" PHYSICAL="M00_AXI_wready"/>
+            <PORTMAP LOGICAL="BID" PHYSICAL="M00_AXI_bid"/>
+            <PORTMAP LOGICAL="RID" PHYSICAL="M00_AXI_rid"/>
+            <PORTMAP LOGICAL="BRESP" PHYSICAL="M00_AXI_bresp"/>
+            <PORTMAP LOGICAL="RRESP" PHYSICAL="M00_AXI_rresp"/>
+            <PORTMAP LOGICAL="RDATA" PHYSICAL="M00_AXI_rdata"/>
           </PORTMAPS>
         </BUSINTERFACE>
       </BUSINTERFACES>
@@ -2528,8 +2543,8 @@
         </PORT>
         <PORT DIR="O" LEFT="0" NAME="peripheral_aresetn" RIGHT="0" SIGIS="rst" SIGNAME="rst_ps7_0_100M_peripheral_aresetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_aresetn"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="S00_ARESETN"/>
+            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_aresetn"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M00_ARESETN"/>
           </CONNECTIONS>
         </PORT>

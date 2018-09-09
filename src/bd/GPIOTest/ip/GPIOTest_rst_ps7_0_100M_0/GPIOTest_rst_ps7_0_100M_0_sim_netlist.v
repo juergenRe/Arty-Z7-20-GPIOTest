@@ -3,8 +3,8 @@
 // Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
 // Date        : Fri Sep  7 14:49:37 2018
 // Host        : ASYS running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim
-//               c:/Users/Juergen/Documents/FPGA/Arty-Z7/Arty-Z7-20-GPIOTest/src/bd/GPIOTest/ip/GPIOTest_rst_ps7_0_100M_0/GPIOTest_rst_ps7_0_100M_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top GPIOTest_rst_ps7_0_100M_0 -prefix
+//               GPIOTest_rst_ps7_0_100M_0_ GPIOTest_rst_ps7_0_100M_0_sim_netlist.v
 // Design      : GPIOTest_rst_ps7_0_100M_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -69,7 +69,6 @@ module GPIOTest_rst_ps7_0_100M_0
         .slowest_sync_clk(slowest_sync_clk));
 endmodule
 
-(* ORIG_REF_NAME = "cdc_sync" *) 
 module GPIOTest_rst_ps7_0_100M_0_cdc_sync
    (lpf_asr_reg,
     scndry_out,
@@ -251,7 +250,6 @@ module GPIOTest_rst_ps7_0_100M_0_cdc_sync_0
         .O(lpf_exr_reg));
 endmodule
 
-(* ORIG_REF_NAME = "lpf" *) 
 module GPIOTest_rst_ps7_0_100M_0_lpf
    (lpf_int,
     slowest_sync_clk,
@@ -400,7 +398,6 @@ endmodule
 (* C_AUX_RESET_HIGH = "1'b0" *) (* C_AUX_RST_WIDTH = "4" *) (* C_EXT_RESET_HIGH = "1'b0" *) 
 (* C_EXT_RST_WIDTH = "4" *) (* C_FAMILY = "zynq" *) (* C_NUM_BUS_RST = "1" *) 
 (* C_NUM_INTERCONNECT_ARESETN = "1" *) (* C_NUM_PERP_ARESETN = "1" *) (* C_NUM_PERP_RST = "1" *) 
-(* ORIG_REF_NAME = "proc_sys_reset" *) 
 module GPIOTest_rst_ps7_0_100M_0_proc_sys_reset
    (slowest_sync_clk,
     ext_reset_in,
@@ -517,7 +514,6 @@ module GPIOTest_rst_ps7_0_100M_0_proc_sys_reset
         .slowest_sync_clk(slowest_sync_clk));
 endmodule
 
-(* ORIG_REF_NAME = "sequence_psr" *) 
 module GPIOTest_rst_ps7_0_100M_0_sequence_psr
    (MB_out,
     Bsr_out,
@@ -758,7 +754,6 @@ module GPIOTest_rst_ps7_0_100M_0_sequence_psr
         .R(lpf_int));
 endmodule
 
-(* ORIG_REF_NAME = "upcnt_n" *) 
 module GPIOTest_rst_ps7_0_100M_0_upcnt_n
    (Q,
     seq_clr,

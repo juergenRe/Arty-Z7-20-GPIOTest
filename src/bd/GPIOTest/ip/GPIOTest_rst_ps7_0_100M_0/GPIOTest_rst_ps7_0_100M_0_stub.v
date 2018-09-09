@@ -3,8 +3,8 @@
 // Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
 // Date        : Fri Sep  7 14:49:37 2018
 // Host        : ASYS running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode synth_stub
-//               c:/Users/Juergen/Documents/FPGA/Arty-Z7/Arty-Z7-20-GPIOTest/src/bd/GPIOTest/ip/GPIOTest_rst_ps7_0_100M_0/GPIOTest_rst_ps7_0_100M_0_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top GPIOTest_rst_ps7_0_100M_0 -prefix
+//               GPIOTest_rst_ps7_0_100M_0_ GPIOTest_rst_ps7_0_100M_0_stub.v
 // Design      : GPIOTest_rst_ps7_0_100M_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7z020clg400-1

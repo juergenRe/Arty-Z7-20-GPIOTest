@@ -2,11 +2,21 @@
 <Root MajorVersion="0" MinorVersion="33">
   <CompositeFile CompositeFileTopName="GPIOTest" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1536339232"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1536339232"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1536339232"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1536339232"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1536488833"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1536488833"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1536488833"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1536488833"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
+      <File Name="synth\GPIOTest.vhd" Type="VHDL">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+      </File>
+      <File Name="sim\GPIOTest.vhd" Type="VHDL">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
       <File Name="ip\GPIOTest_processing_system7_0_0\GPIOTest_processing_system7_0_0.xci" Type="IP">
         <Instance HierarchyPath="processing_system7_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
@@ -37,16 +47,6 @@
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
         <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="synth\GPIOTest.vhd" Type="VHDL">
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-      </File>
-      <File Name="sim\GPIOTest.vhd" Type="VHDL">
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
-        <Library Name="xil_defaultlib"/>
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="ip\GPIOTest_auto_pc_0\GPIOTest_auto_pc_0.xci" Type="IP">

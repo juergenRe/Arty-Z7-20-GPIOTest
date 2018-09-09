@@ -1,7 +1,7 @@
 --Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
---Date        : Fri Sep  7 18:53:31 2018
+--Date        : Sun Sep  9 12:26:50 2018
 --Host        : ASYS running 64-bit major release  (build 9200)
 --Command     : generate_target GPIOTest.bd
 --Design      : GPIOTest
@@ -603,7 +603,7 @@ entity GPIOTest is
     GPIO_0_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 )
   );
   attribute CORE_GENERATION_INFO : string;
-  attribute CORE_GENERATION_INFO of GPIOTest : entity is "GPIOTest,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=GPIOTest,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=6,numReposBlks=4,numNonXlnxBlks=0,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=1,da_board_cnt=2,da_ps7_cnt=1,synth_mode=OOC_per_IP}";
+  attribute CORE_GENERATION_INFO of GPIOTest : entity is "GPIOTest,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=GPIOTest,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=6,numReposBlks=4,numNonXlnxBlks=0,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=3,da_board_cnt=4,da_clkrst_cnt=1,da_ps7_cnt=3,synth_mode=OOC_per_IP}";
   attribute HW_HANDOFF : string;
   attribute HW_HANDOFF of GPIOTest : entity is "GPIOTest.hwdef";
 end GPIOTest;
@@ -611,17 +611,6 @@ end GPIOTest;
 architecture STRUCTURE of GPIOTest is
   component GPIOTest_processing_system7_0_0 is
   port (
-    ENET0_GMII_TX_EN : out STD_LOGIC_VECTOR ( 0 to 0 );
-    ENET0_GMII_TX_ER : out STD_LOGIC_VECTOR ( 0 to 0 );
-    ENET0_GMII_TXD : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    ENET0_GMII_COL : in STD_LOGIC;
-    ENET0_GMII_CRS : in STD_LOGIC;
-    ENET0_GMII_RX_CLK : in STD_LOGIC;
-    ENET0_GMII_RX_DV : in STD_LOGIC;
-    ENET0_GMII_RX_ER : in STD_LOGIC;
-    ENET0_GMII_TX_CLK : in STD_LOGIC;
-    ENET0_EXT_INTIN : in STD_LOGIC;
-    ENET0_GMII_RXD : in STD_LOGIC_VECTOR ( 7 downto 0 );
     USB0_PORT_INDCTL : out STD_LOGIC_VECTOR ( 1 downto 0 );
     USB0_VBUS_PWRSELECT : out STD_LOGIC;
     USB0_VBUS_PWRFAULT : in STD_LOGIC;
@@ -814,9 +803,6 @@ architecture STRUCTURE of GPIOTest is
   signal rst_ps7_0_100M_interconnect_aresetn : STD_LOGIC_VECTOR ( 0 to 0 );
   signal rst_ps7_0_100M_peripheral_aresetn : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_processing_system7_0_USB0_VBUS_PWRSELECT_UNCONNECTED : STD_LOGIC;
-  signal NLW_processing_system7_0_ENET0_GMII_TXD_UNCONNECTED : STD_LOGIC_VECTOR ( 7 downto 0 );
-  signal NLW_processing_system7_0_ENET0_GMII_TX_EN_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
-  signal NLW_processing_system7_0_ENET0_GMII_TX_ER_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_processing_system7_0_USB0_PORT_INDCTL_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal NLW_rst_ps7_0_100M_mb_reset_UNCONNECTED : STD_LOGIC;
   signal NLW_rst_ps7_0_100M_bus_struct_reset_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
@@ -895,17 +881,6 @@ processing_system7_0: component GPIOTest_processing_system7_0_0
       DDR_VRN => FIXED_IO_ddr_vrn,
       DDR_VRP => FIXED_IO_ddr_vrp,
       DDR_WEB => DDR_we_n,
-      ENET0_EXT_INTIN => '0',
-      ENET0_GMII_COL => '0',
-      ENET0_GMII_CRS => '0',
-      ENET0_GMII_RXD(7 downto 0) => B"00000000",
-      ENET0_GMII_RX_CLK => '0',
-      ENET0_GMII_RX_DV => '0',
-      ENET0_GMII_RX_ER => '0',
-      ENET0_GMII_TXD(7 downto 0) => NLW_processing_system7_0_ENET0_GMII_TXD_UNCONNECTED(7 downto 0),
-      ENET0_GMII_TX_CLK => '0',
-      ENET0_GMII_TX_EN(0) => NLW_processing_system7_0_ENET0_GMII_TX_EN_UNCONNECTED(0),
-      ENET0_GMII_TX_ER(0) => NLW_processing_system7_0_ENET0_GMII_TX_ER_UNCONNECTED(0),
       FCLK_CLK0 => processing_system7_0_FCLK_CLK0,
       FCLK_RESET0_N => processing_system7_0_FCLK_RESET0_N,
       IRQ_F2P(0) => axi_gpio_0_ip2intc_irpt,
