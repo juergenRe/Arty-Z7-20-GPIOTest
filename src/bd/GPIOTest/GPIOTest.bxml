@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="33">
   <CompositeFile CompositeFileTopName="GPIOTest" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1536488833"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1536488833"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1536488833"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1536488833"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1536912364"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1536912364"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1536912364"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1536912364"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="synth\GPIOTest.vhd" Type="VHDL">
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
@@ -34,7 +34,6 @@
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="ip\GPIOTest_ps7_0_axi_periph_0\GPIOTest_ps7_0_axi_periph_0.xci" Type="IP">
-        <Instance HierarchyPath="ps7_0_axi_periph"/>
         <Properties IsEditable="false" IsVisible="false" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -43,6 +42,30 @@
       </File>
       <File Name="ip\GPIOTest_rst_ps7_0_100M_0\GPIOTest_rst_ps7_0_100M_0.xci" Type="IP">
         <Instance HierarchyPath="rst_ps7_0_100M"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\GPIOTest_axi_gpio_1_0\GPIOTest_axi_gpio_1_0.xci" Type="IP">
+        <Instance HierarchyPath="axi_gpio_1"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\GPIOTest_xbar_0\GPIOTest_xbar_0.xci" Type="IP">
+        <Instance HierarchyPath="ps7_0_axi_periph/xbar"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\GPIOTest_xlconcat_0_0\GPIOTest_xlconcat_0_0.xci" Type="IP">
+        <Instance HierarchyPath="xlconcat_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>

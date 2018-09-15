@@ -1,7 +1,7 @@
 --Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
---Date        : Sun Sep  9 12:26:50 2018
+--Date        : Fri Sep 14 10:05:42 2018
 --Host        : ASYS running 64-bit major release  (build 9200)
 --Command     : generate_target GPIOTest_wrapper.bd
 --Design      : GPIOTest_wrapper
@@ -35,7 +35,9 @@ entity GPIOTest_wrapper is
     FIXED_IO_ps_porb : inout STD_LOGIC;
     FIXED_IO_ps_srstb : inout STD_LOGIC;
     GPIO2_0_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    GPIO_0_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 )
+    GPIO2_1_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    GPIO_0_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    GPIO_1_tri_o : out STD_LOGIC_VECTOR ( 15 downto 0 )
   );
 end GPIOTest_wrapper;
 
@@ -64,7 +66,9 @@ architecture STRUCTURE of GPIOTest_wrapper is
     FIXED_IO_ps_clk : inout STD_LOGIC;
     FIXED_IO_ps_porb : inout STD_LOGIC;
     GPIO_0_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    GPIO2_0_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 )
+    GPIO2_0_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    GPIO_1_tri_o : out STD_LOGIC_VECTOR ( 15 downto 0 );
+    GPIO2_1_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 )
   );
   end component GPIOTest;
 begin
@@ -92,6 +96,8 @@ GPIOTest_i: component GPIOTest
       FIXED_IO_ps_porb => FIXED_IO_ps_porb,
       FIXED_IO_ps_srstb => FIXED_IO_ps_srstb,
       GPIO2_0_tri_i(3 downto 0) => GPIO2_0_tri_i(3 downto 0),
-      GPIO_0_tri_o(3 downto 0) => GPIO_0_tri_o(3 downto 0)
+      GPIO2_1_tri_i(3 downto 0) => GPIO2_1_tri_i(3 downto 0),
+      GPIO_0_tri_o(3 downto 0) => GPIO_0_tri_o(3 downto 0),
+      GPIO_1_tri_o(15 downto 0) => GPIO_1_tri_o(15 downto 0)
     );
 end STRUCTURE;
