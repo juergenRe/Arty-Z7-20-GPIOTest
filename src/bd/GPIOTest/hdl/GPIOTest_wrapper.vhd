@@ -1,7 +1,7 @@
 --Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
---Date        : Fri Sep 14 10:05:42 2018
+--Date        : Sun Sep 16 18:26:58 2018
 --Host        : ASYS running 64-bit major release  (build 9200)
 --Command     : generate_target GPIOTest_wrapper.bd
 --Design      : GPIOTest_wrapper
@@ -13,6 +13,7 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity GPIOTest_wrapper is
   port (
+    BTN_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
     DDR_addr : inout STD_LOGIC_VECTOR ( 14 downto 0 );
     DDR_ba : inout STD_LOGIC_VECTOR ( 2 downto 0 );
     DDR_cas_n : inout STD_LOGIC;
@@ -28,16 +29,23 @@ entity GPIOTest_wrapper is
     DDR_ras_n : inout STD_LOGIC;
     DDR_reset_n : inout STD_LOGIC;
     DDR_we_n : inout STD_LOGIC;
+    DI_0 : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    DO_0 : out STD_LOGIC_VECTOR ( 7 downto 0 );
     FIXED_IO_ddr_vrn : inout STD_LOGIC;
     FIXED_IO_ddr_vrp : inout STD_LOGIC;
     FIXED_IO_mio : inout STD_LOGIC_VECTOR ( 53 downto 0 );
     FIXED_IO_ps_clk : inout STD_LOGIC;
     FIXED_IO_ps_porb : inout STD_LOGIC;
     FIXED_IO_ps_srstb : inout STD_LOGIC;
-    GPIO2_0_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    GPIO2_1_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    GPIO_0_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    GPIO_1_tri_o : out STD_LOGIC_VECTOR ( 15 downto 0 )
+    LED_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    MUX_0 : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    SEL_0 : out STD_LOGIC;
+    nen_adh_0 : out STD_LOGIC;
+    nen_adl_0 : out STD_LOGIC;
+    nen_ctrl0_0 : out STD_LOGIC;
+    nen_idb_0 : out STD_LOGIC;
+    phi1_0 : out STD_LOGIC;
+    phi2_0 : out STD_LOGIC
   );
 end GPIOTest_wrapper;
 
@@ -65,15 +73,24 @@ architecture STRUCTURE of GPIOTest_wrapper is
     FIXED_IO_ps_srstb : inout STD_LOGIC;
     FIXED_IO_ps_clk : inout STD_LOGIC;
     FIXED_IO_ps_porb : inout STD_LOGIC;
-    GPIO_0_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    GPIO2_0_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    GPIO_1_tri_o : out STD_LOGIC_VECTOR ( 15 downto 0 );
-    GPIO2_1_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 )
+    LED_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    BTN_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    DI_0 : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    DO_0 : out STD_LOGIC_VECTOR ( 7 downto 0 );
+    MUX_0 : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    SEL_0 : out STD_LOGIC;
+    nen_ctrl0_0 : out STD_LOGIC;
+    nen_idb_0 : out STD_LOGIC;
+    nen_adl_0 : out STD_LOGIC;
+    nen_adh_0 : out STD_LOGIC;
+    phi1_0 : out STD_LOGIC;
+    phi2_0 : out STD_LOGIC
   );
   end component GPIOTest;
 begin
 GPIOTest_i: component GPIOTest
      port map (
+      BTN_tri_i(3 downto 0) => BTN_tri_i(3 downto 0),
       DDR_addr(14 downto 0) => DDR_addr(14 downto 0),
       DDR_ba(2 downto 0) => DDR_ba(2 downto 0),
       DDR_cas_n => DDR_cas_n,
@@ -89,15 +106,22 @@ GPIOTest_i: component GPIOTest
       DDR_ras_n => DDR_ras_n,
       DDR_reset_n => DDR_reset_n,
       DDR_we_n => DDR_we_n,
+      DI_0(7 downto 0) => DI_0(7 downto 0),
+      DO_0(7 downto 0) => DO_0(7 downto 0),
       FIXED_IO_ddr_vrn => FIXED_IO_ddr_vrn,
       FIXED_IO_ddr_vrp => FIXED_IO_ddr_vrp,
       FIXED_IO_mio(53 downto 0) => FIXED_IO_mio(53 downto 0),
       FIXED_IO_ps_clk => FIXED_IO_ps_clk,
       FIXED_IO_ps_porb => FIXED_IO_ps_porb,
       FIXED_IO_ps_srstb => FIXED_IO_ps_srstb,
-      GPIO2_0_tri_i(3 downto 0) => GPIO2_0_tri_i(3 downto 0),
-      GPIO2_1_tri_i(3 downto 0) => GPIO2_1_tri_i(3 downto 0),
-      GPIO_0_tri_o(3 downto 0) => GPIO_0_tri_o(3 downto 0),
-      GPIO_1_tri_o(15 downto 0) => GPIO_1_tri_o(15 downto 0)
+      LED_tri_o(3 downto 0) => LED_tri_o(3 downto 0),
+      MUX_0(2 downto 0) => MUX_0(2 downto 0),
+      SEL_0 => SEL_0,
+      nen_adh_0 => nen_adh_0,
+      nen_adl_0 => nen_adl_0,
+      nen_ctrl0_0 => nen_ctrl0_0,
+      nen_idb_0 => nen_idb_0,
+      phi1_0 => phi1_0,
+      phi2_0 => phi2_0
     );
 end STRUCTURE;

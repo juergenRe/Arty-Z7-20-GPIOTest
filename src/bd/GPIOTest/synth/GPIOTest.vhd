@@ -1,7 +1,7 @@
 --Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
---Date        : Fri Sep 14 10:05:42 2018
+--Date        : Sun Sep 16 18:26:58 2018
 --Host        : ASYS running 64-bit major release  (build 9200)
 --Command     : generate_target GPIOTest.bd
 --Design      : GPIOTest
@@ -1088,6 +1088,7 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity GPIOTest is
   port (
+    BTN_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
     DDR_addr : inout STD_LOGIC_VECTOR ( 14 downto 0 );
     DDR_ba : inout STD_LOGIC_VECTOR ( 2 downto 0 );
     DDR_cas_n : inout STD_LOGIC;
@@ -1103,19 +1104,26 @@ entity GPIOTest is
     DDR_ras_n : inout STD_LOGIC;
     DDR_reset_n : inout STD_LOGIC;
     DDR_we_n : inout STD_LOGIC;
+    DI_0 : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    DO_0 : out STD_LOGIC_VECTOR ( 7 downto 0 );
     FIXED_IO_ddr_vrn : inout STD_LOGIC;
     FIXED_IO_ddr_vrp : inout STD_LOGIC;
     FIXED_IO_mio : inout STD_LOGIC_VECTOR ( 53 downto 0 );
     FIXED_IO_ps_clk : inout STD_LOGIC;
     FIXED_IO_ps_porb : inout STD_LOGIC;
     FIXED_IO_ps_srstb : inout STD_LOGIC;
-    GPIO2_0_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    GPIO2_1_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    GPIO_0_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    GPIO_1_tri_o : out STD_LOGIC_VECTOR ( 15 downto 0 )
+    LED_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    MUX_0 : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    SEL_0 : out STD_LOGIC;
+    nen_adh_0 : out STD_LOGIC;
+    nen_adl_0 : out STD_LOGIC;
+    nen_ctrl0_0 : out STD_LOGIC;
+    nen_idb_0 : out STD_LOGIC;
+    phi1_0 : out STD_LOGIC;
+    phi2_0 : out STD_LOGIC
   );
   attribute CORE_GENERATION_INFO : string;
-  attribute CORE_GENERATION_INFO of GPIOTest : entity is "GPIOTest,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=GPIOTest,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=11,numReposBlks=7,numNonXlnxBlks=0,numHierBlks=4,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=4,da_board_cnt=4,da_clkrst_cnt=1,da_ps7_cnt=3,synth_mode=OOC_per_IP}";
+  attribute CORE_GENERATION_INFO of GPIOTest : entity is "GPIOTest,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=GPIOTest,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=12,numReposBlks=8,numNonXlnxBlks=1,numHierBlks=4,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=4,da_board_cnt=4,da_clkrst_cnt=2,da_ps7_cnt=3,synth_mode=OOC_per_IP}";
   attribute HW_HANDOFF : string;
   attribute HW_HANDOFF of GPIOTest : entity is "GPIOTest.hwdef";
 end GPIOTest;
@@ -1253,8 +1261,8 @@ architecture STRUCTURE of GPIOTest is
     s_axi_rvalid : out STD_LOGIC;
     s_axi_rready : in STD_LOGIC;
     ip2intc_irpt : out STD_LOGIC;
-    gpio_io_o : out STD_LOGIC_VECTOR ( 15 downto 0 );
-    gpio2_io_i : in STD_LOGIC_VECTOR ( 3 downto 0 )
+    gpio_io_o : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    gpio2_io_i : in STD_LOGIC_VECTOR ( 31 downto 0 )
   );
   end component GPIOTest_axi_gpio_1_0;
   component GPIOTest_xlconcat_0_0 is
@@ -1264,11 +1272,39 @@ architecture STRUCTURE of GPIOTest is
     dout : out STD_LOGIC_VECTOR ( 1 downto 0 )
   );
   end component GPIOTest_xlconcat_0_0;
+  component GPIOTest_GPIOInterface_0_0 is
+  port (
+    GPIOPortWr : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    GPIOPortRd : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    clk : in STD_LOGIC;
+    reset : in STD_LOGIC;
+    DIn : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    DOut : out STD_LOGIC_VECTOR ( 7 downto 0 );
+    MUX : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    SEL : out STD_LOGIC;
+    nen_ctrl0 : out STD_LOGIC;
+    nen_idb : out STD_LOGIC;
+    nen_adl : out STD_LOGIC;
+    nen_adh : out STD_LOGIC;
+    phi1 : out STD_LOGIC;
+    phi2 : out STD_LOGIC
+  );
+  end component GPIOTest_GPIOInterface_0_0;
+  signal DI_0_1 : STD_LOGIC_VECTOR ( 7 downto 0 );
+  signal GPIOInterface_0_DO : STD_LOGIC_VECTOR ( 7 downto 0 );
+  signal GPIOInterface_0_GPIOPortRd : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal GPIOInterface_0_MUX : STD_LOGIC_VECTOR ( 2 downto 0 );
+  signal GPIOInterface_0_SEL : STD_LOGIC;
+  signal GPIOInterface_0_nen_adh : STD_LOGIC;
+  signal GPIOInterface_0_nen_adl : STD_LOGIC;
+  signal GPIOInterface_0_nen_ctrl0 : STD_LOGIC;
+  signal GPIOInterface_0_nen_idb : STD_LOGIC;
+  signal GPIOInterface_0_phi1 : STD_LOGIC;
+  signal GPIOInterface_0_phi2 : STD_LOGIC;
   signal axi_gpio_0_GPIO2_TRI_I : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal axi_gpio_0_GPIO_TRI_O : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal axi_gpio_0_ip2intc_irpt : STD_LOGIC;
-  signal axi_gpio_1_GPIO2_TRI_I : STD_LOGIC_VECTOR ( 3 downto 0 );
-  signal axi_gpio_1_GPIO_TRI_O : STD_LOGIC_VECTOR ( 15 downto 0 );
+  signal axi_gpio_1_gpio_io_o : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal axi_gpio_1_ip2intc_irpt : STD_LOGIC;
   signal processing_system7_0_DDR_ADDR : STD_LOGIC_VECTOR ( 14 downto 0 );
   signal processing_system7_0_DDR_BA : STD_LOGIC_VECTOR ( 2 downto 0 );
@@ -1390,6 +1426,7 @@ architecture STRUCTURE of GPIOTest is
   attribute X_INTERFACE_INFO of FIXED_IO_ps_clk : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_CLK";
   attribute X_INTERFACE_INFO of FIXED_IO_ps_porb : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_PORB";
   attribute X_INTERFACE_INFO of FIXED_IO_ps_srstb : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_SRSTB";
+  attribute X_INTERFACE_INFO of BTN_tri_i : signal is "xilinx.com:interface:gpio:1.0 BTN ";
   attribute X_INTERFACE_INFO of DDR_addr : signal is "xilinx.com:interface:ddrx:1.0 DDR ADDR";
   attribute X_INTERFACE_PARAMETER of DDR_addr : signal is "XIL_INTERFACENAME DDR, AXI_ARBITRATION_SCHEME TDM, BURST_LENGTH 8, CAN_DEBUG false, CAS_LATENCY 11, CAS_WRITE_LATENCY 11, CS_ENABLED true, DATA_MASK_ENABLED true, DATA_WIDTH 8, MEMORY_TYPE COMPONENTS, MEM_ADDR_MAP ROW_COLUMN_BANK, SLOT Single, TIMEPERIOD_PS 1250";
   attribute X_INTERFACE_INFO of DDR_ba : signal is "xilinx.com:interface:ddrx:1.0 DDR BA";
@@ -1398,15 +1435,37 @@ architecture STRUCTURE of GPIOTest is
   attribute X_INTERFACE_INFO of DDR_dqs_n : signal is "xilinx.com:interface:ddrx:1.0 DDR DQS_N";
   attribute X_INTERFACE_INFO of DDR_dqs_p : signal is "xilinx.com:interface:ddrx:1.0 DDR DQS_P";
   attribute X_INTERFACE_INFO of FIXED_IO_mio : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO MIO";
-  attribute X_INTERFACE_INFO of GPIO2_0_tri_i : signal is "xilinx.com:interface:gpio:1.0 GPIO2_0 TRI_I";
-  attribute X_INTERFACE_INFO of GPIO2_1_tri_i : signal is "xilinx.com:interface:gpio:1.0 GPIO2_1 TRI_I";
-  attribute X_INTERFACE_INFO of GPIO_0_tri_o : signal is "xilinx.com:interface:gpio:1.0 GPIO_0 TRI_O";
-  attribute X_INTERFACE_INFO of GPIO_1_tri_o : signal is "xilinx.com:interface:gpio:1.0 GPIO_1 TRI_O";
+  attribute X_INTERFACE_INFO of LED_tri_o : signal is "xilinx.com:interface:gpio:1.0 LED ";
 begin
-  GPIO_0_tri_o(3 downto 0) <= axi_gpio_0_GPIO_TRI_O(3 downto 0);
-  GPIO_1_tri_o(15 downto 0) <= axi_gpio_1_GPIO_TRI_O(15 downto 0);
-  axi_gpio_0_GPIO2_TRI_I(3 downto 0) <= GPIO2_0_tri_i(3 downto 0);
-  axi_gpio_1_GPIO2_TRI_I(3 downto 0) <= GPIO2_1_tri_i(3 downto 0);
+  DI_0_1(7 downto 0) <= DI_0(7 downto 0);
+  DO_0(7 downto 0) <= GPIOInterface_0_DO(7 downto 0);
+  LED_tri_o(3 downto 0) <= axi_gpio_0_GPIO_TRI_O(3 downto 0);
+  MUX_0(2 downto 0) <= GPIOInterface_0_MUX(2 downto 0);
+  SEL_0 <= GPIOInterface_0_SEL;
+  axi_gpio_0_GPIO2_TRI_I(3 downto 0) <= BTN_tri_i(3 downto 0);
+  nen_adh_0 <= GPIOInterface_0_nen_adh;
+  nen_adl_0 <= GPIOInterface_0_nen_adl;
+  nen_ctrl0_0 <= GPIOInterface_0_nen_ctrl0;
+  nen_idb_0 <= GPIOInterface_0_nen_idb;
+  phi1_0 <= GPIOInterface_0_phi1;
+  phi2_0 <= GPIOInterface_0_phi2;
+GPIOInterface_0: component GPIOTest_GPIOInterface_0_0
+     port map (
+      DIn(7 downto 0) => DI_0_1(7 downto 0),
+      DOut(7 downto 0) => GPIOInterface_0_DO(7 downto 0),
+      GPIOPortRd(31 downto 0) => GPIOInterface_0_GPIOPortRd(31 downto 0),
+      GPIOPortWr(31 downto 0) => axi_gpio_1_gpio_io_o(31 downto 0),
+      MUX(2 downto 0) => GPIOInterface_0_MUX(2 downto 0),
+      SEL => GPIOInterface_0_SEL,
+      clk => processing_system7_0_FCLK_CLK0,
+      nen_adh => GPIOInterface_0_nen_adh,
+      nen_adl => GPIOInterface_0_nen_adl,
+      nen_ctrl0 => GPIOInterface_0_nen_ctrl0,
+      nen_idb => GPIOInterface_0_nen_idb,
+      phi1 => GPIOInterface_0_phi1,
+      phi2 => GPIOInterface_0_phi2,
+      reset => rst_ps7_0_100M_peripheral_aresetn(0)
+    );
 axi_gpio_0: component GPIOTest_axi_gpio_0_0
      port map (
       gpio2_io_i(3 downto 0) => axi_gpio_0_GPIO2_TRI_I(3 downto 0),
@@ -1434,8 +1493,8 @@ axi_gpio_0: component GPIOTest_axi_gpio_0_0
     );
 axi_gpio_1: component GPIOTest_axi_gpio_1_0
      port map (
-      gpio2_io_i(3 downto 0) => axi_gpio_1_GPIO2_TRI_I(3 downto 0),
-      gpio_io_o(15 downto 0) => axi_gpio_1_GPIO_TRI_O(15 downto 0),
+      gpio2_io_i(31 downto 0) => GPIOInterface_0_GPIOPortRd(31 downto 0),
+      gpio_io_o(31 downto 0) => axi_gpio_1_gpio_io_o(31 downto 0),
       ip2intc_irpt => axi_gpio_1_ip2intc_irpt,
       s_axi_aclk => processing_system7_0_FCLK_CLK0,
       s_axi_araddr(8 downto 0) => ps7_0_axi_periph_M01_AXI_ARADDR(8 downto 0),

@@ -154,14 +154,25 @@ proc create_root_design { parentCell } {
 
 
   # Create interface ports
+  set BTN [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 BTN ]
   set DDR [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:ddrx_rtl:1.0 DDR ]
   set FIXED_IO [ create_bd_intf_port -mode Master -vlnv xilinx.com:display_processing_system7:fixedio_rtl:1.0 FIXED_IO ]
-  set GPIO2_0 [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 GPIO2_0 ]
-  set GPIO2_1 [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 GPIO2_1 ]
-  set GPIO_0 [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 GPIO_0 ]
-  set GPIO_1 [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 GPIO_1 ]
+  set LED [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 LED ]
 
   # Create ports
+  set DI_0 [ create_bd_port -dir I -from 7 -to 0 DI_0 ]
+  set DO_0 [ create_bd_port -dir O -from 7 -to 0 DO_0 ]
+  set MUX_0 [ create_bd_port -dir O -from 2 -to 0 MUX_0 ]
+  set SEL_0 [ create_bd_port -dir O SEL_0 ]
+  set nen_adh_0 [ create_bd_port -dir O nen_adh_0 ]
+  set nen_adl_0 [ create_bd_port -dir O nen_adl_0 ]
+  set nen_ctrl0_0 [ create_bd_port -dir O nen_ctrl0_0 ]
+  set nen_idb_0 [ create_bd_port -dir O nen_idb_0 ]
+  set phi1_0 [ create_bd_port -dir O phi1_0 ]
+  set phi2_0 [ create_bd_port -dir O phi2_0 ]
+
+  # Create instance: GPIOInterface_0, and set properties
+  set GPIOInterface_0 [ create_bd_cell -type ip -vlnv Rej:user:GPIOInterface:1.0 GPIOInterface_0 ]
 
   # Create instance: axi_gpio_0, and set properties
   set axi_gpio_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 axi_gpio_0 ]
@@ -179,8 +190,8 @@ proc create_root_design { parentCell } {
   set_property -dict [ list \
    CONFIG.C_ALL_INPUTS_2 {1} \
    CONFIG.C_ALL_OUTPUTS {1} \
-   CONFIG.C_GPIO2_WIDTH {4} \
-   CONFIG.C_GPIO_WIDTH {16} \
+   CONFIG.C_GPIO2_WIDTH {32} \
+   CONFIG.C_GPIO_WIDTH {32} \
    CONFIG.C_INTERRUPT_PRESENT {1} \
    CONFIG.C_IS_DUAL {1} \
  ] $axi_gpio_1
@@ -971,10 +982,8 @@ proc create_root_design { parentCell } {
   set xlconcat_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 xlconcat_0 ]
 
   # Create interface connections
-  connect_bd_intf_net -intf_net axi_gpio_0_GPIO [get_bd_intf_ports GPIO_0] [get_bd_intf_pins axi_gpio_0/GPIO]
-  connect_bd_intf_net -intf_net axi_gpio_0_GPIO2 [get_bd_intf_ports GPIO2_0] [get_bd_intf_pins axi_gpio_0/GPIO2]
-  connect_bd_intf_net -intf_net axi_gpio_1_GPIO [get_bd_intf_ports GPIO_1] [get_bd_intf_pins axi_gpio_1/GPIO]
-  connect_bd_intf_net -intf_net axi_gpio_1_GPIO2 [get_bd_intf_ports GPIO2_1] [get_bd_intf_pins axi_gpio_1/GPIO2]
+  connect_bd_intf_net -intf_net axi_gpio_0_GPIO [get_bd_intf_ports LED] [get_bd_intf_pins axi_gpio_0/GPIO]
+  connect_bd_intf_net -intf_net axi_gpio_0_GPIO2 [get_bd_intf_ports BTN] [get_bd_intf_pins axi_gpio_0/GPIO2]
   connect_bd_intf_net -intf_net processing_system7_0_DDR [get_bd_intf_ports DDR] [get_bd_intf_pins processing_system7_0/DDR]
   connect_bd_intf_net -intf_net processing_system7_0_FIXED_IO [get_bd_intf_ports FIXED_IO] [get_bd_intf_pins processing_system7_0/FIXED_IO]
   connect_bd_intf_net -intf_net processing_system7_0_M_AXI_GP0 [get_bd_intf_pins processing_system7_0/M_AXI_GP0] [get_bd_intf_pins ps7_0_axi_periph/S00_AXI]
@@ -982,12 +991,24 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net ps7_0_axi_periph_M01_AXI [get_bd_intf_pins axi_gpio_1/S_AXI] [get_bd_intf_pins ps7_0_axi_periph/M01_AXI]
 
   # Create port connections
+  connect_bd_net -net DI_0_1 [get_bd_ports DI_0] [get_bd_pins GPIOInterface_0/DIn]
+  connect_bd_net -net GPIOInterface_0_DO [get_bd_ports DO_0] [get_bd_pins GPIOInterface_0/DOut]
+  connect_bd_net -net GPIOInterface_0_GPIOPortRd [get_bd_pins GPIOInterface_0/GPIOPortRd] [get_bd_pins axi_gpio_1/gpio2_io_i]
+  connect_bd_net -net GPIOInterface_0_MUX [get_bd_ports MUX_0] [get_bd_pins GPIOInterface_0/MUX]
+  connect_bd_net -net GPIOInterface_0_SEL [get_bd_ports SEL_0] [get_bd_pins GPIOInterface_0/SEL]
+  connect_bd_net -net GPIOInterface_0_nen_adh [get_bd_ports nen_adh_0] [get_bd_pins GPIOInterface_0/nen_adh]
+  connect_bd_net -net GPIOInterface_0_nen_adl [get_bd_ports nen_adl_0] [get_bd_pins GPIOInterface_0/nen_adl]
+  connect_bd_net -net GPIOInterface_0_nen_ctrl0 [get_bd_ports nen_ctrl0_0] [get_bd_pins GPIOInterface_0/nen_ctrl0]
+  connect_bd_net -net GPIOInterface_0_nen_idb [get_bd_ports nen_idb_0] [get_bd_pins GPIOInterface_0/nen_idb]
+  connect_bd_net -net GPIOInterface_0_phi1 [get_bd_ports phi1_0] [get_bd_pins GPIOInterface_0/phi1]
+  connect_bd_net -net GPIOInterface_0_phi2 [get_bd_ports phi2_0] [get_bd_pins GPIOInterface_0/phi2]
   connect_bd_net -net axi_gpio_0_ip2intc_irpt [get_bd_pins axi_gpio_0/ip2intc_irpt] [get_bd_pins xlconcat_0/In0]
+  connect_bd_net -net axi_gpio_1_gpio_io_o [get_bd_pins GPIOInterface_0/GPIOPortWr] [get_bd_pins axi_gpio_1/gpio_io_o]
   connect_bd_net -net axi_gpio_1_ip2intc_irpt [get_bd_pins axi_gpio_1/ip2intc_irpt] [get_bd_pins xlconcat_0/In1]
-  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins axi_gpio_0/s_axi_aclk] [get_bd_pins axi_gpio_1/s_axi_aclk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_100M/slowest_sync_clk]
+  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins GPIOInterface_0/clk] [get_bd_pins axi_gpio_0/s_axi_aclk] [get_bd_pins axi_gpio_1/s_axi_aclk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_100M/slowest_sync_clk]
   connect_bd_net -net processing_system7_0_FCLK_RESET0_N [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins rst_ps7_0_100M/ext_reset_in]
   connect_bd_net -net rst_ps7_0_100M_interconnect_aresetn [get_bd_pins ps7_0_axi_periph/ARESETN] [get_bd_pins rst_ps7_0_100M/interconnect_aresetn]
-  connect_bd_net -net rst_ps7_0_100M_peripheral_aresetn [get_bd_pins axi_gpio_0/s_axi_aresetn] [get_bd_pins axi_gpio_1/s_axi_aresetn] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_100M/peripheral_aresetn]
+  connect_bd_net -net rst_ps7_0_100M_peripheral_aresetn [get_bd_pins GPIOInterface_0/reset] [get_bd_pins axi_gpio_0/s_axi_aresetn] [get_bd_pins axi_gpio_1/s_axi_aresetn] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_100M/peripheral_aresetn]
   connect_bd_net -net xlconcat_0_dout [get_bd_pins processing_system7_0/IRQ_F2P] [get_bd_pins xlconcat_0/dout]
 
   # Create address segments
