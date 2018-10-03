@@ -1,7 +1,7 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
-// Date        : Sun Sep 16 13:26:34 2018
+// Date        : Wed Oct  3 12:33:26 2018
 // Host        : ASYS running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               C:/Users/Juergen/Documents/FPGA/Arty-Z7/Arty-Z7-20-GPIOTest/src/bd/GPIOTest/ip/GPIOTest_GPIOInterface_0_0/GPIOTest_GPIOInterface_0_0_sim_netlist.v
@@ -18,7 +18,7 @@ module GPIOTest_GPIOInterface_0_0
    (GPIOPortWr,
     GPIOPortRd,
     clk,
-    reset,
+    reset_n,
     DIn,
     DOut,
     MUX,
@@ -31,8 +31,8 @@ module GPIOTest_GPIOInterface_0_0
     phi2);
   input [31:0]GPIOPortWr;
   output [31:0]GPIOPortRd;
-  (* x_interface_info = "xilinx.com:signal:clock:1.0 clk CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME clk, ASSOCIATED_RESET reset, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN GPIOTest_processing_system7_0_0_FCLK_CLK0" *) input clk;
-  (* x_interface_info = "xilinx.com:signal:reset:1.0 reset RST" *) (* x_interface_parameter = "XIL_INTERFACENAME reset, POLARITY ACTIVE_LOW" *) input reset;
+  (* x_interface_info = "xilinx.com:signal:clock:1.0 clk CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME clk, ASSOCIATED_RESET reset_n, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN GPIOTest_processing_system7_0_0_FCLK_CLK0" *) input clk;
+  (* x_interface_info = "xilinx.com:signal:reset:1.0 reset RST" *) (* x_interface_parameter = "XIL_INTERFACENAME reset, POLARITY ACTIVE_LOW" *) input reset_n;
   input [7:0]DIn;
   output [7:0]DOut;
   output [2:0]MUX;
@@ -58,7 +58,7 @@ module GPIOTest_GPIOInterface_0_0
   wire nen_idb;
   wire phi1;
   wire phi2;
-  wire reset;
+  wire reset_n;
 
   assign GPIOPortRd[31:29] = \^GPIOPortRd [31:29];
   assign GPIOPortRd[28] = GPIOPortWr[26];
@@ -81,7 +81,7 @@ module GPIOTest_GPIOInterface_0_0
        (.DIn(DIn),
         .DOut(DOut),
         .GPIOPortRd({\^GPIOPortRd [31:29],\^GPIOPortRd [15:0]}),
-        .GPIOPortWr({GPIOPortWr[31:29],GPIOPortWr[26:24],GPIOPortWr[15:12],GPIOPortWr[10:0]}),
+        .GPIOPortWr({GPIOPortWr[31:28],GPIOPortWr[26:24],GPIOPortWr[15:12],GPIOPortWr[10:0]}),
         .MUX(MUX),
         .SEL(SEL),
         .clk(clk),
@@ -91,7 +91,7 @@ module GPIOTest_GPIOInterface_0_0
         .nen_idb(nen_idb),
         .phi1(phi1),
         .phi2(phi2),
-        .reset(reset));
+        .reset_n(reset_n));
 endmodule
 
 (* ORIG_REF_NAME = "Delay" *) 
@@ -189,24 +189,26 @@ module GPIOTest_GPIOInterface_0_0_EdgeDetect
    (delay_reg,
     \FSM_sequential_fifoState_reg[0] ,
     fifoState13_out,
-    reset,
+    SR,
     sig_in,
     clk,
-    \FSM_sequential_fifoState_reg[0]_0 ,
-    \FSM_sequential_fifoState_reg[1] ,
     in0,
+    \FSM_sequential_fifoState_reg[1] ,
+    \FSM_sequential_fifoState_reg[0]_0 ,
+    fifo_reset,
     \phiState_reg[1] ,
     \phiState_reg[0] ,
     Q);
   output delay_reg;
   output \FSM_sequential_fifoState_reg[0] ;
   output fifoState13_out;
-  input reset;
+  input [0:0]SR;
   input sig_in;
   input clk;
-  input \FSM_sequential_fifoState_reg[0]_0 ;
-  input \FSM_sequential_fifoState_reg[1] ;
   input [0:0]in0;
+  input \FSM_sequential_fifoState_reg[1] ;
+  input \FSM_sequential_fifoState_reg[0]_0 ;
+  input fifo_reset;
   input \phiState_reg[1] ;
   input \phiState_reg[0] ;
   input [0:0]Q;
@@ -215,28 +217,30 @@ module GPIOTest_GPIOInterface_0_0_EdgeDetect
   wire \FSM_sequential_fifoState_reg[0]_0 ;
   wire \FSM_sequential_fifoState_reg[1] ;
   wire [0:0]Q;
+  wire [0:0]SR;
   wire clk;
   wire delay_reg;
   wire fifoState13_out;
+  wire fifo_reset;
   wire [0:0]in0;
   wire \phiState_reg[0] ;
   wire \phiState_reg[1] ;
-  wire reset;
   wire sig_in;
 
-  LUT3 #(
-    .INIT(8'hB8)) 
+  LUT4 #(
+    .INIT(16'h00E2)) 
     \FSM_sequential_fifoState[0]_i_1 
-       (.I0(\FSM_sequential_fifoState_reg[0]_0 ),
+       (.I0(in0),
         .I1(\FSM_sequential_fifoState_reg[1] ),
-        .I2(in0),
+        .I2(\FSM_sequential_fifoState_reg[0]_0 ),
+        .I3(fifo_reset),
         .O(\FSM_sequential_fifoState_reg[0] ));
   FDRE delay_reg_reg
        (.C(clk),
         .CE(1'b1),
         .D(sig_in),
         .Q(delay_reg),
-        .R(reset));
+        .R(SR));
   LUT4 #(
     .INIT(16'h0E10)) 
     i__i_1
@@ -251,7 +255,7 @@ endmodule
 module GPIOTest_GPIOInterface_0_0_EdgeDetect_1
    (fifoState1,
     SEL_reg,
-    reset,
+    SR,
     \phiState_reg[1] ,
     clk,
     Q,
@@ -259,11 +263,12 @@ module GPIOTest_GPIOInterface_0_0_EdgeDetect_1
     delay_reg,
     \phiState_reg[0] ,
     \phiState_reg[1]_1 ,
+    SEL,
     out,
-    SEL);
+    fifo_reset);
   output fifoState1;
   output SEL_reg;
-  input reset;
+  input [0:0]SR;
   input \phiState_reg[1] ;
   input clk;
   input [3:0]Q;
@@ -271,32 +276,35 @@ module GPIOTest_GPIOInterface_0_0_EdgeDetect_1
   input delay_reg;
   input \phiState_reg[0] ;
   input \phiState_reg[1]_1 ;
-  input [2:0]out;
   input SEL;
+  input [2:0]out;
+  input fifo_reset;
 
   wire [3:0]Q;
   wire SEL;
   wire SEL_i_2_n_0;
   wire SEL_reg;
+  wire [0:0]SR;
   wire clk;
   wire delay_reg;
   wire delay_reg_0;
   wire fifoState1;
+  wire fifo_reset;
   wire [2:0]out;
   wire \phiState_reg[0] ;
   wire \phiState_reg[1] ;
   wire \phiState_reg[1]_0 ;
   wire \phiState_reg[1]_1 ;
-  wire reset;
 
-  LUT5 #(
-    .INIT(32'hFF2F0020)) 
+  LUT6 #(
+    .INIT(64'h000000008ABA8A8A)) 
     SEL_i_1
-       (.I0(SEL_i_2_n_0),
-        .I1(out[0]),
+       (.I0(SEL),
+        .I1(out[2]),
         .I2(out[1]),
-        .I3(out[2]),
-        .I4(SEL),
+        .I3(out[0]),
+        .I4(SEL_i_2_n_0),
+        .I5(fifo_reset),
         .O(SEL_reg));
   LUT6 #(
     .INIT(64'h00F00F00DDDDDDDD)) 
@@ -313,7 +321,7 @@ module GPIOTest_GPIOInterface_0_0_EdgeDetect_1
         .CE(1'b1),
         .D(\phiState_reg[1] ),
         .Q(delay_reg_0),
-        .R(reset));
+        .R(SR));
   LUT4 #(
     .INIT(16'h0B40)) 
     i__i_2
@@ -338,8 +346,8 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
     SEL,
     clk,
     GPIOPortWr,
-    reset,
-    DIn);
+    DIn,
+    reset_n);
   output phi1;
   output phi2;
   output [18:0]GPIOPortRd;
@@ -351,9 +359,9 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
   output nen_adh;
   output SEL;
   input clk;
-  input [20:0]GPIOPortWr;
-  input reset;
+  input [21:0]GPIOPortWr;
   input [7:0]DIn;
+  input reset_n;
 
   wire \/i_/i__n_0 ;
   wire \/i___0_n_0 ;
@@ -369,7 +377,7 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
   (* RTL_KEEP = "yes" *) wire \FSM_onehot_rdState_reg_n_0_[4] ;
   wire \FSM_sequential_fifoState[2]_i_1_n_0 ;
   wire [18:0]GPIOPortRd;
-  wire [20:0]GPIOPortWr;
+  wire [21:0]GPIOPortWr;
   wire [2:0]MUX;
   wire SEL;
   wire SEL_i_3_n_0;
@@ -413,6 +421,7 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
   (* RTL_KEEP = "yes" *) wire [2:0]fifoState;
   wire fifoState1;
   wire fifoState13_out;
+  wire fifo_reset;
   wire full;
   wire i___1_i_1_n_0;
   wire i__carry__0_i_1_n_0;
@@ -450,7 +459,7 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
   wire nen_adh_i_1_n_0;
   wire nen_adl;
   wire nen_ctrl0;
-  wire nen_ctrl0_i_1_n_0;
+  wire nen_ctrl0_i_2_n_0;
   wire nen_idb;
   wire out_fifo_wr_i_1_n_0;
   wire p1_edges_n_1;
@@ -594,6 +603,7 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
   wire \phi_cnt_reg[8]_i_2_n_3 ;
   wire rd;
   wire reset;
+  wire reset_n;
   wire sig_in;
   wire [15:0]w_data;
   wire wr;
@@ -650,49 +660,49 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
         .CE(cmd_fifo_n_2),
         .D(cmd_fifo_n_17),
         .Q(DOut[0]),
-        .R(reset));
+        .R(fifo_reset));
   FDRE \DOut_reg[1] 
        (.C(clk),
         .CE(cmd_fifo_n_2),
         .D(cmd_fifo_n_16),
         .Q(DOut[1]),
-        .R(reset));
+        .R(fifo_reset));
   FDRE \DOut_reg[2] 
        (.C(clk),
         .CE(cmd_fifo_n_2),
         .D(cmd_fifo_n_15),
         .Q(DOut[2]),
-        .R(reset));
+        .R(fifo_reset));
   FDRE \DOut_reg[3] 
        (.C(clk),
         .CE(cmd_fifo_n_2),
         .D(cmd_fifo_n_14),
         .Q(DOut[3]),
-        .R(reset));
+        .R(fifo_reset));
   FDRE \DOut_reg[4] 
        (.C(clk),
         .CE(cmd_fifo_n_2),
         .D(cmd_fifo_n_13),
         .Q(DOut[4]),
-        .R(reset));
+        .R(fifo_reset));
   FDRE \DOut_reg[5] 
        (.C(clk),
         .CE(cmd_fifo_n_2),
         .D(cmd_fifo_n_12),
         .Q(DOut[5]),
-        .R(reset));
+        .R(fifo_reset));
   FDRE \DOut_reg[6] 
        (.C(clk),
         .CE(cmd_fifo_n_2),
         .D(cmd_fifo_n_11),
         .Q(DOut[6]),
-        .R(reset));
+        .R(fifo_reset));
   FDRE \DOut_reg[7] 
        (.C(clk),
         .CE(cmd_fifo_n_2),
         .D(cmd_fifo_n_10),
         .Q(DOut[7]),
-        .R(reset));
+        .R(fifo_reset));
   LUT2 #(
     .INIT(4'hE)) 
     \FSM_onehot_rdState[4]_i_1 
@@ -749,15 +759,14 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
         .D(\FSM_onehot_rdState_reg_n_0_[3] ),
         .Q(\FSM_onehot_rdState_reg_n_0_[4] ),
         .R(reset));
-  LUT6 #(
-    .INIT(64'hFFAAAA5100AA0000)) 
+  LUT5 #(
+    .INIT(32'h0000E222)) 
     \FSM_sequential_fifoState[2]_i_1 
-       (.I0(fifoState[1]),
-        .I1(blExc[1]),
-        .I2(blExc[0]),
-        .I3(fifoState[2]),
-        .I4(fifoState[0]),
-        .I5(fifoState[2]),
+       (.I0(fifoState[2]),
+        .I1(\/i__n_0 ),
+        .I2(fifoState[1]),
+        .I3(fifoState[0]),
+        .I4(fifo_reset),
         .O(\FSM_sequential_fifoState[2]_i_1_n_0 ));
   (* FSM_ENCODED_STATES = "f_idle:000,f_rd_chk:001,f_sel:010,f_out:011,f_read:100" *) 
   (* KEEP = "yes" *) 
@@ -766,7 +775,7 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
         .CE(1'b1),
         .D(p1_edges_n_1),
         .Q(fifoState[0]),
-        .R(reset));
+        .R(1'b0));
   (* FSM_ENCODED_STATES = "f_idle:000,f_rd_chk:001,f_sel:010,f_out:011,f_read:100" *) 
   (* KEEP = "yes" *) 
   FDRE \FSM_sequential_fifoState_reg[1] 
@@ -774,7 +783,7 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
         .CE(1'b1),
         .D(cmd_fifo_n_1),
         .Q(fifoState[1]),
-        .R(reset));
+        .R(1'b0));
   (* FSM_ENCODED_STATES = "f_idle:000,f_rd_chk:001,f_sel:010,f_out:011,f_read:100" *) 
   (* KEEP = "yes" *) 
   FDRE \FSM_sequential_fifoState_reg[2] 
@@ -782,25 +791,25 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
         .CE(1'b1),
         .D(\FSM_sequential_fifoState[2]_i_1_n_0 ),
         .Q(fifoState[2]),
-        .R(reset));
+        .R(1'b0));
   FDRE \MUX_reg[0] 
        (.C(clk),
         .CE(cmd_fifo_n_2),
         .D(cmd_fifo_n_9),
         .Q(MUX[0]),
-        .R(reset));
+        .R(fifo_reset));
   FDRE \MUX_reg[1] 
        (.C(clk),
         .CE(cmd_fifo_n_2),
         .D(cmd_fifo_n_8),
         .Q(MUX[1]),
-        .R(reset));
+        .R(fifo_reset));
   FDRE \MUX_reg[2] 
        (.C(clk),
         .CE(cmd_fifo_n_2),
         .D(cmd_fifo_n_7),
         .Q(MUX[2]),
-        .R(reset));
+        .R(fifo_reset));
   LUT2 #(
     .INIT(4'hE)) 
     SEL_i_3
@@ -812,7 +821,7 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
         .CE(1'b1),
         .D(p2_edges_n_1),
         .Q(SEL),
-        .R(reset));
+        .R(1'b0));
   (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT2 #(
     .INIT(4'h4)) 
@@ -872,20 +881,20 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
     .INIT(4'h4)) 
     \blExc[0]_i_1 
        (.I0(blExc[1]),
-        .I1(GPIOPortWr[19]),
+        .I1(GPIOPortWr[20]),
         .O(\blExc[0]_i_1_n_0 ));
   LUT2 #(
-    .INIT(4'hB)) 
+    .INIT(4'h7)) 
     \blExc[1]_i_1 
-       (.I0(reset),
-        .I1(GPIOPortWr[20]),
+       (.I0(reset_n),
+        .I1(GPIOPortWr[21]),
         .O(blExc0));
   (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT3 #(
     .INIT(8'hB0)) 
     \blExc[1]_i_2 
        (.I0(blExc[1]),
-        .I1(GPIOPortWr[19]),
+        .I1(GPIOPortWr[20]),
         .I2(blExc[0]),
         .O(\blExc[1]_i_2_n_0 ));
   FDRE \blExc_reg[0] 
@@ -905,14 +914,14 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
     .INIT(4'h4)) 
     \blRdData[0]_i_1 
        (.I0(blRdData[1]),
-        .I1(GPIOPortWr[18]),
+        .I1(GPIOPortWr[19]),
         .O(\blRdData[0]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT3 #(
     .INIT(8'hB0)) 
     \blRdData[1]_i_1 
        (.I0(blRdData[1]),
-        .I1(GPIOPortWr[18]),
+        .I1(GPIOPortWr[19]),
         .I2(blRdData[0]),
         .O(\blRdData[1]_i_1_n_0 ));
   FDRE \blRdData_reg[0] 
@@ -931,8 +940,9 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
        (.D(w_data),
         .DIn(DIn),
         .E(data_ena),
+        .SR(reset),
         .clk(clk),
-        .reset(reset));
+        .reset_n(reset_n));
   GPIOTest_GPIOInterface_0_0_fifo cmd_fifo
        (.D({cmd_fifo_n_3,cmd_fifo_n_4,cmd_fifo_n_5,cmd_fifo_n_6}),
         .\DOut_reg[7] ({cmd_fifo_n_10,cmd_fifo_n_11,cmd_fifo_n_12,cmd_fifo_n_13,cmd_fifo_n_14,cmd_fifo_n_15,cmd_fifo_n_16,cmd_fifo_n_17}),
@@ -944,11 +954,11 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
         .blClkIn(blClkIn),
         .clk(clk),
         .fifo_rd_reg(cmd_fifo_n_18),
+        .fifo_reset(fifo_reset),
         .full(full),
         .in0(fifoState[1]),
         .out(fifoState),
-        .rd(rd),
-        .reset(reset));
+        .rd(rd));
   LUT6 #(
     .INIT(64'hFFFFFFFFEEFEEEEE)) 
     data_ena_i_1
@@ -982,25 +992,25 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
         .CE(cmd_fifo_n_2),
         .D(cmd_fifo_n_6),
         .Q(\edges_reg_n_0_[0] ),
-        .R(reset));
+        .R(fifo_reset));
   FDRE \edges_reg[1] 
        (.C(clk),
         .CE(cmd_fifo_n_2),
         .D(cmd_fifo_n_5),
         .Q(p_2_in),
-        .R(reset));
+        .R(fifo_reset));
   FDRE \edges_reg[2] 
        (.C(clk),
         .CE(cmd_fifo_n_2),
         .D(cmd_fifo_n_4),
         .Q(p_0_in3_in),
-        .R(reset));
+        .R(fifo_reset));
   FDRE \edges_reg[3] 
        (.C(clk),
         .CE(cmd_fifo_n_2),
         .D(cmd_fifo_n_3),
         .Q(p_0_in),
-        .R(reset));
+        .R(fifo_reset));
   LUT3 #(
     .INIT(8'hFE)) 
     execState
@@ -1230,16 +1240,16 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
         .S(reset));
   LUT4 #(
     .INIT(16'hFFFE)) 
-    nen_ctrl0_i_1
+    nen_ctrl0_i_2
        (.I0(\FSM_onehot_rdState_reg_n_0_[4] ),
         .I1(\FSM_onehot_rdState_reg_n_0_[2] ),
         .I2(\FSM_onehot_rdState_reg_n_0_[0] ),
         .I3(\FSM_onehot_rdState_reg_n_0_[1] ),
-        .O(nen_ctrl0_i_1_n_0));
+        .O(nen_ctrl0_i_2_n_0));
   FDSE nen_ctrl0_reg
        (.C(clk),
         .CE(1'b1),
-        .D(nen_ctrl0_i_1_n_0),
+        .D(nen_ctrl0_i_2_n_0),
         .Q(nen_ctrl0),
         .S(reset));
   FDSE nen_idb_reg
@@ -1249,12 +1259,12 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
         .Q(nen_idb),
         .S(reset));
   LUT4 #(
-    .INIT(16'hBBB8)) 
+    .INIT(16'hEFE0)) 
     out_fifo_wr_i_1
-       (.I0(wr),
-        .I1(reset),
-        .I2(\FSM_onehot_rdState_reg_n_0_[2] ),
-        .I3(\FSM_onehot_rdState_reg_n_0_[4] ),
+       (.I0(\FSM_onehot_rdState_reg_n_0_[2] ),
+        .I1(\FSM_onehot_rdState_reg_n_0_[4] ),
+        .I2(reset_n),
+        .I3(wr),
         .O(out_fifo_wr_i_1_n_0));
   FDRE #(
     .INIT(1'b0)) 
@@ -1269,43 +1279,45 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
         .\FSM_sequential_fifoState_reg[0]_0 (\/i_/i__n_0 ),
         .\FSM_sequential_fifoState_reg[1] (\/i__n_0 ),
         .Q(\edges_reg_n_0_[0] ),
+        .SR(reset),
         .clk(clk),
         .delay_reg(delay_reg),
         .fifoState13_out(fifoState13_out),
+        .fifo_reset(fifo_reset),
         .in0(fifoState[0]),
         .\phiState_reg[0] (\phiState_reg_n_0_[0] ),
         .\phiState_reg[1] (\phiState_reg_n_0_[1] ),
-        .reset(reset),
         .sig_in(sig_in));
   GPIOTest_GPIOInterface_0_0_EdgeDetect_1 p2_edges
        (.Q({p_0_in,p_0_in3_in,p_2_in,\edges_reg_n_0_[0] }),
         .SEL(SEL),
         .SEL_reg(p2_edges_n_1),
+        .SR(reset),
         .clk(clk),
         .delay_reg(delay_reg),
         .fifoState1(fifoState1),
+        .fifo_reset(fifo_reset),
         .out(fifoState),
         .\phiState_reg[0] (\phiState_reg_n_0_[0] ),
         .\phiState_reg[1] (dly_phi2_n_0),
         .\phiState_reg[1]_0 (SEL_i_3_n_0),
-        .\phiState_reg[1]_1 (\phiState_reg_n_0_[1] ),
-        .reset(reset));
+        .\phiState_reg[1]_1 (\phiState_reg_n_0_[1] ));
   (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT4 #(
-    .INIT(16'hCC2E)) 
+    .INIT(16'h2ECC)) 
     \phiState[0]_i_1 
        (.I0(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
         .I1(\phiState_reg_n_0_[0] ),
         .I2(phi_cnt1_carry__2_n_0),
-        .I3(reset),
+        .I3(reset_n),
         .O(\phiState[0]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT4 #(
-    .INIT(16'hF708)) 
+    .INIT(16'h7F80)) 
     \phiState[1]_i_1 
        (.I0(\phiState_reg_n_0_[0] ),
         .I1(phi_cnt1_carry__2_n_0),
-        .I2(reset),
+        .I2(reset_n),
         .I3(\phiState_reg_n_0_[1] ),
         .O(\phiState[1]_i_1_n_0 ));
   FDRE \phiState_reg[0] 
@@ -2171,11 +2183,12 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
   GPIOTest_GPIOInterface_0_0_fifo_2 rd_data_fifo
        (.D(w_data),
         .GPIOPortRd(GPIOPortRd[17:0]),
-        .GPIOPortWr(GPIOPortWr[17]),
+        .GPIOPortWr(GPIOPortWr[18:17]),
         .blClkOut(blClkOut),
         .clk(clk),
+        .fifo_reset(fifo_reset),
         .full(full),
-        .reset(reset),
+        .reset_n(reset_n),
         .wr(wr));
 endmodule
 
@@ -2189,10 +2202,10 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut_reg[7] ,
     fifo_rd_reg,
     clk,
-    reset,
-    out,
-    \FSM_sequential_fifoState_reg[1]_0 ,
+    fifo_reset,
     in0,
+    \FSM_sequential_fifoState_reg[1]_0 ,
+    out,
     blClkIn,
     rd,
     GPIOPortWr);
@@ -2204,10 +2217,10 @@ module GPIOTest_GPIOInterface_0_0_fifo
   output [7:0]\DOut_reg[7] ;
   output fifo_rd_reg;
   input clk;
-  input reset;
-  input [2:0]out;
-  input \FSM_sequential_fifoState_reg[1]_0 ;
+  input fifo_reset;
   input [0:0]in0;
+  input \FSM_sequential_fifoState_reg[1]_0 ;
+  input [2:0]out;
   input [1:0]blClkIn;
   input rd;
   input [14:0]GPIOPortWr;
@@ -2241,10 +2254,10 @@ module GPIOTest_GPIOInterface_0_0_fifo
   wire \DOut[6]_i_5_n_0 ;
   wire \DOut[6]_i_6_n_0 ;
   wire \DOut[6]_i_7_n_0 ;
-  wire \DOut[7]_i_5_n_0 ;
   wire \DOut[7]_i_6_n_0 ;
   wire \DOut[7]_i_7_n_0 ;
   wire \DOut[7]_i_8_n_0 ;
+  wire \DOut[7]_i_9_n_0 ;
   wire \DOut_reg[0]_i_2_n_0 ;
   wire \DOut_reg[0]_i_3_n_0 ;
   wire \DOut_reg[1]_i_2_n_0 ;
@@ -2260,8 +2273,8 @@ module GPIOTest_GPIOInterface_0_0_fifo
   wire \DOut_reg[6]_i_2_n_0 ;
   wire \DOut_reg[6]_i_3_n_0 ;
   wire [7:0]\DOut_reg[7] ;
-  wire \DOut_reg[7]_i_3_n_0 ;
   wire \DOut_reg[7]_i_4_n_0 ;
+  wire \DOut_reg[7]_i_5_n_0 ;
   wire [0:0]E;
   wire \FSM_sequential_fifoState_reg[1] ;
   wire \FSM_sequential_fifoState_reg[1]_0 ;
@@ -2349,6 +2362,7 @@ module GPIOTest_GPIOInterface_0_0_fifo
   wire empty_reg_i_3__0_n_0;
   wire fifo_empty;
   wire fifo_rd_reg;
+  wire fifo_reset;
   wire full;
   wire full_reg_i_1_n_0;
   wire full_reg_i_2_n_0;
@@ -2361,7 +2375,6 @@ module GPIOTest_GPIOInterface_0_0_fifo
   wire \r_ptr_reg[3]_i_1_n_0 ;
   wire [3:0]r_ptr_reg_reg__0;
   wire rd;
-  wire reset;
   wire \w_ptr_reg[3]_i_1_n_0 ;
   wire [3:0]w_ptr_reg_reg__0;
 
@@ -2647,7 +2660,7 @@ module GPIOTest_GPIOInterface_0_0_fifo
         .O(\DOut[6]_i_7_n_0 ));
   LUT4 #(
     .INIT(16'h0010)) 
-    \DOut[7]_i_1 
+    \DOut[7]_i_2 
        (.I0(out[1]),
         .I1(out[2]),
         .I2(out[0]),
@@ -2655,44 +2668,44 @@ module GPIOTest_GPIOInterface_0_0_fifo
         .O(E));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \DOut[7]_i_5 
+    \DOut[7]_i_6 
        (.I0(\array_reg_reg[3] [7]),
         .I1(\array_reg_reg[2] [7]),
         .I2(r_ptr_reg_reg__0[1]),
         .I3(\array_reg_reg[1] [7]),
         .I4(r_ptr_reg_reg__0[0]),
         .I5(\array_reg_reg[0] [7]),
-        .O(\DOut[7]_i_5_n_0 ));
+        .O(\DOut[7]_i_6_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \DOut[7]_i_6 
+    \DOut[7]_i_7 
        (.I0(\array_reg_reg[7] [7]),
         .I1(\array_reg_reg[6] [7]),
         .I2(r_ptr_reg_reg__0[1]),
         .I3(\array_reg_reg[5] [7]),
         .I4(r_ptr_reg_reg__0[0]),
         .I5(\array_reg_reg[4] [7]),
-        .O(\DOut[7]_i_6_n_0 ));
+        .O(\DOut[7]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \DOut[7]_i_7 
+    \DOut[7]_i_8 
        (.I0(\array_reg_reg[11] [7]),
         .I1(\array_reg_reg[10] [7]),
         .I2(r_ptr_reg_reg__0[1]),
         .I3(\array_reg_reg[9] [7]),
         .I4(r_ptr_reg_reg__0[0]),
         .I5(\array_reg_reg[8] [7]),
-        .O(\DOut[7]_i_7_n_0 ));
+        .O(\DOut[7]_i_8_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \DOut[7]_i_8 
+    \DOut[7]_i_9 
        (.I0(\array_reg_reg[15] [7]),
         .I1(\array_reg_reg[14] [7]),
         .I2(r_ptr_reg_reg__0[1]),
         .I3(\array_reg_reg[13] [7]),
         .I4(r_ptr_reg_reg__0[0]),
         .I5(\array_reg_reg[12] [7]),
-        .O(\DOut[7]_i_8_n_0 ));
+        .O(\DOut[7]_i_9_n_0 ));
   MUXF8 \DOut_reg[0]_i_1 
        (.I0(\DOut_reg[0]_i_2_n_0 ),
         .I1(\DOut_reg[0]_i_3_n_0 ),
@@ -2798,29 +2811,30 @@ module GPIOTest_GPIOInterface_0_0_fifo
         .I1(\DOut[6]_i_7_n_0 ),
         .O(\DOut_reg[6]_i_3_n_0 ),
         .S(r_ptr_reg_reg__0[2]));
-  MUXF8 \DOut_reg[7]_i_2 
-       (.I0(\DOut_reg[7]_i_3_n_0 ),
-        .I1(\DOut_reg[7]_i_4_n_0 ),
+  MUXF8 \DOut_reg[7]_i_3 
+       (.I0(\DOut_reg[7]_i_4_n_0 ),
+        .I1(\DOut_reg[7]_i_5_n_0 ),
         .O(\DOut_reg[7] [7]),
         .S(r_ptr_reg_reg__0[3]));
-  MUXF7 \DOut_reg[7]_i_3 
-       (.I0(\DOut[7]_i_5_n_0 ),
-        .I1(\DOut[7]_i_6_n_0 ),
-        .O(\DOut_reg[7]_i_3_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
   MUXF7 \DOut_reg[7]_i_4 
-       (.I0(\DOut[7]_i_7_n_0 ),
-        .I1(\DOut[7]_i_8_n_0 ),
+       (.I0(\DOut[7]_i_6_n_0 ),
+        .I1(\DOut[7]_i_7_n_0 ),
         .O(\DOut_reg[7]_i_4_n_0 ),
         .S(r_ptr_reg_reg__0[2]));
-  LUT5 #(
-    .INIT(32'h1CFF1C00)) 
+  MUXF7 \DOut_reg[7]_i_5 
+       (.I0(\DOut[7]_i_8_n_0 ),
+        .I1(\DOut[7]_i_9_n_0 ),
+        .O(\DOut_reg[7]_i_5_n_0 ),
+        .S(r_ptr_reg_reg__0[2]));
+  LUT6 #(
+    .INIT(64'h000000002E222EE2)) 
     \FSM_sequential_fifoState[1]_i_1 
-       (.I0(fifo_empty),
-        .I1(out[1]),
+       (.I0(in0),
+        .I1(\FSM_sequential_fifoState_reg[1]_0 ),
         .I2(out[0]),
-        .I3(\FSM_sequential_fifoState_reg[1]_0 ),
-        .I4(in0),
+        .I3(out[1]),
+        .I4(fifo_empty),
+        .I5(fifo_reset),
         .O(\FSM_sequential_fifoState_reg[1] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
@@ -3141,1441 +3155,1441 @@ module GPIOTest_GPIOInterface_0_0_fifo
   FDCE \array_reg_reg[0][0] 
        (.C(clk),
         .CE(\array_reg[0]_3 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[0] [0]));
   FDCE \array_reg_reg[0][10] 
        (.C(clk),
         .CE(\array_reg[0]_3 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[0] [10]));
   FDCE \array_reg_reg[0][12] 
        (.C(clk),
         .CE(\array_reg[0]_3 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[0] [12]));
   FDCE \array_reg_reg[0][13] 
        (.C(clk),
         .CE(\array_reg[0]_3 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[0] [13]));
   FDCE \array_reg_reg[0][14] 
        (.C(clk),
         .CE(\array_reg[0]_3 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[0] [14]));
   FDCE \array_reg_reg[0][15] 
        (.C(clk),
         .CE(\array_reg[0]_3 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[0] [15]));
   FDCE \array_reg_reg[0][1] 
        (.C(clk),
         .CE(\array_reg[0]_3 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[0] [1]));
   FDCE \array_reg_reg[0][2] 
        (.C(clk),
         .CE(\array_reg[0]_3 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[0] [2]));
   FDCE \array_reg_reg[0][3] 
        (.C(clk),
         .CE(\array_reg[0]_3 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[0] [3]));
   FDCE \array_reg_reg[0][4] 
        (.C(clk),
         .CE(\array_reg[0]_3 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[0] [4]));
   FDCE \array_reg_reg[0][5] 
        (.C(clk),
         .CE(\array_reg[0]_3 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[0] [5]));
   FDCE \array_reg_reg[0][6] 
        (.C(clk),
         .CE(\array_reg[0]_3 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[0] [6]));
   FDCE \array_reg_reg[0][7] 
        (.C(clk),
         .CE(\array_reg[0]_3 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[0] [7]));
   FDCE \array_reg_reg[0][8] 
        (.C(clk),
         .CE(\array_reg[0]_3 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[0] [8]));
   FDCE \array_reg_reg[0][9] 
        (.C(clk),
         .CE(\array_reg[0]_3 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[0] [9]));
   FDCE \array_reg_reg[10][0] 
        (.C(clk),
         .CE(\array_reg[10]_10 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[10] [0]));
   FDCE \array_reg_reg[10][10] 
        (.C(clk),
         .CE(\array_reg[10]_10 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[10] [10]));
   FDCE \array_reg_reg[10][12] 
        (.C(clk),
         .CE(\array_reg[10]_10 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[10] [12]));
   FDCE \array_reg_reg[10][13] 
        (.C(clk),
         .CE(\array_reg[10]_10 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[10] [13]));
   FDCE \array_reg_reg[10][14] 
        (.C(clk),
         .CE(\array_reg[10]_10 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[10] [14]));
   FDCE \array_reg_reg[10][15] 
        (.C(clk),
         .CE(\array_reg[10]_10 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[10] [15]));
   FDCE \array_reg_reg[10][1] 
        (.C(clk),
         .CE(\array_reg[10]_10 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[10] [1]));
   FDCE \array_reg_reg[10][2] 
        (.C(clk),
         .CE(\array_reg[10]_10 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[10] [2]));
   FDCE \array_reg_reg[10][3] 
        (.C(clk),
         .CE(\array_reg[10]_10 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[10] [3]));
   FDCE \array_reg_reg[10][4] 
        (.C(clk),
         .CE(\array_reg[10]_10 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[10] [4]));
   FDCE \array_reg_reg[10][5] 
        (.C(clk),
         .CE(\array_reg[10]_10 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[10] [5]));
   FDCE \array_reg_reg[10][6] 
        (.C(clk),
         .CE(\array_reg[10]_10 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[10] [6]));
   FDCE \array_reg_reg[10][7] 
        (.C(clk),
         .CE(\array_reg[10]_10 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[10] [7]));
   FDCE \array_reg_reg[10][8] 
        (.C(clk),
         .CE(\array_reg[10]_10 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[10] [8]));
   FDCE \array_reg_reg[10][9] 
        (.C(clk),
         .CE(\array_reg[10]_10 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[10] [9]));
   FDCE \array_reg_reg[11][0] 
        (.C(clk),
         .CE(\array_reg[11]_15 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[11] [0]));
   FDCE \array_reg_reg[11][10] 
        (.C(clk),
         .CE(\array_reg[11]_15 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[11] [10]));
   FDCE \array_reg_reg[11][12] 
        (.C(clk),
         .CE(\array_reg[11]_15 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[11] [12]));
   FDCE \array_reg_reg[11][13] 
        (.C(clk),
         .CE(\array_reg[11]_15 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[11] [13]));
   FDCE \array_reg_reg[11][14] 
        (.C(clk),
         .CE(\array_reg[11]_15 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[11] [14]));
   FDCE \array_reg_reg[11][15] 
        (.C(clk),
         .CE(\array_reg[11]_15 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[11] [15]));
   FDCE \array_reg_reg[11][1] 
        (.C(clk),
         .CE(\array_reg[11]_15 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[11] [1]));
   FDCE \array_reg_reg[11][2] 
        (.C(clk),
         .CE(\array_reg[11]_15 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[11] [2]));
   FDCE \array_reg_reg[11][3] 
        (.C(clk),
         .CE(\array_reg[11]_15 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[11] [3]));
   FDCE \array_reg_reg[11][4] 
        (.C(clk),
         .CE(\array_reg[11]_15 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[11] [4]));
   FDCE \array_reg_reg[11][5] 
        (.C(clk),
         .CE(\array_reg[11]_15 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[11] [5]));
   FDCE \array_reg_reg[11][6] 
        (.C(clk),
         .CE(\array_reg[11]_15 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[11] [6]));
   FDCE \array_reg_reg[11][7] 
        (.C(clk),
         .CE(\array_reg[11]_15 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[11] [7]));
   FDCE \array_reg_reg[11][8] 
        (.C(clk),
         .CE(\array_reg[11]_15 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[11] [8]));
   FDCE \array_reg_reg[11][9] 
        (.C(clk),
         .CE(\array_reg[11]_15 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[11] [9]));
   FDCE \array_reg_reg[12][0] 
        (.C(clk),
         .CE(\array_reg[12]_5 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[12] [0]));
   FDCE \array_reg_reg[12][10] 
        (.C(clk),
         .CE(\array_reg[12]_5 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[12] [10]));
   FDCE \array_reg_reg[12][12] 
        (.C(clk),
         .CE(\array_reg[12]_5 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[12] [12]));
   FDCE \array_reg_reg[12][13] 
        (.C(clk),
         .CE(\array_reg[12]_5 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[12] [13]));
   FDCE \array_reg_reg[12][14] 
        (.C(clk),
         .CE(\array_reg[12]_5 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[12] [14]));
   FDCE \array_reg_reg[12][15] 
        (.C(clk),
         .CE(\array_reg[12]_5 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[12] [15]));
   FDCE \array_reg_reg[12][1] 
        (.C(clk),
         .CE(\array_reg[12]_5 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[12] [1]));
   FDCE \array_reg_reg[12][2] 
        (.C(clk),
         .CE(\array_reg[12]_5 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[12] [2]));
   FDCE \array_reg_reg[12][3] 
        (.C(clk),
         .CE(\array_reg[12]_5 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[12] [3]));
   FDCE \array_reg_reg[12][4] 
        (.C(clk),
         .CE(\array_reg[12]_5 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[12] [4]));
   FDCE \array_reg_reg[12][5] 
        (.C(clk),
         .CE(\array_reg[12]_5 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[12] [5]));
   FDCE \array_reg_reg[12][6] 
        (.C(clk),
         .CE(\array_reg[12]_5 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[12] [6]));
   FDCE \array_reg_reg[12][7] 
        (.C(clk),
         .CE(\array_reg[12]_5 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[12] [7]));
   FDCE \array_reg_reg[12][8] 
        (.C(clk),
         .CE(\array_reg[12]_5 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[12] [8]));
   FDCE \array_reg_reg[12][9] 
        (.C(clk),
         .CE(\array_reg[12]_5 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[12] [9]));
   FDCE \array_reg_reg[13][0] 
        (.C(clk),
         .CE(\array_reg[13]_8 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[13] [0]));
   FDCE \array_reg_reg[13][10] 
        (.C(clk),
         .CE(\array_reg[13]_8 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[13] [10]));
   FDCE \array_reg_reg[13][12] 
        (.C(clk),
         .CE(\array_reg[13]_8 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[13] [12]));
   FDCE \array_reg_reg[13][13] 
        (.C(clk),
         .CE(\array_reg[13]_8 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[13] [13]));
   FDCE \array_reg_reg[13][14] 
        (.C(clk),
         .CE(\array_reg[13]_8 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[13] [14]));
   FDCE \array_reg_reg[13][15] 
        (.C(clk),
         .CE(\array_reg[13]_8 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[13] [15]));
   FDCE \array_reg_reg[13][1] 
        (.C(clk),
         .CE(\array_reg[13]_8 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[13] [1]));
   FDCE \array_reg_reg[13][2] 
        (.C(clk),
         .CE(\array_reg[13]_8 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[13] [2]));
   FDCE \array_reg_reg[13][3] 
        (.C(clk),
         .CE(\array_reg[13]_8 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[13] [3]));
   FDCE \array_reg_reg[13][4] 
        (.C(clk),
         .CE(\array_reg[13]_8 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[13] [4]));
   FDCE \array_reg_reg[13][5] 
        (.C(clk),
         .CE(\array_reg[13]_8 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[13] [5]));
   FDCE \array_reg_reg[13][6] 
        (.C(clk),
         .CE(\array_reg[13]_8 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[13] [6]));
   FDCE \array_reg_reg[13][7] 
        (.C(clk),
         .CE(\array_reg[13]_8 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[13] [7]));
   FDCE \array_reg_reg[13][8] 
        (.C(clk),
         .CE(\array_reg[13]_8 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[13] [8]));
   FDCE \array_reg_reg[13][9] 
        (.C(clk),
         .CE(\array_reg[13]_8 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[13] [9]));
   FDCE \array_reg_reg[14][0] 
        (.C(clk),
         .CE(\array_reg[14]_9 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[14] [0]));
   FDCE \array_reg_reg[14][10] 
        (.C(clk),
         .CE(\array_reg[14]_9 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[14] [10]));
   FDCE \array_reg_reg[14][12] 
        (.C(clk),
         .CE(\array_reg[14]_9 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[14] [12]));
   FDCE \array_reg_reg[14][13] 
        (.C(clk),
         .CE(\array_reg[14]_9 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[14] [13]));
   FDCE \array_reg_reg[14][14] 
        (.C(clk),
         .CE(\array_reg[14]_9 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[14] [14]));
   FDCE \array_reg_reg[14][15] 
        (.C(clk),
         .CE(\array_reg[14]_9 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[14] [15]));
   FDCE \array_reg_reg[14][1] 
        (.C(clk),
         .CE(\array_reg[14]_9 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[14] [1]));
   FDCE \array_reg_reg[14][2] 
        (.C(clk),
         .CE(\array_reg[14]_9 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[14] [2]));
   FDCE \array_reg_reg[14][3] 
        (.C(clk),
         .CE(\array_reg[14]_9 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[14] [3]));
   FDCE \array_reg_reg[14][4] 
        (.C(clk),
         .CE(\array_reg[14]_9 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[14] [4]));
   FDCE \array_reg_reg[14][5] 
        (.C(clk),
         .CE(\array_reg[14]_9 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[14] [5]));
   FDCE \array_reg_reg[14][6] 
        (.C(clk),
         .CE(\array_reg[14]_9 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[14] [6]));
   FDCE \array_reg_reg[14][7] 
        (.C(clk),
         .CE(\array_reg[14]_9 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[14] [7]));
   FDCE \array_reg_reg[14][8] 
        (.C(clk),
         .CE(\array_reg[14]_9 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[14] [8]));
   FDCE \array_reg_reg[14][9] 
        (.C(clk),
         .CE(\array_reg[14]_9 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[14] [9]));
   FDCE \array_reg_reg[15][0] 
        (.C(clk),
         .CE(\array_reg[15]_16 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[15] [0]));
   FDCE \array_reg_reg[15][10] 
        (.C(clk),
         .CE(\array_reg[15]_16 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[15] [10]));
   FDCE \array_reg_reg[15][12] 
        (.C(clk),
         .CE(\array_reg[15]_16 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[15] [12]));
   FDCE \array_reg_reg[15][13] 
        (.C(clk),
         .CE(\array_reg[15]_16 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[15] [13]));
   FDCE \array_reg_reg[15][14] 
        (.C(clk),
         .CE(\array_reg[15]_16 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[15] [14]));
   FDCE \array_reg_reg[15][15] 
        (.C(clk),
         .CE(\array_reg[15]_16 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[15] [15]));
   FDCE \array_reg_reg[15][1] 
        (.C(clk),
         .CE(\array_reg[15]_16 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[15] [1]));
   FDCE \array_reg_reg[15][2] 
        (.C(clk),
         .CE(\array_reg[15]_16 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[15] [2]));
   FDCE \array_reg_reg[15][3] 
        (.C(clk),
         .CE(\array_reg[15]_16 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[15] [3]));
   FDCE \array_reg_reg[15][4] 
        (.C(clk),
         .CE(\array_reg[15]_16 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[15] [4]));
   FDCE \array_reg_reg[15][5] 
        (.C(clk),
         .CE(\array_reg[15]_16 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[15] [5]));
   FDCE \array_reg_reg[15][6] 
        (.C(clk),
         .CE(\array_reg[15]_16 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[15] [6]));
   FDCE \array_reg_reg[15][7] 
        (.C(clk),
         .CE(\array_reg[15]_16 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[15] [7]));
   FDCE \array_reg_reg[15][8] 
        (.C(clk),
         .CE(\array_reg[15]_16 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[15] [8]));
   FDCE \array_reg_reg[15][9] 
        (.C(clk),
         .CE(\array_reg[15]_16 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[15] [9]));
   FDCE \array_reg_reg[1][0] 
        (.C(clk),
         .CE(\array_reg[1]_6 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[1] [0]));
   FDCE \array_reg_reg[1][10] 
        (.C(clk),
         .CE(\array_reg[1]_6 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[1] [10]));
   FDCE \array_reg_reg[1][12] 
        (.C(clk),
         .CE(\array_reg[1]_6 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[1] [12]));
   FDCE \array_reg_reg[1][13] 
        (.C(clk),
         .CE(\array_reg[1]_6 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[1] [13]));
   FDCE \array_reg_reg[1][14] 
        (.C(clk),
         .CE(\array_reg[1]_6 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[1] [14]));
   FDCE \array_reg_reg[1][15] 
        (.C(clk),
         .CE(\array_reg[1]_6 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[1] [15]));
   FDCE \array_reg_reg[1][1] 
        (.C(clk),
         .CE(\array_reg[1]_6 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[1] [1]));
   FDCE \array_reg_reg[1][2] 
        (.C(clk),
         .CE(\array_reg[1]_6 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[1] [2]));
   FDCE \array_reg_reg[1][3] 
        (.C(clk),
         .CE(\array_reg[1]_6 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[1] [3]));
   FDCE \array_reg_reg[1][4] 
        (.C(clk),
         .CE(\array_reg[1]_6 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[1] [4]));
   FDCE \array_reg_reg[1][5] 
        (.C(clk),
         .CE(\array_reg[1]_6 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[1] [5]));
   FDCE \array_reg_reg[1][6] 
        (.C(clk),
         .CE(\array_reg[1]_6 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[1] [6]));
   FDCE \array_reg_reg[1][7] 
        (.C(clk),
         .CE(\array_reg[1]_6 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[1] [7]));
   FDCE \array_reg_reg[1][8] 
        (.C(clk),
         .CE(\array_reg[1]_6 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[1] [8]));
   FDCE \array_reg_reg[1][9] 
        (.C(clk),
         .CE(\array_reg[1]_6 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[1] [9]));
   FDCE \array_reg_reg[2][0] 
        (.C(clk),
         .CE(\array_reg[2]_11 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[2] [0]));
   FDCE \array_reg_reg[2][10] 
        (.C(clk),
         .CE(\array_reg[2]_11 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[2] [10]));
   FDCE \array_reg_reg[2][12] 
        (.C(clk),
         .CE(\array_reg[2]_11 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[2] [12]));
   FDCE \array_reg_reg[2][13] 
        (.C(clk),
         .CE(\array_reg[2]_11 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[2] [13]));
   FDCE \array_reg_reg[2][14] 
        (.C(clk),
         .CE(\array_reg[2]_11 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[2] [14]));
   FDCE \array_reg_reg[2][15] 
        (.C(clk),
         .CE(\array_reg[2]_11 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[2] [15]));
   FDCE \array_reg_reg[2][1] 
        (.C(clk),
         .CE(\array_reg[2]_11 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[2] [1]));
   FDCE \array_reg_reg[2][2] 
        (.C(clk),
         .CE(\array_reg[2]_11 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[2] [2]));
   FDCE \array_reg_reg[2][3] 
        (.C(clk),
         .CE(\array_reg[2]_11 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[2] [3]));
   FDCE \array_reg_reg[2][4] 
        (.C(clk),
         .CE(\array_reg[2]_11 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[2] [4]));
   FDCE \array_reg_reg[2][5] 
        (.C(clk),
         .CE(\array_reg[2]_11 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[2] [5]));
   FDCE \array_reg_reg[2][6] 
        (.C(clk),
         .CE(\array_reg[2]_11 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[2] [6]));
   FDCE \array_reg_reg[2][7] 
        (.C(clk),
         .CE(\array_reg[2]_11 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[2] [7]));
   FDCE \array_reg_reg[2][8] 
        (.C(clk),
         .CE(\array_reg[2]_11 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[2] [8]));
   FDCE \array_reg_reg[2][9] 
        (.C(clk),
         .CE(\array_reg[2]_11 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[2] [9]));
   FDCE \array_reg_reg[3][0] 
        (.C(clk),
         .CE(\array_reg[3]_14 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[3] [0]));
   FDCE \array_reg_reg[3][10] 
        (.C(clk),
         .CE(\array_reg[3]_14 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[3] [10]));
   FDCE \array_reg_reg[3][12] 
        (.C(clk),
         .CE(\array_reg[3]_14 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[3] [12]));
   FDCE \array_reg_reg[3][13] 
        (.C(clk),
         .CE(\array_reg[3]_14 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[3] [13]));
   FDCE \array_reg_reg[3][14] 
        (.C(clk),
         .CE(\array_reg[3]_14 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[3] [14]));
   FDCE \array_reg_reg[3][15] 
        (.C(clk),
         .CE(\array_reg[3]_14 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[3] [15]));
   FDCE \array_reg_reg[3][1] 
        (.C(clk),
         .CE(\array_reg[3]_14 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[3] [1]));
   FDCE \array_reg_reg[3][2] 
        (.C(clk),
         .CE(\array_reg[3]_14 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[3] [2]));
   FDCE \array_reg_reg[3][3] 
        (.C(clk),
         .CE(\array_reg[3]_14 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[3] [3]));
   FDCE \array_reg_reg[3][4] 
        (.C(clk),
         .CE(\array_reg[3]_14 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[3] [4]));
   FDCE \array_reg_reg[3][5] 
        (.C(clk),
         .CE(\array_reg[3]_14 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[3] [5]));
   FDCE \array_reg_reg[3][6] 
        (.C(clk),
         .CE(\array_reg[3]_14 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[3] [6]));
   FDCE \array_reg_reg[3][7] 
        (.C(clk),
         .CE(\array_reg[3]_14 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[3] [7]));
   FDCE \array_reg_reg[3][8] 
        (.C(clk),
         .CE(\array_reg[3]_14 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[3] [8]));
   FDCE \array_reg_reg[3][9] 
        (.C(clk),
         .CE(\array_reg[3]_14 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[3] [9]));
   FDCE \array_reg_reg[4][0] 
        (.C(clk),
         .CE(\array_reg[4]_1 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[4] [0]));
   FDCE \array_reg_reg[4][10] 
        (.C(clk),
         .CE(\array_reg[4]_1 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[4] [10]));
   FDCE \array_reg_reg[4][12] 
        (.C(clk),
         .CE(\array_reg[4]_1 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[4] [12]));
   FDCE \array_reg_reg[4][13] 
        (.C(clk),
         .CE(\array_reg[4]_1 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[4] [13]));
   FDCE \array_reg_reg[4][14] 
        (.C(clk),
         .CE(\array_reg[4]_1 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[4] [14]));
   FDCE \array_reg_reg[4][15] 
        (.C(clk),
         .CE(\array_reg[4]_1 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[4] [15]));
   FDCE \array_reg_reg[4][1] 
        (.C(clk),
         .CE(\array_reg[4]_1 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[4] [1]));
   FDCE \array_reg_reg[4][2] 
        (.C(clk),
         .CE(\array_reg[4]_1 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[4] [2]));
   FDCE \array_reg_reg[4][3] 
        (.C(clk),
         .CE(\array_reg[4]_1 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[4] [3]));
   FDCE \array_reg_reg[4][4] 
        (.C(clk),
         .CE(\array_reg[4]_1 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[4] [4]));
   FDCE \array_reg_reg[4][5] 
        (.C(clk),
         .CE(\array_reg[4]_1 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[4] [5]));
   FDCE \array_reg_reg[4][6] 
        (.C(clk),
         .CE(\array_reg[4]_1 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[4] [6]));
   FDCE \array_reg_reg[4][7] 
        (.C(clk),
         .CE(\array_reg[4]_1 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[4] [7]));
   FDCE \array_reg_reg[4][8] 
        (.C(clk),
         .CE(\array_reg[4]_1 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[4] [8]));
   FDCE \array_reg_reg[4][9] 
        (.C(clk),
         .CE(\array_reg[4]_1 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[4] [9]));
   FDCE \array_reg_reg[5][0] 
        (.C(clk),
         .CE(\array_reg[5]_2 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[5] [0]));
   FDCE \array_reg_reg[5][10] 
        (.C(clk),
         .CE(\array_reg[5]_2 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[5] [10]));
   FDCE \array_reg_reg[5][12] 
        (.C(clk),
         .CE(\array_reg[5]_2 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[5] [12]));
   FDCE \array_reg_reg[5][13] 
        (.C(clk),
         .CE(\array_reg[5]_2 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[5] [13]));
   FDCE \array_reg_reg[5][14] 
        (.C(clk),
         .CE(\array_reg[5]_2 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[5] [14]));
   FDCE \array_reg_reg[5][15] 
        (.C(clk),
         .CE(\array_reg[5]_2 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[5] [15]));
   FDCE \array_reg_reg[5][1] 
        (.C(clk),
         .CE(\array_reg[5]_2 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[5] [1]));
   FDCE \array_reg_reg[5][2] 
        (.C(clk),
         .CE(\array_reg[5]_2 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[5] [2]));
   FDCE \array_reg_reg[5][3] 
        (.C(clk),
         .CE(\array_reg[5]_2 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[5] [3]));
   FDCE \array_reg_reg[5][4] 
        (.C(clk),
         .CE(\array_reg[5]_2 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[5] [4]));
   FDCE \array_reg_reg[5][5] 
        (.C(clk),
         .CE(\array_reg[5]_2 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[5] [5]));
   FDCE \array_reg_reg[5][6] 
        (.C(clk),
         .CE(\array_reg[5]_2 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[5] [6]));
   FDCE \array_reg_reg[5][7] 
        (.C(clk),
         .CE(\array_reg[5]_2 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[5] [7]));
   FDCE \array_reg_reg[5][8] 
        (.C(clk),
         .CE(\array_reg[5]_2 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[5] [8]));
   FDCE \array_reg_reg[5][9] 
        (.C(clk),
         .CE(\array_reg[5]_2 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[5] [9]));
   FDCE \array_reg_reg[6][0] 
        (.C(clk),
         .CE(\array_reg[6]_12 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[6] [0]));
   FDCE \array_reg_reg[6][10] 
        (.C(clk),
         .CE(\array_reg[6]_12 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[6] [10]));
   FDCE \array_reg_reg[6][12] 
        (.C(clk),
         .CE(\array_reg[6]_12 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[6] [12]));
   FDCE \array_reg_reg[6][13] 
        (.C(clk),
         .CE(\array_reg[6]_12 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[6] [13]));
   FDCE \array_reg_reg[6][14] 
        (.C(clk),
         .CE(\array_reg[6]_12 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[6] [14]));
   FDCE \array_reg_reg[6][15] 
        (.C(clk),
         .CE(\array_reg[6]_12 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[6] [15]));
   FDCE \array_reg_reg[6][1] 
        (.C(clk),
         .CE(\array_reg[6]_12 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[6] [1]));
   FDCE \array_reg_reg[6][2] 
        (.C(clk),
         .CE(\array_reg[6]_12 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[6] [2]));
   FDCE \array_reg_reg[6][3] 
        (.C(clk),
         .CE(\array_reg[6]_12 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[6] [3]));
   FDCE \array_reg_reg[6][4] 
        (.C(clk),
         .CE(\array_reg[6]_12 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[6] [4]));
   FDCE \array_reg_reg[6][5] 
        (.C(clk),
         .CE(\array_reg[6]_12 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[6] [5]));
   FDCE \array_reg_reg[6][6] 
        (.C(clk),
         .CE(\array_reg[6]_12 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[6] [6]));
   FDCE \array_reg_reg[6][7] 
        (.C(clk),
         .CE(\array_reg[6]_12 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[6] [7]));
   FDCE \array_reg_reg[6][8] 
        (.C(clk),
         .CE(\array_reg[6]_12 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[6] [8]));
   FDCE \array_reg_reg[6][9] 
        (.C(clk),
         .CE(\array_reg[6]_12 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[6] [9]));
   FDCE \array_reg_reg[7][0] 
        (.C(clk),
         .CE(\array_reg[7]_13 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[7] [0]));
   FDCE \array_reg_reg[7][10] 
        (.C(clk),
         .CE(\array_reg[7]_13 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[7] [10]));
   FDCE \array_reg_reg[7][12] 
        (.C(clk),
         .CE(\array_reg[7]_13 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[7] [12]));
   FDCE \array_reg_reg[7][13] 
        (.C(clk),
         .CE(\array_reg[7]_13 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[7] [13]));
   FDCE \array_reg_reg[7][14] 
        (.C(clk),
         .CE(\array_reg[7]_13 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[7] [14]));
   FDCE \array_reg_reg[7][15] 
        (.C(clk),
         .CE(\array_reg[7]_13 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[7] [15]));
   FDCE \array_reg_reg[7][1] 
        (.C(clk),
         .CE(\array_reg[7]_13 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[7] [1]));
   FDCE \array_reg_reg[7][2] 
        (.C(clk),
         .CE(\array_reg[7]_13 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[7] [2]));
   FDCE \array_reg_reg[7][3] 
        (.C(clk),
         .CE(\array_reg[7]_13 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[7] [3]));
   FDCE \array_reg_reg[7][4] 
        (.C(clk),
         .CE(\array_reg[7]_13 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[7] [4]));
   FDCE \array_reg_reg[7][5] 
        (.C(clk),
         .CE(\array_reg[7]_13 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[7] [5]));
   FDCE \array_reg_reg[7][6] 
        (.C(clk),
         .CE(\array_reg[7]_13 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[7] [6]));
   FDCE \array_reg_reg[7][7] 
        (.C(clk),
         .CE(\array_reg[7]_13 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[7] [7]));
   FDCE \array_reg_reg[7][8] 
        (.C(clk),
         .CE(\array_reg[7]_13 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[7] [8]));
   FDCE \array_reg_reg[7][9] 
        (.C(clk),
         .CE(\array_reg[7]_13 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[7] [9]));
   FDCE \array_reg_reg[8][0] 
        (.C(clk),
         .CE(\array_reg[8]_4 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[8] [0]));
   FDCE \array_reg_reg[8][10] 
        (.C(clk),
         .CE(\array_reg[8]_4 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[8] [10]));
   FDCE \array_reg_reg[8][12] 
        (.C(clk),
         .CE(\array_reg[8]_4 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[8] [12]));
   FDCE \array_reg_reg[8][13] 
        (.C(clk),
         .CE(\array_reg[8]_4 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[8] [13]));
   FDCE \array_reg_reg[8][14] 
        (.C(clk),
         .CE(\array_reg[8]_4 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[8] [14]));
   FDCE \array_reg_reg[8][15] 
        (.C(clk),
         .CE(\array_reg[8]_4 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[8] [15]));
   FDCE \array_reg_reg[8][1] 
        (.C(clk),
         .CE(\array_reg[8]_4 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[8] [1]));
   FDCE \array_reg_reg[8][2] 
        (.C(clk),
         .CE(\array_reg[8]_4 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[8] [2]));
   FDCE \array_reg_reg[8][3] 
        (.C(clk),
         .CE(\array_reg[8]_4 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[8] [3]));
   FDCE \array_reg_reg[8][4] 
        (.C(clk),
         .CE(\array_reg[8]_4 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[8] [4]));
   FDCE \array_reg_reg[8][5] 
        (.C(clk),
         .CE(\array_reg[8]_4 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[8] [5]));
   FDCE \array_reg_reg[8][6] 
        (.C(clk),
         .CE(\array_reg[8]_4 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[8] [6]));
   FDCE \array_reg_reg[8][7] 
        (.C(clk),
         .CE(\array_reg[8]_4 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[8] [7]));
   FDCE \array_reg_reg[8][8] 
        (.C(clk),
         .CE(\array_reg[8]_4 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[8] [8]));
   FDCE \array_reg_reg[8][9] 
        (.C(clk),
         .CE(\array_reg[8]_4 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[8] [9]));
   FDCE \array_reg_reg[9][0] 
        (.C(clk),
         .CE(\array_reg[9]_7 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[9] [0]));
   FDCE \array_reg_reg[9][10] 
        (.C(clk),
         .CE(\array_reg[9]_7 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[9] [10]));
   FDCE \array_reg_reg[9][12] 
        (.C(clk),
         .CE(\array_reg[9]_7 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[9] [12]));
   FDCE \array_reg_reg[9][13] 
        (.C(clk),
         .CE(\array_reg[9]_7 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[9] [13]));
   FDCE \array_reg_reg[9][14] 
        (.C(clk),
         .CE(\array_reg[9]_7 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[9] [14]));
   FDCE \array_reg_reg[9][15] 
        (.C(clk),
         .CE(\array_reg[9]_7 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[9] [15]));
   FDCE \array_reg_reg[9][1] 
        (.C(clk),
         .CE(\array_reg[9]_7 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[9] [1]));
   FDCE \array_reg_reg[9][2] 
        (.C(clk),
         .CE(\array_reg[9]_7 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[9] [2]));
   FDCE \array_reg_reg[9][3] 
        (.C(clk),
         .CE(\array_reg[9]_7 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[9] [3]));
   FDCE \array_reg_reg[9][4] 
        (.C(clk),
         .CE(\array_reg[9]_7 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[9] [4]));
   FDCE \array_reg_reg[9][5] 
        (.C(clk),
         .CE(\array_reg[9]_7 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[9] [5]));
   FDCE \array_reg_reg[9][6] 
        (.C(clk),
         .CE(\array_reg[9]_7 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[9] [6]));
   FDCE \array_reg_reg[9][7] 
        (.C(clk),
         .CE(\array_reg[9]_7 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[9] [7]));
   FDCE \array_reg_reg[9][8] 
        (.C(clk),
         .CE(\array_reg[9]_7 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[9] [8]));
   FDCE \array_reg_reg[9][9] 
        (.C(clk),
         .CE(\array_reg[9]_7 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[9] [9]));
   LUT6 #(
@@ -4832,7 +4846,7 @@ module GPIOTest_GPIOInterface_0_0_fifo
        (.C(clk),
         .CE(1'b1),
         .D(empty_reg_i_1_n_0),
-        .PRE(reset),
+        .PRE(fifo_reset),
         .Q(fifo_empty));
   LUT6 #(
     .INIT(64'hFFFFFCDF00000010)) 
@@ -4841,7 +4855,7 @@ module GPIOTest_GPIOInterface_0_0_fifo
         .I1(out[2]),
         .I2(out[0]),
         .I3(out[1]),
-        .I4(reset),
+        .I4(fifo_reset),
         .I5(rd),
         .O(fifo_rd_reg));
   LUT6 #(
@@ -4877,7 +4891,7 @@ module GPIOTest_GPIOInterface_0_0_fifo
   FDCE full_reg_reg
        (.C(clk),
         .CE(1'b1),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(full_reg_i_1_n_0),
         .Q(full));
   (* SOFT_HLUTNM = "soft_lutpair2" *) 
@@ -4921,25 +4935,25 @@ module GPIOTest_GPIOInterface_0_0_fifo
   FDCE \r_ptr_reg_reg[0] 
        (.C(clk),
         .CE(\r_ptr_reg[3]_i_1_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(plusOp[0]),
         .Q(r_ptr_reg_reg__0[0]));
   FDCE \r_ptr_reg_reg[1] 
        (.C(clk),
         .CE(\r_ptr_reg[3]_i_1_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(plusOp[1]),
         .Q(r_ptr_reg_reg__0[1]));
   FDCE \r_ptr_reg_reg[2] 
        (.C(clk),
         .CE(\r_ptr_reg[3]_i_1_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(\r_ptr_reg[2]_i_1__0_n_0 ),
         .Q(r_ptr_reg_reg__0[2]));
   FDCE \r_ptr_reg_reg[3] 
        (.C(clk),
         .CE(\r_ptr_reg[3]_i_1_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(plusOp[3]),
         .Q(r_ptr_reg_reg__0[3]));
   (* SOFT_HLUTNM = "soft_lutpair3" *) 
@@ -4983,46 +4997,48 @@ module GPIOTest_GPIOInterface_0_0_fifo
   FDCE \w_ptr_reg_reg[0] 
        (.C(clk),
         .CE(\w_ptr_reg[3]_i_1_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(plusOp0_in[0]),
         .Q(w_ptr_reg_reg__0[0]));
   FDCE \w_ptr_reg_reg[1] 
        (.C(clk),
         .CE(\w_ptr_reg[3]_i_1_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(plusOp0_in[1]),
         .Q(w_ptr_reg_reg__0[1]));
   FDCE \w_ptr_reg_reg[2] 
        (.C(clk),
         .CE(\w_ptr_reg[3]_i_1_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(plusOp0_in[2]),
         .Q(w_ptr_reg_reg__0[2]));
   FDCE \w_ptr_reg_reg[3] 
        (.C(clk),
         .CE(\w_ptr_reg[3]_i_1_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(plusOp0_in[3]),
         .Q(w_ptr_reg_reg__0[3]));
 endmodule
 
 (* ORIG_REF_NAME = "fifo" *) 
 module GPIOTest_GPIOInterface_0_0_fifo_2
-   (GPIOPortRd,
+   (fifo_reset,
+    GPIOPortRd,
     clk,
-    reset,
     wr,
     GPIOPortWr,
     blClkOut,
     full,
+    reset_n,
     D);
+  output fifo_reset;
   output [17:0]GPIOPortRd;
   input clk;
-  input reset;
   input wr;
-  input [0:0]GPIOPortWr;
+  input [1:0]GPIOPortWr;
   input [1:0]blClkOut;
   input full;
+  input reset_n;
   input [15:0]D;
 
   wire [15:0]D;
@@ -5107,7 +5123,7 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
   wire \GPIOPortRd[9]_INST_0_i_3_n_0 ;
   wire \GPIOPortRd[9]_INST_0_i_4_n_0 ;
   wire \GPIOPortRd[9]_INST_0_i_5_n_0 ;
-  wire [0:0]GPIOPortWr;
+  wire [1:0]GPIOPortWr;
   wire \array_reg[0]_29 ;
   wire \array_reg[10]_23 ;
   wire \array_reg[11]_17 ;
@@ -5386,6 +5402,7 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
   wire empty_reg_i_1__0_n_0;
   wire empty_reg_i_2_n_0;
   wire empty_reg_i_3_n_0;
+  wire fifo_reset;
   wire full;
   wire full_reg_i_1__0_n_0;
   wire full_reg_i_2__0_n_0;
@@ -5397,7 +5414,7 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
   wire \r_ptr_reg[3]_i_1__0_n_0 ;
   wire \r_ptr_reg[3]_i_2_n_0 ;
   wire [3:0]r_ptr_reg_reg__0;
-  wire reset;
+  wire reset_n;
   wire \w_ptr_reg[0]_i_1__0_n_0 ;
   wire \w_ptr_reg[1]_i_1__0_n_0 ;
   wire \w_ptr_reg[2]_i_1__0_n_0 ;
@@ -5406,6 +5423,12 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
   wire [3:0]w_ptr_reg_reg__0;
   wire wr;
 
+  LUT2 #(
+    .INIT(4'hB)) 
+    \DOut[7]_i_1 
+       (.I0(GPIOPortWr[1]),
+        .I1(reset_n),
+        .O(fifo_reset));
   LUT6 #(
     .INIT(64'hEEE222E200000000)) 
     \GPIOPortRd[0]_INST_0 
@@ -5414,7 +5437,7 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
         .I2(\GPIOPortRd[0]_INST_0_i_2_n_0 ),
         .I3(r_ptr_reg_reg__0[2]),
         .I4(\GPIOPortRd[0]_INST_0_i_3_n_0 ),
-        .I5(GPIOPortWr),
+        .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[0]));
   MUXF7 \GPIOPortRd[0]_INST_0_i_1 
        (.I0(\GPIOPortRd[0]_INST_0_i_4_n_0 ),
@@ -5469,7 +5492,7 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
         .I2(\GPIOPortRd[10]_INST_0_i_2_n_0 ),
         .I3(r_ptr_reg_reg__0[2]),
         .I4(\GPIOPortRd[10]_INST_0_i_3_n_0 ),
-        .I5(GPIOPortWr),
+        .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[10]));
   MUXF7 \GPIOPortRd[10]_INST_0_i_1 
        (.I0(\GPIOPortRd[10]_INST_0_i_4_n_0 ),
@@ -5524,7 +5547,7 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
         .I2(\GPIOPortRd[11]_INST_0_i_2_n_0 ),
         .I3(r_ptr_reg_reg__0[2]),
         .I4(\GPIOPortRd[11]_INST_0_i_3_n_0 ),
-        .I5(GPIOPortWr),
+        .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[11]));
   MUXF7 \GPIOPortRd[11]_INST_0_i_1 
        (.I0(\GPIOPortRd[11]_INST_0_i_4_n_0 ),
@@ -5579,7 +5602,7 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
         .I2(\GPIOPortRd[12]_INST_0_i_2_n_0 ),
         .I3(r_ptr_reg_reg__0[2]),
         .I4(\GPIOPortRd[12]_INST_0_i_3_n_0 ),
-        .I5(GPIOPortWr),
+        .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[12]));
   MUXF7 \GPIOPortRd[12]_INST_0_i_1 
        (.I0(\GPIOPortRd[12]_INST_0_i_4_n_0 ),
@@ -5634,7 +5657,7 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
         .I2(\GPIOPortRd[13]_INST_0_i_2_n_0 ),
         .I3(r_ptr_reg_reg__0[2]),
         .I4(\GPIOPortRd[13]_INST_0_i_3_n_0 ),
-        .I5(GPIOPortWr),
+        .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[13]));
   MUXF7 \GPIOPortRd[13]_INST_0_i_1 
        (.I0(\GPIOPortRd[13]_INST_0_i_4_n_0 ),
@@ -5689,7 +5712,7 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
         .I2(\GPIOPortRd[14]_INST_0_i_2_n_0 ),
         .I3(r_ptr_reg_reg__0[2]),
         .I4(\GPIOPortRd[14]_INST_0_i_3_n_0 ),
-        .I5(GPIOPortWr),
+        .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[14]));
   MUXF7 \GPIOPortRd[14]_INST_0_i_1 
        (.I0(\GPIOPortRd[14]_INST_0_i_4_n_0 ),
@@ -5744,7 +5767,7 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
         .I2(\GPIOPortRd[15]_INST_0_i_2_n_0 ),
         .I3(r_ptr_reg_reg__0[2]),
         .I4(\GPIOPortRd[15]_INST_0_i_3_n_0 ),
-        .I5(GPIOPortWr),
+        .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[15]));
   MUXF7 \GPIOPortRd[15]_INST_0_i_1 
        (.I0(\GPIOPortRd[15]_INST_0_i_4_n_0 ),
@@ -5799,7 +5822,7 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
         .I2(\GPIOPortRd[1]_INST_0_i_2_n_0 ),
         .I3(r_ptr_reg_reg__0[2]),
         .I4(\GPIOPortRd[1]_INST_0_i_3_n_0 ),
-        .I5(GPIOPortWr),
+        .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[1]));
   MUXF7 \GPIOPortRd[1]_INST_0_i_1 
        (.I0(\GPIOPortRd[1]_INST_0_i_4_n_0 ),
@@ -5860,7 +5883,7 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
         .I2(\GPIOPortRd[2]_INST_0_i_2_n_0 ),
         .I3(r_ptr_reg_reg__0[2]),
         .I4(\GPIOPortRd[2]_INST_0_i_3_n_0 ),
-        .I5(GPIOPortWr),
+        .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[2]));
   MUXF7 \GPIOPortRd[2]_INST_0_i_1 
        (.I0(\GPIOPortRd[2]_INST_0_i_4_n_0 ),
@@ -5920,7 +5943,7 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
         .I2(\GPIOPortRd[3]_INST_0_i_2_n_0 ),
         .I3(r_ptr_reg_reg__0[2]),
         .I4(\GPIOPortRd[3]_INST_0_i_3_n_0 ),
-        .I5(GPIOPortWr),
+        .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[3]));
   MUXF7 \GPIOPortRd[3]_INST_0_i_1 
        (.I0(\GPIOPortRd[3]_INST_0_i_4_n_0 ),
@@ -5975,7 +5998,7 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
         .I2(\GPIOPortRd[4]_INST_0_i_2_n_0 ),
         .I3(r_ptr_reg_reg__0[2]),
         .I4(\GPIOPortRd[4]_INST_0_i_3_n_0 ),
-        .I5(GPIOPortWr),
+        .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[4]));
   MUXF7 \GPIOPortRd[4]_INST_0_i_1 
        (.I0(\GPIOPortRd[4]_INST_0_i_4_n_0 ),
@@ -6030,7 +6053,7 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
         .I2(\GPIOPortRd[5]_INST_0_i_2_n_0 ),
         .I3(r_ptr_reg_reg__0[2]),
         .I4(\GPIOPortRd[5]_INST_0_i_3_n_0 ),
-        .I5(GPIOPortWr),
+        .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[5]));
   MUXF7 \GPIOPortRd[5]_INST_0_i_1 
        (.I0(\GPIOPortRd[5]_INST_0_i_4_n_0 ),
@@ -6085,7 +6108,7 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
         .I2(\GPIOPortRd[6]_INST_0_i_2_n_0 ),
         .I3(r_ptr_reg_reg__0[2]),
         .I4(\GPIOPortRd[6]_INST_0_i_3_n_0 ),
-        .I5(GPIOPortWr),
+        .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[6]));
   MUXF7 \GPIOPortRd[6]_INST_0_i_1 
        (.I0(\GPIOPortRd[6]_INST_0_i_4_n_0 ),
@@ -6140,7 +6163,7 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
         .I2(\GPIOPortRd[7]_INST_0_i_2_n_0 ),
         .I3(r_ptr_reg_reg__0[2]),
         .I4(\GPIOPortRd[7]_INST_0_i_3_n_0 ),
-        .I5(GPIOPortWr),
+        .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[7]));
   MUXF7 \GPIOPortRd[7]_INST_0_i_1 
        (.I0(\GPIOPortRd[7]_INST_0_i_4_n_0 ),
@@ -6195,7 +6218,7 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
         .I2(\GPIOPortRd[8]_INST_0_i_2_n_0 ),
         .I3(r_ptr_reg_reg__0[2]),
         .I4(\GPIOPortRd[8]_INST_0_i_3_n_0 ),
-        .I5(GPIOPortWr),
+        .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[8]));
   MUXF7 \GPIOPortRd[8]_INST_0_i_1 
        (.I0(\GPIOPortRd[8]_INST_0_i_4_n_0 ),
@@ -6250,7 +6273,7 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
         .I2(\GPIOPortRd[9]_INST_0_i_2_n_0 ),
         .I3(r_ptr_reg_reg__0[2]),
         .I4(\GPIOPortRd[9]_INST_0_i_3_n_0 ),
-        .I5(GPIOPortWr),
+        .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[9]));
   MUXF7 \GPIOPortRd[9]_INST_0_i_1 
        (.I0(\GPIOPortRd[9]_INST_0_i_4_n_0 ),
@@ -6460,1537 +6483,1537 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
   FDCE \array_reg_reg[0][0] 
        (.C(clk),
         .CE(\array_reg[0]_29 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[0][0] ));
   FDCE \array_reg_reg[0][10] 
        (.C(clk),
         .CE(\array_reg[0]_29 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[0][10] ));
   FDCE \array_reg_reg[0][11] 
        (.C(clk),
         .CE(\array_reg[0]_29 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[0][11] ));
   FDCE \array_reg_reg[0][12] 
        (.C(clk),
         .CE(\array_reg[0]_29 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[0][12] ));
   FDCE \array_reg_reg[0][13] 
        (.C(clk),
         .CE(\array_reg[0]_29 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[0][13] ));
   FDCE \array_reg_reg[0][14] 
        (.C(clk),
         .CE(\array_reg[0]_29 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[0][14] ));
   FDCE \array_reg_reg[0][15] 
        (.C(clk),
         .CE(\array_reg[0]_29 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[0][15] ));
   FDCE \array_reg_reg[0][1] 
        (.C(clk),
         .CE(\array_reg[0]_29 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[0][1] ));
   FDCE \array_reg_reg[0][2] 
        (.C(clk),
         .CE(\array_reg[0]_29 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[0][2] ));
   FDCE \array_reg_reg[0][3] 
        (.C(clk),
         .CE(\array_reg[0]_29 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[0][3] ));
   FDCE \array_reg_reg[0][4] 
        (.C(clk),
         .CE(\array_reg[0]_29 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[0][4] ));
   FDCE \array_reg_reg[0][5] 
        (.C(clk),
         .CE(\array_reg[0]_29 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[0][5] ));
   FDCE \array_reg_reg[0][6] 
        (.C(clk),
         .CE(\array_reg[0]_29 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[0][6] ));
   FDCE \array_reg_reg[0][7] 
        (.C(clk),
         .CE(\array_reg[0]_29 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[0][7] ));
   FDCE \array_reg_reg[0][8] 
        (.C(clk),
         .CE(\array_reg[0]_29 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[0][8] ));
   FDCE \array_reg_reg[0][9] 
        (.C(clk),
         .CE(\array_reg[0]_29 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[0][9] ));
   FDCE \array_reg_reg[10][0] 
        (.C(clk),
         .CE(\array_reg[10]_23 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[10][0] ));
   FDCE \array_reg_reg[10][10] 
        (.C(clk),
         .CE(\array_reg[10]_23 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[10][10] ));
   FDCE \array_reg_reg[10][11] 
        (.C(clk),
         .CE(\array_reg[10]_23 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[10][11] ));
   FDCE \array_reg_reg[10][12] 
        (.C(clk),
         .CE(\array_reg[10]_23 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[10][12] ));
   FDCE \array_reg_reg[10][13] 
        (.C(clk),
         .CE(\array_reg[10]_23 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[10][13] ));
   FDCE \array_reg_reg[10][14] 
        (.C(clk),
         .CE(\array_reg[10]_23 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[10][14] ));
   FDCE \array_reg_reg[10][15] 
        (.C(clk),
         .CE(\array_reg[10]_23 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[10][15] ));
   FDCE \array_reg_reg[10][1] 
        (.C(clk),
         .CE(\array_reg[10]_23 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[10][1] ));
   FDCE \array_reg_reg[10][2] 
        (.C(clk),
         .CE(\array_reg[10]_23 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[10][2] ));
   FDCE \array_reg_reg[10][3] 
        (.C(clk),
         .CE(\array_reg[10]_23 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[10][3] ));
   FDCE \array_reg_reg[10][4] 
        (.C(clk),
         .CE(\array_reg[10]_23 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[10][4] ));
   FDCE \array_reg_reg[10][5] 
        (.C(clk),
         .CE(\array_reg[10]_23 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[10][5] ));
   FDCE \array_reg_reg[10][6] 
        (.C(clk),
         .CE(\array_reg[10]_23 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[10][6] ));
   FDCE \array_reg_reg[10][7] 
        (.C(clk),
         .CE(\array_reg[10]_23 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[10][7] ));
   FDCE \array_reg_reg[10][8] 
        (.C(clk),
         .CE(\array_reg[10]_23 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[10][8] ));
   FDCE \array_reg_reg[10][9] 
        (.C(clk),
         .CE(\array_reg[10]_23 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[10][9] ));
   FDCE \array_reg_reg[11][0] 
        (.C(clk),
         .CE(\array_reg[11]_17 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[11][0] ));
   FDCE \array_reg_reg[11][10] 
        (.C(clk),
         .CE(\array_reg[11]_17 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[11][10] ));
   FDCE \array_reg_reg[11][11] 
        (.C(clk),
         .CE(\array_reg[11]_17 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[11][11] ));
   FDCE \array_reg_reg[11][12] 
        (.C(clk),
         .CE(\array_reg[11]_17 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[11][12] ));
   FDCE \array_reg_reg[11][13] 
        (.C(clk),
         .CE(\array_reg[11]_17 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[11][13] ));
   FDCE \array_reg_reg[11][14] 
        (.C(clk),
         .CE(\array_reg[11]_17 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[11][14] ));
   FDCE \array_reg_reg[11][15] 
        (.C(clk),
         .CE(\array_reg[11]_17 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[11][15] ));
   FDCE \array_reg_reg[11][1] 
        (.C(clk),
         .CE(\array_reg[11]_17 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[11][1] ));
   FDCE \array_reg_reg[11][2] 
        (.C(clk),
         .CE(\array_reg[11]_17 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[11][2] ));
   FDCE \array_reg_reg[11][3] 
        (.C(clk),
         .CE(\array_reg[11]_17 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[11][3] ));
   FDCE \array_reg_reg[11][4] 
        (.C(clk),
         .CE(\array_reg[11]_17 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[11][4] ));
   FDCE \array_reg_reg[11][5] 
        (.C(clk),
         .CE(\array_reg[11]_17 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[11][5] ));
   FDCE \array_reg_reg[11][6] 
        (.C(clk),
         .CE(\array_reg[11]_17 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[11][6] ));
   FDCE \array_reg_reg[11][7] 
        (.C(clk),
         .CE(\array_reg[11]_17 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[11][7] ));
   FDCE \array_reg_reg[11][8] 
        (.C(clk),
         .CE(\array_reg[11]_17 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[11][8] ));
   FDCE \array_reg_reg[11][9] 
        (.C(clk),
         .CE(\array_reg[11]_17 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[11][9] ));
   FDCE \array_reg_reg[12][0] 
        (.C(clk),
         .CE(\array_reg[12]_22 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[12][0] ));
   FDCE \array_reg_reg[12][10] 
        (.C(clk),
         .CE(\array_reg[12]_22 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[12][10] ));
   FDCE \array_reg_reg[12][11] 
        (.C(clk),
         .CE(\array_reg[12]_22 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[12][11] ));
   FDCE \array_reg_reg[12][12] 
        (.C(clk),
         .CE(\array_reg[12]_22 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[12][12] ));
   FDCE \array_reg_reg[12][13] 
        (.C(clk),
         .CE(\array_reg[12]_22 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[12][13] ));
   FDCE \array_reg_reg[12][14] 
        (.C(clk),
         .CE(\array_reg[12]_22 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[12][14] ));
   FDCE \array_reg_reg[12][15] 
        (.C(clk),
         .CE(\array_reg[12]_22 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[12][15] ));
   FDCE \array_reg_reg[12][1] 
        (.C(clk),
         .CE(\array_reg[12]_22 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[12][1] ));
   FDCE \array_reg_reg[12][2] 
        (.C(clk),
         .CE(\array_reg[12]_22 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[12][2] ));
   FDCE \array_reg_reg[12][3] 
        (.C(clk),
         .CE(\array_reg[12]_22 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[12][3] ));
   FDCE \array_reg_reg[12][4] 
        (.C(clk),
         .CE(\array_reg[12]_22 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[12][4] ));
   FDCE \array_reg_reg[12][5] 
        (.C(clk),
         .CE(\array_reg[12]_22 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[12][5] ));
   FDCE \array_reg_reg[12][6] 
        (.C(clk),
         .CE(\array_reg[12]_22 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[12][6] ));
   FDCE \array_reg_reg[12][7] 
        (.C(clk),
         .CE(\array_reg[12]_22 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[12][7] ));
   FDCE \array_reg_reg[12][8] 
        (.C(clk),
         .CE(\array_reg[12]_22 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[12][8] ));
   FDCE \array_reg_reg[12][9] 
        (.C(clk),
         .CE(\array_reg[12]_22 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[12][9] ));
   FDCE \array_reg_reg[13][0] 
        (.C(clk),
         .CE(\array_reg[13]_21 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[13][0] ));
   FDCE \array_reg_reg[13][10] 
        (.C(clk),
         .CE(\array_reg[13]_21 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[13][10] ));
   FDCE \array_reg_reg[13][11] 
        (.C(clk),
         .CE(\array_reg[13]_21 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[13][11] ));
   FDCE \array_reg_reg[13][12] 
        (.C(clk),
         .CE(\array_reg[13]_21 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[13][12] ));
   FDCE \array_reg_reg[13][13] 
        (.C(clk),
         .CE(\array_reg[13]_21 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[13][13] ));
   FDCE \array_reg_reg[13][14] 
        (.C(clk),
         .CE(\array_reg[13]_21 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[13][14] ));
   FDCE \array_reg_reg[13][15] 
        (.C(clk),
         .CE(\array_reg[13]_21 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[13][15] ));
   FDCE \array_reg_reg[13][1] 
        (.C(clk),
         .CE(\array_reg[13]_21 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[13][1] ));
   FDCE \array_reg_reg[13][2] 
        (.C(clk),
         .CE(\array_reg[13]_21 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[13][2] ));
   FDCE \array_reg_reg[13][3] 
        (.C(clk),
         .CE(\array_reg[13]_21 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[13][3] ));
   FDCE \array_reg_reg[13][4] 
        (.C(clk),
         .CE(\array_reg[13]_21 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[13][4] ));
   FDCE \array_reg_reg[13][5] 
        (.C(clk),
         .CE(\array_reg[13]_21 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[13][5] ));
   FDCE \array_reg_reg[13][6] 
        (.C(clk),
         .CE(\array_reg[13]_21 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[13][6] ));
   FDCE \array_reg_reg[13][7] 
        (.C(clk),
         .CE(\array_reg[13]_21 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[13][7] ));
   FDCE \array_reg_reg[13][8] 
        (.C(clk),
         .CE(\array_reg[13]_21 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[13][8] ));
   FDCE \array_reg_reg[13][9] 
        (.C(clk),
         .CE(\array_reg[13]_21 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[13][9] ));
   FDCE \array_reg_reg[14][0] 
        (.C(clk),
         .CE(\array_reg[14]_20 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[14][0] ));
   FDCE \array_reg_reg[14][10] 
        (.C(clk),
         .CE(\array_reg[14]_20 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[14][10] ));
   FDCE \array_reg_reg[14][11] 
        (.C(clk),
         .CE(\array_reg[14]_20 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[14][11] ));
   FDCE \array_reg_reg[14][12] 
        (.C(clk),
         .CE(\array_reg[14]_20 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[14][12] ));
   FDCE \array_reg_reg[14][13] 
        (.C(clk),
         .CE(\array_reg[14]_20 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[14][13] ));
   FDCE \array_reg_reg[14][14] 
        (.C(clk),
         .CE(\array_reg[14]_20 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[14][14] ));
   FDCE \array_reg_reg[14][15] 
        (.C(clk),
         .CE(\array_reg[14]_20 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[14][15] ));
   FDCE \array_reg_reg[14][1] 
        (.C(clk),
         .CE(\array_reg[14]_20 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[14][1] ));
   FDCE \array_reg_reg[14][2] 
        (.C(clk),
         .CE(\array_reg[14]_20 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[14][2] ));
   FDCE \array_reg_reg[14][3] 
        (.C(clk),
         .CE(\array_reg[14]_20 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[14][3] ));
   FDCE \array_reg_reg[14][4] 
        (.C(clk),
         .CE(\array_reg[14]_20 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[14][4] ));
   FDCE \array_reg_reg[14][5] 
        (.C(clk),
         .CE(\array_reg[14]_20 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[14][5] ));
   FDCE \array_reg_reg[14][6] 
        (.C(clk),
         .CE(\array_reg[14]_20 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[14][6] ));
   FDCE \array_reg_reg[14][7] 
        (.C(clk),
         .CE(\array_reg[14]_20 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[14][7] ));
   FDCE \array_reg_reg[14][8] 
        (.C(clk),
         .CE(\array_reg[14]_20 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[14][8] ));
   FDCE \array_reg_reg[14][9] 
        (.C(clk),
         .CE(\array_reg[14]_20 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[14][9] ));
   FDCE \array_reg_reg[15][0] 
        (.C(clk),
         .CE(\array_reg[15][15]_i_1__0_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[15][0] ));
   FDCE \array_reg_reg[15][10] 
        (.C(clk),
         .CE(\array_reg[15][15]_i_1__0_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[15][10] ));
   FDCE \array_reg_reg[15][11] 
        (.C(clk),
         .CE(\array_reg[15][15]_i_1__0_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[15][11] ));
   FDCE \array_reg_reg[15][12] 
        (.C(clk),
         .CE(\array_reg[15][15]_i_1__0_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[15][12] ));
   FDCE \array_reg_reg[15][13] 
        (.C(clk),
         .CE(\array_reg[15][15]_i_1__0_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[15][13] ));
   FDCE \array_reg_reg[15][14] 
        (.C(clk),
         .CE(\array_reg[15][15]_i_1__0_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[15][14] ));
   FDCE \array_reg_reg[15][15] 
        (.C(clk),
         .CE(\array_reg[15][15]_i_1__0_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[15][15] ));
   FDCE \array_reg_reg[15][1] 
        (.C(clk),
         .CE(\array_reg[15][15]_i_1__0_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[15][1] ));
   FDCE \array_reg_reg[15][2] 
        (.C(clk),
         .CE(\array_reg[15][15]_i_1__0_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[15][2] ));
   FDCE \array_reg_reg[15][3] 
        (.C(clk),
         .CE(\array_reg[15][15]_i_1__0_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[15][3] ));
   FDCE \array_reg_reg[15][4] 
        (.C(clk),
         .CE(\array_reg[15][15]_i_1__0_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[15][4] ));
   FDCE \array_reg_reg[15][5] 
        (.C(clk),
         .CE(\array_reg[15][15]_i_1__0_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[15][5] ));
   FDCE \array_reg_reg[15][6] 
        (.C(clk),
         .CE(\array_reg[15][15]_i_1__0_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[15][6] ));
   FDCE \array_reg_reg[15][7] 
        (.C(clk),
         .CE(\array_reg[15][15]_i_1__0_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[15][7] ));
   FDCE \array_reg_reg[15][8] 
        (.C(clk),
         .CE(\array_reg[15][15]_i_1__0_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[15][8] ));
   FDCE \array_reg_reg[15][9] 
        (.C(clk),
         .CE(\array_reg[15][15]_i_1__0_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[15][9] ));
   FDCE \array_reg_reg[1][0] 
        (.C(clk),
         .CE(\array_reg[1]_30 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[1][0] ));
   FDCE \array_reg_reg[1][10] 
        (.C(clk),
         .CE(\array_reg[1]_30 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[1][10] ));
   FDCE \array_reg_reg[1][11] 
        (.C(clk),
         .CE(\array_reg[1]_30 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[1][11] ));
   FDCE \array_reg_reg[1][12] 
        (.C(clk),
         .CE(\array_reg[1]_30 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[1][12] ));
   FDCE \array_reg_reg[1][13] 
        (.C(clk),
         .CE(\array_reg[1]_30 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[1][13] ));
   FDCE \array_reg_reg[1][14] 
        (.C(clk),
         .CE(\array_reg[1]_30 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[1][14] ));
   FDCE \array_reg_reg[1][15] 
        (.C(clk),
         .CE(\array_reg[1]_30 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[1][15] ));
   FDCE \array_reg_reg[1][1] 
        (.C(clk),
         .CE(\array_reg[1]_30 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[1][1] ));
   FDCE \array_reg_reg[1][2] 
        (.C(clk),
         .CE(\array_reg[1]_30 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[1][2] ));
   FDCE \array_reg_reg[1][3] 
        (.C(clk),
         .CE(\array_reg[1]_30 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[1][3] ));
   FDCE \array_reg_reg[1][4] 
        (.C(clk),
         .CE(\array_reg[1]_30 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[1][4] ));
   FDCE \array_reg_reg[1][5] 
        (.C(clk),
         .CE(\array_reg[1]_30 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[1][5] ));
   FDCE \array_reg_reg[1][6] 
        (.C(clk),
         .CE(\array_reg[1]_30 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[1][6] ));
   FDCE \array_reg_reg[1][7] 
        (.C(clk),
         .CE(\array_reg[1]_30 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[1][7] ));
   FDCE \array_reg_reg[1][8] 
        (.C(clk),
         .CE(\array_reg[1]_30 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[1][8] ));
   FDCE \array_reg_reg[1][9] 
        (.C(clk),
         .CE(\array_reg[1]_30 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[1][9] ));
   FDCE \array_reg_reg[2][0] 
        (.C(clk),
         .CE(\array_reg[2]_31 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[2][0] ));
   FDCE \array_reg_reg[2][10] 
        (.C(clk),
         .CE(\array_reg[2]_31 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[2][10] ));
   FDCE \array_reg_reg[2][11] 
        (.C(clk),
         .CE(\array_reg[2]_31 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[2][11] ));
   FDCE \array_reg_reg[2][12] 
        (.C(clk),
         .CE(\array_reg[2]_31 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[2][12] ));
   FDCE \array_reg_reg[2][13] 
        (.C(clk),
         .CE(\array_reg[2]_31 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[2][13] ));
   FDCE \array_reg_reg[2][14] 
        (.C(clk),
         .CE(\array_reg[2]_31 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[2][14] ));
   FDCE \array_reg_reg[2][15] 
        (.C(clk),
         .CE(\array_reg[2]_31 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[2][15] ));
   FDCE \array_reg_reg[2][1] 
        (.C(clk),
         .CE(\array_reg[2]_31 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[2][1] ));
   FDCE \array_reg_reg[2][2] 
        (.C(clk),
         .CE(\array_reg[2]_31 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[2][2] ));
   FDCE \array_reg_reg[2][3] 
        (.C(clk),
         .CE(\array_reg[2]_31 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[2][3] ));
   FDCE \array_reg_reg[2][4] 
        (.C(clk),
         .CE(\array_reg[2]_31 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[2][4] ));
   FDCE \array_reg_reg[2][5] 
        (.C(clk),
         .CE(\array_reg[2]_31 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[2][5] ));
   FDCE \array_reg_reg[2][6] 
        (.C(clk),
         .CE(\array_reg[2]_31 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[2][6] ));
   FDCE \array_reg_reg[2][7] 
        (.C(clk),
         .CE(\array_reg[2]_31 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[2][7] ));
   FDCE \array_reg_reg[2][8] 
        (.C(clk),
         .CE(\array_reg[2]_31 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[2][8] ));
   FDCE \array_reg_reg[2][9] 
        (.C(clk),
         .CE(\array_reg[2]_31 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[2][9] ));
   FDCE \array_reg_reg[3][0] 
        (.C(clk),
         .CE(\array_reg[3]_18 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[3][0] ));
   FDCE \array_reg_reg[3][10] 
        (.C(clk),
         .CE(\array_reg[3]_18 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[3][10] ));
   FDCE \array_reg_reg[3][11] 
        (.C(clk),
         .CE(\array_reg[3]_18 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[3][11] ));
   FDCE \array_reg_reg[3][12] 
        (.C(clk),
         .CE(\array_reg[3]_18 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[3][12] ));
   FDCE \array_reg_reg[3][13] 
        (.C(clk),
         .CE(\array_reg[3]_18 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[3][13] ));
   FDCE \array_reg_reg[3][14] 
        (.C(clk),
         .CE(\array_reg[3]_18 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[3][14] ));
   FDCE \array_reg_reg[3][15] 
        (.C(clk),
         .CE(\array_reg[3]_18 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[3][15] ));
   FDCE \array_reg_reg[3][1] 
        (.C(clk),
         .CE(\array_reg[3]_18 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[3][1] ));
   FDCE \array_reg_reg[3][2] 
        (.C(clk),
         .CE(\array_reg[3]_18 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[3][2] ));
   FDCE \array_reg_reg[3][3] 
        (.C(clk),
         .CE(\array_reg[3]_18 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[3][3] ));
   FDCE \array_reg_reg[3][4] 
        (.C(clk),
         .CE(\array_reg[3]_18 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[3][4] ));
   FDCE \array_reg_reg[3][5] 
        (.C(clk),
         .CE(\array_reg[3]_18 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[3][5] ));
   FDCE \array_reg_reg[3][6] 
        (.C(clk),
         .CE(\array_reg[3]_18 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[3][6] ));
   FDCE \array_reg_reg[3][7] 
        (.C(clk),
         .CE(\array_reg[3]_18 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[3][7] ));
   FDCE \array_reg_reg[3][8] 
        (.C(clk),
         .CE(\array_reg[3]_18 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[3][8] ));
   FDCE \array_reg_reg[3][9] 
        (.C(clk),
         .CE(\array_reg[3]_18 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[3][9] ));
   FDCE \array_reg_reg[4][0] 
        (.C(clk),
         .CE(\array_reg[4]_28 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[4][0] ));
   FDCE \array_reg_reg[4][10] 
        (.C(clk),
         .CE(\array_reg[4]_28 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[4][10] ));
   FDCE \array_reg_reg[4][11] 
        (.C(clk),
         .CE(\array_reg[4]_28 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[4][11] ));
   FDCE \array_reg_reg[4][12] 
        (.C(clk),
         .CE(\array_reg[4]_28 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[4][12] ));
   FDCE \array_reg_reg[4][13] 
        (.C(clk),
         .CE(\array_reg[4]_28 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[4][13] ));
   FDCE \array_reg_reg[4][14] 
        (.C(clk),
         .CE(\array_reg[4]_28 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[4][14] ));
   FDCE \array_reg_reg[4][15] 
        (.C(clk),
         .CE(\array_reg[4]_28 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[4][15] ));
   FDCE \array_reg_reg[4][1] 
        (.C(clk),
         .CE(\array_reg[4]_28 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[4][1] ));
   FDCE \array_reg_reg[4][2] 
        (.C(clk),
         .CE(\array_reg[4]_28 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[4][2] ));
   FDCE \array_reg_reg[4][3] 
        (.C(clk),
         .CE(\array_reg[4]_28 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[4][3] ));
   FDCE \array_reg_reg[4][4] 
        (.C(clk),
         .CE(\array_reg[4]_28 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[4][4] ));
   FDCE \array_reg_reg[4][5] 
        (.C(clk),
         .CE(\array_reg[4]_28 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[4][5] ));
   FDCE \array_reg_reg[4][6] 
        (.C(clk),
         .CE(\array_reg[4]_28 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[4][6] ));
   FDCE \array_reg_reg[4][7] 
        (.C(clk),
         .CE(\array_reg[4]_28 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[4][7] ));
   FDCE \array_reg_reg[4][8] 
        (.C(clk),
         .CE(\array_reg[4]_28 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[4][8] ));
   FDCE \array_reg_reg[4][9] 
        (.C(clk),
         .CE(\array_reg[4]_28 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[4][9] ));
   FDCE \array_reg_reg[5][0] 
        (.C(clk),
         .CE(\array_reg[5]_27 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[5][0] ));
   FDCE \array_reg_reg[5][10] 
        (.C(clk),
         .CE(\array_reg[5]_27 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[5][10] ));
   FDCE \array_reg_reg[5][11] 
        (.C(clk),
         .CE(\array_reg[5]_27 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[5][11] ));
   FDCE \array_reg_reg[5][12] 
        (.C(clk),
         .CE(\array_reg[5]_27 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[5][12] ));
   FDCE \array_reg_reg[5][13] 
        (.C(clk),
         .CE(\array_reg[5]_27 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[5][13] ));
   FDCE \array_reg_reg[5][14] 
        (.C(clk),
         .CE(\array_reg[5]_27 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[5][14] ));
   FDCE \array_reg_reg[5][15] 
        (.C(clk),
         .CE(\array_reg[5]_27 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[5][15] ));
   FDCE \array_reg_reg[5][1] 
        (.C(clk),
         .CE(\array_reg[5]_27 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[5][1] ));
   FDCE \array_reg_reg[5][2] 
        (.C(clk),
         .CE(\array_reg[5]_27 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[5][2] ));
   FDCE \array_reg_reg[5][3] 
        (.C(clk),
         .CE(\array_reg[5]_27 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[5][3] ));
   FDCE \array_reg_reg[5][4] 
        (.C(clk),
         .CE(\array_reg[5]_27 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[5][4] ));
   FDCE \array_reg_reg[5][5] 
        (.C(clk),
         .CE(\array_reg[5]_27 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[5][5] ));
   FDCE \array_reg_reg[5][6] 
        (.C(clk),
         .CE(\array_reg[5]_27 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[5][6] ));
   FDCE \array_reg_reg[5][7] 
        (.C(clk),
         .CE(\array_reg[5]_27 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[5][7] ));
   FDCE \array_reg_reg[5][8] 
        (.C(clk),
         .CE(\array_reg[5]_27 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[5][8] ));
   FDCE \array_reg_reg[5][9] 
        (.C(clk),
         .CE(\array_reg[5]_27 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[5][9] ));
   FDCE \array_reg_reg[6][0] 
        (.C(clk),
         .CE(\array_reg[6]_26 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[6][0] ));
   FDCE \array_reg_reg[6][10] 
        (.C(clk),
         .CE(\array_reg[6]_26 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[6][10] ));
   FDCE \array_reg_reg[6][11] 
        (.C(clk),
         .CE(\array_reg[6]_26 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[6][11] ));
   FDCE \array_reg_reg[6][12] 
        (.C(clk),
         .CE(\array_reg[6]_26 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[6][12] ));
   FDCE \array_reg_reg[6][13] 
        (.C(clk),
         .CE(\array_reg[6]_26 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[6][13] ));
   FDCE \array_reg_reg[6][14] 
        (.C(clk),
         .CE(\array_reg[6]_26 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[6][14] ));
   FDCE \array_reg_reg[6][15] 
        (.C(clk),
         .CE(\array_reg[6]_26 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[6][15] ));
   FDCE \array_reg_reg[6][1] 
        (.C(clk),
         .CE(\array_reg[6]_26 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[6][1] ));
   FDCE \array_reg_reg[6][2] 
        (.C(clk),
         .CE(\array_reg[6]_26 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[6][2] ));
   FDCE \array_reg_reg[6][3] 
        (.C(clk),
         .CE(\array_reg[6]_26 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[6][3] ));
   FDCE \array_reg_reg[6][4] 
        (.C(clk),
         .CE(\array_reg[6]_26 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[6][4] ));
   FDCE \array_reg_reg[6][5] 
        (.C(clk),
         .CE(\array_reg[6]_26 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[6][5] ));
   FDCE \array_reg_reg[6][6] 
        (.C(clk),
         .CE(\array_reg[6]_26 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[6][6] ));
   FDCE \array_reg_reg[6][7] 
        (.C(clk),
         .CE(\array_reg[6]_26 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[6][7] ));
   FDCE \array_reg_reg[6][8] 
        (.C(clk),
         .CE(\array_reg[6]_26 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[6][8] ));
   FDCE \array_reg_reg[6][9] 
        (.C(clk),
         .CE(\array_reg[6]_26 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[6][9] ));
   FDCE \array_reg_reg[7][0] 
        (.C(clk),
         .CE(\array_reg[7]_19 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[7][0] ));
   FDCE \array_reg_reg[7][10] 
        (.C(clk),
         .CE(\array_reg[7]_19 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[7][10] ));
   FDCE \array_reg_reg[7][11] 
        (.C(clk),
         .CE(\array_reg[7]_19 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[7][11] ));
   FDCE \array_reg_reg[7][12] 
        (.C(clk),
         .CE(\array_reg[7]_19 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[7][12] ));
   FDCE \array_reg_reg[7][13] 
        (.C(clk),
         .CE(\array_reg[7]_19 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[7][13] ));
   FDCE \array_reg_reg[7][14] 
        (.C(clk),
         .CE(\array_reg[7]_19 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[7][14] ));
   FDCE \array_reg_reg[7][15] 
        (.C(clk),
         .CE(\array_reg[7]_19 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[7][15] ));
   FDCE \array_reg_reg[7][1] 
        (.C(clk),
         .CE(\array_reg[7]_19 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[7][1] ));
   FDCE \array_reg_reg[7][2] 
        (.C(clk),
         .CE(\array_reg[7]_19 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[7][2] ));
   FDCE \array_reg_reg[7][3] 
        (.C(clk),
         .CE(\array_reg[7]_19 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[7][3] ));
   FDCE \array_reg_reg[7][4] 
        (.C(clk),
         .CE(\array_reg[7]_19 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[7][4] ));
   FDCE \array_reg_reg[7][5] 
        (.C(clk),
         .CE(\array_reg[7]_19 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[7][5] ));
   FDCE \array_reg_reg[7][6] 
        (.C(clk),
         .CE(\array_reg[7]_19 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[7][6] ));
   FDCE \array_reg_reg[7][7] 
        (.C(clk),
         .CE(\array_reg[7]_19 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[7][7] ));
   FDCE \array_reg_reg[7][8] 
        (.C(clk),
         .CE(\array_reg[7]_19 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[7][8] ));
   FDCE \array_reg_reg[7][9] 
        (.C(clk),
         .CE(\array_reg[7]_19 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[7][9] ));
   FDCE \array_reg_reg[8][0] 
        (.C(clk),
         .CE(\array_reg[8]_25 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[8][0] ));
   FDCE \array_reg_reg[8][10] 
        (.C(clk),
         .CE(\array_reg[8]_25 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[8][10] ));
   FDCE \array_reg_reg[8][11] 
        (.C(clk),
         .CE(\array_reg[8]_25 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[8][11] ));
   FDCE \array_reg_reg[8][12] 
        (.C(clk),
         .CE(\array_reg[8]_25 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[8][12] ));
   FDCE \array_reg_reg[8][13] 
        (.C(clk),
         .CE(\array_reg[8]_25 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[8][13] ));
   FDCE \array_reg_reg[8][14] 
        (.C(clk),
         .CE(\array_reg[8]_25 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[8][14] ));
   FDCE \array_reg_reg[8][15] 
        (.C(clk),
         .CE(\array_reg[8]_25 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[8][15] ));
   FDCE \array_reg_reg[8][1] 
        (.C(clk),
         .CE(\array_reg[8]_25 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[8][1] ));
   FDCE \array_reg_reg[8][2] 
        (.C(clk),
         .CE(\array_reg[8]_25 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[8][2] ));
   FDCE \array_reg_reg[8][3] 
        (.C(clk),
         .CE(\array_reg[8]_25 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[8][3] ));
   FDCE \array_reg_reg[8][4] 
        (.C(clk),
         .CE(\array_reg[8]_25 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[8][4] ));
   FDCE \array_reg_reg[8][5] 
        (.C(clk),
         .CE(\array_reg[8]_25 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[8][5] ));
   FDCE \array_reg_reg[8][6] 
        (.C(clk),
         .CE(\array_reg[8]_25 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[8][6] ));
   FDCE \array_reg_reg[8][7] 
        (.C(clk),
         .CE(\array_reg[8]_25 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[8][7] ));
   FDCE \array_reg_reg[8][8] 
        (.C(clk),
         .CE(\array_reg[8]_25 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[8][8] ));
   FDCE \array_reg_reg[8][9] 
        (.C(clk),
         .CE(\array_reg[8]_25 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[8][9] ));
   FDCE \array_reg_reg[9][0] 
        (.C(clk),
         .CE(\array_reg[9]_24 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[9][0] ));
   FDCE \array_reg_reg[9][10] 
        (.C(clk),
         .CE(\array_reg[9]_24 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[9][10] ));
   FDCE \array_reg_reg[9][11] 
        (.C(clk),
         .CE(\array_reg[9]_24 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[9][11] ));
   FDCE \array_reg_reg[9][12] 
        (.C(clk),
         .CE(\array_reg[9]_24 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[9][12] ));
   FDCE \array_reg_reg[9][13] 
        (.C(clk),
         .CE(\array_reg[9]_24 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[9][13] ));
   FDCE \array_reg_reg[9][14] 
        (.C(clk),
         .CE(\array_reg[9]_24 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[9][14] ));
   FDCE \array_reg_reg[9][15] 
        (.C(clk),
         .CE(\array_reg[9]_24 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[9][15] ));
   FDCE \array_reg_reg[9][1] 
        (.C(clk),
         .CE(\array_reg[9]_24 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[9][1] ));
   FDCE \array_reg_reg[9][2] 
        (.C(clk),
         .CE(\array_reg[9]_24 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[9][2] ));
   FDCE \array_reg_reg[9][3] 
        (.C(clk),
         .CE(\array_reg[9]_24 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[9][3] ));
   FDCE \array_reg_reg[9][4] 
        (.C(clk),
         .CE(\array_reg[9]_24 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[9][4] ));
   FDCE \array_reg_reg[9][5] 
        (.C(clk),
         .CE(\array_reg[9]_24 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[9][5] ));
   FDCE \array_reg_reg[9][6] 
        (.C(clk),
         .CE(\array_reg[9]_24 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[9][6] ));
   FDCE \array_reg_reg[9][7] 
        (.C(clk),
         .CE(\array_reg[9]_24 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[9][7] ));
   FDCE \array_reg_reg[9][8] 
        (.C(clk),
         .CE(\array_reg[9]_24 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[9][8] ));
   FDCE \array_reg_reg[9][9] 
        (.C(clk),
         .CE(\array_reg[9]_24 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[9][9] ));
   LUT6 #(
@@ -8027,7 +8050,7 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
        (.C(clk),
         .CE(1'b1),
         .D(empty_reg_i_1__0_n_0),
-        .PRE(reset),
+        .PRE(fifo_reset),
         .Q(empty_reg));
   LUT6 #(
     .INIT(64'hFCE0FCFCF0E0F0F0)) 
@@ -8062,7 +8085,7 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
   FDCE full_reg_reg
        (.C(clk),
         .CE(1'b1),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(full_reg_i_1__0_n_0),
         .Q(out_fifo_full));
   (* SOFT_HLUTNM = "soft_lutpair7" *) 
@@ -8106,25 +8129,25 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
   FDCE \r_ptr_reg_reg[0] 
        (.C(clk),
         .CE(\r_ptr_reg[3]_i_1__0_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(\r_ptr_reg[0]_i_1_n_0 ),
         .Q(r_ptr_reg_reg__0[0]));
   FDCE \r_ptr_reg_reg[1] 
        (.C(clk),
         .CE(\r_ptr_reg[3]_i_1__0_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(\r_ptr_reg[1]_i_1_n_0 ),
         .Q(r_ptr_reg_reg__0[1]));
   FDCE \r_ptr_reg_reg[2] 
        (.C(clk),
         .CE(\r_ptr_reg[3]_i_1__0_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(\r_ptr_reg[2]_i_1_n_0 ),
         .Q(r_ptr_reg_reg__0[2]));
   FDCE \r_ptr_reg_reg[3] 
        (.C(clk),
         .CE(\r_ptr_reg[3]_i_1__0_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(\r_ptr_reg[3]_i_2_n_0 ),
         .Q(r_ptr_reg_reg__0[3]));
   (* SOFT_HLUTNM = "soft_lutpair6" *) 
@@ -8168,38 +8191,40 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
   FDCE \w_ptr_reg_reg[0] 
        (.C(clk),
         .CE(\w_ptr_reg[3]_i_1__0_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(\w_ptr_reg[0]_i_1__0_n_0 ),
         .Q(w_ptr_reg_reg__0[0]));
   FDCE \w_ptr_reg_reg[1] 
        (.C(clk),
         .CE(\w_ptr_reg[3]_i_1__0_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(\w_ptr_reg[1]_i_1__0_n_0 ),
         .Q(w_ptr_reg_reg__0[1]));
   FDCE \w_ptr_reg_reg[2] 
        (.C(clk),
         .CE(\w_ptr_reg[3]_i_1__0_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(\w_ptr_reg[2]_i_1__0_n_0 ),
         .Q(w_ptr_reg_reg__0[2]));
   FDCE \w_ptr_reg_reg[3] 
        (.C(clk),
         .CE(\w_ptr_reg[3]_i_1__0_n_0 ),
-        .CLR(reset),
+        .CLR(fifo_reset),
         .D(\w_ptr_reg[3]_i_2__0_n_0 ),
         .Q(w_ptr_reg_reg__0[3]));
 endmodule
 
 (* ORIG_REF_NAME = "sr_2B_16bit" *) 
 module GPIOTest_GPIOInterface_0_0_sr_2B_16bit
-   (D,
-    reset,
+   (SR,
+    D,
+    reset_n,
     E,
     DIn,
     clk);
+  output [0:0]SR;
   output [15:0]D;
-  input reset;
+  input reset_n;
   input [0:0]E;
   input [7:0]DIn;
   input clk;
@@ -8207,105 +8232,111 @@ module GPIOTest_GPIOInterface_0_0_sr_2B_16bit
   wire [15:0]D;
   wire [7:0]DIn;
   wire [0:0]E;
+  wire [0:0]SR;
   wire clk;
-  wire reset;
+  wire reset_n;
 
   FDRE \data_sr_content_reg[0][0] 
        (.C(clk),
         .CE(E),
         .D(DIn[0]),
         .Q(D[0]),
-        .R(reset));
+        .R(SR));
   FDRE \data_sr_content_reg[0][1] 
        (.C(clk),
         .CE(E),
         .D(DIn[1]),
         .Q(D[1]),
-        .R(reset));
+        .R(SR));
   FDRE \data_sr_content_reg[0][2] 
        (.C(clk),
         .CE(E),
         .D(DIn[2]),
         .Q(D[2]),
-        .R(reset));
+        .R(SR));
   FDRE \data_sr_content_reg[0][3] 
        (.C(clk),
         .CE(E),
         .D(DIn[3]),
         .Q(D[3]),
-        .R(reset));
+        .R(SR));
   FDRE \data_sr_content_reg[0][4] 
        (.C(clk),
         .CE(E),
         .D(DIn[4]),
         .Q(D[4]),
-        .R(reset));
+        .R(SR));
   FDRE \data_sr_content_reg[0][5] 
        (.C(clk),
         .CE(E),
         .D(DIn[5]),
         .Q(D[5]),
-        .R(reset));
+        .R(SR));
   FDRE \data_sr_content_reg[0][6] 
        (.C(clk),
         .CE(E),
         .D(DIn[6]),
         .Q(D[6]),
-        .R(reset));
+        .R(SR));
   FDRE \data_sr_content_reg[0][7] 
        (.C(clk),
         .CE(E),
         .D(DIn[7]),
         .Q(D[7]),
-        .R(reset));
+        .R(SR));
   FDRE \data_sr_content_reg[1][0] 
        (.C(clk),
         .CE(E),
         .D(D[0]),
         .Q(D[8]),
-        .R(reset));
+        .R(SR));
   FDRE \data_sr_content_reg[1][1] 
        (.C(clk),
         .CE(E),
         .D(D[1]),
         .Q(D[9]),
-        .R(reset));
+        .R(SR));
   FDRE \data_sr_content_reg[1][2] 
        (.C(clk),
         .CE(E),
         .D(D[2]),
         .Q(D[10]),
-        .R(reset));
+        .R(SR));
   FDRE \data_sr_content_reg[1][3] 
        (.C(clk),
         .CE(E),
         .D(D[3]),
         .Q(D[11]),
-        .R(reset));
+        .R(SR));
   FDRE \data_sr_content_reg[1][4] 
        (.C(clk),
         .CE(E),
         .D(D[4]),
         .Q(D[12]),
-        .R(reset));
+        .R(SR));
   FDRE \data_sr_content_reg[1][5] 
        (.C(clk),
         .CE(E),
         .D(D[5]),
         .Q(D[13]),
-        .R(reset));
+        .R(SR));
   FDRE \data_sr_content_reg[1][6] 
        (.C(clk),
         .CE(E),
         .D(D[6]),
         .Q(D[14]),
-        .R(reset));
+        .R(SR));
   FDRE \data_sr_content_reg[1][7] 
        (.C(clk),
         .CE(E),
         .D(D[7]),
         .Q(D[15]),
-        .R(reset));
+        .R(SR));
+  LUT1 #(
+    .INIT(2'h1)) 
+    nen_ctrl0_i_1
+       (.I0(reset_n),
+        .O(SR));
 endmodule
 `ifndef GLBL
 `define GLBL

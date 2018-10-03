@@ -172,7 +172,7 @@ proc create_root_design { parentCell } {
   set phi2_0 [ create_bd_port -dir O phi2_0 ]
 
   # Create instance: GPIOInterface_0, and set properties
-  set GPIOInterface_0 [ create_bd_cell -type ip -vlnv Rej:user:GPIOInterface:1.0 GPIOInterface_0 ]
+  set GPIOInterface_0 [ create_bd_cell -type ip -vlnv Rej:user:GPIOInterface:1.1 GPIOInterface_0 ]
 
   # Create instance: axi_gpio_0, and set properties
   set axi_gpio_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 axi_gpio_0 ]
@@ -978,6 +978,16 @@ proc create_root_design { parentCell } {
   # Create instance: rst_ps7_0_100M, and set properties
   set rst_ps7_0_100M [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 rst_ps7_0_100M ]
 
+  # Create instance: system_ila_0, and set properties
+  set system_ila_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:system_ila:1.1 system_ila_0 ]
+  set_property -dict [ list \
+   CONFIG.C_MON_TYPE {NATIVE} \
+   CONFIG.C_NUM_OF_PROBES {3} \
+   CONFIG.C_PROBE0_TYPE {0} \
+   CONFIG.C_PROBE1_TYPE {0} \
+   CONFIG.C_PROBE2_TYPE {0} \
+ ] $system_ila_0
+
   # Create instance: xlconcat_0, and set properties
   set xlconcat_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 xlconcat_0 ]
 
@@ -993,7 +1003,10 @@ proc create_root_design { parentCell } {
   # Create port connections
   connect_bd_net -net DI_0_1 [get_bd_ports DI_0] [get_bd_pins GPIOInterface_0/DIn]
   connect_bd_net -net GPIOInterface_0_DO [get_bd_ports DO_0] [get_bd_pins GPIOInterface_0/DOut]
-  connect_bd_net -net GPIOInterface_0_GPIOPortRd [get_bd_pins GPIOInterface_0/GPIOPortRd] [get_bd_pins axi_gpio_1/gpio2_io_i]
+  connect_bd_net -net GPIOInterface_0_GPIOPortRd [get_bd_pins GPIOInterface_0/GPIOPortRd] [get_bd_pins axi_gpio_1/gpio2_io_i] [get_bd_pins system_ila_0/probe2]
+  set_property -dict [ list \
+HDL_ATTRIBUTE.DEBUG {true} \
+ ] [get_bd_nets GPIOInterface_0_GPIOPortRd]
   connect_bd_net -net GPIOInterface_0_MUX [get_bd_ports MUX_0] [get_bd_pins GPIOInterface_0/MUX]
   connect_bd_net -net GPIOInterface_0_SEL [get_bd_ports SEL_0] [get_bd_pins GPIOInterface_0/SEL]
   connect_bd_net -net GPIOInterface_0_nen_adh [get_bd_ports nen_adh_0] [get_bd_pins GPIOInterface_0/nen_adh]
@@ -1003,12 +1016,18 @@ proc create_root_design { parentCell } {
   connect_bd_net -net GPIOInterface_0_phi1 [get_bd_ports phi1_0] [get_bd_pins GPIOInterface_0/phi1]
   connect_bd_net -net GPIOInterface_0_phi2 [get_bd_ports phi2_0] [get_bd_pins GPIOInterface_0/phi2]
   connect_bd_net -net axi_gpio_0_ip2intc_irpt [get_bd_pins axi_gpio_0/ip2intc_irpt] [get_bd_pins xlconcat_0/In0]
-  connect_bd_net -net axi_gpio_1_gpio_io_o [get_bd_pins GPIOInterface_0/GPIOPortWr] [get_bd_pins axi_gpio_1/gpio_io_o]
+  connect_bd_net -net axi_gpio_1_gpio_io_o [get_bd_pins GPIOInterface_0/GPIOPortWr] [get_bd_pins axi_gpio_1/gpio_io_o] [get_bd_pins system_ila_0/probe1]
+  set_property -dict [ list \
+HDL_ATTRIBUTE.DEBUG {true} \
+ ] [get_bd_nets axi_gpio_1_gpio_io_o]
   connect_bd_net -net axi_gpio_1_ip2intc_irpt [get_bd_pins axi_gpio_1/ip2intc_irpt] [get_bd_pins xlconcat_0/In1]
-  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins GPIOInterface_0/clk] [get_bd_pins axi_gpio_0/s_axi_aclk] [get_bd_pins axi_gpio_1/s_axi_aclk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_100M/slowest_sync_clk]
+  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins GPIOInterface_0/clk] [get_bd_pins axi_gpio_0/s_axi_aclk] [get_bd_pins axi_gpio_1/s_axi_aclk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_100M/slowest_sync_clk] [get_bd_pins system_ila_0/clk]
   connect_bd_net -net processing_system7_0_FCLK_RESET0_N [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins rst_ps7_0_100M/ext_reset_in]
   connect_bd_net -net rst_ps7_0_100M_interconnect_aresetn [get_bd_pins ps7_0_axi_periph/ARESETN] [get_bd_pins rst_ps7_0_100M/interconnect_aresetn]
-  connect_bd_net -net rst_ps7_0_100M_peripheral_aresetn [get_bd_pins GPIOInterface_0/reset] [get_bd_pins axi_gpio_0/s_axi_aresetn] [get_bd_pins axi_gpio_1/s_axi_aresetn] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_100M/peripheral_aresetn]
+  connect_bd_net -net rst_ps7_0_100M_peripheral_aresetn [get_bd_pins GPIOInterface_0/reset_n] [get_bd_pins axi_gpio_0/s_axi_aresetn] [get_bd_pins axi_gpio_1/s_axi_aresetn] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_100M/peripheral_aresetn] [get_bd_pins system_ila_0/probe0]
+  set_property -dict [ list \
+HDL_ATTRIBUTE.DEBUG {true} \
+ ] [get_bd_nets rst_ps7_0_100M_peripheral_aresetn]
   connect_bd_net -net xlconcat_0_dout [get_bd_pins processing_system7_0/IRQ_F2P] [get_bd_pins xlconcat_0/dout]
 
   # Create address segments

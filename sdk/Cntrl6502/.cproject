@@ -41,7 +41,7 @@
 									<listOptionValue builtIn="false" value="&quot;C:\VBox\Exchange\pl_libs\plnx_arm\lib&quot;"/>
 								</option>
 								<option id="xilinx.gnu.c.link.option.ldflags.1068203667" name="Linker Flags" superClass="xilinx.gnu.c.link.option.ldflags" value="--sysroot=&quot;C:\VBox\Exchange\pl_libs\plnx_arm&quot;" valueType="string"/>
-								<option id="xilinx.gnu.c.link.option.libs.1783305726" superClass="xilinx.gnu.c.link.option.libs" valueType="libs">
+								<option id="xilinx.gnu.c.link.option.libs.1783305726" name="Libraries (-l)" superClass="xilinx.gnu.c.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="uio"/>
 								</option>
 								<inputType id="xilinx.gnu.linker.input.95986000" superClass="xilinx.gnu.linker.input">
@@ -97,6 +97,10 @@
 									<listOptionValue builtIn="false" value="&quot;C:\VBox\Exchange\pl_libs\plnx_arm\usr\lib&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;C:\VBox\Exchange\pl_libs\plnx_arm\lib&quot;"/>
 								</option>
+								<option id="xilinx.gnu.c.link.option.ldflags.962327827" superClass="xilinx.gnu.c.link.option.ldflags" value="--sysroot=&quot;C:\VBox\Exchange\pl_libs\plnx_arm&quot;" valueType="string"/>
+								<option id="xilinx.gnu.c.link.option.libs.497185434" superClass="xilinx.gnu.c.link.option.libs" valueType="libs">
+									<listOptionValue builtIn="false" value="uio"/>
+								</option>
 								<inputType id="xilinx.gnu.linker.input.1667097345" superClass="xilinx.gnu.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -110,6 +114,7 @@
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+			<storageModule moduleId="ilg.gnuarmeclipse.managedbuild.packs"/>
 		</cconfiguration>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
@@ -131,4 +136,5 @@
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.xilinx.managedbuilder.ui.ARMA53X32LinuxGCCManagedMakePerProjectProfileC"/>
 		</scannerConfigBuildInfo>
 	</storageModule>
+	<storageModule moduleId="refreshScope"/>
 </cproject>

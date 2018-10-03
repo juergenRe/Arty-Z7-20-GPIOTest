@@ -1,7 +1,7 @@
 --Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
---Date        : Sun Sep 16 18:26:58 2018
+--Date        : Wed Oct  3 12:32:30 2018
 --Host        : ASYS running 64-bit major release  (build 9200)
 --Command     : generate_target GPIOTest.bd
 --Design      : GPIOTest
@@ -1123,7 +1123,7 @@ entity GPIOTest is
     phi2_0 : out STD_LOGIC
   );
   attribute CORE_GENERATION_INFO : string;
-  attribute CORE_GENERATION_INFO of GPIOTest : entity is "GPIOTest,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=GPIOTest,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=12,numReposBlks=8,numNonXlnxBlks=1,numHierBlks=4,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=4,da_board_cnt=4,da_clkrst_cnt=2,da_ps7_cnt=3,synth_mode=OOC_per_IP}";
+  attribute CORE_GENERATION_INFO of GPIOTest : entity is "GPIOTest,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=GPIOTest,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=13,numReposBlks=9,numNonXlnxBlks=1,numHierBlks=4,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=4,da_board_cnt=4,da_clkrst_cnt=2,da_ps7_cnt=3,synth_mode=OOC_per_IP}";
   attribute HW_HANDOFF : string;
   attribute HW_HANDOFF of GPIOTest : entity is "GPIOTest.hwdef";
 end GPIOTest;
@@ -1272,12 +1272,20 @@ architecture STRUCTURE of GPIOTest is
     dout : out STD_LOGIC_VECTOR ( 1 downto 0 )
   );
   end component GPIOTest_xlconcat_0_0;
+  component GPIOTest_system_ila_0_0 is
+  port (
+    clk : in STD_LOGIC;
+    probe0 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    probe1 : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    probe2 : in STD_LOGIC_VECTOR ( 31 downto 0 )
+  );
+  end component GPIOTest_system_ila_0_0;
   component GPIOTest_GPIOInterface_0_0 is
   port (
     GPIOPortWr : in STD_LOGIC_VECTOR ( 31 downto 0 );
     GPIOPortRd : out STD_LOGIC_VECTOR ( 31 downto 0 );
     clk : in STD_LOGIC;
-    reset : in STD_LOGIC;
+    reset_n : in STD_LOGIC;
     DIn : in STD_LOGIC_VECTOR ( 7 downto 0 );
     DOut : out STD_LOGIC_VECTOR ( 7 downto 0 );
     MUX : out STD_LOGIC_VECTOR ( 2 downto 0 );
@@ -1293,6 +1301,10 @@ architecture STRUCTURE of GPIOTest is
   signal DI_0_1 : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal GPIOInterface_0_DO : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal GPIOInterface_0_GPIOPortRd : STD_LOGIC_VECTOR ( 31 downto 0 );
+  attribute DEBUG : string;
+  attribute DEBUG of GPIOInterface_0_GPIOPortRd : signal is "true";
+  attribute MARK_DEBUG : boolean;
+  attribute MARK_DEBUG of GPIOInterface_0_GPIOPortRd : signal is std.standard.true;
   signal GPIOInterface_0_MUX : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal GPIOInterface_0_SEL : STD_LOGIC;
   signal GPIOInterface_0_nen_adh : STD_LOGIC;
@@ -1305,6 +1317,8 @@ architecture STRUCTURE of GPIOTest is
   signal axi_gpio_0_GPIO_TRI_O : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal axi_gpio_0_ip2intc_irpt : STD_LOGIC;
   signal axi_gpio_1_gpio_io_o : STD_LOGIC_VECTOR ( 31 downto 0 );
+  attribute DEBUG of axi_gpio_1_gpio_io_o : signal is "true";
+  attribute MARK_DEBUG of axi_gpio_1_gpio_io_o : signal is std.standard.true;
   signal axi_gpio_1_ip2intc_irpt : STD_LOGIC;
   signal processing_system7_0_DDR_ADDR : STD_LOGIC_VECTOR ( 14 downto 0 );
   signal processing_system7_0_DDR_BA : STD_LOGIC_VECTOR ( 2 downto 0 );
@@ -1403,6 +1417,8 @@ architecture STRUCTURE of GPIOTest is
   signal ps7_0_axi_periph_M01_AXI_WVALID : STD_LOGIC;
   signal rst_ps7_0_100M_interconnect_aresetn : STD_LOGIC_VECTOR ( 0 to 0 );
   signal rst_ps7_0_100M_peripheral_aresetn : STD_LOGIC_VECTOR ( 0 to 0 );
+  attribute DEBUG of rst_ps7_0_100M_peripheral_aresetn : signal is "true";
+  attribute MARK_DEBUG of rst_ps7_0_100M_peripheral_aresetn : signal is std.standard.true;
   signal xlconcat_0_dout : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal NLW_processing_system7_0_USB0_VBUS_PWRSELECT_UNCONNECTED : STD_LOGIC;
   signal NLW_processing_system7_0_USB0_PORT_INDCTL_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -1426,7 +1442,7 @@ architecture STRUCTURE of GPIOTest is
   attribute X_INTERFACE_INFO of FIXED_IO_ps_clk : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_CLK";
   attribute X_INTERFACE_INFO of FIXED_IO_ps_porb : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_PORB";
   attribute X_INTERFACE_INFO of FIXED_IO_ps_srstb : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_SRSTB";
-  attribute X_INTERFACE_INFO of BTN_tri_i : signal is "xilinx.com:interface:gpio:1.0 BTN ";
+  attribute X_INTERFACE_INFO of BTN_tri_i : signal is "xilinx.com:interface:gpio:1.0 BTN TRI_I";
   attribute X_INTERFACE_INFO of DDR_addr : signal is "xilinx.com:interface:ddrx:1.0 DDR ADDR";
   attribute X_INTERFACE_PARAMETER of DDR_addr : signal is "XIL_INTERFACENAME DDR, AXI_ARBITRATION_SCHEME TDM, BURST_LENGTH 8, CAN_DEBUG false, CAS_LATENCY 11, CAS_WRITE_LATENCY 11, CS_ENABLED true, DATA_MASK_ENABLED true, DATA_WIDTH 8, MEMORY_TYPE COMPONENTS, MEM_ADDR_MAP ROW_COLUMN_BANK, SLOT Single, TIMEPERIOD_PS 1250";
   attribute X_INTERFACE_INFO of DDR_ba : signal is "xilinx.com:interface:ddrx:1.0 DDR BA";
@@ -1435,7 +1451,7 @@ architecture STRUCTURE of GPIOTest is
   attribute X_INTERFACE_INFO of DDR_dqs_n : signal is "xilinx.com:interface:ddrx:1.0 DDR DQS_N";
   attribute X_INTERFACE_INFO of DDR_dqs_p : signal is "xilinx.com:interface:ddrx:1.0 DDR DQS_P";
   attribute X_INTERFACE_INFO of FIXED_IO_mio : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO MIO";
-  attribute X_INTERFACE_INFO of LED_tri_o : signal is "xilinx.com:interface:gpio:1.0 LED ";
+  attribute X_INTERFACE_INFO of LED_tri_o : signal is "xilinx.com:interface:gpio:1.0 LED TRI_O";
 begin
   DI_0_1(7 downto 0) <= DI_0(7 downto 0);
   DO_0(7 downto 0) <= GPIOInterface_0_DO(7 downto 0);
@@ -1464,7 +1480,7 @@ GPIOInterface_0: component GPIOTest_GPIOInterface_0_0
       nen_idb => GPIOInterface_0_nen_idb,
       phi1 => GPIOInterface_0_phi1,
       phi2 => GPIOInterface_0_phi2,
-      reset => rst_ps7_0_100M_peripheral_aresetn(0)
+      reset_n => rst_ps7_0_100M_peripheral_aresetn(0)
     );
 axi_gpio_0: component GPIOTest_axi_gpio_0_0
      port map (
@@ -1680,6 +1696,13 @@ rst_ps7_0_100M: component GPIOTest_rst_ps7_0_100M_0
       peripheral_aresetn(0) => rst_ps7_0_100M_peripheral_aresetn(0),
       peripheral_reset(0) => NLW_rst_ps7_0_100M_peripheral_reset_UNCONNECTED(0),
       slowest_sync_clk => processing_system7_0_FCLK_CLK0
+    );
+system_ila_0: component GPIOTest_system_ila_0_0
+     port map (
+      clk => processing_system7_0_FCLK_CLK0,
+      probe0(0) => rst_ps7_0_100M_peripheral_aresetn(0),
+      probe1(31 downto 0) => axi_gpio_1_gpio_io_o(31 downto 0),
+      probe2(31 downto 0) => GPIOInterface_0_GPIOPortRd(31 downto 0)
     );
 xlconcat_0: component GPIOTest_xlconcat_0_0
      port map (

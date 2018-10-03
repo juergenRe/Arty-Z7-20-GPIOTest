@@ -1,7 +1,7 @@
 --Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
---Date        : Sun Sep 16 18:26:58 2018
+--Date        : Wed Oct  3 12:32:30 2018
 --Host        : ASYS running 64-bit major release  (build 9200)
 --Command     : generate_target GPIOTest_wrapper.bd
 --Design      : GPIOTest_wrapper

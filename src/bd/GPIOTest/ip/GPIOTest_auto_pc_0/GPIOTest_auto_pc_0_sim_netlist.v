@@ -1,10 +1,10 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
-// Date        : Sun Sep 16 18:28:35 2018
+// Date        : Sun Sep 16 18:28:34 2018
 // Host        : ASYS running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim
-//               c:/Users/Juergen/Documents/FPGA/Arty-Z7/Arty-Z7-20-GPIOTest/src/bd/GPIOTest/ip/GPIOTest_auto_pc_0/GPIOTest_auto_pc_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top GPIOTest_auto_pc_0 -prefix
+//               GPIOTest_auto_pc_0_ GPIOTest_auto_pc_0_sim_netlist.v
 // Design      : GPIOTest_auto_pc_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -343,10 +343,10 @@ endmodule
 (* C_AXI_RUSER_WIDTH = "1" *) (* C_AXI_SUPPORTS_READ = "1" *) (* C_AXI_SUPPORTS_USER_SIGNALS = "0" *) 
 (* C_AXI_SUPPORTS_WRITE = "1" *) (* C_AXI_WUSER_WIDTH = "1" *) (* C_FAMILY = "zynq" *) 
 (* C_IGNORE_ID = "0" *) (* C_M_AXI_PROTOCOL = "2" *) (* C_S_AXI_PROTOCOL = "1" *) 
-(* C_TRANSLATION_MODE = "2" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* ORIG_REF_NAME = "axi_protocol_converter_v2_1_15_axi_protocol_converter" *) 
-(* P_AXI3 = "1" *) (* P_AXI4 = "0" *) (* P_AXILITE = "2" *) 
-(* P_AXILITE_SIZE = "3'b010" *) (* P_CONVERSION = "2" *) (* P_DECERR = "2'b11" *) 
-(* P_INCR = "2'b01" *) (* P_PROTECTION = "1" *) (* P_SLVERR = "2'b10" *) 
+(* C_TRANSLATION_MODE = "2" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* P_AXI3 = "1" *) 
+(* P_AXI4 = "0" *) (* P_AXILITE = "2" *) (* P_AXILITE_SIZE = "3'b010" *) 
+(* P_CONVERSION = "2" *) (* P_DECERR = "2'b11" *) (* P_INCR = "2'b01" *) 
+(* P_PROTECTION = "1" *) (* P_SLVERR = "2'b10" *) 
 module GPIOTest_auto_pc_0_axi_protocol_converter_v2_1_15_axi_protocol_converter
    (aclk,
     aresetn,
@@ -726,7 +726,6 @@ module GPIOTest_auto_pc_0_axi_protocol_converter_v2_1_15_axi_protocol_converter
         .s_axi_rvalid(s_axi_rvalid));
 endmodule
 
-(* ORIG_REF_NAME = "axi_protocol_converter_v2_1_15_b2s" *) 
 module GPIOTest_auto_pc_0_axi_protocol_converter_v2_1_15_b2s
    (s_axi_rvalid,
     s_axi_awready,
@@ -1121,7 +1120,6 @@ module GPIOTest_auto_pc_0_axi_protocol_converter_v2_1_15_b2s
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "axi_protocol_converter_v2_1_15_b2s_ar_channel" *) 
 module GPIOTest_auto_pc_0_axi_protocol_converter_v2_1_15_b2s_ar_channel
    (\wrap_boundary_axaddr_r_reg[11] ,
     \wrap_second_len_r_reg[2] ,
@@ -1411,7 +1409,6 @@ module GPIOTest_auto_pc_0_axi_protocol_converter_v2_1_15_b2s_ar_channel
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "axi_protocol_converter_v2_1_15_b2s_aw_channel" *) 
 module GPIOTest_auto_pc_0_axi_protocol_converter_v2_1_15_b2s_aw_channel
    (Q,
     \wrap_boundary_axaddr_r_reg[0] ,
@@ -1673,7 +1670,6 @@ module GPIOTest_auto_pc_0_axi_protocol_converter_v2_1_15_b2s_aw_channel
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "axi_protocol_converter_v2_1_15_b2s_b_channel" *) 
 module GPIOTest_auto_pc_0_axi_protocol_converter_v2_1_15_b2s_b_channel
    (si_rs_bvalid,
     \cnt_read_reg[0]_rep__0 ,
@@ -1947,7 +1943,6 @@ module GPIOTest_auto_pc_0_axi_protocol_converter_v2_1_15_b2s_b_channel
         .R(areset_d1));
 endmodule
 
-(* ORIG_REF_NAME = "axi_protocol_converter_v2_1_15_b2s_cmd_translator" *) 
 module GPIOTest_auto_pc_0_axi_protocol_converter_v2_1_15_b2s_cmd_translator
    (next_pending_r_reg,
     next_pending_r_reg_0,
@@ -2365,7 +2360,6 @@ module GPIOTest_auto_pc_0_axi_protocol_converter_v2_1_15_b2s_cmd_translator_1
         .\wrap_second_len_r_reg[3]_2 (\wrap_second_len_r_reg[3]_1 ));
 endmodule
 
-(* ORIG_REF_NAME = "axi_protocol_converter_v2_1_15_b2s_incr_cmd" *) 
 module GPIOTest_auto_pc_0_axi_protocol_converter_v2_1_15_b2s_incr_cmd
    (next_pending_r_reg_0,
     \axaddr_incr_reg[0]_0 ,
@@ -3502,7 +3496,6 @@ module GPIOTest_auto_pc_0_axi_protocol_converter_v2_1_15_b2s_incr_cmd_2
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "axi_protocol_converter_v2_1_15_b2s_r_channel" *) 
 module GPIOTest_auto_pc_0_axi_protocol_converter_v2_1_15_b2s_r_channel
    (m_valid_i_reg,
     \state_reg[1]_rep ,
@@ -3674,7 +3667,6 @@ module GPIOTest_auto_pc_0_axi_protocol_converter_v2_1_15_b2s_r_channel
         .wr_en0(wr_en0));
 endmodule
 
-(* ORIG_REF_NAME = "axi_protocol_converter_v2_1_15_b2s_rd_cmd_fsm" *) 
 module GPIOTest_auto_pc_0_axi_protocol_converter_v2_1_15_b2s_rd_cmd_fsm
    (\axlen_cnt_reg[7] ,
     Q,
@@ -4082,7 +4074,6 @@ module GPIOTest_auto_pc_0_axi_protocol_converter_v2_1_15_b2s_rd_cmd_fsm
         .O(\wrap_second_len_r_reg[3] [1]));
 endmodule
 
-(* ORIG_REF_NAME = "axi_protocol_converter_v2_1_15_b2s_simple_fifo" *) 
 module GPIOTest_auto_pc_0_axi_protocol_converter_v2_1_15_b2s_simple_fifo
    (\cnt_read_reg[0]_rep__0_0 ,
     \cnt_read_reg[1]_rep__0_0 ,
@@ -6017,7 +6008,6 @@ module GPIOTest_auto_pc_0_axi_protocol_converter_v2_1_15_b2s_simple_fifo__parame
         .O(\state_reg[1]_rep ));
 endmodule
 
-(* ORIG_REF_NAME = "axi_protocol_converter_v2_1_15_b2s_wr_cmd_fsm" *) 
 module GPIOTest_auto_pc_0_axi_protocol_converter_v2_1_15_b2s_wr_cmd_fsm
    (E,
     Q,
@@ -6310,7 +6300,6 @@ module GPIOTest_auto_pc_0_axi_protocol_converter_v2_1_15_b2s_wr_cmd_fsm
         .O(\wrap_boundary_axaddr_r_reg[0] ));
 endmodule
 
-(* ORIG_REF_NAME = "axi_protocol_converter_v2_1_15_b2s_wrap_cmd" *) 
 module GPIOTest_auto_pc_0_axi_protocol_converter_v2_1_15_b2s_wrap_cmd
    (next_pending_r_reg_0,
     sel_first_reg_0,
@@ -7830,7 +7819,6 @@ module GPIOTest_auto_pc_0_axi_protocol_converter_v2_1_15_b2s_wrap_cmd_3
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "axi_register_slice_v2_1_15_axi_register_slice" *) 
 module GPIOTest_auto_pc_0_axi_register_slice_v2_1_15_axi_register_slice
    (s_axi_awready,
     s_axi_arready,
@@ -8147,7 +8135,6 @@ module GPIOTest_auto_pc_0_axi_register_slice_v2_1_15_axi_register_slice
         .\skid_buffer_reg[0]_0 (si_rs_rready));
 endmodule
 
-(* ORIG_REF_NAME = "axi_register_slice_v2_1_15_axic_register_slice" *) 
 module GPIOTest_auto_pc_0_axi_register_slice_v2_1_15_axic_register_slice
    (s_axi_arready,
     s_ready_i_reg_0,
