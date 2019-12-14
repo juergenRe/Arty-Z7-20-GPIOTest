@@ -52,6 +52,11 @@ void writeVal(uint32_t value, uint32_t mux_val, uint32_t edge_val);
 void trgExec(void);
 void disablePort(void);
 void enablePort(void);
+void setReadEna(void);
 
+uint32_t readValue();
+uint8_t isExeRunning();
+uint8_t isNewReadValue();
+uint8_t isReadValueAvailable();
 
 #endif /* SRC_PORT_ACC_H_ */

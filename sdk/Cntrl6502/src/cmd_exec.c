@@ -17,6 +17,13 @@
 #include "cmd_exec.h"
 
 //--------------------------------------------------------------------
+// internal variables
+FILE *inData = NULL;
+char *fnInData = "indata.txt";
+
+void readInputs();
+void fileValue(uint16_t value);
+//--------------------------------------------------------------------
 // main dispatcher of commands
 int exeCMD(uint8_t **pparsedCMD) {
 	uint8_t actCMD;
@@ -59,6 +66,7 @@ int excDisplayHelp(void){
 
 #define MAX_BUF	255
 
+// execute commands from batch file
 int excLoadFromFile(uint8_t **pParamList){
 	uint8_t *pParam;
 	char *fn;
@@ -110,17 +118,51 @@ void doBatchExecute(char *fn){
     }
 
     fclose(rdFile);
-
-
-
 }
+
+// Trigger execute of commands in FIFO
+// wait till execution has finished
 int excExecute(uint8_t **pParamList){
 	trgExec();
-	sleep(0.001);
+	while(isExeRunning()==0){
+		readInputs();
+	}
 	disablePort();
 	return 0;
 }
 
+// check, if out FIFO has data and read them into a file
+void readInputs(){
+	uint32_t rval = readValue();
+	uint32_t busval;
+	int checking = 1;
+	if ((rval & GPIORd_NotEmpty) == 0)
+		return;
+	// there is some value in FIFO, get it
+	setReadEna();
+	while(checking){
+		rval = readValue();
+		if (rval & GPIORd_RdEnaAck){
+			enablePort();
+			busval = rval & 0xFFFF;
+			fileValue(busval);
+		}
+	}
+}
+
+// write read data into file
+void fileValue(uint16_t value){
+	// open file if not done already
+	if(inData == NULL){
+		inData = fopen(fnInData, "w");
+		if (inData == NULL) return;
+	}
+	char *sValue = "\0";
+	sprintf(sValue, "%04x\n", value);
+	fwrite(sValue, 1, sizeof(sValue), inData);
+}
+
+// wait a short time
 int excWait(uint8_t **pParamList){
 	uint8_t *pParam;
 	unsigned long value;
@@ -146,6 +188,7 @@ int excWait(uint8_t **pParamList){
 	return 1;
 }
 
+// store value setting in FIFO
 int excSetValue(uint8_t **pParamList){
 	uint8_t *pParam;
 	unsigned long value;

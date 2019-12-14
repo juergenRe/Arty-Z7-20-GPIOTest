@@ -2,18 +2,18 @@
 
 #define SimuBaseAddr		0x41210000
 
-#define GPIOWr_Enable 		0x80000000
-#define GPIOWr_Execute		0x40000000
-#define GPIOWr_Read			0x20000000
-#define GPIOWr_Reset		0x10000000
-#define GPIOWr_RdEnable		0x04000000
+#define GPIOWr_Enable 		0x80000000			//Enable interface
+#define GPIOWr_Execute		0x40000000			//trigger execution
+#define GPIOWr_Read			0x20000000			//trigger reading value from bus
+#define GPIOWr_Reset		0x10000000			//reset FIFOs
+#define GPIOWr_RdEnable		0x04000000			//ask for next value from Out FIFO
 #define GPIOWr_FIFOOutClk	0x02000000			//toggle to clock out data from read FIFO
 #define GPIOWr_FIFOInClk	0x01000000			//toggle to clock data into command FIFO
 
-#define GPIORd_Running		0x80000000
-#define GPIORd_NotEmpty		0x40000000
-#define GPIORd_Error		0x20000000
-#define GPIORd_RdEnaAck		0x10000000
+#define GPIORd_ExeRunning	0x80000000			//execution is running
+#define GPIORd_NotEmpty		0x40000000			//Out FIFO not empty
+#define GPIORd_Error		0x20000000			//Error during execution
+#define GPIORd_RdEnaAck		0x10000000			//new value on lower 16bit can be read
 
 #define GPIOWrInactive		0x00000000
 #define GPIORdIdleMask		0xF0000000

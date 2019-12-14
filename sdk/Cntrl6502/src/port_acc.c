@@ -108,10 +108,35 @@ void writeVal(uint32_t value, uint32_t mux_val, uint32_t edge_val) {
     writeGPIOPort(uio_m, GPIO_DATA, GPIOWrInactive);
 }
 
+// functions for reading data from GPIO
+uint32_t readValue(){
+	return(readGPIOPort(uio_m, GPIO2_DATA));
+}
+
+uint8_t isExeRunning(){
+	uint32_t rval = readGPIOPort(uio_m, GPIO2_DATA);
+	return((rval&GPIORd_ExeRunning)!= 0);
+}
+
+uint8_t isNewReadValue(){
+	uint32_t rval = readGPIOPort(uio_m, GPIO2_DATA);
+	return((rval&GPIORd_RdEnaAck)!= 0);
+}
+
+uint8_t isReadValueAvailable(){
+	uint32_t rval = readGPIOPort(uio_m, GPIO2_DATA);
+	return((rval&GPIORd_NotEmpty)!= 0);
+}
+
+
 // trigger execution of stored entries in FIFO
 void trgExec(void){
 	writeGPIOPort(uio_m, GPIO_DATA, GPIOWr_Enable | GPIOWr_Execute);
 	writeGPIOPort(uio_m, GPIO_DATA, GPIOWr_Enable);			// keep enable till execution has finished
+}
+
+void setReadEna(void){
+	writeGPIOPort(uio_m, GPIO_DATA, GPIOWr_Enable | GPIOWr_RdEnable);
 }
 
 void disablePort(void){
