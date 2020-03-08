@@ -1,10 +1,10 @@
-// Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
-// Date        : Wed Oct  3 12:33:26 2018
-// Host        : ASYS running 64-bit major release  (build 9200)
+// Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
+// Date        : Tue Dec 17 14:02:07 2019
+// Host        : CHGFN1A945754 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
-//               C:/Users/Juergen/Documents/FPGA/Arty-Z7/Arty-Z7-20-GPIOTest/src/bd/GPIOTest/ip/GPIOTest_GPIOInterface_0_0/GPIOTest_GPIOInterface_0_0_sim_netlist.v
+//               C:/Users/s91153/Documents/FPGA/Arty-Z7/Arty-Z7-20-GPIOTest/src/bd/GPIOTest/ip/GPIOTest_GPIOInterface_0_0/GPIOTest_GPIOInterface_0_0_sim_netlist.v
 // Design      : GPIOTest_GPIOInterface_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,7 +12,7 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "GPIOTest_GPIOInterface_0_0,GPIOInterface,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "GPIOInterface,Vivado 2017.4" *) 
+(* CHECK_LICENSE_TYPE = "GPIOTest_GPIOInterface_0_0,GPIOInterface,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "GPIOInterface,Vivado 2019.1" *) 
 (* NotValidForBitStream *)
 module GPIOTest_GPIOInterface_0_0
    (GPIOPortWr,
@@ -31,8 +31,8 @@ module GPIOTest_GPIOInterface_0_0
     phi2);
   input [31:0]GPIOPortWr;
   output [31:0]GPIOPortRd;
-  (* x_interface_info = "xilinx.com:signal:clock:1.0 clk CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME clk, ASSOCIATED_RESET reset_n, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN GPIOTest_processing_system7_0_0_FCLK_CLK0" *) input clk;
-  (* x_interface_info = "xilinx.com:signal:reset:1.0 reset RST" *) (* x_interface_parameter = "XIL_INTERFACENAME reset, POLARITY ACTIVE_LOW" *) input reset_n;
+  (* x_interface_info = "xilinx.com:signal:clock:1.0 clk CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME clk, ASSOCIATED_RESET reset_n, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN GPIOTest_processing_system7_0_0_FCLK_CLK0, INSERT_VIP 0" *) input clk;
+  (* x_interface_info = "xilinx.com:signal:reset:1.0 reset RST" *) (* x_interface_parameter = "XIL_INTERFACENAME reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input reset_n;
   input [7:0]DIn;
   output [7:0]DOut;
   output [2:0]MUX;
@@ -96,30 +96,18 @@ endmodule
 
 (* ORIG_REF_NAME = "Delay" *) 
 module GPIOTest_GPIOInterface_0_0_Delay
-   (sig_in,
-    phi1,
-    clk,
-    \phiState_reg[0] ,
-    \phiState_reg[1] );
-  output sig_in;
+   (phi1,
+    Q,
+    clk);
   output phi1;
+  input [0:0]Q;
   input clk;
-  input \phiState_reg[0] ;
-  input \phiState_reg[1] ;
 
+  wire [0:0]Q;
   wire clk;
   wire phi1;
-  wire \phiState_reg[0] ;
-  wire \phiState_reg[1] ;
-  wire sig_in;
   wire \tmp_reg[1]_srl2_n_0 ;
 
-  LUT2 #(
-    .INIT(4'h1)) 
-    delay_reg_i_1__0
-       (.I0(\phiState_reg[0] ),
-        .I1(\phiState_reg[1] ),
-        .O(sig_in));
   (* srl_bus_name = "\U0/dly_phi1/tmp_reg " *) 
   (* srl_name = "\U0/dly_phi1/tmp_reg[1]_srl2 " *) 
   SRL16E \tmp_reg[1]_srl2 
@@ -129,7 +117,7 @@ module GPIOTest_GPIOInterface_0_0_Delay
         .A3(1'b0),
         .CE(1'b1),
         .CLK(clk),
-        .D(sig_in),
+        .D(Q),
         .Q(\tmp_reg[1]_srl2_n_0 ));
   FDRE \tmp_reg[2] 
        (.C(clk),
@@ -141,30 +129,18 @@ endmodule
 
 (* ORIG_REF_NAME = "Delay" *) 
 module GPIOTest_GPIOInterface_0_0_Delay_0
-   (delay_reg_reg,
-    phi2,
-    clk,
-    \phiState_reg[1] ,
-    \phiState_reg[0] );
-  output delay_reg_reg;
+   (phi2,
+    Q,
+    clk);
   output phi2;
+  input [0:0]Q;
   input clk;
-  input \phiState_reg[1] ;
-  input \phiState_reg[0] ;
 
+  wire [0:0]Q;
   wire clk;
-  wire delay_reg_reg;
   wire phi2;
-  wire \phiState_reg[0] ;
-  wire \phiState_reg[1] ;
   wire \tmp_reg[1]_srl2_n_0 ;
 
-  LUT2 #(
-    .INIT(4'h2)) 
-    delay_reg_i_1
-       (.I0(\phiState_reg[1] ),
-        .I1(\phiState_reg[0] ),
-        .O(delay_reg_reg));
   (* srl_bus_name = "\U0/dly_phi2/tmp_reg " *) 
   (* srl_name = "\U0/dly_phi2/tmp_reg[1]_srl2 " *) 
   SRL16E \tmp_reg[1]_srl2 
@@ -174,7 +150,7 @@ module GPIOTest_GPIOInterface_0_0_Delay_0
         .A3(1'b0),
         .CE(1'b1),
         .CLK(clk),
-        .D(delay_reg_reg),
+        .D(Q),
         .Q(\tmp_reg[1]_srl2_n_0 ));
   FDRE \tmp_reg[2] 
        (.C(clk),
@@ -187,149 +163,110 @@ endmodule
 (* ORIG_REF_NAME = "EdgeDetect" *) 
 module GPIOTest_GPIOInterface_0_0_EdgeDetect
    (delay_reg,
-    \FSM_sequential_fifoState_reg[0] ,
-    fifoState13_out,
     SR,
-    sig_in,
-    clk,
-    in0,
-    \FSM_sequential_fifoState_reg[1] ,
-    \FSM_sequential_fifoState_reg[0]_0 ,
-    fifo_reset,
-    \phiState_reg[1] ,
-    \phiState_reg[0] ,
-    Q);
+    Q,
+    clk);
   output delay_reg;
-  output \FSM_sequential_fifoState_reg[0] ;
-  output fifoState13_out;
   input [0:0]SR;
-  input sig_in;
-  input clk;
-  input [0:0]in0;
-  input \FSM_sequential_fifoState_reg[1] ;
-  input \FSM_sequential_fifoState_reg[0]_0 ;
-  input fifo_reset;
-  input \phiState_reg[1] ;
-  input \phiState_reg[0] ;
   input [0:0]Q;
+  input clk;
 
-  wire \FSM_sequential_fifoState_reg[0] ;
-  wire \FSM_sequential_fifoState_reg[0]_0 ;
-  wire \FSM_sequential_fifoState_reg[1] ;
   wire [0:0]Q;
   wire [0:0]SR;
   wire clk;
   wire delay_reg;
-  wire fifoState13_out;
-  wire fifo_reset;
-  wire [0:0]in0;
-  wire \phiState_reg[0] ;
-  wire \phiState_reg[1] ;
-  wire sig_in;
 
-  LUT4 #(
-    .INIT(16'h00E2)) 
-    \FSM_sequential_fifoState[0]_i_1 
-       (.I0(in0),
-        .I1(\FSM_sequential_fifoState_reg[1] ),
-        .I2(\FSM_sequential_fifoState_reg[0]_0 ),
-        .I3(fifo_reset),
-        .O(\FSM_sequential_fifoState_reg[0] ));
   FDRE delay_reg_reg
        (.C(clk),
         .CE(1'b1),
-        .D(sig_in),
+        .D(Q),
         .Q(delay_reg),
         .R(SR));
-  LUT4 #(
-    .INIT(16'h0E10)) 
-    i__i_1
-       (.I0(\phiState_reg[1] ),
-        .I1(\phiState_reg[0] ),
-        .I2(Q),
-        .I3(delay_reg),
-        .O(fifoState13_out));
 endmodule
 
 (* ORIG_REF_NAME = "EdgeDetect" *) 
 module GPIOTest_GPIOInterface_0_0_EdgeDetect_1
-   (fifoState1,
+   (\FSM_sequential_fifoState_reg[2] ,
     SEL_reg,
     SR,
-    \phiState_reg[1] ,
-    clk,
     Q,
-    \phiState_reg[1]_0 ,
+    clk,
+    fifoState,
+    SEL_i_2_0,
     delay_reg,
-    \phiState_reg[0] ,
-    \phiState_reg[1]_1 ,
-    SEL,
-    out,
-    fifo_reset);
-  output fifoState1;
+    ExcTick,
+    fifo_reset,
+    SEL);
+  output \FSM_sequential_fifoState_reg[2] ;
   output SEL_reg;
   input [0:0]SR;
-  input \phiState_reg[1] ;
+  input [1:0]Q;
   input clk;
-  input [3:0]Q;
-  input \phiState_reg[1]_0 ;
+  input [2:0]fifoState;
+  input [3:0]SEL_i_2_0;
   input delay_reg;
-  input \phiState_reg[0] ;
-  input \phiState_reg[1]_1 ;
-  input SEL;
-  input [2:0]out;
+  input ExcTick;
   input fifo_reset;
+  input SEL;
 
-  wire [3:0]Q;
+  wire ExcTick;
+  wire \FSM_sequential_fifoState_reg[2] ;
+  wire [1:0]Q;
   wire SEL;
+  wire [3:0]SEL_i_2_0;
   wire SEL_i_2_n_0;
+  wire SEL_i_3_n_0;
   wire SEL_reg;
   wire [0:0]SR;
   wire clk;
   wire delay_reg;
   wire delay_reg_0;
-  wire fifoState1;
+  wire [2:0]fifoState;
   wire fifo_reset;
-  wire [2:0]out;
-  wire \phiState_reg[0] ;
-  wire \phiState_reg[1] ;
-  wire \phiState_reg[1]_0 ;
-  wire \phiState_reg[1]_1 ;
 
   LUT6 #(
-    .INIT(64'h000000008ABA8A8A)) 
-    SEL_i_1
-       (.I0(SEL),
-        .I1(out[2]),
-        .I2(out[1]),
-        .I3(out[0]),
+    .INIT(64'h00000000DFDE8B8A)) 
+    \FSM_sequential_fifoState[0]_i_1 
+       (.I0(fifoState[2]),
+        .I1(fifoState[0]),
+        .I2(fifoState[1]),
+        .I3(ExcTick),
         .I4(SEL_i_2_n_0),
         .I5(fifo_reset),
+        .O(\FSM_sequential_fifoState_reg[2] ));
+  LUT5 #(
+    .INIT(32'h0000BA8A)) 
+    SEL_i_1
+       (.I0(SEL),
+        .I1(fifoState[2]),
+        .I2(fifoState[1]),
+        .I3(SEL_i_2_n_0),
+        .I4(fifo_reset),
         .O(SEL_reg));
   LUT6 #(
-    .INIT(64'h00F00F00DDDDDDDD)) 
+    .INIT(64'h0151010101015101)) 
     SEL_i_2
-       (.I0(Q[3]),
-        .I1(fifoState1),
-        .I2(\phiState_reg[1]_0 ),
-        .I3(Q[0]),
-        .I4(delay_reg),
-        .I5(Q[1]),
+       (.I0(fifoState[0]),
+        .I1(SEL_i_3_n_0),
+        .I2(SEL_i_2_0[1]),
+        .I3(delay_reg),
+        .I4(Q[0]),
+        .I5(SEL_i_2_0[0]),
         .O(SEL_i_2_n_0));
+  LUT4 #(
+    .INIT(16'hA28A)) 
+    SEL_i_3
+       (.I0(SEL_i_2_0[3]),
+        .I1(SEL_i_2_0[2]),
+        .I2(delay_reg_0),
+        .I3(Q[1]),
+        .O(SEL_i_3_n_0));
   FDRE delay_reg_reg
        (.C(clk),
         .CE(1'b1),
-        .D(\phiState_reg[1] ),
+        .D(Q[1]),
         .Q(delay_reg_0),
         .R(SR));
-  LUT4 #(
-    .INIT(16'h0B40)) 
-    i__i_2
-       (.I0(\phiState_reg[0] ),
-        .I1(\phiState_reg[1]_1 ),
-        .I2(Q[2]),
-        .I3(delay_reg_0),
-        .O(fifoState1));
 endmodule
 
 (* ORIG_REF_NAME = "GPIOInterface" *) 
@@ -363,38 +300,54 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
   input [7:0]DIn;
   input reset_n;
 
-  wire \/i_/i__n_0 ;
-  wire \/i___0_n_0 ;
-  wire \/i___1_n_0 ;
-  wire \/i__n_0 ;
+  wire ClkInTick;
+  wire ClkOutTick;
   wire [7:0]DIn;
   wire [7:0]DOut;
+  wire ExcTick;
+  wire \FSM_onehot_blClkIn[0]_i_1_n_0 ;
+  wire \FSM_onehot_blClkIn[1]_i_1_n_0 ;
+  wire \FSM_onehot_blClkIn[2]_i_1_n_0 ;
+  wire \FSM_onehot_blClkIn_reg_n_0_[0] ;
+  wire \FSM_onehot_blClkIn_reg_n_0_[1] ;
+  wire \FSM_onehot_blClkOut[0]_i_1_n_0 ;
+  wire \FSM_onehot_blClkOut[1]_i_1_n_0 ;
+  wire \FSM_onehot_blClkOut[2]_i_1_n_0 ;
+  wire \FSM_onehot_blClkOut_reg_n_0_[0] ;
+  wire \FSM_onehot_blClkOut_reg_n_0_[1] ;
+  wire \FSM_onehot_blExc[0]_i_1_n_0 ;
+  wire \FSM_onehot_blExc[1]_i_1_n_0 ;
+  wire \FSM_onehot_blExc[2]_i_2_n_0 ;
+  wire \FSM_onehot_blExc_reg_n_0_[0] ;
+  wire \FSM_onehot_blExc_reg_n_0_[1] ;
+  wire \FSM_onehot_blRdData[0]_i_1_n_0 ;
+  wire \FSM_onehot_blRdData[1]_i_1_n_0 ;
+  wire \FSM_onehot_blRdData[2]_i_1_n_0 ;
+  wire \FSM_onehot_blRdData_reg_n_0_[0] ;
+  wire \FSM_onehot_blRdData_reg_n_0_[1] ;
+  wire \FSM_onehot_phiState[0]_i_1_n_0 ;
+  wire \FSM_onehot_phiState[3]_i_1_n_0 ;
+  wire \FSM_onehot_phiState[3]_i_2_n_0 ;
+  wire \FSM_onehot_phiState[3]_i_3_n_0 ;
+  wire \FSM_onehot_phiState_reg_n_0_[1] ;
+  wire \FSM_onehot_phiState_reg_n_0_[3] ;
   wire \FSM_onehot_rdState[4]_i_1_n_0 ;
-  (* RTL_KEEP = "yes" *) wire \FSM_onehot_rdState_reg_n_0_[0] ;
-  (* RTL_KEEP = "yes" *) wire \FSM_onehot_rdState_reg_n_0_[1] ;
-  (* RTL_KEEP = "yes" *) wire \FSM_onehot_rdState_reg_n_0_[2] ;
-  (* RTL_KEEP = "yes" *) wire \FSM_onehot_rdState_reg_n_0_[3] ;
-  (* RTL_KEEP = "yes" *) wire \FSM_onehot_rdState_reg_n_0_[4] ;
+  wire \FSM_onehot_rdState_reg_n_0_[0] ;
+  wire \FSM_onehot_rdState_reg_n_0_[1] ;
+  wire \FSM_onehot_rdState_reg_n_0_[2] ;
+  wire \FSM_onehot_rdState_reg_n_0_[3] ;
+  wire \FSM_onehot_rdState_reg_n_0_[4] ;
   wire \FSM_sequential_fifoState[2]_i_1_n_0 ;
   wire [18:0]GPIOPortRd;
   wire [21:0]GPIOPortWr;
   wire [2:0]MUX;
+  wire RdDataTick;
   wire SEL;
-  wire SEL_i_3_n_0;
-  wire [1:0]blClkIn;
-  wire \blClkIn[0]_i_1_n_0 ;
-  wire \blClkIn[1]_i_1_n_0 ;
-  wire [1:0]blClkOut;
-  wire \blClkOut[0]_i_1_n_0 ;
-  wire \blClkOut[1]_i_1_n_0 ;
-  wire [1:0]blExc;
+  wire \__13/i__n_0 ;
+  wire \__14/i__n_0 ;
   wire blExc0;
-  wire \blExc[0]_i_1_n_0 ;
-  wire \blExc[1]_i_2_n_0 ;
-  wire [1:0]blRdData;
-  wire \blRdData[0]_i_1_n_0 ;
-  wire \blRdData[1]_i_1_n_0 ;
   wire clk;
+  wire cmd_fifo_n_0;
   wire cmd_fifo_n_1;
   wire cmd_fifo_n_10;
   wire cmd_fifo_n_11;
@@ -405,25 +358,15 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
   wire cmd_fifo_n_16;
   wire cmd_fifo_n_17;
   wire cmd_fifo_n_18;
-  wire cmd_fifo_n_2;
-  wire cmd_fifo_n_3;
-  wire cmd_fifo_n_4;
-  wire cmd_fifo_n_5;
-  wire cmd_fifo_n_6;
   wire cmd_fifo_n_7;
   wire cmd_fifo_n_8;
   wire cmd_fifo_n_9;
   wire data_ena;
-  wire data_ena_0;
+  wire data_ena_33;
   wire delay_reg;
-  wire dly_phi2_n_0;
   wire \edges_reg_n_0_[0] ;
-  (* RTL_KEEP = "yes" *) wire [2:0]fifoState;
-  wire fifoState1;
-  wire fifoState13_out;
+  wire [2:0]fifoState;
   wire fifo_reset;
-  wire full;
-  wire i___1_i_1_n_0;
   wire i__carry__0_i_1_n_0;
   wire i__carry__0_i_2_n_0;
   wire i__carry__0_i_3_n_0;
@@ -455,26 +398,26 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
   wire i__carry_i_5_n_0;
   wire i__carry_i_6_n_0;
   wire i__carry_i_7_n_0;
+  wire i__carry_i_8_n_0;
   wire nen_adh;
   wire nen_adh_i_1_n_0;
   wire nen_adl;
   wire nen_ctrl0;
   wire nen_ctrl0_i_2_n_0;
   wire nen_idb;
+  wire out_fifo_full;
   wire out_fifo_wr_i_1_n_0;
-  wire p1_edges_n_1;
+  wire p2_edges_n_0;
   wire p2_edges_n_1;
-  wire p_0_in;
+  wire [3:0]p_0_in;
   wire p_0_in3_in;
+  wire p_0_in_0;
   wire p_2_in;
   wire phi1;
   wire phi2;
-  wire \phiState[0]_i_1_n_0 ;
-  wire \phiState[1]_i_1_n_0 ;
-  wire \phiState_reg_n_0_[0] ;
-  wire \phiState_reg_n_0_[1] ;
+  wire phi_1_int;
+  wire phi_2_int;
   wire [31:0]phi_cnt;
-  wire [31:1]phi_cnt0;
   wire phi_cnt1_carry__0_i_1_n_0;
   wire phi_cnt1_carry__0_i_2_n_0;
   wire phi_cnt1_carry__0_i_3_n_0;
@@ -518,7 +461,6 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
   wire phi_cnt1_carry_i_5_n_0;
   wire phi_cnt1_carry_i_6_n_0;
   wire phi_cnt1_carry_i_7_n_0;
-  wire phi_cnt1_carry_i_8_n_0;
   wire phi_cnt1_carry_n_0;
   wire phi_cnt1_carry_n_1;
   wire phi_cnt1_carry_n_2;
@@ -539,72 +481,103 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
   wire \phi_cnt1_inferred__0/i__carry_n_1 ;
   wire \phi_cnt1_inferred__0/i__carry_n_2 ;
   wire \phi_cnt1_inferred__0/i__carry_n_3 ;
-  wire \phi_cnt[0]_i_1_n_0 ;
-  wire \phi_cnt[10]_i_1_n_0 ;
-  wire \phi_cnt[11]_i_1_n_0 ;
-  wire \phi_cnt[12]_i_1_n_0 ;
-  wire \phi_cnt[13]_i_1_n_0 ;
-  wire \phi_cnt[14]_i_1_n_0 ;
-  wire \phi_cnt[15]_i_1_n_0 ;
-  wire \phi_cnt[16]_i_1_n_0 ;
-  wire \phi_cnt[17]_i_1_n_0 ;
-  wire \phi_cnt[18]_i_1_n_0 ;
-  wire \phi_cnt[19]_i_1_n_0 ;
-  wire \phi_cnt[1]_i_1_n_0 ;
-  wire \phi_cnt[20]_i_1_n_0 ;
-  wire \phi_cnt[21]_i_1_n_0 ;
-  wire \phi_cnt[22]_i_1_n_0 ;
-  wire \phi_cnt[23]_i_1_n_0 ;
-  wire \phi_cnt[24]_i_1_n_0 ;
-  wire \phi_cnt[25]_i_1_n_0 ;
-  wire \phi_cnt[26]_i_1_n_0 ;
-  wire \phi_cnt[27]_i_1_n_0 ;
-  wire \phi_cnt[28]_i_1_n_0 ;
-  wire \phi_cnt[29]_i_1_n_0 ;
-  wire \phi_cnt[2]_i_1_n_0 ;
-  wire \phi_cnt[30]_i_1_n_0 ;
-  wire \phi_cnt[31]_i_1_n_0 ;
-  wire \phi_cnt[3]_i_1_n_0 ;
-  wire \phi_cnt[4]_i_1_n_0 ;
-  wire \phi_cnt[5]_i_1_n_0 ;
-  wire \phi_cnt[6]_i_1_n_0 ;
-  wire \phi_cnt[7]_i_1_n_0 ;
-  wire \phi_cnt[8]_i_1_n_0 ;
-  wire \phi_cnt[9]_i_1_n_0 ;
+  wire \phi_cnt[31]_i_3_n_0 ;
   wire \phi_cnt_reg[12]_i_2_n_0 ;
   wire \phi_cnt_reg[12]_i_2_n_1 ;
   wire \phi_cnt_reg[12]_i_2_n_2 ;
   wire \phi_cnt_reg[12]_i_2_n_3 ;
+  wire \phi_cnt_reg[12]_i_2_n_4 ;
+  wire \phi_cnt_reg[12]_i_2_n_5 ;
+  wire \phi_cnt_reg[12]_i_2_n_6 ;
+  wire \phi_cnt_reg[12]_i_2_n_7 ;
   wire \phi_cnt_reg[16]_i_2_n_0 ;
   wire \phi_cnt_reg[16]_i_2_n_1 ;
   wire \phi_cnt_reg[16]_i_2_n_2 ;
   wire \phi_cnt_reg[16]_i_2_n_3 ;
+  wire \phi_cnt_reg[16]_i_2_n_4 ;
+  wire \phi_cnt_reg[16]_i_2_n_5 ;
+  wire \phi_cnt_reg[16]_i_2_n_6 ;
+  wire \phi_cnt_reg[16]_i_2_n_7 ;
   wire \phi_cnt_reg[20]_i_2_n_0 ;
   wire \phi_cnt_reg[20]_i_2_n_1 ;
   wire \phi_cnt_reg[20]_i_2_n_2 ;
   wire \phi_cnt_reg[20]_i_2_n_3 ;
+  wire \phi_cnt_reg[20]_i_2_n_4 ;
+  wire \phi_cnt_reg[20]_i_2_n_5 ;
+  wire \phi_cnt_reg[20]_i_2_n_6 ;
+  wire \phi_cnt_reg[20]_i_2_n_7 ;
   wire \phi_cnt_reg[24]_i_2_n_0 ;
   wire \phi_cnt_reg[24]_i_2_n_1 ;
   wire \phi_cnt_reg[24]_i_2_n_2 ;
   wire \phi_cnt_reg[24]_i_2_n_3 ;
+  wire \phi_cnt_reg[24]_i_2_n_4 ;
+  wire \phi_cnt_reg[24]_i_2_n_5 ;
+  wire \phi_cnt_reg[24]_i_2_n_6 ;
+  wire \phi_cnt_reg[24]_i_2_n_7 ;
   wire \phi_cnt_reg[28]_i_2_n_0 ;
   wire \phi_cnt_reg[28]_i_2_n_1 ;
   wire \phi_cnt_reg[28]_i_2_n_2 ;
   wire \phi_cnt_reg[28]_i_2_n_3 ;
+  wire \phi_cnt_reg[28]_i_2_n_4 ;
+  wire \phi_cnt_reg[28]_i_2_n_5 ;
+  wire \phi_cnt_reg[28]_i_2_n_6 ;
+  wire \phi_cnt_reg[28]_i_2_n_7 ;
   wire \phi_cnt_reg[31]_i_2_n_2 ;
   wire \phi_cnt_reg[31]_i_2_n_3 ;
+  wire \phi_cnt_reg[31]_i_2_n_5 ;
+  wire \phi_cnt_reg[31]_i_2_n_6 ;
+  wire \phi_cnt_reg[31]_i_2_n_7 ;
   wire \phi_cnt_reg[4]_i_2_n_0 ;
   wire \phi_cnt_reg[4]_i_2_n_1 ;
   wire \phi_cnt_reg[4]_i_2_n_2 ;
   wire \phi_cnt_reg[4]_i_2_n_3 ;
+  wire \phi_cnt_reg[4]_i_2_n_4 ;
+  wire \phi_cnt_reg[4]_i_2_n_5 ;
+  wire \phi_cnt_reg[4]_i_2_n_6 ;
+  wire \phi_cnt_reg[4]_i_2_n_7 ;
   wire \phi_cnt_reg[8]_i_2_n_0 ;
   wire \phi_cnt_reg[8]_i_2_n_1 ;
   wire \phi_cnt_reg[8]_i_2_n_2 ;
   wire \phi_cnt_reg[8]_i_2_n_3 ;
+  wire \phi_cnt_reg[8]_i_2_n_4 ;
+  wire \phi_cnt_reg[8]_i_2_n_5 ;
+  wire \phi_cnt_reg[8]_i_2_n_6 ;
+  wire \phi_cnt_reg[8]_i_2_n_7 ;
+  wire \phi_cnt_reg_n_0_[0] ;
+  wire \phi_cnt_reg_n_0_[10] ;
+  wire \phi_cnt_reg_n_0_[11] ;
+  wire \phi_cnt_reg_n_0_[12] ;
+  wire \phi_cnt_reg_n_0_[13] ;
+  wire \phi_cnt_reg_n_0_[14] ;
+  wire \phi_cnt_reg_n_0_[15] ;
+  wire \phi_cnt_reg_n_0_[16] ;
+  wire \phi_cnt_reg_n_0_[17] ;
+  wire \phi_cnt_reg_n_0_[18] ;
+  wire \phi_cnt_reg_n_0_[19] ;
+  wire \phi_cnt_reg_n_0_[1] ;
+  wire \phi_cnt_reg_n_0_[20] ;
+  wire \phi_cnt_reg_n_0_[21] ;
+  wire \phi_cnt_reg_n_0_[22] ;
+  wire \phi_cnt_reg_n_0_[23] ;
+  wire \phi_cnt_reg_n_0_[24] ;
+  wire \phi_cnt_reg_n_0_[25] ;
+  wire \phi_cnt_reg_n_0_[26] ;
+  wire \phi_cnt_reg_n_0_[27] ;
+  wire \phi_cnt_reg_n_0_[28] ;
+  wire \phi_cnt_reg_n_0_[29] ;
+  wire \phi_cnt_reg_n_0_[2] ;
+  wire \phi_cnt_reg_n_0_[30] ;
+  wire \phi_cnt_reg_n_0_[31] ;
+  wire \phi_cnt_reg_n_0_[3] ;
+  wire \phi_cnt_reg_n_0_[4] ;
+  wire \phi_cnt_reg_n_0_[5] ;
+  wire \phi_cnt_reg_n_0_[6] ;
+  wire \phi_cnt_reg_n_0_[7] ;
+  wire \phi_cnt_reg_n_0_[8] ;
+  wire \phi_cnt_reg_n_0_[9] ;
   wire rd;
   wire reset;
   wire reset_n;
-  wire sig_in;
   wire [15:0]w_data;
   wire wr;
   wire [3:0]NLW_phi_cnt1_carry_O_UNCONNECTED;
@@ -618,99 +591,350 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
   wire [3:2]\NLW_phi_cnt_reg[31]_i_2_CO_UNCONNECTED ;
   wire [3:3]\NLW_phi_cnt_reg[31]_i_2_O_UNCONNECTED ;
 
-  LUT5 #(
-    .INIT(32'h00FF55AE)) 
-    \/i_ 
-       (.I0(fifoState[1]),
-        .I1(blExc[1]),
-        .I2(blExc[0]),
-        .I3(fifoState[2]),
-        .I4(fifoState[0]),
-        .O(\/i__n_0 ));
-  LUT6 #(
-    .INIT(64'h5555115555151115)) 
-    \/i_/i_ 
-       (.I0(fifoState[0]),
-        .I1(fifoState[1]),
-        .I2(p_0_in),
-        .I3(p_2_in),
-        .I4(fifoState13_out),
-        .I5(fifoState1),
-        .O(\/i_/i__n_0 ));
-  LUT4 #(
-    .INIT(16'hFFFE)) 
-    \/i___0 
-       (.I0(\FSM_onehot_rdState_reg_n_0_[4] ),
-        .I1(\FSM_onehot_rdState_reg_n_0_[3] ),
-        .I2(\FSM_onehot_rdState_reg_n_0_[0] ),
-        .I3(\FSM_onehot_rdState_reg_n_0_[2] ),
-        .O(\/i___0_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFEFEE)) 
-    \/i___1 
-       (.I0(\FSM_onehot_rdState_reg_n_0_[4] ),
-        .I1(\FSM_onehot_rdState_reg_n_0_[1] ),
-        .I2(i___1_i_1_n_0),
-        .I3(\FSM_onehot_rdState_reg_n_0_[0] ),
-        .I4(\FSM_onehot_rdState_reg_n_0_[3] ),
-        .I5(\FSM_onehot_rdState_reg_n_0_[2] ),
-        .O(\/i___1_n_0 ));
   FDRE \DOut_reg[0] 
        (.C(clk),
-        .CE(cmd_fifo_n_2),
+        .CE(cmd_fifo_n_0),
         .D(cmd_fifo_n_17),
         .Q(DOut[0]),
         .R(fifo_reset));
   FDRE \DOut_reg[1] 
        (.C(clk),
-        .CE(cmd_fifo_n_2),
+        .CE(cmd_fifo_n_0),
         .D(cmd_fifo_n_16),
         .Q(DOut[1]),
         .R(fifo_reset));
   FDRE \DOut_reg[2] 
        (.C(clk),
-        .CE(cmd_fifo_n_2),
+        .CE(cmd_fifo_n_0),
         .D(cmd_fifo_n_15),
         .Q(DOut[2]),
         .R(fifo_reset));
   FDRE \DOut_reg[3] 
        (.C(clk),
-        .CE(cmd_fifo_n_2),
+        .CE(cmd_fifo_n_0),
         .D(cmd_fifo_n_14),
         .Q(DOut[3]),
         .R(fifo_reset));
   FDRE \DOut_reg[4] 
        (.C(clk),
-        .CE(cmd_fifo_n_2),
+        .CE(cmd_fifo_n_0),
         .D(cmd_fifo_n_13),
         .Q(DOut[4]),
         .R(fifo_reset));
   FDRE \DOut_reg[5] 
        (.C(clk),
-        .CE(cmd_fifo_n_2),
+        .CE(cmd_fifo_n_0),
         .D(cmd_fifo_n_12),
         .Q(DOut[5]),
         .R(fifo_reset));
   FDRE \DOut_reg[6] 
        (.C(clk),
-        .CE(cmd_fifo_n_2),
+        .CE(cmd_fifo_n_0),
         .D(cmd_fifo_n_11),
         .Q(DOut[6]),
         .R(fifo_reset));
   FDRE \DOut_reg[7] 
        (.C(clk),
-        .CE(cmd_fifo_n_2),
+        .CE(cmd_fifo_n_0),
         .D(cmd_fifo_n_10),
         .Q(DOut[7]),
         .R(fifo_reset));
+  LUT4 #(
+    .INIT(16'hABAA)) 
+    \FSM_onehot_blClkIn[0]_i_1 
+       (.I0(ClkInTick),
+        .I1(\FSM_onehot_blClkIn_reg_n_0_[1] ),
+        .I2(GPIOPortWr[15]),
+        .I3(\FSM_onehot_blClkIn_reg_n_0_[0] ),
+        .O(\FSM_onehot_blClkIn[0]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  LUT4 #(
+    .INIT(16'hFE40)) 
+    \FSM_onehot_blClkIn[1]_i_1 
+       (.I0(ClkInTick),
+        .I1(\FSM_onehot_blClkIn_reg_n_0_[1] ),
+        .I2(GPIOPortWr[15]),
+        .I3(\FSM_onehot_blClkIn_reg_n_0_[0] ),
+        .O(\FSM_onehot_blClkIn[1]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  LUT4 #(
+    .INIT(16'hCC8C)) 
+    \FSM_onehot_blClkIn[2]_i_1 
+       (.I0(ClkInTick),
+        .I1(\FSM_onehot_blClkIn_reg_n_0_[1] ),
+        .I2(GPIOPortWr[15]),
+        .I3(\FSM_onehot_blClkIn_reg_n_0_[0] ),
+        .O(\FSM_onehot_blClkIn[2]_i_1_n_0 ));
+  (* FSM_ENCODED_STATES = "blidle:001,blactive:010,bltrg:100," *) 
+  FDSE #(
+    .INIT(1'b1)) 
+    \FSM_onehot_blClkIn_reg[0] 
+       (.C(clk),
+        .CE(1'b1),
+        .D(\FSM_onehot_blClkIn[0]_i_1_n_0 ),
+        .Q(\FSM_onehot_blClkIn_reg_n_0_[0] ),
+        .S(blExc0));
+  (* FSM_ENCODED_STATES = "blidle:001,blactive:010,bltrg:100," *) 
+  FDRE #(
+    .INIT(1'b0)) 
+    \FSM_onehot_blClkIn_reg[1] 
+       (.C(clk),
+        .CE(1'b1),
+        .D(\FSM_onehot_blClkIn[1]_i_1_n_0 ),
+        .Q(\FSM_onehot_blClkIn_reg_n_0_[1] ),
+        .R(blExc0));
+  (* FSM_ENCODED_STATES = "blidle:001,blactive:010,bltrg:100," *) 
+  FDRE #(
+    .INIT(1'b0)) 
+    \FSM_onehot_blClkIn_reg[2] 
+       (.C(clk),
+        .CE(1'b1),
+        .D(\FSM_onehot_blClkIn[2]_i_1_n_0 ),
+        .Q(ClkInTick),
+        .R(blExc0));
+  LUT4 #(
+    .INIT(16'hABAA)) 
+    \FSM_onehot_blClkOut[0]_i_1 
+       (.I0(ClkOutTick),
+        .I1(\FSM_onehot_blClkOut_reg_n_0_[1] ),
+        .I2(GPIOPortWr[16]),
+        .I3(\FSM_onehot_blClkOut_reg_n_0_[0] ),
+        .O(\FSM_onehot_blClkOut[0]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  LUT4 #(
+    .INIT(16'hFE40)) 
+    \FSM_onehot_blClkOut[1]_i_1 
+       (.I0(ClkOutTick),
+        .I1(\FSM_onehot_blClkOut_reg_n_0_[1] ),
+        .I2(GPIOPortWr[16]),
+        .I3(\FSM_onehot_blClkOut_reg_n_0_[0] ),
+        .O(\FSM_onehot_blClkOut[1]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  LUT4 #(
+    .INIT(16'hCC8C)) 
+    \FSM_onehot_blClkOut[2]_i_1 
+       (.I0(ClkOutTick),
+        .I1(\FSM_onehot_blClkOut_reg_n_0_[1] ),
+        .I2(GPIOPortWr[16]),
+        .I3(\FSM_onehot_blClkOut_reg_n_0_[0] ),
+        .O(\FSM_onehot_blClkOut[2]_i_1_n_0 ));
+  (* FSM_ENCODED_STATES = "blidle:001,blactive:010,bltrg:100," *) 
+  FDSE #(
+    .INIT(1'b1)) 
+    \FSM_onehot_blClkOut_reg[0] 
+       (.C(clk),
+        .CE(1'b1),
+        .D(\FSM_onehot_blClkOut[0]_i_1_n_0 ),
+        .Q(\FSM_onehot_blClkOut_reg_n_0_[0] ),
+        .S(blExc0));
+  (* FSM_ENCODED_STATES = "blidle:001,blactive:010,bltrg:100," *) 
+  FDRE #(
+    .INIT(1'b0)) 
+    \FSM_onehot_blClkOut_reg[1] 
+       (.C(clk),
+        .CE(1'b1),
+        .D(\FSM_onehot_blClkOut[1]_i_1_n_0 ),
+        .Q(\FSM_onehot_blClkOut_reg_n_0_[1] ),
+        .R(blExc0));
+  (* FSM_ENCODED_STATES = "blidle:001,blactive:010,bltrg:100," *) 
+  FDRE #(
+    .INIT(1'b0)) 
+    \FSM_onehot_blClkOut_reg[2] 
+       (.C(clk),
+        .CE(1'b1),
+        .D(\FSM_onehot_blClkOut[2]_i_1_n_0 ),
+        .Q(ClkOutTick),
+        .R(blExc0));
+  LUT4 #(
+    .INIT(16'hABAA)) 
+    \FSM_onehot_blExc[0]_i_1 
+       (.I0(ExcTick),
+        .I1(\FSM_onehot_blExc_reg_n_0_[1] ),
+        .I2(GPIOPortWr[20]),
+        .I3(\FSM_onehot_blExc_reg_n_0_[0] ),
+        .O(\FSM_onehot_blExc[0]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  LUT4 #(
+    .INIT(16'hFE40)) 
+    \FSM_onehot_blExc[1]_i_1 
+       (.I0(ExcTick),
+        .I1(\FSM_onehot_blExc_reg_n_0_[1] ),
+        .I2(GPIOPortWr[20]),
+        .I3(\FSM_onehot_blExc_reg_n_0_[0] ),
+        .O(\FSM_onehot_blExc[1]_i_1_n_0 ));
   LUT2 #(
-    .INIT(4'hE)) 
+    .INIT(4'h7)) 
+    \FSM_onehot_blExc[2]_i_1 
+       (.I0(GPIOPortWr[21]),
+        .I1(reset_n),
+        .O(blExc0));
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  LUT4 #(
+    .INIT(16'hCC8C)) 
+    \FSM_onehot_blExc[2]_i_2 
+       (.I0(ExcTick),
+        .I1(\FSM_onehot_blExc_reg_n_0_[1] ),
+        .I2(GPIOPortWr[20]),
+        .I3(\FSM_onehot_blExc_reg_n_0_[0] ),
+        .O(\FSM_onehot_blExc[2]_i_2_n_0 ));
+  (* FSM_ENCODED_STATES = "blidle:001,blactive:010,bltrg:100," *) 
+  FDSE #(
+    .INIT(1'b1)) 
+    \FSM_onehot_blExc_reg[0] 
+       (.C(clk),
+        .CE(1'b1),
+        .D(\FSM_onehot_blExc[0]_i_1_n_0 ),
+        .Q(\FSM_onehot_blExc_reg_n_0_[0] ),
+        .S(blExc0));
+  (* FSM_ENCODED_STATES = "blidle:001,blactive:010,bltrg:100," *) 
+  FDRE #(
+    .INIT(1'b0)) 
+    \FSM_onehot_blExc_reg[1] 
+       (.C(clk),
+        .CE(1'b1),
+        .D(\FSM_onehot_blExc[1]_i_1_n_0 ),
+        .Q(\FSM_onehot_blExc_reg_n_0_[1] ),
+        .R(blExc0));
+  (* FSM_ENCODED_STATES = "blidle:001,blactive:010,bltrg:100," *) 
+  FDRE #(
+    .INIT(1'b0)) 
+    \FSM_onehot_blExc_reg[2] 
+       (.C(clk),
+        .CE(1'b1),
+        .D(\FSM_onehot_blExc[2]_i_2_n_0 ),
+        .Q(ExcTick),
+        .R(blExc0));
+  LUT4 #(
+    .INIT(16'hAAAE)) 
+    \FSM_onehot_blRdData[0]_i_1 
+       (.I0(RdDataTick),
+        .I1(\FSM_onehot_blRdData_reg_n_0_[0] ),
+        .I2(GPIOPortWr[19]),
+        .I3(\FSM_onehot_blRdData_reg_n_0_[1] ),
+        .O(\FSM_onehot_blRdData[0]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  LUT4 #(
+    .INIT(16'hDCC8)) 
+    \FSM_onehot_blRdData[1]_i_1 
+       (.I0(RdDataTick),
+        .I1(\FSM_onehot_blRdData_reg_n_0_[0] ),
+        .I2(GPIOPortWr[19]),
+        .I3(\FSM_onehot_blRdData_reg_n_0_[1] ),
+        .O(\FSM_onehot_blRdData[1]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  LUT4 #(
+    .INIT(16'hEF00)) 
+    \FSM_onehot_blRdData[2]_i_1 
+       (.I0(RdDataTick),
+        .I1(\FSM_onehot_blRdData_reg_n_0_[0] ),
+        .I2(GPIOPortWr[19]),
+        .I3(\FSM_onehot_blRdData_reg_n_0_[1] ),
+        .O(\FSM_onehot_blRdData[2]_i_1_n_0 ));
+  (* FSM_ENCODED_STATES = "blidle:001,blactive:010,bltrg:100," *) 
+  FDSE #(
+    .INIT(1'b1)) 
+    \FSM_onehot_blRdData_reg[0] 
+       (.C(clk),
+        .CE(1'b1),
+        .D(\FSM_onehot_blRdData[0]_i_1_n_0 ),
+        .Q(\FSM_onehot_blRdData_reg_n_0_[0] ),
+        .S(blExc0));
+  (* FSM_ENCODED_STATES = "blidle:001,blactive:010,bltrg:100," *) 
+  FDRE #(
+    .INIT(1'b0)) 
+    \FSM_onehot_blRdData_reg[1] 
+       (.C(clk),
+        .CE(1'b1),
+        .D(\FSM_onehot_blRdData[1]_i_1_n_0 ),
+        .Q(\FSM_onehot_blRdData_reg_n_0_[1] ),
+        .R(blExc0));
+  (* FSM_ENCODED_STATES = "blidle:001,blactive:010,bltrg:100," *) 
+  FDRE #(
+    .INIT(1'b0)) 
+    \FSM_onehot_blRdData_reg[2] 
+       (.C(clk),
+        .CE(1'b1),
+        .D(\FSM_onehot_blRdData[2]_i_1_n_0 ),
+        .Q(RdDataTick),
+        .R(blExc0));
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  LUT3 #(
+    .INIT(8'hBA)) 
+    \FSM_onehot_phiState[0]_i_1 
+       (.I0(\FSM_onehot_phiState_reg_n_0_[3] ),
+        .I1(phi_cnt1_carry__2_n_0),
+        .I2(phi_2_int),
+        .O(\FSM_onehot_phiState[0]_i_1_n_0 ));
+  LUT6 #(
+    .INIT(64'hAAAAAA0808080808)) 
+    \FSM_onehot_phiState[3]_i_1 
+       (.I0(reset_n),
+        .I1(phi_cnt1_carry__2_n_0),
+        .I2(\FSM_onehot_phiState[3]_i_3_n_0 ),
+        .I3(\FSM_onehot_phiState_reg_n_0_[3] ),
+        .I4(\FSM_onehot_phiState_reg_n_0_[1] ),
+        .I5(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
+        .O(\FSM_onehot_phiState[3]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
+    \FSM_onehot_phiState[3]_i_2 
+       (.I0(phi_2_int),
+        .I1(phi_cnt1_carry__2_n_0),
+        .O(\FSM_onehot_phiState[3]_i_2_n_0 ));
+  LUT2 #(
+    .INIT(4'h1)) 
+    \FSM_onehot_phiState[3]_i_3 
+       (.I0(phi_1_int),
+        .I1(phi_2_int),
+        .O(\FSM_onehot_phiState[3]_i_3_n_0 ));
+  (* FSM_ENCODED_STATES = "pst_p1_p2:0010,pst_p2:0100,pst_p1:0001,pst_p2_p1:1000" *) 
+  FDRE #(
+    .INIT(1'b1)) 
+    \FSM_onehot_phiState_reg[0] 
+       (.C(clk),
+        .CE(\FSM_onehot_phiState[3]_i_1_n_0 ),
+        .D(\FSM_onehot_phiState[0]_i_1_n_0 ),
+        .Q(phi_1_int),
+        .R(1'b0));
+  (* FSM_ENCODED_STATES = "pst_p1_p2:0010,pst_p2:0100,pst_p1:0001,pst_p2_p1:1000" *) 
+  FDRE #(
+    .INIT(1'b0)) 
+    \FSM_onehot_phiState_reg[1] 
+       (.C(clk),
+        .CE(\FSM_onehot_phiState[3]_i_1_n_0 ),
+        .D(phi_1_int),
+        .Q(\FSM_onehot_phiState_reg_n_0_[1] ),
+        .R(1'b0));
+  (* FSM_ENCODED_STATES = "pst_p1_p2:0010,pst_p2:0100,pst_p1:0001,pst_p2_p1:1000" *) 
+  FDRE #(
+    .INIT(1'b0)) 
+    \FSM_onehot_phiState_reg[2] 
+       (.C(clk),
+        .CE(\FSM_onehot_phiState[3]_i_1_n_0 ),
+        .D(\FSM_onehot_phiState_reg_n_0_[1] ),
+        .Q(phi_2_int),
+        .R(1'b0));
+  (* FSM_ENCODED_STATES = "pst_p1_p2:0010,pst_p2:0100,pst_p1:0001,pst_p2_p1:1000" *) 
+  FDRE #(
+    .INIT(1'b0)) 
+    \FSM_onehot_phiState_reg[3] 
+       (.C(clk),
+        .CE(\FSM_onehot_phiState[3]_i_1_n_0 ),
+        .D(\FSM_onehot_phiState[3]_i_2_n_0 ),
+        .Q(\FSM_onehot_phiState_reg_n_0_[3] ),
+        .R(1'b0));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFFFEEE)) 
     \FSM_onehot_rdState[4]_i_1 
        (.I0(\FSM_onehot_rdState_reg_n_0_[4] ),
-        .I1(data_ena_0),
+        .I1(\FSM_onehot_rdState_reg_n_0_[1] ),
+        .I2(RdDataTick),
+        .I3(\FSM_onehot_rdState_reg_n_0_[0] ),
+        .I4(\FSM_onehot_rdState_reg_n_0_[3] ),
+        .I5(\FSM_onehot_rdState_reg_n_0_[2] ),
         .O(\FSM_onehot_rdState[4]_i_1_n_0 ));
-  (* FSM_ENCODED_STATES = "rds_idle:00001,rds_idb:00010,rds_adl:00100,rds_adh:01000,rds_rdy:10000" *) 
-  (* KEEP = "yes" *) 
+  (* FSM_ENCODED_STATES = "rds_idle:00001,rds_idb:00010,rds_adl:00100,rds_adh:01000,rds_rdy:10000," *) 
   FDSE #(
     .INIT(1'b1)) 
     \FSM_onehot_rdState_reg[0] 
@@ -719,8 +943,7 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
         .D(\FSM_onehot_rdState_reg_n_0_[4] ),
         .Q(\FSM_onehot_rdState_reg_n_0_[0] ),
         .S(reset));
-  (* FSM_ENCODED_STATES = "rds_idle:00001,rds_idb:00010,rds_adl:00100,rds_adh:01000,rds_rdy:10000" *) 
-  (* KEEP = "yes" *) 
+  (* FSM_ENCODED_STATES = "rds_idle:00001,rds_idb:00010,rds_adl:00100,rds_adh:01000,rds_rdy:10000," *) 
   FDRE #(
     .INIT(1'b0)) 
     \FSM_onehot_rdState_reg[1] 
@@ -729,8 +952,7 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
         .D(\FSM_onehot_rdState_reg_n_0_[0] ),
         .Q(\FSM_onehot_rdState_reg_n_0_[1] ),
         .R(reset));
-  (* FSM_ENCODED_STATES = "rds_idle:00001,rds_idb:00010,rds_adl:00100,rds_adh:01000,rds_rdy:10000" *) 
-  (* KEEP = "yes" *) 
+  (* FSM_ENCODED_STATES = "rds_idle:00001,rds_idb:00010,rds_adl:00100,rds_adh:01000,rds_rdy:10000," *) 
   FDRE #(
     .INIT(1'b0)) 
     \FSM_onehot_rdState_reg[2] 
@@ -739,8 +961,7 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
         .D(\FSM_onehot_rdState_reg_n_0_[1] ),
         .Q(\FSM_onehot_rdState_reg_n_0_[2] ),
         .R(reset));
-  (* FSM_ENCODED_STATES = "rds_idle:00001,rds_idb:00010,rds_adl:00100,rds_adh:01000,rds_rdy:10000" *) 
-  (* KEEP = "yes" *) 
+  (* FSM_ENCODED_STATES = "rds_idle:00001,rds_idb:00010,rds_adl:00100,rds_adh:01000,rds_rdy:10000," *) 
   FDRE #(
     .INIT(1'b0)) 
     \FSM_onehot_rdState_reg[3] 
@@ -749,8 +970,7 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
         .D(\FSM_onehot_rdState_reg_n_0_[2] ),
         .Q(\FSM_onehot_rdState_reg_n_0_[3] ),
         .R(reset));
-  (* FSM_ENCODED_STATES = "rds_idle:00001,rds_idb:00010,rds_adl:00100,rds_adh:01000,rds_rdy:10000" *) 
-  (* KEEP = "yes" *) 
+  (* FSM_ENCODED_STATES = "rds_idle:00001,rds_idb:00010,rds_adl:00100,rds_adh:01000,rds_rdy:10000," *) 
   FDRE #(
     .INIT(1'b0)) 
     \FSM_onehot_rdState_reg[4] 
@@ -759,183 +979,87 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
         .D(\FSM_onehot_rdState_reg_n_0_[3] ),
         .Q(\FSM_onehot_rdState_reg_n_0_[4] ),
         .R(reset));
-  LUT5 #(
-    .INIT(32'h0000E222)) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  LUT4 #(
+    .INIT(16'h00E8)) 
     \FSM_sequential_fifoState[2]_i_1 
        (.I0(fifoState[2]),
-        .I1(\/i__n_0 ),
+        .I1(fifoState[0]),
         .I2(fifoState[1]),
-        .I3(fifoState[0]),
-        .I4(fifo_reset),
+        .I3(fifo_reset),
         .O(\FSM_sequential_fifoState[2]_i_1_n_0 ));
-  (* FSM_ENCODED_STATES = "f_idle:000,f_rd_chk:001,f_sel:010,f_out:011,f_read:100" *) 
-  (* KEEP = "yes" *) 
+  (* FSM_ENCODED_STATES = "f_rd_chk:001,f_read:100,f_idle:000,f_sel:010,f_out:011" *) 
   FDRE \FSM_sequential_fifoState_reg[0] 
        (.C(clk),
         .CE(1'b1),
-        .D(p1_edges_n_1),
+        .D(p2_edges_n_0),
         .Q(fifoState[0]),
         .R(1'b0));
-  (* FSM_ENCODED_STATES = "f_idle:000,f_rd_chk:001,f_sel:010,f_out:011,f_read:100" *) 
-  (* KEEP = "yes" *) 
+  (* FSM_ENCODED_STATES = "f_rd_chk:001,f_read:100,f_idle:000,f_sel:010,f_out:011" *) 
   FDRE \FSM_sequential_fifoState_reg[1] 
        (.C(clk),
         .CE(1'b1),
         .D(cmd_fifo_n_1),
         .Q(fifoState[1]),
         .R(1'b0));
-  (* FSM_ENCODED_STATES = "f_idle:000,f_rd_chk:001,f_sel:010,f_out:011,f_read:100" *) 
-  (* KEEP = "yes" *) 
+  (* FSM_ENCODED_STATES = "f_rd_chk:001,f_read:100,f_idle:000,f_sel:010,f_out:011" *) 
   FDRE \FSM_sequential_fifoState_reg[2] 
        (.C(clk),
         .CE(1'b1),
         .D(\FSM_sequential_fifoState[2]_i_1_n_0 ),
         .Q(fifoState[2]),
         .R(1'b0));
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  LUT3 #(
+    .INIT(8'hFE)) 
+    \GPIOPortRd[31]_INST_0 
+       (.I0(fifoState[2]),
+        .I1(fifoState[0]),
+        .I2(fifoState[1]),
+        .O(GPIOPortRd[18]));
   FDRE \MUX_reg[0] 
        (.C(clk),
-        .CE(cmd_fifo_n_2),
+        .CE(cmd_fifo_n_0),
         .D(cmd_fifo_n_9),
         .Q(MUX[0]),
         .R(fifo_reset));
   FDRE \MUX_reg[1] 
        (.C(clk),
-        .CE(cmd_fifo_n_2),
+        .CE(cmd_fifo_n_0),
         .D(cmd_fifo_n_8),
         .Q(MUX[1]),
         .R(fifo_reset));
   FDRE \MUX_reg[2] 
        (.C(clk),
-        .CE(cmd_fifo_n_2),
+        .CE(cmd_fifo_n_0),
         .D(cmd_fifo_n_7),
         .Q(MUX[2]),
         .R(fifo_reset));
-  LUT2 #(
-    .INIT(4'hE)) 
-    SEL_i_3
-       (.I0(\phiState_reg_n_0_[1] ),
-        .I1(\phiState_reg_n_0_[0] ),
-        .O(SEL_i_3_n_0));
   FDRE SEL_reg
        (.C(clk),
         .CE(1'b1),
         .D(p2_edges_n_1),
         .Q(SEL),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
-  LUT2 #(
-    .INIT(4'h4)) 
-    \blClkIn[0]_i_1 
-       (.I0(blClkIn[1]),
-        .I1(GPIOPortWr[15]),
-        .O(\blClkIn[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
-  LUT3 #(
-    .INIT(8'hB0)) 
-    \blClkIn[1]_i_1 
-       (.I0(blClkIn[1]),
-        .I1(GPIOPortWr[15]),
-        .I2(blClkIn[0]),
-        .O(\blClkIn[1]_i_1_n_0 ));
-  FDRE \blClkIn_reg[0] 
-       (.C(clk),
-        .CE(1'b1),
-        .D(\blClkIn[0]_i_1_n_0 ),
-        .Q(blClkIn[0]),
-        .R(blExc0));
-  FDRE \blClkIn_reg[1] 
-       (.C(clk),
-        .CE(1'b1),
-        .D(\blClkIn[1]_i_1_n_0 ),
-        .Q(blClkIn[1]),
-        .R(blExc0));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
-  LUT2 #(
-    .INIT(4'h4)) 
-    \blClkOut[0]_i_1 
-       (.I0(blClkOut[1]),
-        .I1(GPIOPortWr[16]),
-        .O(\blClkOut[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
-  LUT3 #(
-    .INIT(8'hB0)) 
-    \blClkOut[1]_i_1 
-       (.I0(blClkOut[1]),
-        .I1(GPIOPortWr[16]),
-        .I2(blClkOut[0]),
-        .O(\blClkOut[1]_i_1_n_0 ));
-  FDRE \blClkOut_reg[0] 
-       (.C(clk),
-        .CE(1'b1),
-        .D(\blClkOut[0]_i_1_n_0 ),
-        .Q(blClkOut[0]),
-        .R(blExc0));
-  FDRE \blClkOut_reg[1] 
-       (.C(clk),
-        .CE(1'b1),
-        .D(\blClkOut[1]_i_1_n_0 ),
-        .Q(blClkOut[1]),
-        .R(blExc0));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
-  LUT2 #(
-    .INIT(4'h4)) 
-    \blExc[0]_i_1 
-       (.I0(blExc[1]),
-        .I1(GPIOPortWr[20]),
-        .O(\blExc[0]_i_1_n_0 ));
-  LUT2 #(
-    .INIT(4'h7)) 
-    \blExc[1]_i_1 
-       (.I0(reset_n),
-        .I1(GPIOPortWr[21]),
-        .O(blExc0));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
-  LUT3 #(
-    .INIT(8'hB0)) 
-    \blExc[1]_i_2 
-       (.I0(blExc[1]),
-        .I1(GPIOPortWr[20]),
-        .I2(blExc[0]),
-        .O(\blExc[1]_i_2_n_0 ));
-  FDRE \blExc_reg[0] 
-       (.C(clk),
-        .CE(1'b1),
-        .D(\blExc[0]_i_1_n_0 ),
-        .Q(blExc[0]),
-        .R(blExc0));
-  FDRE \blExc_reg[1] 
-       (.C(clk),
-        .CE(1'b1),
-        .D(\blExc[1]_i_2_n_0 ),
-        .Q(blExc[1]),
-        .R(blExc0));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
-  LUT2 #(
-    .INIT(4'h4)) 
-    \blRdData[0]_i_1 
-       (.I0(blRdData[1]),
-        .I1(GPIOPortWr[19]),
-        .O(\blRdData[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
-  LUT3 #(
-    .INIT(8'hB0)) 
-    \blRdData[1]_i_1 
-       (.I0(blRdData[1]),
-        .I1(GPIOPortWr[19]),
-        .I2(blRdData[0]),
-        .O(\blRdData[1]_i_1_n_0 ));
-  FDRE \blRdData_reg[0] 
-       (.C(clk),
-        .CE(1'b1),
-        .D(\blRdData[0]_i_1_n_0 ),
-        .Q(blRdData[0]),
-        .R(blExc0));
-  FDRE \blRdData_reg[1] 
-       (.C(clk),
-        .CE(1'b1),
-        .D(\blRdData[1]_i_1_n_0 ),
-        .Q(blRdData[1]),
-        .R(blExc0));
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    \__13/i_ 
+       (.I0(\FSM_onehot_rdState_reg_n_0_[4] ),
+        .I1(\FSM_onehot_rdState_reg_n_0_[3] ),
+        .I2(\FSM_onehot_rdState_reg_n_0_[0] ),
+        .I3(\FSM_onehot_rdState_reg_n_0_[2] ),
+        .O(\__13/i__n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFFEFEE)) 
+    \__14/i_ 
+       (.I0(\FSM_onehot_rdState_reg_n_0_[4] ),
+        .I1(\FSM_onehot_rdState_reg_n_0_[1] ),
+        .I2(RdDataTick),
+        .I3(\FSM_onehot_rdState_reg_n_0_[0] ),
+        .I4(\FSM_onehot_rdState_reg_n_0_[3] ),
+        .I5(\FSM_onehot_rdState_reg_n_0_[2] ),
+        .O(\__14/i__n_0 ));
   GPIOTest_GPIOInterface_0_0_sr_2B_16bit byte_2_word
        (.D(w_data),
         .DIn(DIn),
@@ -944,80 +1068,67 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
         .clk(clk),
         .reset_n(reset_n));
   GPIOTest_GPIOInterface_0_0_fifo cmd_fifo
-       (.D({cmd_fifo_n_3,cmd_fifo_n_4,cmd_fifo_n_5,cmd_fifo_n_6}),
-        .\DOut_reg[7] ({cmd_fifo_n_10,cmd_fifo_n_11,cmd_fifo_n_12,cmd_fifo_n_13,cmd_fifo_n_14,cmd_fifo_n_15,cmd_fifo_n_16,cmd_fifo_n_17}),
-        .E(cmd_fifo_n_2),
-        .\FSM_sequential_fifoState_reg[1] (cmd_fifo_n_1),
-        .\FSM_sequential_fifoState_reg[1]_0 (\/i__n_0 ),
+       (.ClkInTick(ClkInTick),
+        .D(p_0_in),
+        .E(cmd_fifo_n_0),
+        .\FSM_sequential_fifoState_reg[2] (cmd_fifo_n_1),
+        .GPIOPortRd(GPIOPortRd[16]),
         .GPIOPortWr(GPIOPortWr[14:0]),
-        .\MUX_reg[2] ({cmd_fifo_n_7,cmd_fifo_n_8,cmd_fifo_n_9}),
-        .blClkIn(blClkIn),
         .clk(clk),
-        .fifo_rd_reg(cmd_fifo_n_18),
+        .empty_reg_reg_0(cmd_fifo_n_18),
+        .fifoState(fifoState),
         .fifo_reset(fifo_reset),
-        .full(full),
-        .in0(fifoState[1]),
-        .out(fifoState),
+        .out_fifo_full(out_fifo_full),
+        .\r_ptr_reg_reg[3]_0 ({cmd_fifo_n_7,cmd_fifo_n_8,cmd_fifo_n_9}),
+        .\r_ptr_reg_reg[3]_1 ({cmd_fifo_n_10,cmd_fifo_n_11,cmd_fifo_n_12,cmd_fifo_n_13,cmd_fifo_n_14,cmd_fifo_n_15,cmd_fifo_n_16,cmd_fifo_n_17}),
         .rd(rd));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFEEFEEEEE)) 
+  LUT5 #(
+    .INIT(32'hFFFFFEEE)) 
     data_ena_i_1
        (.I0(\FSM_onehot_rdState_reg_n_0_[2] ),
         .I1(\FSM_onehot_rdState_reg_n_0_[3] ),
         .I2(\FSM_onehot_rdState_reg_n_0_[0] ),
-        .I3(blRdData[0]),
-        .I4(blRdData[1]),
-        .I5(\FSM_onehot_rdState_reg_n_0_[1] ),
-        .O(data_ena_0));
+        .I3(RdDataTick),
+        .I4(\FSM_onehot_rdState_reg_n_0_[1] ),
+        .O(data_ena_33));
   FDRE data_ena_reg
        (.C(clk),
         .CE(1'b1),
-        .D(data_ena_0),
+        .D(data_ena_33),
         .Q(data_ena),
         .R(reset));
   GPIOTest_GPIOInterface_0_0_Delay dly_phi1
-       (.clk(clk),
-        .phi1(phi1),
-        .\phiState_reg[0] (\phiState_reg_n_0_[0] ),
-        .\phiState_reg[1] (\phiState_reg_n_0_[1] ),
-        .sig_in(sig_in));
+       (.Q(phi_1_int),
+        .clk(clk),
+        .phi1(phi1));
   GPIOTest_GPIOInterface_0_0_Delay_0 dly_phi2
-       (.clk(clk),
-        .delay_reg_reg(dly_phi2_n_0),
-        .phi2(phi2),
-        .\phiState_reg[0] (\phiState_reg_n_0_[0] ),
-        .\phiState_reg[1] (\phiState_reg_n_0_[1] ));
+       (.Q(phi_2_int),
+        .clk(clk),
+        .phi2(phi2));
   FDRE \edges_reg[0] 
        (.C(clk),
-        .CE(cmd_fifo_n_2),
-        .D(cmd_fifo_n_6),
+        .CE(cmd_fifo_n_0),
+        .D(p_0_in[0]),
         .Q(\edges_reg_n_0_[0] ),
         .R(fifo_reset));
   FDRE \edges_reg[1] 
        (.C(clk),
-        .CE(cmd_fifo_n_2),
-        .D(cmd_fifo_n_5),
+        .CE(cmd_fifo_n_0),
+        .D(p_0_in[1]),
         .Q(p_2_in),
         .R(fifo_reset));
   FDRE \edges_reg[2] 
        (.C(clk),
-        .CE(cmd_fifo_n_2),
-        .D(cmd_fifo_n_4),
+        .CE(cmd_fifo_n_0),
+        .D(p_0_in[2]),
         .Q(p_0_in3_in),
         .R(fifo_reset));
   FDRE \edges_reg[3] 
        (.C(clk),
-        .CE(cmd_fifo_n_2),
-        .D(cmd_fifo_n_3),
-        .Q(p_0_in),
+        .CE(cmd_fifo_n_0),
+        .D(p_0_in[3]),
+        .Q(p_0_in_0),
         .R(fifo_reset));
-  LUT3 #(
-    .INIT(8'hFE)) 
-    execState
-       (.I0(fifoState[1]),
-        .I1(fifoState[0]),
-        .I2(fifoState[2]),
-        .O(GPIOPortRd[18]));
   FDRE #(
     .INIT(1'b0)) 
     fifo_rd_reg
@@ -1027,197 +1138,198 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
         .Q(rd),
         .R(1'b0));
   LUT2 #(
-    .INIT(4'h2)) 
-    i___1_i_1
-       (.I0(blRdData[1]),
-        .I1(blRdData[0]),
-        .O(i___1_i_1_n_0));
-  LUT2 #(
     .INIT(4'hE)) 
     i__carry__0_i_1
-       (.I0(phi_cnt[14]),
-        .I1(phi_cnt[15]),
+       (.I0(\phi_cnt_reg_n_0_[14] ),
+        .I1(\phi_cnt_reg_n_0_[15] ),
         .O(i__carry__0_i_1_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     i__carry__0_i_2
-       (.I0(phi_cnt[12]),
-        .I1(phi_cnt[13]),
+       (.I0(\phi_cnt_reg_n_0_[12] ),
+        .I1(\phi_cnt_reg_n_0_[13] ),
         .O(i__carry__0_i_2_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     i__carry__0_i_3
-       (.I0(phi_cnt[10]),
-        .I1(phi_cnt[11]),
+       (.I0(\phi_cnt_reg_n_0_[10] ),
+        .I1(\phi_cnt_reg_n_0_[11] ),
         .O(i__carry__0_i_3_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     i__carry__0_i_4
-       (.I0(phi_cnt[8]),
-        .I1(phi_cnt[9]),
+       (.I0(\phi_cnt_reg_n_0_[8] ),
+        .I1(\phi_cnt_reg_n_0_[9] ),
         .O(i__carry__0_i_4_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     i__carry__0_i_5
-       (.I0(phi_cnt[15]),
-        .I1(phi_cnt[14]),
+       (.I0(\phi_cnt_reg_n_0_[15] ),
+        .I1(\phi_cnt_reg_n_0_[14] ),
         .O(i__carry__0_i_5_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     i__carry__0_i_6
-       (.I0(phi_cnt[13]),
-        .I1(phi_cnt[12]),
+       (.I0(\phi_cnt_reg_n_0_[13] ),
+        .I1(\phi_cnt_reg_n_0_[12] ),
         .O(i__carry__0_i_6_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     i__carry__0_i_7
-       (.I0(phi_cnt[11]),
-        .I1(phi_cnt[10]),
+       (.I0(\phi_cnt_reg_n_0_[11] ),
+        .I1(\phi_cnt_reg_n_0_[10] ),
         .O(i__carry__0_i_7_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     i__carry__0_i_8
-       (.I0(phi_cnt[9]),
-        .I1(phi_cnt[8]),
+       (.I0(\phi_cnt_reg_n_0_[9] ),
+        .I1(\phi_cnt_reg_n_0_[8] ),
         .O(i__carry__0_i_8_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     i__carry__1_i_1
-       (.I0(phi_cnt[22]),
-        .I1(phi_cnt[23]),
+       (.I0(\phi_cnt_reg_n_0_[22] ),
+        .I1(\phi_cnt_reg_n_0_[23] ),
         .O(i__carry__1_i_1_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     i__carry__1_i_2
-       (.I0(phi_cnt[20]),
-        .I1(phi_cnt[21]),
+       (.I0(\phi_cnt_reg_n_0_[20] ),
+        .I1(\phi_cnt_reg_n_0_[21] ),
         .O(i__carry__1_i_2_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     i__carry__1_i_3
-       (.I0(phi_cnt[18]),
-        .I1(phi_cnt[19]),
+       (.I0(\phi_cnt_reg_n_0_[18] ),
+        .I1(\phi_cnt_reg_n_0_[19] ),
         .O(i__carry__1_i_3_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     i__carry__1_i_4
-       (.I0(phi_cnt[16]),
-        .I1(phi_cnt[17]),
+       (.I0(\phi_cnt_reg_n_0_[16] ),
+        .I1(\phi_cnt_reg_n_0_[17] ),
         .O(i__carry__1_i_4_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     i__carry__1_i_5
-       (.I0(phi_cnt[23]),
-        .I1(phi_cnt[22]),
+       (.I0(\phi_cnt_reg_n_0_[23] ),
+        .I1(\phi_cnt_reg_n_0_[22] ),
         .O(i__carry__1_i_5_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     i__carry__1_i_6
-       (.I0(phi_cnt[21]),
-        .I1(phi_cnt[20]),
+       (.I0(\phi_cnt_reg_n_0_[21] ),
+        .I1(\phi_cnt_reg_n_0_[20] ),
         .O(i__carry__1_i_6_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     i__carry__1_i_7
-       (.I0(phi_cnt[19]),
-        .I1(phi_cnt[18]),
+       (.I0(\phi_cnt_reg_n_0_[19] ),
+        .I1(\phi_cnt_reg_n_0_[18] ),
         .O(i__carry__1_i_7_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     i__carry__1_i_8
-       (.I0(phi_cnt[17]),
-        .I1(phi_cnt[16]),
+       (.I0(\phi_cnt_reg_n_0_[17] ),
+        .I1(\phi_cnt_reg_n_0_[16] ),
         .O(i__carry__1_i_8_n_0));
   LUT2 #(
     .INIT(4'h2)) 
     i__carry__2_i_1
-       (.I0(phi_cnt[30]),
-        .I1(phi_cnt[31]),
+       (.I0(\phi_cnt_reg_n_0_[30] ),
+        .I1(\phi_cnt_reg_n_0_[31] ),
         .O(i__carry__2_i_1_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     i__carry__2_i_2
-       (.I0(phi_cnt[28]),
-        .I1(phi_cnt[29]),
+       (.I0(\phi_cnt_reg_n_0_[28] ),
+        .I1(\phi_cnt_reg_n_0_[29] ),
         .O(i__carry__2_i_2_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     i__carry__2_i_3
-       (.I0(phi_cnt[26]),
-        .I1(phi_cnt[27]),
+       (.I0(\phi_cnt_reg_n_0_[26] ),
+        .I1(\phi_cnt_reg_n_0_[27] ),
         .O(i__carry__2_i_3_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     i__carry__2_i_4
-       (.I0(phi_cnt[24]),
-        .I1(phi_cnt[25]),
+       (.I0(\phi_cnt_reg_n_0_[24] ),
+        .I1(\phi_cnt_reg_n_0_[25] ),
         .O(i__carry__2_i_4_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     i__carry__2_i_5
-       (.I0(phi_cnt[31]),
-        .I1(phi_cnt[30]),
+       (.I0(\phi_cnt_reg_n_0_[31] ),
+        .I1(\phi_cnt_reg_n_0_[30] ),
         .O(i__carry__2_i_5_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     i__carry__2_i_6
-       (.I0(phi_cnt[29]),
-        .I1(phi_cnt[28]),
+       (.I0(\phi_cnt_reg_n_0_[29] ),
+        .I1(\phi_cnt_reg_n_0_[28] ),
         .O(i__carry__2_i_6_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     i__carry__2_i_7
-       (.I0(phi_cnt[27]),
-        .I1(phi_cnt[26]),
+       (.I0(\phi_cnt_reg_n_0_[27] ),
+        .I1(\phi_cnt_reg_n_0_[26] ),
         .O(i__carry__2_i_7_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     i__carry__2_i_8
-       (.I0(phi_cnt[25]),
-        .I1(phi_cnt[24]),
+       (.I0(\phi_cnt_reg_n_0_[25] ),
+        .I1(\phi_cnt_reg_n_0_[24] ),
         .O(i__carry__2_i_8_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     i__carry_i_1
-       (.I0(phi_cnt[6]),
-        .I1(phi_cnt[7]),
+       (.I0(\phi_cnt_reg_n_0_[6] ),
+        .I1(\phi_cnt_reg_n_0_[7] ),
         .O(i__carry_i_1_n_0));
   LUT2 #(
-    .INIT(4'h8)) 
+    .INIT(4'hE)) 
     i__carry_i_2
-       (.I0(phi_cnt[4]),
-        .I1(phi_cnt[5]),
+       (.I0(\phi_cnt_reg_n_0_[4] ),
+        .I1(\phi_cnt_reg_n_0_[5] ),
         .O(i__carry_i_2_n_0));
   LUT2 #(
-    .INIT(4'h8)) 
+    .INIT(4'hE)) 
     i__carry_i_3
-       (.I0(phi_cnt[0]),
-        .I1(phi_cnt[1]),
+       (.I0(\phi_cnt_reg_n_0_[2] ),
+        .I1(\phi_cnt_reg_n_0_[3] ),
         .O(i__carry_i_3_n_0));
   LUT2 #(
-    .INIT(4'h1)) 
+    .INIT(4'h8)) 
     i__carry_i_4
-       (.I0(phi_cnt[7]),
-        .I1(phi_cnt[6]),
+       (.I0(\phi_cnt_reg_n_0_[0] ),
+        .I1(\phi_cnt_reg_n_0_[1] ),
         .O(i__carry_i_4_n_0));
   LUT2 #(
-    .INIT(4'h2)) 
+    .INIT(4'h1)) 
     i__carry_i_5
-       (.I0(phi_cnt[5]),
-        .I1(phi_cnt[4]),
+       (.I0(\phi_cnt_reg_n_0_[7] ),
+        .I1(\phi_cnt_reg_n_0_[6] ),
         .O(i__carry_i_5_n_0));
   LUT2 #(
-    .INIT(4'h8)) 
+    .INIT(4'h1)) 
     i__carry_i_6
-       (.I0(phi_cnt[2]),
-        .I1(phi_cnt[3]),
+       (.I0(\phi_cnt_reg_n_0_[5] ),
+        .I1(\phi_cnt_reg_n_0_[4] ),
         .O(i__carry_i_6_n_0));
   LUT2 #(
-    .INIT(4'h2)) 
+    .INIT(4'h1)) 
     i__carry_i_7
-       (.I0(phi_cnt[1]),
-        .I1(phi_cnt[0]),
+       (.I0(\phi_cnt_reg_n_0_[3] ),
+        .I1(\phi_cnt_reg_n_0_[2] ),
         .O(i__carry_i_7_n_0));
+  LUT2 #(
+    .INIT(4'h2)) 
+    i__carry_i_8
+       (.I0(\phi_cnt_reg_n_0_[1] ),
+        .I1(\phi_cnt_reg_n_0_[0] ),
+        .O(i__carry_i_8_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT4 #(
     .INIT(16'hFFFE)) 
     nen_adh_i_1
@@ -1235,7 +1347,7 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
   FDSE nen_adl_reg
        (.C(clk),
         .CE(1'b1),
-        .D(\/i___0_n_0 ),
+        .D(\__13/i__n_0 ),
         .Q(nen_adl),
         .S(reset));
   LUT4 #(
@@ -1255,7 +1367,7 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
   FDSE nen_idb_reg
        (.C(clk),
         .CE(1'b1),
-        .D(\/i___1_n_0 ),
+        .D(\__14/i__n_0 ),
         .Q(nen_idb),
         .S(reset));
   LUT4 #(
@@ -1275,70 +1387,29 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
         .Q(wr),
         .R(1'b0));
   GPIOTest_GPIOInterface_0_0_EdgeDetect p1_edges
-       (.\FSM_sequential_fifoState_reg[0] (p1_edges_n_1),
-        .\FSM_sequential_fifoState_reg[0]_0 (\/i_/i__n_0 ),
-        .\FSM_sequential_fifoState_reg[1] (\/i__n_0 ),
-        .Q(\edges_reg_n_0_[0] ),
+       (.Q(phi_1_int),
         .SR(reset),
         .clk(clk),
-        .delay_reg(delay_reg),
-        .fifoState13_out(fifoState13_out),
-        .fifo_reset(fifo_reset),
-        .in0(fifoState[0]),
-        .\phiState_reg[0] (\phiState_reg_n_0_[0] ),
-        .\phiState_reg[1] (\phiState_reg_n_0_[1] ),
-        .sig_in(sig_in));
+        .delay_reg(delay_reg));
   GPIOTest_GPIOInterface_0_0_EdgeDetect_1 p2_edges
-       (.Q({p_0_in,p_0_in3_in,p_2_in,\edges_reg_n_0_[0] }),
+       (.ExcTick(ExcTick),
+        .\FSM_sequential_fifoState_reg[2] (p2_edges_n_0),
+        .Q({phi_2_int,phi_1_int}),
         .SEL(SEL),
+        .SEL_i_2_0({p_0_in_0,p_0_in3_in,p_2_in,\edges_reg_n_0_[0] }),
         .SEL_reg(p2_edges_n_1),
         .SR(reset),
         .clk(clk),
         .delay_reg(delay_reg),
-        .fifoState1(fifoState1),
-        .fifo_reset(fifo_reset),
-        .out(fifoState),
-        .\phiState_reg[0] (\phiState_reg_n_0_[0] ),
-        .\phiState_reg[1] (dly_phi2_n_0),
-        .\phiState_reg[1]_0 (SEL_i_3_n_0),
-        .\phiState_reg[1]_1 (\phiState_reg_n_0_[1] ));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
-  LUT4 #(
-    .INIT(16'h2ECC)) 
-    \phiState[0]_i_1 
-       (.I0(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I1(\phiState_reg_n_0_[0] ),
-        .I2(phi_cnt1_carry__2_n_0),
-        .I3(reset_n),
-        .O(\phiState[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
-  LUT4 #(
-    .INIT(16'h7F80)) 
-    \phiState[1]_i_1 
-       (.I0(\phiState_reg_n_0_[0] ),
-        .I1(phi_cnt1_carry__2_n_0),
-        .I2(reset_n),
-        .I3(\phiState_reg_n_0_[1] ),
-        .O(\phiState[1]_i_1_n_0 ));
-  FDRE \phiState_reg[0] 
-       (.C(clk),
-        .CE(1'b1),
-        .D(\phiState[0]_i_1_n_0 ),
-        .Q(\phiState_reg_n_0_[0] ),
-        .R(1'b0));
-  FDRE \phiState_reg[1] 
-       (.C(clk),
-        .CE(1'b1),
-        .D(\phiState[1]_i_1_n_0 ),
-        .Q(\phiState_reg_n_0_[1] ),
-        .R(1'b0));
+        .fifoState(fifoState),
+        .fifo_reset(fifo_reset));
   CARRY4 phi_cnt1_carry
        (.CI(1'b0),
         .CO({phi_cnt1_carry_n_0,phi_cnt1_carry_n_1,phi_cnt1_carry_n_2,phi_cnt1_carry_n_3}),
         .CYINIT(1'b1),
-        .DI({phi_cnt1_carry_i_1_n_0,phi_cnt1_carry_i_2_n_0,phi_cnt1_carry_i_3_n_0,phi_cnt1_carry_i_4_n_0}),
+        .DI({phi_cnt1_carry_i_1_n_0,phi_cnt1_carry_i_2_n_0,1'b0,phi_cnt1_carry_i_3_n_0}),
         .O(NLW_phi_cnt1_carry_O_UNCONNECTED[3:0]),
-        .S({phi_cnt1_carry_i_5_n_0,phi_cnt1_carry_i_6_n_0,phi_cnt1_carry_i_7_n_0,phi_cnt1_carry_i_8_n_0}));
+        .S({phi_cnt1_carry_i_4_n_0,phi_cnt1_carry_i_5_n_0,phi_cnt1_carry_i_6_n_0,phi_cnt1_carry_i_7_n_0}));
   CARRY4 phi_cnt1_carry__0
        (.CI(phi_cnt1_carry_n_0),
         .CO({phi_cnt1_carry__0_n_0,phi_cnt1_carry__0_n_1,phi_cnt1_carry__0_n_2,phi_cnt1_carry__0_n_3}),
@@ -1349,50 +1420,50 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
   LUT2 #(
     .INIT(4'hE)) 
     phi_cnt1_carry__0_i_1
-       (.I0(phi_cnt[14]),
-        .I1(phi_cnt[15]),
+       (.I0(\phi_cnt_reg_n_0_[14] ),
+        .I1(\phi_cnt_reg_n_0_[15] ),
         .O(phi_cnt1_carry__0_i_1_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     phi_cnt1_carry__0_i_2
-       (.I0(phi_cnt[12]),
-        .I1(phi_cnt[13]),
+       (.I0(\phi_cnt_reg_n_0_[12] ),
+        .I1(\phi_cnt_reg_n_0_[13] ),
         .O(phi_cnt1_carry__0_i_2_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     phi_cnt1_carry__0_i_3
-       (.I0(phi_cnt[10]),
-        .I1(phi_cnt[11]),
+       (.I0(\phi_cnt_reg_n_0_[10] ),
+        .I1(\phi_cnt_reg_n_0_[11] ),
         .O(phi_cnt1_carry__0_i_3_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     phi_cnt1_carry__0_i_4
-       (.I0(phi_cnt[8]),
-        .I1(phi_cnt[9]),
+       (.I0(\phi_cnt_reg_n_0_[8] ),
+        .I1(\phi_cnt_reg_n_0_[9] ),
         .O(phi_cnt1_carry__0_i_4_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     phi_cnt1_carry__0_i_5
-       (.I0(phi_cnt[15]),
-        .I1(phi_cnt[14]),
+       (.I0(\phi_cnt_reg_n_0_[15] ),
+        .I1(\phi_cnt_reg_n_0_[14] ),
         .O(phi_cnt1_carry__0_i_5_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     phi_cnt1_carry__0_i_6
-       (.I0(phi_cnt[13]),
-        .I1(phi_cnt[12]),
+       (.I0(\phi_cnt_reg_n_0_[13] ),
+        .I1(\phi_cnt_reg_n_0_[12] ),
         .O(phi_cnt1_carry__0_i_6_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     phi_cnt1_carry__0_i_7
-       (.I0(phi_cnt[11]),
-        .I1(phi_cnt[10]),
+       (.I0(\phi_cnt_reg_n_0_[11] ),
+        .I1(\phi_cnt_reg_n_0_[10] ),
         .O(phi_cnt1_carry__0_i_7_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     phi_cnt1_carry__0_i_8
-       (.I0(phi_cnt[9]),
-        .I1(phi_cnt[8]),
+       (.I0(\phi_cnt_reg_n_0_[9] ),
+        .I1(\phi_cnt_reg_n_0_[8] ),
         .O(phi_cnt1_carry__0_i_8_n_0));
   CARRY4 phi_cnt1_carry__1
        (.CI(phi_cnt1_carry__0_n_0),
@@ -1404,50 +1475,50 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
   LUT2 #(
     .INIT(4'hE)) 
     phi_cnt1_carry__1_i_1
-       (.I0(phi_cnt[22]),
-        .I1(phi_cnt[23]),
+       (.I0(\phi_cnt_reg_n_0_[22] ),
+        .I1(\phi_cnt_reg_n_0_[23] ),
         .O(phi_cnt1_carry__1_i_1_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     phi_cnt1_carry__1_i_2
-       (.I0(phi_cnt[20]),
-        .I1(phi_cnt[21]),
+       (.I0(\phi_cnt_reg_n_0_[20] ),
+        .I1(\phi_cnt_reg_n_0_[21] ),
         .O(phi_cnt1_carry__1_i_2_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     phi_cnt1_carry__1_i_3
-       (.I0(phi_cnt[18]),
-        .I1(phi_cnt[19]),
+       (.I0(\phi_cnt_reg_n_0_[18] ),
+        .I1(\phi_cnt_reg_n_0_[19] ),
         .O(phi_cnt1_carry__1_i_3_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     phi_cnt1_carry__1_i_4
-       (.I0(phi_cnt[16]),
-        .I1(phi_cnt[17]),
+       (.I0(\phi_cnt_reg_n_0_[16] ),
+        .I1(\phi_cnt_reg_n_0_[17] ),
         .O(phi_cnt1_carry__1_i_4_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     phi_cnt1_carry__1_i_5
-       (.I0(phi_cnt[23]),
-        .I1(phi_cnt[22]),
+       (.I0(\phi_cnt_reg_n_0_[23] ),
+        .I1(\phi_cnt_reg_n_0_[22] ),
         .O(phi_cnt1_carry__1_i_5_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     phi_cnt1_carry__1_i_6
-       (.I0(phi_cnt[21]),
-        .I1(phi_cnt[20]),
+       (.I0(\phi_cnt_reg_n_0_[21] ),
+        .I1(\phi_cnt_reg_n_0_[20] ),
         .O(phi_cnt1_carry__1_i_6_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     phi_cnt1_carry__1_i_7
-       (.I0(phi_cnt[19]),
-        .I1(phi_cnt[18]),
+       (.I0(\phi_cnt_reg_n_0_[19] ),
+        .I1(\phi_cnt_reg_n_0_[18] ),
         .O(phi_cnt1_carry__1_i_7_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     phi_cnt1_carry__1_i_8
-       (.I0(phi_cnt[17]),
-        .I1(phi_cnt[16]),
+       (.I0(\phi_cnt_reg_n_0_[17] ),
+        .I1(\phi_cnt_reg_n_0_[16] ),
         .O(phi_cnt1_carry__1_i_8_n_0));
   CARRY4 phi_cnt1_carry__2
        (.CI(phi_cnt1_carry__1_n_0),
@@ -1459,106 +1530,100 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
   LUT2 #(
     .INIT(4'h2)) 
     phi_cnt1_carry__2_i_1
-       (.I0(phi_cnt[30]),
-        .I1(phi_cnt[31]),
+       (.I0(\phi_cnt_reg_n_0_[30] ),
+        .I1(\phi_cnt_reg_n_0_[31] ),
         .O(phi_cnt1_carry__2_i_1_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     phi_cnt1_carry__2_i_2
-       (.I0(phi_cnt[28]),
-        .I1(phi_cnt[29]),
+       (.I0(\phi_cnt_reg_n_0_[28] ),
+        .I1(\phi_cnt_reg_n_0_[29] ),
         .O(phi_cnt1_carry__2_i_2_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     phi_cnt1_carry__2_i_3
-       (.I0(phi_cnt[26]),
-        .I1(phi_cnt[27]),
+       (.I0(\phi_cnt_reg_n_0_[26] ),
+        .I1(\phi_cnt_reg_n_0_[27] ),
         .O(phi_cnt1_carry__2_i_3_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     phi_cnt1_carry__2_i_4
-       (.I0(phi_cnt[24]),
-        .I1(phi_cnt[25]),
+       (.I0(\phi_cnt_reg_n_0_[24] ),
+        .I1(\phi_cnt_reg_n_0_[25] ),
         .O(phi_cnt1_carry__2_i_4_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     phi_cnt1_carry__2_i_5
-       (.I0(phi_cnt[31]),
-        .I1(phi_cnt[30]),
+       (.I0(\phi_cnt_reg_n_0_[31] ),
+        .I1(\phi_cnt_reg_n_0_[30] ),
         .O(phi_cnt1_carry__2_i_5_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     phi_cnt1_carry__2_i_6
-       (.I0(phi_cnt[29]),
-        .I1(phi_cnt[28]),
+       (.I0(\phi_cnt_reg_n_0_[29] ),
+        .I1(\phi_cnt_reg_n_0_[28] ),
         .O(phi_cnt1_carry__2_i_6_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     phi_cnt1_carry__2_i_7
-       (.I0(phi_cnt[27]),
-        .I1(phi_cnt[26]),
+       (.I0(\phi_cnt_reg_n_0_[27] ),
+        .I1(\phi_cnt_reg_n_0_[26] ),
         .O(phi_cnt1_carry__2_i_7_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     phi_cnt1_carry__2_i_8
-       (.I0(phi_cnt[25]),
-        .I1(phi_cnt[24]),
+       (.I0(\phi_cnt_reg_n_0_[25] ),
+        .I1(\phi_cnt_reg_n_0_[24] ),
         .O(phi_cnt1_carry__2_i_8_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     phi_cnt1_carry_i_1
-       (.I0(phi_cnt[6]),
-        .I1(phi_cnt[7]),
+       (.I0(\phi_cnt_reg_n_0_[6] ),
+        .I1(\phi_cnt_reg_n_0_[7] ),
         .O(phi_cnt1_carry_i_1_n_0));
   LUT2 #(
-    .INIT(4'hE)) 
+    .INIT(4'h8)) 
     phi_cnt1_carry_i_2
-       (.I0(phi_cnt[5]),
-        .I1(phi_cnt[4]),
+       (.I0(\phi_cnt_reg_n_0_[5] ),
+        .I1(\phi_cnt_reg_n_0_[4] ),
         .O(phi_cnt1_carry_i_2_n_0));
   LUT2 #(
-    .INIT(4'hE)) 
+    .INIT(4'h8)) 
     phi_cnt1_carry_i_3
-       (.I0(phi_cnt[3]),
-        .I1(phi_cnt[2]),
+       (.I0(\phi_cnt_reg_n_0_[0] ),
+        .I1(\phi_cnt_reg_n_0_[1] ),
         .O(phi_cnt1_carry_i_3_n_0));
   LUT2 #(
-    .INIT(4'h8)) 
+    .INIT(4'h1)) 
     phi_cnt1_carry_i_4
-       (.I0(phi_cnt[0]),
-        .I1(phi_cnt[1]),
+       (.I0(\phi_cnt_reg_n_0_[7] ),
+        .I1(\phi_cnt_reg_n_0_[6] ),
         .O(phi_cnt1_carry_i_4_n_0));
   LUT2 #(
-    .INIT(4'h1)) 
+    .INIT(4'h2)) 
     phi_cnt1_carry_i_5
-       (.I0(phi_cnt[7]),
-        .I1(phi_cnt[6]),
+       (.I0(\phi_cnt_reg_n_0_[5] ),
+        .I1(\phi_cnt_reg_n_0_[4] ),
         .O(phi_cnt1_carry_i_5_n_0));
   LUT2 #(
-    .INIT(4'h1)) 
+    .INIT(4'h8)) 
     phi_cnt1_carry_i_6
-       (.I0(phi_cnt[4]),
-        .I1(phi_cnt[5]),
+       (.I0(\phi_cnt_reg_n_0_[3] ),
+        .I1(\phi_cnt_reg_n_0_[2] ),
         .O(phi_cnt1_carry_i_6_n_0));
   LUT2 #(
-    .INIT(4'h1)) 
-    phi_cnt1_carry_i_7
-       (.I0(phi_cnt[2]),
-        .I1(phi_cnt[3]),
-        .O(phi_cnt1_carry_i_7_n_0));
-  LUT2 #(
     .INIT(4'h2)) 
-    phi_cnt1_carry_i_8
-       (.I0(phi_cnt[1]),
-        .I1(phi_cnt[0]),
-        .O(phi_cnt1_carry_i_8_n_0));
+    phi_cnt1_carry_i_7
+       (.I0(\phi_cnt_reg_n_0_[1] ),
+        .I1(\phi_cnt_reg_n_0_[0] ),
+        .O(phi_cnt1_carry_i_7_n_0));
   CARRY4 \phi_cnt1_inferred__0/i__carry 
        (.CI(1'b0),
         .CO({\phi_cnt1_inferred__0/i__carry_n_0 ,\phi_cnt1_inferred__0/i__carry_n_1 ,\phi_cnt1_inferred__0/i__carry_n_2 ,\phi_cnt1_inferred__0/i__carry_n_3 }),
         .CYINIT(1'b1),
-        .DI({i__carry_i_1_n_0,i__carry_i_2_n_0,1'b0,i__carry_i_3_n_0}),
+        .DI({i__carry_i_1_n_0,i__carry_i_2_n_0,i__carry_i_3_n_0,i__carry_i_4_n_0}),
         .O(\NLW_phi_cnt1_inferred__0/i__carry_O_UNCONNECTED [3:0]),
-        .S({i__carry_i_4_n_0,i__carry_i_5_n_0,i__carry_i_6_n_0,i__carry_i_7_n_0}));
+        .S({i__carry_i_5_n_0,i__carry_i_6_n_0,i__carry_i_7_n_0,i__carry_i_8_n_0}));
   CARRY4 \phi_cnt1_inferred__0/i__carry__0 
        (.CI(\phi_cnt1_inferred__0/i__carry_n_0 ),
         .CO({\phi_cnt1_inferred__0/i__carry__0_n_0 ,\phi_cnt1_inferred__0/i__carry__0_n_1 ,\phi_cnt1_inferred__0/i__carry__0_n_2 ,\phi_cnt1_inferred__0/i__carry__0_n_3 }),
@@ -1580,651 +1645,688 @@ module GPIOTest_GPIOInterface_0_0_GPIOInterface
         .DI({i__carry__2_i_1_n_0,i__carry__2_i_2_n_0,i__carry__2_i_3_n_0,i__carry__2_i_4_n_0}),
         .O(\NLW_phi_cnt1_inferred__0/i__carry__2_O_UNCONNECTED [3:0]),
         .S({i__carry__2_i_5_n_0,i__carry__2_i_6_n_0,i__carry__2_i_7_n_0,i__carry__2_i_8_n_0}));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
-  LUT4 #(
-    .INIT(16'h0151)) 
+  LUT6 #(
+    .INIT(64'h0155015501550101)) 
     \phi_cnt[0]_i_1 
-       (.I0(phi_cnt[0]),
+       (.I0(\phi_cnt_reg_n_0_[0] ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[0]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[10]_i_1 
-       (.I0(phi_cnt0[10]),
+       (.I0(\phi_cnt_reg[12]_i_2_n_6 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[10]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[10]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[11]_i_1 
-       (.I0(phi_cnt0[11]),
+       (.I0(\phi_cnt_reg[12]_i_2_n_5 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[11]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[11]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[12]_i_1 
-       (.I0(phi_cnt0[12]),
+       (.I0(\phi_cnt_reg[12]_i_2_n_4 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[12]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[12]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[13]_i_1 
-       (.I0(phi_cnt0[13]),
+       (.I0(\phi_cnt_reg[16]_i_2_n_7 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[13]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[13]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[14]_i_1 
-       (.I0(phi_cnt0[14]),
+       (.I0(\phi_cnt_reg[16]_i_2_n_6 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[14]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[14]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[15]_i_1 
-       (.I0(phi_cnt0[15]),
+       (.I0(\phi_cnt_reg[16]_i_2_n_5 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[15]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[15]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[16]_i_1 
-       (.I0(phi_cnt0[16]),
+       (.I0(\phi_cnt_reg[16]_i_2_n_4 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[16]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[16]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[17]_i_1 
-       (.I0(phi_cnt0[17]),
+       (.I0(\phi_cnt_reg[20]_i_2_n_7 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[17]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[17]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[18]_i_1 
-       (.I0(phi_cnt0[18]),
+       (.I0(\phi_cnt_reg[20]_i_2_n_6 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[18]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[18]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[19]_i_1 
-       (.I0(phi_cnt0[19]),
+       (.I0(\phi_cnt_reg[20]_i_2_n_5 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[19]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[19]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[1]_i_1 
-       (.I0(phi_cnt0[1]),
+       (.I0(\phi_cnt_reg[4]_i_2_n_7 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[1]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[20]_i_1 
-       (.I0(phi_cnt0[20]),
+       (.I0(\phi_cnt_reg[20]_i_2_n_4 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[20]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[20]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[21]_i_1 
-       (.I0(phi_cnt0[21]),
+       (.I0(\phi_cnt_reg[24]_i_2_n_7 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[21]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[21]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[22]_i_1 
-       (.I0(phi_cnt0[22]),
+       (.I0(\phi_cnt_reg[24]_i_2_n_6 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[22]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[22]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[23]_i_1 
-       (.I0(phi_cnt0[23]),
+       (.I0(\phi_cnt_reg[24]_i_2_n_5 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[23]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[23]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[24]_i_1 
-       (.I0(phi_cnt0[24]),
+       (.I0(\phi_cnt_reg[24]_i_2_n_4 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[24]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[24]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[25]_i_1 
-       (.I0(phi_cnt0[25]),
+       (.I0(\phi_cnt_reg[28]_i_2_n_7 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[25]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[25]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[26]_i_1 
-       (.I0(phi_cnt0[26]),
+       (.I0(\phi_cnt_reg[28]_i_2_n_6 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[26]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[26]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[27]_i_1 
-       (.I0(phi_cnt0[27]),
+       (.I0(\phi_cnt_reg[28]_i_2_n_5 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[27]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[27]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[28]_i_1 
-       (.I0(phi_cnt0[28]),
+       (.I0(\phi_cnt_reg[28]_i_2_n_4 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[28]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[28]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[29]_i_1 
-       (.I0(phi_cnt0[29]),
+       (.I0(\phi_cnt_reg[31]_i_2_n_7 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[29]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[29]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[2]_i_1 
-       (.I0(phi_cnt0[2]),
+       (.I0(\phi_cnt_reg[4]_i_2_n_6 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[2]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[30]_i_1 
-       (.I0(phi_cnt0[30]),
+       (.I0(\phi_cnt_reg[31]_i_2_n_6 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[30]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[30]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[31]_i_1 
-       (.I0(phi_cnt0[31]),
+       (.I0(\phi_cnt_reg[31]_i_2_n_5 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[31]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[31]));
+  LUT2 #(
+    .INIT(4'h1)) 
+    \phi_cnt[31]_i_3 
+       (.I0(\FSM_onehot_phiState_reg_n_0_[1] ),
+        .I1(\FSM_onehot_phiState_reg_n_0_[3] ),
+        .O(\phi_cnt[31]_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[3]_i_1 
-       (.I0(phi_cnt0[3]),
+       (.I0(\phi_cnt_reg[4]_i_2_n_5 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[3]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[4]_i_1 
-       (.I0(phi_cnt0[4]),
+       (.I0(\phi_cnt_reg[4]_i_2_n_4 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[4]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[5]_i_1 
-       (.I0(phi_cnt0[5]),
+       (.I0(\phi_cnt_reg[8]_i_2_n_7 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[5]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[6]_i_1 
-       (.I0(phi_cnt0[6]),
+       (.I0(\phi_cnt_reg[8]_i_2_n_6 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[6]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[6]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[7]_i_1 
-       (.I0(phi_cnt0[7]),
+       (.I0(\phi_cnt_reg[8]_i_2_n_5 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[7]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[8]_i_1 
-       (.I0(phi_cnt0[8]),
+       (.I0(\phi_cnt_reg[8]_i_2_n_4 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[8]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
-  LUT4 #(
-    .INIT(16'h02A2)) 
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[8]));
+  LUT6 #(
+    .INIT(64'h02AA02AA02AA0202)) 
     \phi_cnt[9]_i_1 
-       (.I0(phi_cnt0[9]),
+       (.I0(\phi_cnt_reg[12]_i_2_n_7 ),
         .I1(\phi_cnt1_inferred__0/i__carry__2_n_0 ),
-        .I2(\phiState_reg_n_0_[0] ),
+        .I2(\phi_cnt[31]_i_3_n_0 ),
         .I3(phi_cnt1_carry__2_n_0),
-        .O(\phi_cnt[9]_i_1_n_0 ));
+        .I4(phi_2_int),
+        .I5(phi_1_int),
+        .O(phi_cnt[9]));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[0] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[0]_i_1_n_0 ),
-        .Q(phi_cnt[0]),
+        .D(phi_cnt[0]),
+        .Q(\phi_cnt_reg_n_0_[0] ),
         .R(reset));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[10] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[10]_i_1_n_0 ),
-        .Q(phi_cnt[10]),
+        .D(phi_cnt[10]),
+        .Q(\phi_cnt_reg_n_0_[10] ),
         .R(reset));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[11] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[11]_i_1_n_0 ),
-        .Q(phi_cnt[11]),
+        .D(phi_cnt[11]),
+        .Q(\phi_cnt_reg_n_0_[11] ),
         .R(reset));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[12] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[12]_i_1_n_0 ),
-        .Q(phi_cnt[12]),
+        .D(phi_cnt[12]),
+        .Q(\phi_cnt_reg_n_0_[12] ),
         .R(reset));
   CARRY4 \phi_cnt_reg[12]_i_2 
        (.CI(\phi_cnt_reg[8]_i_2_n_0 ),
         .CO({\phi_cnt_reg[12]_i_2_n_0 ,\phi_cnt_reg[12]_i_2_n_1 ,\phi_cnt_reg[12]_i_2_n_2 ,\phi_cnt_reg[12]_i_2_n_3 }),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O(phi_cnt0[12:9]),
-        .S(phi_cnt[12:9]));
+        .O({\phi_cnt_reg[12]_i_2_n_4 ,\phi_cnt_reg[12]_i_2_n_5 ,\phi_cnt_reg[12]_i_2_n_6 ,\phi_cnt_reg[12]_i_2_n_7 }),
+        .S({\phi_cnt_reg_n_0_[12] ,\phi_cnt_reg_n_0_[11] ,\phi_cnt_reg_n_0_[10] ,\phi_cnt_reg_n_0_[9] }));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[13] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[13]_i_1_n_0 ),
-        .Q(phi_cnt[13]),
+        .D(phi_cnt[13]),
+        .Q(\phi_cnt_reg_n_0_[13] ),
         .R(reset));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[14] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[14]_i_1_n_0 ),
-        .Q(phi_cnt[14]),
+        .D(phi_cnt[14]),
+        .Q(\phi_cnt_reg_n_0_[14] ),
         .R(reset));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[15] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[15]_i_1_n_0 ),
-        .Q(phi_cnt[15]),
+        .D(phi_cnt[15]),
+        .Q(\phi_cnt_reg_n_0_[15] ),
         .R(reset));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[16] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[16]_i_1_n_0 ),
-        .Q(phi_cnt[16]),
+        .D(phi_cnt[16]),
+        .Q(\phi_cnt_reg_n_0_[16] ),
         .R(reset));
   CARRY4 \phi_cnt_reg[16]_i_2 
        (.CI(\phi_cnt_reg[12]_i_2_n_0 ),
         .CO({\phi_cnt_reg[16]_i_2_n_0 ,\phi_cnt_reg[16]_i_2_n_1 ,\phi_cnt_reg[16]_i_2_n_2 ,\phi_cnt_reg[16]_i_2_n_3 }),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O(phi_cnt0[16:13]),
-        .S(phi_cnt[16:13]));
+        .O({\phi_cnt_reg[16]_i_2_n_4 ,\phi_cnt_reg[16]_i_2_n_5 ,\phi_cnt_reg[16]_i_2_n_6 ,\phi_cnt_reg[16]_i_2_n_7 }),
+        .S({\phi_cnt_reg_n_0_[16] ,\phi_cnt_reg_n_0_[15] ,\phi_cnt_reg_n_0_[14] ,\phi_cnt_reg_n_0_[13] }));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[17] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[17]_i_1_n_0 ),
-        .Q(phi_cnt[17]),
+        .D(phi_cnt[17]),
+        .Q(\phi_cnt_reg_n_0_[17] ),
         .R(reset));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[18] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[18]_i_1_n_0 ),
-        .Q(phi_cnt[18]),
+        .D(phi_cnt[18]),
+        .Q(\phi_cnt_reg_n_0_[18] ),
         .R(reset));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[19] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[19]_i_1_n_0 ),
-        .Q(phi_cnt[19]),
+        .D(phi_cnt[19]),
+        .Q(\phi_cnt_reg_n_0_[19] ),
         .R(reset));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[1] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[1]_i_1_n_0 ),
-        .Q(phi_cnt[1]),
+        .D(phi_cnt[1]),
+        .Q(\phi_cnt_reg_n_0_[1] ),
         .R(reset));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[20] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[20]_i_1_n_0 ),
-        .Q(phi_cnt[20]),
+        .D(phi_cnt[20]),
+        .Q(\phi_cnt_reg_n_0_[20] ),
         .R(reset));
   CARRY4 \phi_cnt_reg[20]_i_2 
        (.CI(\phi_cnt_reg[16]_i_2_n_0 ),
         .CO({\phi_cnt_reg[20]_i_2_n_0 ,\phi_cnt_reg[20]_i_2_n_1 ,\phi_cnt_reg[20]_i_2_n_2 ,\phi_cnt_reg[20]_i_2_n_3 }),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O(phi_cnt0[20:17]),
-        .S(phi_cnt[20:17]));
+        .O({\phi_cnt_reg[20]_i_2_n_4 ,\phi_cnt_reg[20]_i_2_n_5 ,\phi_cnt_reg[20]_i_2_n_6 ,\phi_cnt_reg[20]_i_2_n_7 }),
+        .S({\phi_cnt_reg_n_0_[20] ,\phi_cnt_reg_n_0_[19] ,\phi_cnt_reg_n_0_[18] ,\phi_cnt_reg_n_0_[17] }));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[21] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[21]_i_1_n_0 ),
-        .Q(phi_cnt[21]),
+        .D(phi_cnt[21]),
+        .Q(\phi_cnt_reg_n_0_[21] ),
         .R(reset));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[22] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[22]_i_1_n_0 ),
-        .Q(phi_cnt[22]),
+        .D(phi_cnt[22]),
+        .Q(\phi_cnt_reg_n_0_[22] ),
         .R(reset));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[23] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[23]_i_1_n_0 ),
-        .Q(phi_cnt[23]),
+        .D(phi_cnt[23]),
+        .Q(\phi_cnt_reg_n_0_[23] ),
         .R(reset));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[24] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[24]_i_1_n_0 ),
-        .Q(phi_cnt[24]),
+        .D(phi_cnt[24]),
+        .Q(\phi_cnt_reg_n_0_[24] ),
         .R(reset));
   CARRY4 \phi_cnt_reg[24]_i_2 
        (.CI(\phi_cnt_reg[20]_i_2_n_0 ),
         .CO({\phi_cnt_reg[24]_i_2_n_0 ,\phi_cnt_reg[24]_i_2_n_1 ,\phi_cnt_reg[24]_i_2_n_2 ,\phi_cnt_reg[24]_i_2_n_3 }),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O(phi_cnt0[24:21]),
-        .S(phi_cnt[24:21]));
+        .O({\phi_cnt_reg[24]_i_2_n_4 ,\phi_cnt_reg[24]_i_2_n_5 ,\phi_cnt_reg[24]_i_2_n_6 ,\phi_cnt_reg[24]_i_2_n_7 }),
+        .S({\phi_cnt_reg_n_0_[24] ,\phi_cnt_reg_n_0_[23] ,\phi_cnt_reg_n_0_[22] ,\phi_cnt_reg_n_0_[21] }));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[25] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[25]_i_1_n_0 ),
-        .Q(phi_cnt[25]),
+        .D(phi_cnt[25]),
+        .Q(\phi_cnt_reg_n_0_[25] ),
         .R(reset));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[26] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[26]_i_1_n_0 ),
-        .Q(phi_cnt[26]),
+        .D(phi_cnt[26]),
+        .Q(\phi_cnt_reg_n_0_[26] ),
         .R(reset));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[27] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[27]_i_1_n_0 ),
-        .Q(phi_cnt[27]),
+        .D(phi_cnt[27]),
+        .Q(\phi_cnt_reg_n_0_[27] ),
         .R(reset));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[28] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[28]_i_1_n_0 ),
-        .Q(phi_cnt[28]),
+        .D(phi_cnt[28]),
+        .Q(\phi_cnt_reg_n_0_[28] ),
         .R(reset));
   CARRY4 \phi_cnt_reg[28]_i_2 
        (.CI(\phi_cnt_reg[24]_i_2_n_0 ),
         .CO({\phi_cnt_reg[28]_i_2_n_0 ,\phi_cnt_reg[28]_i_2_n_1 ,\phi_cnt_reg[28]_i_2_n_2 ,\phi_cnt_reg[28]_i_2_n_3 }),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O(phi_cnt0[28:25]),
-        .S(phi_cnt[28:25]));
+        .O({\phi_cnt_reg[28]_i_2_n_4 ,\phi_cnt_reg[28]_i_2_n_5 ,\phi_cnt_reg[28]_i_2_n_6 ,\phi_cnt_reg[28]_i_2_n_7 }),
+        .S({\phi_cnt_reg_n_0_[28] ,\phi_cnt_reg_n_0_[27] ,\phi_cnt_reg_n_0_[26] ,\phi_cnt_reg_n_0_[25] }));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[29] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[29]_i_1_n_0 ),
-        .Q(phi_cnt[29]),
+        .D(phi_cnt[29]),
+        .Q(\phi_cnt_reg_n_0_[29] ),
         .R(reset));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[2] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[2]_i_1_n_0 ),
-        .Q(phi_cnt[2]),
+        .D(phi_cnt[2]),
+        .Q(\phi_cnt_reg_n_0_[2] ),
         .R(reset));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[30] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[30]_i_1_n_0 ),
-        .Q(phi_cnt[30]),
+        .D(phi_cnt[30]),
+        .Q(\phi_cnt_reg_n_0_[30] ),
         .R(reset));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[31] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[31]_i_1_n_0 ),
-        .Q(phi_cnt[31]),
+        .D(phi_cnt[31]),
+        .Q(\phi_cnt_reg_n_0_[31] ),
         .R(reset));
   CARRY4 \phi_cnt_reg[31]_i_2 
        (.CI(\phi_cnt_reg[28]_i_2_n_0 ),
         .CO({\NLW_phi_cnt_reg[31]_i_2_CO_UNCONNECTED [3:2],\phi_cnt_reg[31]_i_2_n_2 ,\phi_cnt_reg[31]_i_2_n_3 }),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O({\NLW_phi_cnt_reg[31]_i_2_O_UNCONNECTED [3],phi_cnt0[31:29]}),
-        .S({1'b0,phi_cnt[31:29]}));
+        .O({\NLW_phi_cnt_reg[31]_i_2_O_UNCONNECTED [3],\phi_cnt_reg[31]_i_2_n_5 ,\phi_cnt_reg[31]_i_2_n_6 ,\phi_cnt_reg[31]_i_2_n_7 }),
+        .S({1'b0,\phi_cnt_reg_n_0_[31] ,\phi_cnt_reg_n_0_[30] ,\phi_cnt_reg_n_0_[29] }));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[3] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[3]_i_1_n_0 ),
-        .Q(phi_cnt[3]),
+        .D(phi_cnt[3]),
+        .Q(\phi_cnt_reg_n_0_[3] ),
         .R(reset));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[4] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[4]_i_1_n_0 ),
-        .Q(phi_cnt[4]),
+        .D(phi_cnt[4]),
+        .Q(\phi_cnt_reg_n_0_[4] ),
         .R(reset));
   CARRY4 \phi_cnt_reg[4]_i_2 
        (.CI(1'b0),
         .CO({\phi_cnt_reg[4]_i_2_n_0 ,\phi_cnt_reg[4]_i_2_n_1 ,\phi_cnt_reg[4]_i_2_n_2 ,\phi_cnt_reg[4]_i_2_n_3 }),
-        .CYINIT(phi_cnt[0]),
+        .CYINIT(\phi_cnt_reg_n_0_[0] ),
         .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O(phi_cnt0[4:1]),
-        .S(phi_cnt[4:1]));
+        .O({\phi_cnt_reg[4]_i_2_n_4 ,\phi_cnt_reg[4]_i_2_n_5 ,\phi_cnt_reg[4]_i_2_n_6 ,\phi_cnt_reg[4]_i_2_n_7 }),
+        .S({\phi_cnt_reg_n_0_[4] ,\phi_cnt_reg_n_0_[3] ,\phi_cnt_reg_n_0_[2] ,\phi_cnt_reg_n_0_[1] }));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[5] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[5]_i_1_n_0 ),
-        .Q(phi_cnt[5]),
+        .D(phi_cnt[5]),
+        .Q(\phi_cnt_reg_n_0_[5] ),
         .R(reset));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[6] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[6]_i_1_n_0 ),
-        .Q(phi_cnt[6]),
+        .D(phi_cnt[6]),
+        .Q(\phi_cnt_reg_n_0_[6] ),
         .R(reset));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[7] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[7]_i_1_n_0 ),
-        .Q(phi_cnt[7]),
+        .D(phi_cnt[7]),
+        .Q(\phi_cnt_reg_n_0_[7] ),
         .R(reset));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[8] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[8]_i_1_n_0 ),
-        .Q(phi_cnt[8]),
+        .D(phi_cnt[8]),
+        .Q(\phi_cnt_reg_n_0_[8] ),
         .R(reset));
   CARRY4 \phi_cnt_reg[8]_i_2 
        (.CI(\phi_cnt_reg[4]_i_2_n_0 ),
         .CO({\phi_cnt_reg[8]_i_2_n_0 ,\phi_cnt_reg[8]_i_2_n_1 ,\phi_cnt_reg[8]_i_2_n_2 ,\phi_cnt_reg[8]_i_2_n_3 }),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O(phi_cnt0[8:5]),
-        .S(phi_cnt[8:5]));
+        .O({\phi_cnt_reg[8]_i_2_n_4 ,\phi_cnt_reg[8]_i_2_n_5 ,\phi_cnt_reg[8]_i_2_n_6 ,\phi_cnt_reg[8]_i_2_n_7 }),
+        .S({\phi_cnt_reg_n_0_[8] ,\phi_cnt_reg_n_0_[7] ,\phi_cnt_reg_n_0_[6] ,\phi_cnt_reg_n_0_[5] }));
   FDRE #(
     .INIT(1'b0)) 
     \phi_cnt_reg[9] 
        (.C(clk),
         .CE(1'b1),
-        .D(\phi_cnt[9]_i_1_n_0 ),
-        .Q(phi_cnt[9]),
+        .D(phi_cnt[9]),
+        .Q(\phi_cnt_reg_n_0_[9] ),
         .R(reset));
   GPIOTest_GPIOInterface_0_0_fifo_2 rd_data_fifo
-       (.D(w_data),
-        .GPIOPortRd(GPIOPortRd[17:0]),
+       (.ClkOutTick(ClkOutTick),
+        .D(w_data),
+        .GPIOPortRd({GPIOPortRd[17],GPIOPortRd[15:0]}),
         .GPIOPortWr(GPIOPortWr[18:17]),
-        .blClkOut(blClkOut),
         .clk(clk),
         .fifo_reset(fifo_reset),
-        .full(full),
+        .out_fifo_full(out_fifo_full),
         .reset_n(reset_n),
         .wr(wr));
 endmodule
 
 (* ORIG_REF_NAME = "fifo" *) 
 module GPIOTest_GPIOInterface_0_0_fifo
-   (full,
-    \FSM_sequential_fifoState_reg[1] ,
-    E,
+   (E,
+    \FSM_sequential_fifoState_reg[2] ,
+    GPIOPortRd,
     D,
-    \MUX_reg[2] ,
-    \DOut_reg[7] ,
-    fifo_rd_reg,
+    \r_ptr_reg_reg[3]_0 ,
+    \r_ptr_reg_reg[3]_1 ,
+    empty_reg_reg_0,
     clk,
     fifo_reset,
-    in0,
-    \FSM_sequential_fifoState_reg[1]_0 ,
-    out,
-    blClkIn,
+    fifoState,
+    ClkInTick,
     rd,
+    out_fifo_full,
     GPIOPortWr);
-  output full;
-  output \FSM_sequential_fifoState_reg[1] ;
   output [0:0]E;
+  output \FSM_sequential_fifoState_reg[2] ;
+  output [0:0]GPIOPortRd;
   output [3:0]D;
-  output [2:0]\MUX_reg[2] ;
-  output [7:0]\DOut_reg[7] ;
-  output fifo_rd_reg;
+  output [2:0]\r_ptr_reg_reg[3]_0 ;
+  output [7:0]\r_ptr_reg_reg[3]_1 ;
+  output empty_reg_reg_0;
   input clk;
   input fifo_reset;
-  input [0:0]in0;
-  input \FSM_sequential_fifoState_reg[1]_0 ;
-  input [2:0]out;
-  input [1:0]blClkIn;
+  input [2:0]fifoState;
+  input ClkInTick;
   input rd;
+  input out_fifo_full;
   input [14:0]GPIOPortWr;
 
+  wire ClkInTick;
   wire [3:0]D;
   wire \DOut[0]_i_4_n_0 ;
   wire \DOut[0]_i_5_n_0 ;
@@ -2272,12 +2374,11 @@ module GPIOTest_GPIOInterface_0_0_fifo
   wire \DOut_reg[5]_i_3_n_0 ;
   wire \DOut_reg[6]_i_2_n_0 ;
   wire \DOut_reg[6]_i_3_n_0 ;
-  wire [7:0]\DOut_reg[7] ;
   wire \DOut_reg[7]_i_4_n_0 ;
   wire \DOut_reg[7]_i_5_n_0 ;
   wire [0:0]E;
-  wire \FSM_sequential_fifoState_reg[1] ;
-  wire \FSM_sequential_fifoState_reg[1]_0 ;
+  wire \FSM_sequential_fifoState_reg[2] ;
+  wire [0:0]GPIOPortRd;
   wire [14:0]GPIOPortWr;
   wire \MUX[0]_i_4_n_0 ;
   wire \MUX[0]_i_5_n_0 ;
@@ -2295,26 +2396,24 @@ module GPIOTest_GPIOInterface_0_0_fifo
   wire \MUX_reg[0]_i_3_n_0 ;
   wire \MUX_reg[1]_i_2_n_0 ;
   wire \MUX_reg[1]_i_3_n_0 ;
-  wire [2:0]\MUX_reg[2] ;
   wire \MUX_reg[2]_i_2_n_0 ;
   wire \MUX_reg[2]_i_3_n_0 ;
-  wire \array_reg[0]_3 ;
-  wire \array_reg[10]_10 ;
-  wire \array_reg[11]_15 ;
-  wire \array_reg[12]_5 ;
-  wire \array_reg[13]_8 ;
-  wire \array_reg[14]_9 ;
-  wire \array_reg[15][15]_i_2_n_0 ;
-  wire \array_reg[15]_16 ;
-  wire \array_reg[1]_6 ;
-  wire \array_reg[2]_11 ;
-  wire \array_reg[3]_14 ;
-  wire \array_reg[4]_1 ;
-  wire \array_reg[5]_2 ;
-  wire \array_reg[6]_12 ;
-  wire \array_reg[7]_13 ;
-  wire \array_reg[8]_4 ;
-  wire \array_reg[9]_7 ;
+  wire \array_reg[0]_14 ;
+  wire \array_reg[10]_8 ;
+  wire \array_reg[11]_1 ;
+  wire \array_reg[12]_7 ;
+  wire \array_reg[13]_6 ;
+  wire \array_reg[14]_5 ;
+  wire \array_reg[15]_4 ;
+  wire \array_reg[1]_15 ;
+  wire \array_reg[2]_16 ;
+  wire \array_reg[3]_2 ;
+  wire \array_reg[4]_13 ;
+  wire \array_reg[5]_12 ;
+  wire \array_reg[6]_11 ;
+  wire \array_reg[7]_3 ;
+  wire \array_reg[8]_10 ;
+  wire \array_reg[9]_9 ;
   wire [15:0]\array_reg_reg[0] ;
   wire [15:0]\array_reg_reg[10] ;
   wire [15:0]\array_reg_reg[11] ;
@@ -2331,7 +2430,6 @@ module GPIOTest_GPIOInterface_0_0_fifo
   wire [15:0]\array_reg_reg[7] ;
   wire [15:0]\array_reg_reg[8] ;
   wire [15:0]\array_reg_reg[9] ;
-  wire [1:0]blClkIn;
   wire clk;
   wire \edges[0]_i_4_n_0 ;
   wire \edges[0]_i_5_n_0 ;
@@ -2360,32 +2458,34 @@ module GPIOTest_GPIOInterface_0_0_fifo
   wire empty_reg_i_1_n_0;
   wire empty_reg_i_2__0_n_0;
   wire empty_reg_i_3__0_n_0;
+  wire empty_reg_reg_0;
+  wire [2:0]fifoState;
   wire fifo_empty;
-  wire fifo_rd_reg;
   wire fifo_reset;
   wire full;
   wire full_reg_i_1_n_0;
   wire full_reg_i_2_n_0;
   wire full_reg_i_3_n_0;
-  wire [0:0]in0;
-  wire [2:0]out;
+  wire out_fifo_full;
   wire [3:0]plusOp;
   wire [3:0]plusOp0_in;
   wire \r_ptr_reg[2]_i_1__0_n_0 ;
   wire \r_ptr_reg[3]_i_1_n_0 ;
-  wire [3:0]r_ptr_reg_reg__0;
+  wire [3:0]r_ptr_reg_reg;
+  wire [2:0]\r_ptr_reg_reg[3]_0 ;
+  wire [7:0]\r_ptr_reg_reg[3]_1 ;
   wire rd;
   wire \w_ptr_reg[3]_i_1_n_0 ;
-  wire [3:0]w_ptr_reg_reg__0;
+  wire [3:0]w_ptr_reg_reg;
 
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \DOut[0]_i_4 
        (.I0(\array_reg_reg[3] [0]),
         .I1(\array_reg_reg[2] [0]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[1] [0]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[0] [0]),
         .O(\DOut[0]_i_4_n_0 ));
   LUT6 #(
@@ -2393,9 +2493,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[0]_i_5 
        (.I0(\array_reg_reg[7] [0]),
         .I1(\array_reg_reg[6] [0]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[5] [0]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[4] [0]),
         .O(\DOut[0]_i_5_n_0 ));
   LUT6 #(
@@ -2403,9 +2503,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[0]_i_6 
        (.I0(\array_reg_reg[11] [0]),
         .I1(\array_reg_reg[10] [0]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[9] [0]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[8] [0]),
         .O(\DOut[0]_i_6_n_0 ));
   LUT6 #(
@@ -2413,9 +2513,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[0]_i_7 
        (.I0(\array_reg_reg[15] [0]),
         .I1(\array_reg_reg[14] [0]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[13] [0]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[12] [0]),
         .O(\DOut[0]_i_7_n_0 ));
   LUT6 #(
@@ -2423,9 +2523,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[1]_i_4 
        (.I0(\array_reg_reg[3] [1]),
         .I1(\array_reg_reg[2] [1]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[1] [1]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[0] [1]),
         .O(\DOut[1]_i_4_n_0 ));
   LUT6 #(
@@ -2433,9 +2533,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[1]_i_5 
        (.I0(\array_reg_reg[7] [1]),
         .I1(\array_reg_reg[6] [1]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[5] [1]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[4] [1]),
         .O(\DOut[1]_i_5_n_0 ));
   LUT6 #(
@@ -2443,9 +2543,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[1]_i_6 
        (.I0(\array_reg_reg[11] [1]),
         .I1(\array_reg_reg[10] [1]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[9] [1]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[8] [1]),
         .O(\DOut[1]_i_6_n_0 ));
   LUT6 #(
@@ -2453,9 +2553,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[1]_i_7 
        (.I0(\array_reg_reg[15] [1]),
         .I1(\array_reg_reg[14] [1]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[13] [1]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[12] [1]),
         .O(\DOut[1]_i_7_n_0 ));
   LUT6 #(
@@ -2463,9 +2563,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[2]_i_4 
        (.I0(\array_reg_reg[3] [2]),
         .I1(\array_reg_reg[2] [2]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[1] [2]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[0] [2]),
         .O(\DOut[2]_i_4_n_0 ));
   LUT6 #(
@@ -2473,9 +2573,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[2]_i_5 
        (.I0(\array_reg_reg[7] [2]),
         .I1(\array_reg_reg[6] [2]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[5] [2]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[4] [2]),
         .O(\DOut[2]_i_5_n_0 ));
   LUT6 #(
@@ -2483,9 +2583,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[2]_i_6 
        (.I0(\array_reg_reg[11] [2]),
         .I1(\array_reg_reg[10] [2]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[9] [2]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[8] [2]),
         .O(\DOut[2]_i_6_n_0 ));
   LUT6 #(
@@ -2493,9 +2593,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[2]_i_7 
        (.I0(\array_reg_reg[15] [2]),
         .I1(\array_reg_reg[14] [2]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[13] [2]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[12] [2]),
         .O(\DOut[2]_i_7_n_0 ));
   LUT6 #(
@@ -2503,9 +2603,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[3]_i_4 
        (.I0(\array_reg_reg[3] [3]),
         .I1(\array_reg_reg[2] [3]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[1] [3]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[0] [3]),
         .O(\DOut[3]_i_4_n_0 ));
   LUT6 #(
@@ -2513,9 +2613,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[3]_i_5 
        (.I0(\array_reg_reg[7] [3]),
         .I1(\array_reg_reg[6] [3]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[5] [3]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[4] [3]),
         .O(\DOut[3]_i_5_n_0 ));
   LUT6 #(
@@ -2523,9 +2623,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[3]_i_6 
        (.I0(\array_reg_reg[11] [3]),
         .I1(\array_reg_reg[10] [3]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[9] [3]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[8] [3]),
         .O(\DOut[3]_i_6_n_0 ));
   LUT6 #(
@@ -2533,9 +2633,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[3]_i_7 
        (.I0(\array_reg_reg[15] [3]),
         .I1(\array_reg_reg[14] [3]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[13] [3]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[12] [3]),
         .O(\DOut[3]_i_7_n_0 ));
   LUT6 #(
@@ -2543,9 +2643,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[4]_i_4 
        (.I0(\array_reg_reg[3] [4]),
         .I1(\array_reg_reg[2] [4]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[1] [4]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[0] [4]),
         .O(\DOut[4]_i_4_n_0 ));
   LUT6 #(
@@ -2553,9 +2653,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[4]_i_5 
        (.I0(\array_reg_reg[7] [4]),
         .I1(\array_reg_reg[6] [4]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[5] [4]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[4] [4]),
         .O(\DOut[4]_i_5_n_0 ));
   LUT6 #(
@@ -2563,9 +2663,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[4]_i_6 
        (.I0(\array_reg_reg[11] [4]),
         .I1(\array_reg_reg[10] [4]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[9] [4]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[8] [4]),
         .O(\DOut[4]_i_6_n_0 ));
   LUT6 #(
@@ -2573,9 +2673,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[4]_i_7 
        (.I0(\array_reg_reg[15] [4]),
         .I1(\array_reg_reg[14] [4]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[13] [4]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[12] [4]),
         .O(\DOut[4]_i_7_n_0 ));
   LUT6 #(
@@ -2583,9 +2683,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[5]_i_4 
        (.I0(\array_reg_reg[3] [5]),
         .I1(\array_reg_reg[2] [5]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[1] [5]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[0] [5]),
         .O(\DOut[5]_i_4_n_0 ));
   LUT6 #(
@@ -2593,9 +2693,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[5]_i_5 
        (.I0(\array_reg_reg[7] [5]),
         .I1(\array_reg_reg[6] [5]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[5] [5]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[4] [5]),
         .O(\DOut[5]_i_5_n_0 ));
   LUT6 #(
@@ -2603,9 +2703,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[5]_i_6 
        (.I0(\array_reg_reg[11] [5]),
         .I1(\array_reg_reg[10] [5]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[9] [5]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[8] [5]),
         .O(\DOut[5]_i_6_n_0 ));
   LUT6 #(
@@ -2613,9 +2713,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[5]_i_7 
        (.I0(\array_reg_reg[15] [5]),
         .I1(\array_reg_reg[14] [5]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[13] [5]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[12] [5]),
         .O(\DOut[5]_i_7_n_0 ));
   LUT6 #(
@@ -2623,9 +2723,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[6]_i_4 
        (.I0(\array_reg_reg[3] [6]),
         .I1(\array_reg_reg[2] [6]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[1] [6]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[0] [6]),
         .O(\DOut[6]_i_4_n_0 ));
   LUT6 #(
@@ -2633,9 +2733,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[6]_i_5 
        (.I0(\array_reg_reg[7] [6]),
         .I1(\array_reg_reg[6] [6]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[5] [6]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[4] [6]),
         .O(\DOut[6]_i_5_n_0 ));
   LUT6 #(
@@ -2643,9 +2743,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[6]_i_6 
        (.I0(\array_reg_reg[11] [6]),
         .I1(\array_reg_reg[10] [6]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[9] [6]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[8] [6]),
         .O(\DOut[6]_i_6_n_0 ));
   LUT6 #(
@@ -2653,27 +2753,28 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[6]_i_7 
        (.I0(\array_reg_reg[15] [6]),
         .I1(\array_reg_reg[14] [6]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[13] [6]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[12] [6]),
         .O(\DOut[6]_i_7_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT4 #(
-    .INIT(16'h0010)) 
+    .INIT(16'h0100)) 
     \DOut[7]_i_2 
-       (.I0(out[1]),
-        .I1(out[2]),
-        .I2(out[0]),
-        .I3(fifo_empty),
+       (.I0(fifo_empty),
+        .I1(fifoState[2]),
+        .I2(fifoState[1]),
+        .I3(fifoState[0]),
         .O(E));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \DOut[7]_i_6 
        (.I0(\array_reg_reg[3] [7]),
         .I1(\array_reg_reg[2] [7]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[1] [7]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[0] [7]),
         .O(\DOut[7]_i_6_n_0 ));
   LUT6 #(
@@ -2681,9 +2782,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[7]_i_7 
        (.I0(\array_reg_reg[7] [7]),
         .I1(\array_reg_reg[6] [7]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[5] [7]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[4] [7]),
         .O(\DOut[7]_i_7_n_0 ));
   LUT6 #(
@@ -2691,9 +2792,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[7]_i_8 
        (.I0(\array_reg_reg[11] [7]),
         .I1(\array_reg_reg[10] [7]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[9] [7]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[8] [7]),
         .O(\DOut[7]_i_8_n_0 ));
   LUT6 #(
@@ -2701,149 +2802,155 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \DOut[7]_i_9 
        (.I0(\array_reg_reg[15] [7]),
         .I1(\array_reg_reg[14] [7]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[13] [7]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[12] [7]),
         .O(\DOut[7]_i_9_n_0 ));
   MUXF8 \DOut_reg[0]_i_1 
        (.I0(\DOut_reg[0]_i_2_n_0 ),
         .I1(\DOut_reg[0]_i_3_n_0 ),
-        .O(\DOut_reg[7] [0]),
-        .S(r_ptr_reg_reg__0[3]));
+        .O(\r_ptr_reg_reg[3]_1 [0]),
+        .S(r_ptr_reg_reg[3]));
   MUXF7 \DOut_reg[0]_i_2 
        (.I0(\DOut[0]_i_4_n_0 ),
         .I1(\DOut[0]_i_5_n_0 ),
         .O(\DOut_reg[0]_i_2_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF7 \DOut_reg[0]_i_3 
        (.I0(\DOut[0]_i_6_n_0 ),
         .I1(\DOut[0]_i_7_n_0 ),
         .O(\DOut_reg[0]_i_3_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF8 \DOut_reg[1]_i_1 
        (.I0(\DOut_reg[1]_i_2_n_0 ),
         .I1(\DOut_reg[1]_i_3_n_0 ),
-        .O(\DOut_reg[7] [1]),
-        .S(r_ptr_reg_reg__0[3]));
+        .O(\r_ptr_reg_reg[3]_1 [1]),
+        .S(r_ptr_reg_reg[3]));
   MUXF7 \DOut_reg[1]_i_2 
        (.I0(\DOut[1]_i_4_n_0 ),
         .I1(\DOut[1]_i_5_n_0 ),
         .O(\DOut_reg[1]_i_2_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF7 \DOut_reg[1]_i_3 
        (.I0(\DOut[1]_i_6_n_0 ),
         .I1(\DOut[1]_i_7_n_0 ),
         .O(\DOut_reg[1]_i_3_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF8 \DOut_reg[2]_i_1 
        (.I0(\DOut_reg[2]_i_2_n_0 ),
         .I1(\DOut_reg[2]_i_3_n_0 ),
-        .O(\DOut_reg[7] [2]),
-        .S(r_ptr_reg_reg__0[3]));
+        .O(\r_ptr_reg_reg[3]_1 [2]),
+        .S(r_ptr_reg_reg[3]));
   MUXF7 \DOut_reg[2]_i_2 
        (.I0(\DOut[2]_i_4_n_0 ),
         .I1(\DOut[2]_i_5_n_0 ),
         .O(\DOut_reg[2]_i_2_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF7 \DOut_reg[2]_i_3 
        (.I0(\DOut[2]_i_6_n_0 ),
         .I1(\DOut[2]_i_7_n_0 ),
         .O(\DOut_reg[2]_i_3_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF8 \DOut_reg[3]_i_1 
        (.I0(\DOut_reg[3]_i_2_n_0 ),
         .I1(\DOut_reg[3]_i_3_n_0 ),
-        .O(\DOut_reg[7] [3]),
-        .S(r_ptr_reg_reg__0[3]));
+        .O(\r_ptr_reg_reg[3]_1 [3]),
+        .S(r_ptr_reg_reg[3]));
   MUXF7 \DOut_reg[3]_i_2 
        (.I0(\DOut[3]_i_4_n_0 ),
         .I1(\DOut[3]_i_5_n_0 ),
         .O(\DOut_reg[3]_i_2_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF7 \DOut_reg[3]_i_3 
        (.I0(\DOut[3]_i_6_n_0 ),
         .I1(\DOut[3]_i_7_n_0 ),
         .O(\DOut_reg[3]_i_3_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF8 \DOut_reg[4]_i_1 
        (.I0(\DOut_reg[4]_i_2_n_0 ),
         .I1(\DOut_reg[4]_i_3_n_0 ),
-        .O(\DOut_reg[7] [4]),
-        .S(r_ptr_reg_reg__0[3]));
+        .O(\r_ptr_reg_reg[3]_1 [4]),
+        .S(r_ptr_reg_reg[3]));
   MUXF7 \DOut_reg[4]_i_2 
        (.I0(\DOut[4]_i_4_n_0 ),
         .I1(\DOut[4]_i_5_n_0 ),
         .O(\DOut_reg[4]_i_2_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF7 \DOut_reg[4]_i_3 
        (.I0(\DOut[4]_i_6_n_0 ),
         .I1(\DOut[4]_i_7_n_0 ),
         .O(\DOut_reg[4]_i_3_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF8 \DOut_reg[5]_i_1 
        (.I0(\DOut_reg[5]_i_2_n_0 ),
         .I1(\DOut_reg[5]_i_3_n_0 ),
-        .O(\DOut_reg[7] [5]),
-        .S(r_ptr_reg_reg__0[3]));
+        .O(\r_ptr_reg_reg[3]_1 [5]),
+        .S(r_ptr_reg_reg[3]));
   MUXF7 \DOut_reg[5]_i_2 
        (.I0(\DOut[5]_i_4_n_0 ),
         .I1(\DOut[5]_i_5_n_0 ),
         .O(\DOut_reg[5]_i_2_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF7 \DOut_reg[5]_i_3 
        (.I0(\DOut[5]_i_6_n_0 ),
         .I1(\DOut[5]_i_7_n_0 ),
         .O(\DOut_reg[5]_i_3_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF8 \DOut_reg[6]_i_1 
        (.I0(\DOut_reg[6]_i_2_n_0 ),
         .I1(\DOut_reg[6]_i_3_n_0 ),
-        .O(\DOut_reg[7] [6]),
-        .S(r_ptr_reg_reg__0[3]));
+        .O(\r_ptr_reg_reg[3]_1 [6]),
+        .S(r_ptr_reg_reg[3]));
   MUXF7 \DOut_reg[6]_i_2 
        (.I0(\DOut[6]_i_4_n_0 ),
         .I1(\DOut[6]_i_5_n_0 ),
         .O(\DOut_reg[6]_i_2_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF7 \DOut_reg[6]_i_3 
        (.I0(\DOut[6]_i_6_n_0 ),
         .I1(\DOut[6]_i_7_n_0 ),
         .O(\DOut_reg[6]_i_3_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF8 \DOut_reg[7]_i_3 
        (.I0(\DOut_reg[7]_i_4_n_0 ),
         .I1(\DOut_reg[7]_i_5_n_0 ),
-        .O(\DOut_reg[7] [7]),
-        .S(r_ptr_reg_reg__0[3]));
+        .O(\r_ptr_reg_reg[3]_1 [7]),
+        .S(r_ptr_reg_reg[3]));
   MUXF7 \DOut_reg[7]_i_4 
        (.I0(\DOut[7]_i_6_n_0 ),
         .I1(\DOut[7]_i_7_n_0 ),
         .O(\DOut_reg[7]_i_4_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF7 \DOut_reg[7]_i_5 
        (.I0(\DOut[7]_i_8_n_0 ),
         .I1(\DOut[7]_i_9_n_0 ),
         .O(\DOut_reg[7]_i_5_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
-  LUT6 #(
-    .INIT(64'h000000002E222EE2)) 
+        .S(r_ptr_reg_reg[2]));
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  LUT5 #(
+    .INIT(32'h0000B0B4)) 
     \FSM_sequential_fifoState[1]_i_1 
-       (.I0(in0),
-        .I1(\FSM_sequential_fifoState_reg[1]_0 ),
-        .I2(out[0]),
-        .I3(out[1]),
-        .I4(fifo_empty),
-        .I5(fifo_reset),
-        .O(\FSM_sequential_fifoState_reg[1] ));
+       (.I0(fifoState[2]),
+        .I1(fifoState[0]),
+        .I2(fifoState[1]),
+        .I3(fifo_empty),
+        .I4(fifo_reset),
+        .O(\FSM_sequential_fifoState_reg[2] ));
+  LUT2 #(
+    .INIT(4'hE)) 
+    \GPIOPortRd[29]_INST_0 
+       (.I0(full),
+        .I1(out_fifo_full),
+        .O(GPIOPortRd));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \MUX[0]_i_4 
        (.I0(\array_reg_reg[3] [8]),
         .I1(\array_reg_reg[2] [8]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[1] [8]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[0] [8]),
         .O(\MUX[0]_i_4_n_0 ));
   LUT6 #(
@@ -2851,9 +2958,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \MUX[0]_i_5 
        (.I0(\array_reg_reg[7] [8]),
         .I1(\array_reg_reg[6] [8]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[5] [8]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[4] [8]),
         .O(\MUX[0]_i_5_n_0 ));
   LUT6 #(
@@ -2861,9 +2968,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \MUX[0]_i_6 
        (.I0(\array_reg_reg[11] [8]),
         .I1(\array_reg_reg[10] [8]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[9] [8]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[8] [8]),
         .O(\MUX[0]_i_6_n_0 ));
   LUT6 #(
@@ -2871,9 +2978,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \MUX[0]_i_7 
        (.I0(\array_reg_reg[15] [8]),
         .I1(\array_reg_reg[14] [8]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[13] [8]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[12] [8]),
         .O(\MUX[0]_i_7_n_0 ));
   LUT6 #(
@@ -2881,9 +2988,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \MUX[1]_i_4 
        (.I0(\array_reg_reg[3] [9]),
         .I1(\array_reg_reg[2] [9]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[1] [9]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[0] [9]),
         .O(\MUX[1]_i_4_n_0 ));
   LUT6 #(
@@ -2891,9 +2998,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \MUX[1]_i_5 
        (.I0(\array_reg_reg[7] [9]),
         .I1(\array_reg_reg[6] [9]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[5] [9]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[4] [9]),
         .O(\MUX[1]_i_5_n_0 ));
   LUT6 #(
@@ -2901,9 +3008,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \MUX[1]_i_6 
        (.I0(\array_reg_reg[11] [9]),
         .I1(\array_reg_reg[10] [9]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[9] [9]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[8] [9]),
         .O(\MUX[1]_i_6_n_0 ));
   LUT6 #(
@@ -2911,9 +3018,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \MUX[1]_i_7 
        (.I0(\array_reg_reg[15] [9]),
         .I1(\array_reg_reg[14] [9]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[13] [9]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[12] [9]),
         .O(\MUX[1]_i_7_n_0 ));
   LUT6 #(
@@ -2921,9 +3028,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \MUX[2]_i_4 
        (.I0(\array_reg_reg[3] [10]),
         .I1(\array_reg_reg[2] [10]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[1] [10]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[0] [10]),
         .O(\MUX[2]_i_4_n_0 ));
   LUT6 #(
@@ -2931,9 +3038,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \MUX[2]_i_5 
        (.I0(\array_reg_reg[7] [10]),
         .I1(\array_reg_reg[6] [10]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[5] [10]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[4] [10]),
         .O(\MUX[2]_i_5_n_0 ));
   LUT6 #(
@@ -2941,9 +3048,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \MUX[2]_i_6 
        (.I0(\array_reg_reg[11] [10]),
         .I1(\array_reg_reg[10] [10]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[9] [10]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[8] [10]),
         .O(\MUX[2]_i_6_n_0 ));
   LUT6 #(
@@ -2951,1644 +3058,1653 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \MUX[2]_i_7 
        (.I0(\array_reg_reg[15] [10]),
         .I1(\array_reg_reg[14] [10]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[13] [10]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[12] [10]),
         .O(\MUX[2]_i_7_n_0 ));
   MUXF8 \MUX_reg[0]_i_1 
        (.I0(\MUX_reg[0]_i_2_n_0 ),
         .I1(\MUX_reg[0]_i_3_n_0 ),
-        .O(\MUX_reg[2] [0]),
-        .S(r_ptr_reg_reg__0[3]));
+        .O(\r_ptr_reg_reg[3]_0 [0]),
+        .S(r_ptr_reg_reg[3]));
   MUXF7 \MUX_reg[0]_i_2 
        (.I0(\MUX[0]_i_4_n_0 ),
         .I1(\MUX[0]_i_5_n_0 ),
         .O(\MUX_reg[0]_i_2_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF7 \MUX_reg[0]_i_3 
        (.I0(\MUX[0]_i_6_n_0 ),
         .I1(\MUX[0]_i_7_n_0 ),
         .O(\MUX_reg[0]_i_3_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF8 \MUX_reg[1]_i_1 
        (.I0(\MUX_reg[1]_i_2_n_0 ),
         .I1(\MUX_reg[1]_i_3_n_0 ),
-        .O(\MUX_reg[2] [1]),
-        .S(r_ptr_reg_reg__0[3]));
+        .O(\r_ptr_reg_reg[3]_0 [1]),
+        .S(r_ptr_reg_reg[3]));
   MUXF7 \MUX_reg[1]_i_2 
        (.I0(\MUX[1]_i_4_n_0 ),
         .I1(\MUX[1]_i_5_n_0 ),
         .O(\MUX_reg[1]_i_2_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF7 \MUX_reg[1]_i_3 
        (.I0(\MUX[1]_i_6_n_0 ),
         .I1(\MUX[1]_i_7_n_0 ),
         .O(\MUX_reg[1]_i_3_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF8 \MUX_reg[2]_i_1 
        (.I0(\MUX_reg[2]_i_2_n_0 ),
         .I1(\MUX_reg[2]_i_3_n_0 ),
-        .O(\MUX_reg[2] [2]),
-        .S(r_ptr_reg_reg__0[3]));
+        .O(\r_ptr_reg_reg[3]_0 [2]),
+        .S(r_ptr_reg_reg[3]));
   MUXF7 \MUX_reg[2]_i_2 
        (.I0(\MUX[2]_i_4_n_0 ),
         .I1(\MUX[2]_i_5_n_0 ),
         .O(\MUX_reg[2]_i_2_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF7 \MUX_reg[2]_i_3 
        (.I0(\MUX[2]_i_6_n_0 ),
         .I1(\MUX[2]_i_7_n_0 ),
         .O(\MUX_reg[2]_i_3_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
-  LUT5 #(
-    .INIT(32'h00000010)) 
+        .S(r_ptr_reg_reg[2]));
+  LUT6 #(
+    .INIT(64'h0000000000010000)) 
     \array_reg[0][15]_i_1 
-       (.I0(w_ptr_reg_reg__0[0]),
-        .I1(w_ptr_reg_reg__0[1]),
-        .I2(\array_reg[15][15]_i_2_n_0 ),
-        .I3(w_ptr_reg_reg__0[3]),
-        .I4(w_ptr_reg_reg__0[2]),
-        .O(\array_reg[0]_3 ));
-  LUT5 #(
-    .INIT(32'h00000800)) 
+       (.I0(w_ptr_reg_reg[0]),
+        .I1(w_ptr_reg_reg[1]),
+        .I2(w_ptr_reg_reg[2]),
+        .I3(full),
+        .I4(ClkInTick),
+        .I5(w_ptr_reg_reg[3]),
+        .O(\array_reg[0]_14 ));
+  LUT6 #(
+    .INIT(64'h0000040000000000)) 
     \array_reg[10][15]_i_1 
-       (.I0(w_ptr_reg_reg__0[1]),
-        .I1(\array_reg[15][15]_i_2_n_0 ),
-        .I2(w_ptr_reg_reg__0[0]),
-        .I3(w_ptr_reg_reg__0[3]),
-        .I4(w_ptr_reg_reg__0[2]),
-        .O(\array_reg[10]_10 ));
-  LUT5 #(
-    .INIT(32'h00008000)) 
+       (.I0(w_ptr_reg_reg[2]),
+        .I1(w_ptr_reg_reg[1]),
+        .I2(w_ptr_reg_reg[0]),
+        .I3(w_ptr_reg_reg[3]),
+        .I4(full),
+        .I5(ClkInTick),
+        .O(\array_reg[10]_8 ));
+  LUT6 #(
+    .INIT(64'h0000080000000000)) 
     \array_reg[11][15]_i_1 
-       (.I0(w_ptr_reg_reg__0[1]),
-        .I1(\array_reg[15][15]_i_2_n_0 ),
-        .I2(w_ptr_reg_reg__0[0]),
-        .I3(w_ptr_reg_reg__0[3]),
-        .I4(w_ptr_reg_reg__0[2]),
-        .O(\array_reg[11]_15 ));
-  LUT5 #(
-    .INIT(32'h10000000)) 
+       (.I0(w_ptr_reg_reg[0]),
+        .I1(w_ptr_reg_reg[1]),
+        .I2(w_ptr_reg_reg[2]),
+        .I3(w_ptr_reg_reg[3]),
+        .I4(full),
+        .I5(ClkInTick),
+        .O(\array_reg[11]_1 ));
+  LUT6 #(
+    .INIT(64'h0000000000000800)) 
     \array_reg[12][15]_i_1 
-       (.I0(w_ptr_reg_reg__0[0]),
-        .I1(w_ptr_reg_reg__0[1]),
-        .I2(\array_reg[15][15]_i_2_n_0 ),
-        .I3(w_ptr_reg_reg__0[3]),
-        .I4(w_ptr_reg_reg__0[2]),
-        .O(\array_reg[12]_5 ));
-  LUT5 #(
-    .INIT(32'h08000000)) 
-    \array_reg[13][15]_i_1 
-       (.I0(\array_reg[15][15]_i_2_n_0 ),
-        .I1(w_ptr_reg_reg__0[0]),
-        .I2(w_ptr_reg_reg__0[1]),
-        .I3(w_ptr_reg_reg__0[3]),
-        .I4(w_ptr_reg_reg__0[2]),
-        .O(\array_reg[13]_8 ));
-  LUT5 #(
-    .INIT(32'h08000000)) 
-    \array_reg[14][15]_i_1 
-       (.I0(w_ptr_reg_reg__0[1]),
-        .I1(\array_reg[15][15]_i_2_n_0 ),
-        .I2(w_ptr_reg_reg__0[0]),
-        .I3(w_ptr_reg_reg__0[3]),
-        .I4(w_ptr_reg_reg__0[2]),
-        .O(\array_reg[14]_9 ));
-  LUT5 #(
-    .INIT(32'h80000000)) 
-    \array_reg[15][15]_i_1 
-       (.I0(w_ptr_reg_reg__0[2]),
-        .I1(w_ptr_reg_reg__0[3]),
-        .I2(w_ptr_reg_reg__0[0]),
-        .I3(w_ptr_reg_reg__0[1]),
-        .I4(\array_reg[15][15]_i_2_n_0 ),
-        .O(\array_reg[15]_16 ));
-  LUT3 #(
-    .INIT(8'h04)) 
-    \array_reg[15][15]_i_2 
-       (.I0(blClkIn[0]),
-        .I1(blClkIn[1]),
+       (.I0(w_ptr_reg_reg[2]),
+        .I1(ClkInTick),
         .I2(full),
-        .O(\array_reg[15][15]_i_2_n_0 ));
-  LUT5 #(
-    .INIT(32'h00000008)) 
+        .I3(w_ptr_reg_reg[3]),
+        .I4(w_ptr_reg_reg[1]),
+        .I5(w_ptr_reg_reg[0]),
+        .O(\array_reg[12]_7 ));
+  LUT6 #(
+    .INIT(64'h0000400000000000)) 
+    \array_reg[13][15]_i_1 
+       (.I0(w_ptr_reg_reg[1]),
+        .I1(w_ptr_reg_reg[0]),
+        .I2(w_ptr_reg_reg[2]),
+        .I3(ClkInTick),
+        .I4(full),
+        .I5(w_ptr_reg_reg[3]),
+        .O(\array_reg[13]_6 ));
+  LUT6 #(
+    .INIT(64'h0000400000000000)) 
+    \array_reg[14][15]_i_1 
+       (.I0(w_ptr_reg_reg[0]),
+        .I1(w_ptr_reg_reg[1]),
+        .I2(w_ptr_reg_reg[2]),
+        .I3(ClkInTick),
+        .I4(full),
+        .I5(w_ptr_reg_reg[3]),
+        .O(\array_reg[14]_5 ));
+  LUT6 #(
+    .INIT(64'h0000800000000000)) 
+    \array_reg[15][15]_i_1 
+       (.I0(w_ptr_reg_reg[0]),
+        .I1(w_ptr_reg_reg[1]),
+        .I2(w_ptr_reg_reg[2]),
+        .I3(w_ptr_reg_reg[3]),
+        .I4(full),
+        .I5(ClkInTick),
+        .O(\array_reg[15]_4 ));
+  LUT6 #(
+    .INIT(64'h0000000000040000)) 
     \array_reg[1][15]_i_1 
-       (.I0(\array_reg[15][15]_i_2_n_0 ),
-        .I1(w_ptr_reg_reg__0[0]),
-        .I2(w_ptr_reg_reg__0[1]),
-        .I3(w_ptr_reg_reg__0[3]),
-        .I4(w_ptr_reg_reg__0[2]),
-        .O(\array_reg[1]_6 ));
-  LUT5 #(
-    .INIT(32'h00000008)) 
+       (.I0(w_ptr_reg_reg[2]),
+        .I1(w_ptr_reg_reg[0]),
+        .I2(w_ptr_reg_reg[1]),
+        .I3(full),
+        .I4(ClkInTick),
+        .I5(w_ptr_reg_reg[3]),
+        .O(\array_reg[1]_15 ));
+  LUT6 #(
+    .INIT(64'h0000000000040000)) 
     \array_reg[2][15]_i_1 
-       (.I0(w_ptr_reg_reg__0[1]),
-        .I1(\array_reg[15][15]_i_2_n_0 ),
-        .I2(w_ptr_reg_reg__0[0]),
-        .I3(w_ptr_reg_reg__0[3]),
-        .I4(w_ptr_reg_reg__0[2]),
-        .O(\array_reg[2]_11 ));
-  LUT5 #(
-    .INIT(32'h00000080)) 
+       (.I0(w_ptr_reg_reg[2]),
+        .I1(w_ptr_reg_reg[1]),
+        .I2(w_ptr_reg_reg[0]),
+        .I3(full),
+        .I4(ClkInTick),
+        .I5(w_ptr_reg_reg[3]),
+        .O(\array_reg[2]_16 ));
+  LUT6 #(
+    .INIT(64'h0000000000080000)) 
     \array_reg[3][15]_i_1 
-       (.I0(w_ptr_reg_reg__0[1]),
-        .I1(\array_reg[15][15]_i_2_n_0 ),
-        .I2(w_ptr_reg_reg__0[0]),
-        .I3(w_ptr_reg_reg__0[3]),
-        .I4(w_ptr_reg_reg__0[2]),
-        .O(\array_reg[3]_14 ));
-  LUT5 #(
-    .INIT(32'h00020000)) 
+       (.I0(w_ptr_reg_reg[0]),
+        .I1(w_ptr_reg_reg[1]),
+        .I2(w_ptr_reg_reg[2]),
+        .I3(full),
+        .I4(ClkInTick),
+        .I5(w_ptr_reg_reg[3]),
+        .O(\array_reg[3]_2 ));
+  LUT6 #(
+    .INIT(64'h0000000000100000)) 
     \array_reg[4][15]_i_1 
-       (.I0(\array_reg[15][15]_i_2_n_0 ),
-        .I1(w_ptr_reg_reg__0[0]),
-        .I2(w_ptr_reg_reg__0[3]),
-        .I3(w_ptr_reg_reg__0[1]),
-        .I4(w_ptr_reg_reg__0[2]),
-        .O(\array_reg[4]_1 ));
-  LUT5 #(
-    .INIT(32'h00200000)) 
+       (.I0(w_ptr_reg_reg[1]),
+        .I1(w_ptr_reg_reg[0]),
+        .I2(w_ptr_reg_reg[2]),
+        .I3(w_ptr_reg_reg[3]),
+        .I4(ClkInTick),
+        .I5(full),
+        .O(\array_reg[4]_13 ));
+  LUT6 #(
+    .INIT(64'h0000000000400000)) 
     \array_reg[5][15]_i_1 
-       (.I0(\array_reg[15][15]_i_2_n_0 ),
-        .I1(w_ptr_reg_reg__0[1]),
-        .I2(w_ptr_reg_reg__0[2]),
-        .I3(w_ptr_reg_reg__0[3]),
-        .I4(w_ptr_reg_reg__0[0]),
-        .O(\array_reg[5]_2 ));
-  LUT5 #(
-    .INIT(32'h00000080)) 
+       (.I0(w_ptr_reg_reg[1]),
+        .I1(w_ptr_reg_reg[0]),
+        .I2(w_ptr_reg_reg[2]),
+        .I3(w_ptr_reg_reg[3]),
+        .I4(ClkInTick),
+        .I5(full),
+        .O(\array_reg[5]_12 ));
+  LUT6 #(
+    .INIT(64'h0000000000400000)) 
     \array_reg[6][15]_i_1 
-       (.I0(w_ptr_reg_reg__0[1]),
-        .I1(\array_reg[15][15]_i_2_n_0 ),
-        .I2(w_ptr_reg_reg__0[2]),
-        .I3(w_ptr_reg_reg__0[3]),
-        .I4(w_ptr_reg_reg__0[0]),
-        .O(\array_reg[6]_12 ));
-  LUT5 #(
-    .INIT(32'h00008000)) 
+       (.I0(w_ptr_reg_reg[0]),
+        .I1(w_ptr_reg_reg[1]),
+        .I2(w_ptr_reg_reg[2]),
+        .I3(w_ptr_reg_reg[3]),
+        .I4(ClkInTick),
+        .I5(full),
+        .O(\array_reg[6]_11 ));
+  LUT6 #(
+    .INIT(64'h0000000040000000)) 
     \array_reg[7][15]_i_1 
-       (.I0(w_ptr_reg_reg__0[1]),
-        .I1(\array_reg[15][15]_i_2_n_0 ),
-        .I2(w_ptr_reg_reg__0[2]),
-        .I3(w_ptr_reg_reg__0[0]),
-        .I4(w_ptr_reg_reg__0[3]),
-        .O(\array_reg[7]_13 ));
-  LUT5 #(
-    .INIT(32'h00001000)) 
+       (.I0(w_ptr_reg_reg[3]),
+        .I1(w_ptr_reg_reg[2]),
+        .I2(w_ptr_reg_reg[1]),
+        .I3(w_ptr_reg_reg[0]),
+        .I4(ClkInTick),
+        .I5(full),
+        .O(\array_reg[7]_3 ));
+  LUT6 #(
+    .INIT(64'h0000010000000000)) 
     \array_reg[8][15]_i_1 
-       (.I0(w_ptr_reg_reg__0[0]),
-        .I1(w_ptr_reg_reg__0[1]),
-        .I2(\array_reg[15][15]_i_2_n_0 ),
-        .I3(w_ptr_reg_reg__0[3]),
-        .I4(w_ptr_reg_reg__0[2]),
-        .O(\array_reg[8]_4 ));
-  LUT5 #(
-    .INIT(32'h00000800)) 
+       (.I0(w_ptr_reg_reg[0]),
+        .I1(w_ptr_reg_reg[1]),
+        .I2(w_ptr_reg_reg[2]),
+        .I3(w_ptr_reg_reg[3]),
+        .I4(full),
+        .I5(ClkInTick),
+        .O(\array_reg[8]_10 ));
+  LUT6 #(
+    .INIT(64'h0000040000000000)) 
     \array_reg[9][15]_i_1 
-       (.I0(\array_reg[15][15]_i_2_n_0 ),
-        .I1(w_ptr_reg_reg__0[0]),
-        .I2(w_ptr_reg_reg__0[1]),
-        .I3(w_ptr_reg_reg__0[3]),
-        .I4(w_ptr_reg_reg__0[2]),
-        .O(\array_reg[9]_7 ));
+       (.I0(w_ptr_reg_reg[2]),
+        .I1(w_ptr_reg_reg[0]),
+        .I2(w_ptr_reg_reg[1]),
+        .I3(w_ptr_reg_reg[3]),
+        .I4(full),
+        .I5(ClkInTick),
+        .O(\array_reg[9]_9 ));
   FDCE \array_reg_reg[0][0] 
        (.C(clk),
-        .CE(\array_reg[0]_3 ),
+        .CE(\array_reg[0]_14 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[0] [0]));
   FDCE \array_reg_reg[0][10] 
        (.C(clk),
-        .CE(\array_reg[0]_3 ),
+        .CE(\array_reg[0]_14 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[0] [10]));
   FDCE \array_reg_reg[0][12] 
        (.C(clk),
-        .CE(\array_reg[0]_3 ),
+        .CE(\array_reg[0]_14 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[0] [12]));
   FDCE \array_reg_reg[0][13] 
        (.C(clk),
-        .CE(\array_reg[0]_3 ),
+        .CE(\array_reg[0]_14 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[0] [13]));
   FDCE \array_reg_reg[0][14] 
        (.C(clk),
-        .CE(\array_reg[0]_3 ),
+        .CE(\array_reg[0]_14 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[0] [14]));
   FDCE \array_reg_reg[0][15] 
        (.C(clk),
-        .CE(\array_reg[0]_3 ),
+        .CE(\array_reg[0]_14 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[0] [15]));
   FDCE \array_reg_reg[0][1] 
        (.C(clk),
-        .CE(\array_reg[0]_3 ),
+        .CE(\array_reg[0]_14 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[0] [1]));
   FDCE \array_reg_reg[0][2] 
        (.C(clk),
-        .CE(\array_reg[0]_3 ),
+        .CE(\array_reg[0]_14 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[0] [2]));
   FDCE \array_reg_reg[0][3] 
        (.C(clk),
-        .CE(\array_reg[0]_3 ),
+        .CE(\array_reg[0]_14 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[0] [3]));
   FDCE \array_reg_reg[0][4] 
        (.C(clk),
-        .CE(\array_reg[0]_3 ),
+        .CE(\array_reg[0]_14 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[0] [4]));
   FDCE \array_reg_reg[0][5] 
        (.C(clk),
-        .CE(\array_reg[0]_3 ),
+        .CE(\array_reg[0]_14 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[0] [5]));
   FDCE \array_reg_reg[0][6] 
        (.C(clk),
-        .CE(\array_reg[0]_3 ),
+        .CE(\array_reg[0]_14 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[0] [6]));
   FDCE \array_reg_reg[0][7] 
        (.C(clk),
-        .CE(\array_reg[0]_3 ),
+        .CE(\array_reg[0]_14 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[0] [7]));
   FDCE \array_reg_reg[0][8] 
        (.C(clk),
-        .CE(\array_reg[0]_3 ),
+        .CE(\array_reg[0]_14 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[0] [8]));
   FDCE \array_reg_reg[0][9] 
        (.C(clk),
-        .CE(\array_reg[0]_3 ),
+        .CE(\array_reg[0]_14 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[0] [9]));
   FDCE \array_reg_reg[10][0] 
        (.C(clk),
-        .CE(\array_reg[10]_10 ),
+        .CE(\array_reg[10]_8 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[10] [0]));
   FDCE \array_reg_reg[10][10] 
        (.C(clk),
-        .CE(\array_reg[10]_10 ),
+        .CE(\array_reg[10]_8 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[10] [10]));
   FDCE \array_reg_reg[10][12] 
        (.C(clk),
-        .CE(\array_reg[10]_10 ),
+        .CE(\array_reg[10]_8 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[10] [12]));
   FDCE \array_reg_reg[10][13] 
        (.C(clk),
-        .CE(\array_reg[10]_10 ),
+        .CE(\array_reg[10]_8 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[10] [13]));
   FDCE \array_reg_reg[10][14] 
        (.C(clk),
-        .CE(\array_reg[10]_10 ),
+        .CE(\array_reg[10]_8 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[10] [14]));
   FDCE \array_reg_reg[10][15] 
        (.C(clk),
-        .CE(\array_reg[10]_10 ),
+        .CE(\array_reg[10]_8 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[10] [15]));
   FDCE \array_reg_reg[10][1] 
        (.C(clk),
-        .CE(\array_reg[10]_10 ),
+        .CE(\array_reg[10]_8 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[10] [1]));
   FDCE \array_reg_reg[10][2] 
        (.C(clk),
-        .CE(\array_reg[10]_10 ),
+        .CE(\array_reg[10]_8 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[10] [2]));
   FDCE \array_reg_reg[10][3] 
        (.C(clk),
-        .CE(\array_reg[10]_10 ),
+        .CE(\array_reg[10]_8 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[10] [3]));
   FDCE \array_reg_reg[10][4] 
        (.C(clk),
-        .CE(\array_reg[10]_10 ),
+        .CE(\array_reg[10]_8 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[10] [4]));
   FDCE \array_reg_reg[10][5] 
        (.C(clk),
-        .CE(\array_reg[10]_10 ),
+        .CE(\array_reg[10]_8 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[10] [5]));
   FDCE \array_reg_reg[10][6] 
        (.C(clk),
-        .CE(\array_reg[10]_10 ),
+        .CE(\array_reg[10]_8 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[10] [6]));
   FDCE \array_reg_reg[10][7] 
        (.C(clk),
-        .CE(\array_reg[10]_10 ),
+        .CE(\array_reg[10]_8 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[10] [7]));
   FDCE \array_reg_reg[10][8] 
        (.C(clk),
-        .CE(\array_reg[10]_10 ),
+        .CE(\array_reg[10]_8 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[10] [8]));
   FDCE \array_reg_reg[10][9] 
        (.C(clk),
-        .CE(\array_reg[10]_10 ),
+        .CE(\array_reg[10]_8 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[10] [9]));
   FDCE \array_reg_reg[11][0] 
        (.C(clk),
-        .CE(\array_reg[11]_15 ),
+        .CE(\array_reg[11]_1 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[11] [0]));
   FDCE \array_reg_reg[11][10] 
        (.C(clk),
-        .CE(\array_reg[11]_15 ),
+        .CE(\array_reg[11]_1 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[11] [10]));
   FDCE \array_reg_reg[11][12] 
        (.C(clk),
-        .CE(\array_reg[11]_15 ),
+        .CE(\array_reg[11]_1 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[11] [12]));
   FDCE \array_reg_reg[11][13] 
        (.C(clk),
-        .CE(\array_reg[11]_15 ),
+        .CE(\array_reg[11]_1 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[11] [13]));
   FDCE \array_reg_reg[11][14] 
        (.C(clk),
-        .CE(\array_reg[11]_15 ),
+        .CE(\array_reg[11]_1 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[11] [14]));
   FDCE \array_reg_reg[11][15] 
        (.C(clk),
-        .CE(\array_reg[11]_15 ),
+        .CE(\array_reg[11]_1 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[11] [15]));
   FDCE \array_reg_reg[11][1] 
        (.C(clk),
-        .CE(\array_reg[11]_15 ),
+        .CE(\array_reg[11]_1 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[11] [1]));
   FDCE \array_reg_reg[11][2] 
        (.C(clk),
-        .CE(\array_reg[11]_15 ),
+        .CE(\array_reg[11]_1 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[11] [2]));
   FDCE \array_reg_reg[11][3] 
        (.C(clk),
-        .CE(\array_reg[11]_15 ),
+        .CE(\array_reg[11]_1 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[11] [3]));
   FDCE \array_reg_reg[11][4] 
        (.C(clk),
-        .CE(\array_reg[11]_15 ),
+        .CE(\array_reg[11]_1 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[11] [4]));
   FDCE \array_reg_reg[11][5] 
        (.C(clk),
-        .CE(\array_reg[11]_15 ),
+        .CE(\array_reg[11]_1 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[11] [5]));
   FDCE \array_reg_reg[11][6] 
        (.C(clk),
-        .CE(\array_reg[11]_15 ),
+        .CE(\array_reg[11]_1 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[11] [6]));
   FDCE \array_reg_reg[11][7] 
        (.C(clk),
-        .CE(\array_reg[11]_15 ),
+        .CE(\array_reg[11]_1 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[11] [7]));
   FDCE \array_reg_reg[11][8] 
        (.C(clk),
-        .CE(\array_reg[11]_15 ),
+        .CE(\array_reg[11]_1 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[11] [8]));
   FDCE \array_reg_reg[11][9] 
        (.C(clk),
-        .CE(\array_reg[11]_15 ),
+        .CE(\array_reg[11]_1 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[11] [9]));
   FDCE \array_reg_reg[12][0] 
        (.C(clk),
-        .CE(\array_reg[12]_5 ),
+        .CE(\array_reg[12]_7 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[12] [0]));
   FDCE \array_reg_reg[12][10] 
        (.C(clk),
-        .CE(\array_reg[12]_5 ),
+        .CE(\array_reg[12]_7 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[12] [10]));
   FDCE \array_reg_reg[12][12] 
        (.C(clk),
-        .CE(\array_reg[12]_5 ),
+        .CE(\array_reg[12]_7 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[12] [12]));
   FDCE \array_reg_reg[12][13] 
        (.C(clk),
-        .CE(\array_reg[12]_5 ),
+        .CE(\array_reg[12]_7 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[12] [13]));
   FDCE \array_reg_reg[12][14] 
        (.C(clk),
-        .CE(\array_reg[12]_5 ),
+        .CE(\array_reg[12]_7 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[12] [14]));
   FDCE \array_reg_reg[12][15] 
        (.C(clk),
-        .CE(\array_reg[12]_5 ),
+        .CE(\array_reg[12]_7 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[12] [15]));
   FDCE \array_reg_reg[12][1] 
        (.C(clk),
-        .CE(\array_reg[12]_5 ),
+        .CE(\array_reg[12]_7 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[12] [1]));
   FDCE \array_reg_reg[12][2] 
        (.C(clk),
-        .CE(\array_reg[12]_5 ),
+        .CE(\array_reg[12]_7 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[12] [2]));
   FDCE \array_reg_reg[12][3] 
        (.C(clk),
-        .CE(\array_reg[12]_5 ),
+        .CE(\array_reg[12]_7 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[12] [3]));
   FDCE \array_reg_reg[12][4] 
        (.C(clk),
-        .CE(\array_reg[12]_5 ),
+        .CE(\array_reg[12]_7 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[12] [4]));
   FDCE \array_reg_reg[12][5] 
        (.C(clk),
-        .CE(\array_reg[12]_5 ),
+        .CE(\array_reg[12]_7 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[12] [5]));
   FDCE \array_reg_reg[12][6] 
        (.C(clk),
-        .CE(\array_reg[12]_5 ),
+        .CE(\array_reg[12]_7 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[12] [6]));
   FDCE \array_reg_reg[12][7] 
        (.C(clk),
-        .CE(\array_reg[12]_5 ),
+        .CE(\array_reg[12]_7 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[12] [7]));
   FDCE \array_reg_reg[12][8] 
        (.C(clk),
-        .CE(\array_reg[12]_5 ),
+        .CE(\array_reg[12]_7 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[12] [8]));
   FDCE \array_reg_reg[12][9] 
        (.C(clk),
-        .CE(\array_reg[12]_5 ),
+        .CE(\array_reg[12]_7 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[12] [9]));
   FDCE \array_reg_reg[13][0] 
        (.C(clk),
-        .CE(\array_reg[13]_8 ),
+        .CE(\array_reg[13]_6 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[13] [0]));
   FDCE \array_reg_reg[13][10] 
        (.C(clk),
-        .CE(\array_reg[13]_8 ),
+        .CE(\array_reg[13]_6 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[13] [10]));
   FDCE \array_reg_reg[13][12] 
        (.C(clk),
-        .CE(\array_reg[13]_8 ),
+        .CE(\array_reg[13]_6 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[13] [12]));
   FDCE \array_reg_reg[13][13] 
        (.C(clk),
-        .CE(\array_reg[13]_8 ),
+        .CE(\array_reg[13]_6 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[13] [13]));
   FDCE \array_reg_reg[13][14] 
        (.C(clk),
-        .CE(\array_reg[13]_8 ),
+        .CE(\array_reg[13]_6 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[13] [14]));
   FDCE \array_reg_reg[13][15] 
        (.C(clk),
-        .CE(\array_reg[13]_8 ),
+        .CE(\array_reg[13]_6 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[13] [15]));
   FDCE \array_reg_reg[13][1] 
        (.C(clk),
-        .CE(\array_reg[13]_8 ),
+        .CE(\array_reg[13]_6 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[13] [1]));
   FDCE \array_reg_reg[13][2] 
        (.C(clk),
-        .CE(\array_reg[13]_8 ),
+        .CE(\array_reg[13]_6 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[13] [2]));
   FDCE \array_reg_reg[13][3] 
        (.C(clk),
-        .CE(\array_reg[13]_8 ),
+        .CE(\array_reg[13]_6 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[13] [3]));
   FDCE \array_reg_reg[13][4] 
        (.C(clk),
-        .CE(\array_reg[13]_8 ),
+        .CE(\array_reg[13]_6 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[13] [4]));
   FDCE \array_reg_reg[13][5] 
        (.C(clk),
-        .CE(\array_reg[13]_8 ),
+        .CE(\array_reg[13]_6 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[13] [5]));
   FDCE \array_reg_reg[13][6] 
        (.C(clk),
-        .CE(\array_reg[13]_8 ),
+        .CE(\array_reg[13]_6 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[13] [6]));
   FDCE \array_reg_reg[13][7] 
        (.C(clk),
-        .CE(\array_reg[13]_8 ),
+        .CE(\array_reg[13]_6 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[13] [7]));
   FDCE \array_reg_reg[13][8] 
        (.C(clk),
-        .CE(\array_reg[13]_8 ),
+        .CE(\array_reg[13]_6 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[13] [8]));
   FDCE \array_reg_reg[13][9] 
        (.C(clk),
-        .CE(\array_reg[13]_8 ),
+        .CE(\array_reg[13]_6 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[13] [9]));
   FDCE \array_reg_reg[14][0] 
        (.C(clk),
-        .CE(\array_reg[14]_9 ),
+        .CE(\array_reg[14]_5 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[14] [0]));
   FDCE \array_reg_reg[14][10] 
        (.C(clk),
-        .CE(\array_reg[14]_9 ),
+        .CE(\array_reg[14]_5 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[14] [10]));
   FDCE \array_reg_reg[14][12] 
        (.C(clk),
-        .CE(\array_reg[14]_9 ),
+        .CE(\array_reg[14]_5 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[14] [12]));
   FDCE \array_reg_reg[14][13] 
        (.C(clk),
-        .CE(\array_reg[14]_9 ),
+        .CE(\array_reg[14]_5 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[14] [13]));
   FDCE \array_reg_reg[14][14] 
        (.C(clk),
-        .CE(\array_reg[14]_9 ),
+        .CE(\array_reg[14]_5 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[14] [14]));
   FDCE \array_reg_reg[14][15] 
        (.C(clk),
-        .CE(\array_reg[14]_9 ),
+        .CE(\array_reg[14]_5 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[14] [15]));
   FDCE \array_reg_reg[14][1] 
        (.C(clk),
-        .CE(\array_reg[14]_9 ),
+        .CE(\array_reg[14]_5 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[14] [1]));
   FDCE \array_reg_reg[14][2] 
        (.C(clk),
-        .CE(\array_reg[14]_9 ),
+        .CE(\array_reg[14]_5 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[14] [2]));
   FDCE \array_reg_reg[14][3] 
        (.C(clk),
-        .CE(\array_reg[14]_9 ),
+        .CE(\array_reg[14]_5 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[14] [3]));
   FDCE \array_reg_reg[14][4] 
        (.C(clk),
-        .CE(\array_reg[14]_9 ),
+        .CE(\array_reg[14]_5 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[14] [4]));
   FDCE \array_reg_reg[14][5] 
        (.C(clk),
-        .CE(\array_reg[14]_9 ),
+        .CE(\array_reg[14]_5 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[14] [5]));
   FDCE \array_reg_reg[14][6] 
        (.C(clk),
-        .CE(\array_reg[14]_9 ),
+        .CE(\array_reg[14]_5 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[14] [6]));
   FDCE \array_reg_reg[14][7] 
        (.C(clk),
-        .CE(\array_reg[14]_9 ),
+        .CE(\array_reg[14]_5 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[14] [7]));
   FDCE \array_reg_reg[14][8] 
        (.C(clk),
-        .CE(\array_reg[14]_9 ),
+        .CE(\array_reg[14]_5 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[14] [8]));
   FDCE \array_reg_reg[14][9] 
        (.C(clk),
-        .CE(\array_reg[14]_9 ),
+        .CE(\array_reg[14]_5 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[14] [9]));
   FDCE \array_reg_reg[15][0] 
        (.C(clk),
-        .CE(\array_reg[15]_16 ),
+        .CE(\array_reg[15]_4 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[15] [0]));
   FDCE \array_reg_reg[15][10] 
        (.C(clk),
-        .CE(\array_reg[15]_16 ),
+        .CE(\array_reg[15]_4 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[15] [10]));
   FDCE \array_reg_reg[15][12] 
        (.C(clk),
-        .CE(\array_reg[15]_16 ),
+        .CE(\array_reg[15]_4 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[15] [12]));
   FDCE \array_reg_reg[15][13] 
        (.C(clk),
-        .CE(\array_reg[15]_16 ),
+        .CE(\array_reg[15]_4 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[15] [13]));
   FDCE \array_reg_reg[15][14] 
        (.C(clk),
-        .CE(\array_reg[15]_16 ),
+        .CE(\array_reg[15]_4 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[15] [14]));
   FDCE \array_reg_reg[15][15] 
        (.C(clk),
-        .CE(\array_reg[15]_16 ),
+        .CE(\array_reg[15]_4 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[15] [15]));
   FDCE \array_reg_reg[15][1] 
        (.C(clk),
-        .CE(\array_reg[15]_16 ),
+        .CE(\array_reg[15]_4 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[15] [1]));
   FDCE \array_reg_reg[15][2] 
        (.C(clk),
-        .CE(\array_reg[15]_16 ),
+        .CE(\array_reg[15]_4 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[15] [2]));
   FDCE \array_reg_reg[15][3] 
        (.C(clk),
-        .CE(\array_reg[15]_16 ),
+        .CE(\array_reg[15]_4 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[15] [3]));
   FDCE \array_reg_reg[15][4] 
        (.C(clk),
-        .CE(\array_reg[15]_16 ),
+        .CE(\array_reg[15]_4 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[15] [4]));
   FDCE \array_reg_reg[15][5] 
        (.C(clk),
-        .CE(\array_reg[15]_16 ),
+        .CE(\array_reg[15]_4 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[15] [5]));
   FDCE \array_reg_reg[15][6] 
        (.C(clk),
-        .CE(\array_reg[15]_16 ),
+        .CE(\array_reg[15]_4 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[15] [6]));
   FDCE \array_reg_reg[15][7] 
        (.C(clk),
-        .CE(\array_reg[15]_16 ),
+        .CE(\array_reg[15]_4 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[15] [7]));
   FDCE \array_reg_reg[15][8] 
        (.C(clk),
-        .CE(\array_reg[15]_16 ),
+        .CE(\array_reg[15]_4 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[15] [8]));
   FDCE \array_reg_reg[15][9] 
        (.C(clk),
-        .CE(\array_reg[15]_16 ),
+        .CE(\array_reg[15]_4 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[15] [9]));
   FDCE \array_reg_reg[1][0] 
        (.C(clk),
-        .CE(\array_reg[1]_6 ),
+        .CE(\array_reg[1]_15 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[1] [0]));
   FDCE \array_reg_reg[1][10] 
        (.C(clk),
-        .CE(\array_reg[1]_6 ),
+        .CE(\array_reg[1]_15 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[1] [10]));
   FDCE \array_reg_reg[1][12] 
        (.C(clk),
-        .CE(\array_reg[1]_6 ),
+        .CE(\array_reg[1]_15 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[1] [12]));
   FDCE \array_reg_reg[1][13] 
        (.C(clk),
-        .CE(\array_reg[1]_6 ),
+        .CE(\array_reg[1]_15 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[1] [13]));
   FDCE \array_reg_reg[1][14] 
        (.C(clk),
-        .CE(\array_reg[1]_6 ),
+        .CE(\array_reg[1]_15 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[1] [14]));
   FDCE \array_reg_reg[1][15] 
        (.C(clk),
-        .CE(\array_reg[1]_6 ),
+        .CE(\array_reg[1]_15 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[1] [15]));
   FDCE \array_reg_reg[1][1] 
        (.C(clk),
-        .CE(\array_reg[1]_6 ),
+        .CE(\array_reg[1]_15 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[1] [1]));
   FDCE \array_reg_reg[1][2] 
        (.C(clk),
-        .CE(\array_reg[1]_6 ),
+        .CE(\array_reg[1]_15 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[1] [2]));
   FDCE \array_reg_reg[1][3] 
        (.C(clk),
-        .CE(\array_reg[1]_6 ),
+        .CE(\array_reg[1]_15 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[1] [3]));
   FDCE \array_reg_reg[1][4] 
        (.C(clk),
-        .CE(\array_reg[1]_6 ),
+        .CE(\array_reg[1]_15 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[1] [4]));
   FDCE \array_reg_reg[1][5] 
        (.C(clk),
-        .CE(\array_reg[1]_6 ),
+        .CE(\array_reg[1]_15 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[1] [5]));
   FDCE \array_reg_reg[1][6] 
        (.C(clk),
-        .CE(\array_reg[1]_6 ),
+        .CE(\array_reg[1]_15 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[1] [6]));
   FDCE \array_reg_reg[1][7] 
        (.C(clk),
-        .CE(\array_reg[1]_6 ),
+        .CE(\array_reg[1]_15 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[1] [7]));
   FDCE \array_reg_reg[1][8] 
        (.C(clk),
-        .CE(\array_reg[1]_6 ),
+        .CE(\array_reg[1]_15 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[1] [8]));
   FDCE \array_reg_reg[1][9] 
        (.C(clk),
-        .CE(\array_reg[1]_6 ),
+        .CE(\array_reg[1]_15 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[1] [9]));
   FDCE \array_reg_reg[2][0] 
        (.C(clk),
-        .CE(\array_reg[2]_11 ),
+        .CE(\array_reg[2]_16 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[2] [0]));
   FDCE \array_reg_reg[2][10] 
        (.C(clk),
-        .CE(\array_reg[2]_11 ),
+        .CE(\array_reg[2]_16 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[2] [10]));
   FDCE \array_reg_reg[2][12] 
        (.C(clk),
-        .CE(\array_reg[2]_11 ),
+        .CE(\array_reg[2]_16 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[2] [12]));
   FDCE \array_reg_reg[2][13] 
        (.C(clk),
-        .CE(\array_reg[2]_11 ),
+        .CE(\array_reg[2]_16 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[2] [13]));
   FDCE \array_reg_reg[2][14] 
        (.C(clk),
-        .CE(\array_reg[2]_11 ),
+        .CE(\array_reg[2]_16 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[2] [14]));
   FDCE \array_reg_reg[2][15] 
        (.C(clk),
-        .CE(\array_reg[2]_11 ),
+        .CE(\array_reg[2]_16 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[2] [15]));
   FDCE \array_reg_reg[2][1] 
        (.C(clk),
-        .CE(\array_reg[2]_11 ),
+        .CE(\array_reg[2]_16 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[2] [1]));
   FDCE \array_reg_reg[2][2] 
        (.C(clk),
-        .CE(\array_reg[2]_11 ),
+        .CE(\array_reg[2]_16 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[2] [2]));
   FDCE \array_reg_reg[2][3] 
        (.C(clk),
-        .CE(\array_reg[2]_11 ),
+        .CE(\array_reg[2]_16 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[2] [3]));
   FDCE \array_reg_reg[2][4] 
        (.C(clk),
-        .CE(\array_reg[2]_11 ),
+        .CE(\array_reg[2]_16 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[2] [4]));
   FDCE \array_reg_reg[2][5] 
        (.C(clk),
-        .CE(\array_reg[2]_11 ),
+        .CE(\array_reg[2]_16 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[2] [5]));
   FDCE \array_reg_reg[2][6] 
        (.C(clk),
-        .CE(\array_reg[2]_11 ),
+        .CE(\array_reg[2]_16 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[2] [6]));
   FDCE \array_reg_reg[2][7] 
        (.C(clk),
-        .CE(\array_reg[2]_11 ),
+        .CE(\array_reg[2]_16 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[2] [7]));
   FDCE \array_reg_reg[2][8] 
        (.C(clk),
-        .CE(\array_reg[2]_11 ),
+        .CE(\array_reg[2]_16 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[2] [8]));
   FDCE \array_reg_reg[2][9] 
        (.C(clk),
-        .CE(\array_reg[2]_11 ),
+        .CE(\array_reg[2]_16 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[2] [9]));
   FDCE \array_reg_reg[3][0] 
        (.C(clk),
-        .CE(\array_reg[3]_14 ),
+        .CE(\array_reg[3]_2 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[3] [0]));
   FDCE \array_reg_reg[3][10] 
        (.C(clk),
-        .CE(\array_reg[3]_14 ),
+        .CE(\array_reg[3]_2 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[3] [10]));
   FDCE \array_reg_reg[3][12] 
        (.C(clk),
-        .CE(\array_reg[3]_14 ),
+        .CE(\array_reg[3]_2 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[3] [12]));
   FDCE \array_reg_reg[3][13] 
        (.C(clk),
-        .CE(\array_reg[3]_14 ),
+        .CE(\array_reg[3]_2 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[3] [13]));
   FDCE \array_reg_reg[3][14] 
        (.C(clk),
-        .CE(\array_reg[3]_14 ),
+        .CE(\array_reg[3]_2 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[3] [14]));
   FDCE \array_reg_reg[3][15] 
        (.C(clk),
-        .CE(\array_reg[3]_14 ),
+        .CE(\array_reg[3]_2 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[3] [15]));
   FDCE \array_reg_reg[3][1] 
        (.C(clk),
-        .CE(\array_reg[3]_14 ),
+        .CE(\array_reg[3]_2 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[3] [1]));
   FDCE \array_reg_reg[3][2] 
        (.C(clk),
-        .CE(\array_reg[3]_14 ),
+        .CE(\array_reg[3]_2 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[3] [2]));
   FDCE \array_reg_reg[3][3] 
        (.C(clk),
-        .CE(\array_reg[3]_14 ),
+        .CE(\array_reg[3]_2 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[3] [3]));
   FDCE \array_reg_reg[3][4] 
        (.C(clk),
-        .CE(\array_reg[3]_14 ),
+        .CE(\array_reg[3]_2 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[3] [4]));
   FDCE \array_reg_reg[3][5] 
        (.C(clk),
-        .CE(\array_reg[3]_14 ),
+        .CE(\array_reg[3]_2 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[3] [5]));
   FDCE \array_reg_reg[3][6] 
        (.C(clk),
-        .CE(\array_reg[3]_14 ),
+        .CE(\array_reg[3]_2 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[3] [6]));
   FDCE \array_reg_reg[3][7] 
        (.C(clk),
-        .CE(\array_reg[3]_14 ),
+        .CE(\array_reg[3]_2 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[3] [7]));
   FDCE \array_reg_reg[3][8] 
        (.C(clk),
-        .CE(\array_reg[3]_14 ),
+        .CE(\array_reg[3]_2 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[3] [8]));
   FDCE \array_reg_reg[3][9] 
        (.C(clk),
-        .CE(\array_reg[3]_14 ),
+        .CE(\array_reg[3]_2 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[3] [9]));
   FDCE \array_reg_reg[4][0] 
        (.C(clk),
-        .CE(\array_reg[4]_1 ),
+        .CE(\array_reg[4]_13 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[4] [0]));
   FDCE \array_reg_reg[4][10] 
        (.C(clk),
-        .CE(\array_reg[4]_1 ),
+        .CE(\array_reg[4]_13 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[4] [10]));
   FDCE \array_reg_reg[4][12] 
        (.C(clk),
-        .CE(\array_reg[4]_1 ),
+        .CE(\array_reg[4]_13 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[4] [12]));
   FDCE \array_reg_reg[4][13] 
        (.C(clk),
-        .CE(\array_reg[4]_1 ),
+        .CE(\array_reg[4]_13 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[4] [13]));
   FDCE \array_reg_reg[4][14] 
        (.C(clk),
-        .CE(\array_reg[4]_1 ),
+        .CE(\array_reg[4]_13 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[4] [14]));
   FDCE \array_reg_reg[4][15] 
        (.C(clk),
-        .CE(\array_reg[4]_1 ),
+        .CE(\array_reg[4]_13 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[4] [15]));
   FDCE \array_reg_reg[4][1] 
        (.C(clk),
-        .CE(\array_reg[4]_1 ),
+        .CE(\array_reg[4]_13 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[4] [1]));
   FDCE \array_reg_reg[4][2] 
        (.C(clk),
-        .CE(\array_reg[4]_1 ),
+        .CE(\array_reg[4]_13 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[4] [2]));
   FDCE \array_reg_reg[4][3] 
        (.C(clk),
-        .CE(\array_reg[4]_1 ),
+        .CE(\array_reg[4]_13 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[4] [3]));
   FDCE \array_reg_reg[4][4] 
        (.C(clk),
-        .CE(\array_reg[4]_1 ),
+        .CE(\array_reg[4]_13 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[4] [4]));
   FDCE \array_reg_reg[4][5] 
        (.C(clk),
-        .CE(\array_reg[4]_1 ),
+        .CE(\array_reg[4]_13 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[4] [5]));
   FDCE \array_reg_reg[4][6] 
        (.C(clk),
-        .CE(\array_reg[4]_1 ),
+        .CE(\array_reg[4]_13 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[4] [6]));
   FDCE \array_reg_reg[4][7] 
        (.C(clk),
-        .CE(\array_reg[4]_1 ),
+        .CE(\array_reg[4]_13 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[4] [7]));
   FDCE \array_reg_reg[4][8] 
        (.C(clk),
-        .CE(\array_reg[4]_1 ),
+        .CE(\array_reg[4]_13 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[4] [8]));
   FDCE \array_reg_reg[4][9] 
        (.C(clk),
-        .CE(\array_reg[4]_1 ),
+        .CE(\array_reg[4]_13 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[4] [9]));
   FDCE \array_reg_reg[5][0] 
        (.C(clk),
-        .CE(\array_reg[5]_2 ),
+        .CE(\array_reg[5]_12 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[5] [0]));
   FDCE \array_reg_reg[5][10] 
        (.C(clk),
-        .CE(\array_reg[5]_2 ),
+        .CE(\array_reg[5]_12 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[5] [10]));
   FDCE \array_reg_reg[5][12] 
        (.C(clk),
-        .CE(\array_reg[5]_2 ),
+        .CE(\array_reg[5]_12 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[5] [12]));
   FDCE \array_reg_reg[5][13] 
        (.C(clk),
-        .CE(\array_reg[5]_2 ),
+        .CE(\array_reg[5]_12 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[5] [13]));
   FDCE \array_reg_reg[5][14] 
        (.C(clk),
-        .CE(\array_reg[5]_2 ),
+        .CE(\array_reg[5]_12 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[5] [14]));
   FDCE \array_reg_reg[5][15] 
        (.C(clk),
-        .CE(\array_reg[5]_2 ),
+        .CE(\array_reg[5]_12 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[5] [15]));
   FDCE \array_reg_reg[5][1] 
        (.C(clk),
-        .CE(\array_reg[5]_2 ),
+        .CE(\array_reg[5]_12 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[5] [1]));
   FDCE \array_reg_reg[5][2] 
        (.C(clk),
-        .CE(\array_reg[5]_2 ),
+        .CE(\array_reg[5]_12 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[5] [2]));
   FDCE \array_reg_reg[5][3] 
        (.C(clk),
-        .CE(\array_reg[5]_2 ),
+        .CE(\array_reg[5]_12 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[5] [3]));
   FDCE \array_reg_reg[5][4] 
        (.C(clk),
-        .CE(\array_reg[5]_2 ),
+        .CE(\array_reg[5]_12 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[5] [4]));
   FDCE \array_reg_reg[5][5] 
        (.C(clk),
-        .CE(\array_reg[5]_2 ),
+        .CE(\array_reg[5]_12 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[5] [5]));
   FDCE \array_reg_reg[5][6] 
        (.C(clk),
-        .CE(\array_reg[5]_2 ),
+        .CE(\array_reg[5]_12 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[5] [6]));
   FDCE \array_reg_reg[5][7] 
        (.C(clk),
-        .CE(\array_reg[5]_2 ),
+        .CE(\array_reg[5]_12 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[5] [7]));
   FDCE \array_reg_reg[5][8] 
        (.C(clk),
-        .CE(\array_reg[5]_2 ),
+        .CE(\array_reg[5]_12 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[5] [8]));
   FDCE \array_reg_reg[5][9] 
        (.C(clk),
-        .CE(\array_reg[5]_2 ),
+        .CE(\array_reg[5]_12 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[5] [9]));
   FDCE \array_reg_reg[6][0] 
        (.C(clk),
-        .CE(\array_reg[6]_12 ),
+        .CE(\array_reg[6]_11 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[6] [0]));
   FDCE \array_reg_reg[6][10] 
        (.C(clk),
-        .CE(\array_reg[6]_12 ),
+        .CE(\array_reg[6]_11 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[6] [10]));
   FDCE \array_reg_reg[6][12] 
        (.C(clk),
-        .CE(\array_reg[6]_12 ),
+        .CE(\array_reg[6]_11 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[6] [12]));
   FDCE \array_reg_reg[6][13] 
        (.C(clk),
-        .CE(\array_reg[6]_12 ),
+        .CE(\array_reg[6]_11 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[6] [13]));
   FDCE \array_reg_reg[6][14] 
        (.C(clk),
-        .CE(\array_reg[6]_12 ),
+        .CE(\array_reg[6]_11 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[6] [14]));
   FDCE \array_reg_reg[6][15] 
        (.C(clk),
-        .CE(\array_reg[6]_12 ),
+        .CE(\array_reg[6]_11 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[6] [15]));
   FDCE \array_reg_reg[6][1] 
        (.C(clk),
-        .CE(\array_reg[6]_12 ),
+        .CE(\array_reg[6]_11 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[6] [1]));
   FDCE \array_reg_reg[6][2] 
        (.C(clk),
-        .CE(\array_reg[6]_12 ),
+        .CE(\array_reg[6]_11 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[6] [2]));
   FDCE \array_reg_reg[6][3] 
        (.C(clk),
-        .CE(\array_reg[6]_12 ),
+        .CE(\array_reg[6]_11 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[6] [3]));
   FDCE \array_reg_reg[6][4] 
        (.C(clk),
-        .CE(\array_reg[6]_12 ),
+        .CE(\array_reg[6]_11 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[6] [4]));
   FDCE \array_reg_reg[6][5] 
        (.C(clk),
-        .CE(\array_reg[6]_12 ),
+        .CE(\array_reg[6]_11 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[6] [5]));
   FDCE \array_reg_reg[6][6] 
        (.C(clk),
-        .CE(\array_reg[6]_12 ),
+        .CE(\array_reg[6]_11 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[6] [6]));
   FDCE \array_reg_reg[6][7] 
        (.C(clk),
-        .CE(\array_reg[6]_12 ),
+        .CE(\array_reg[6]_11 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[6] [7]));
   FDCE \array_reg_reg[6][8] 
        (.C(clk),
-        .CE(\array_reg[6]_12 ),
+        .CE(\array_reg[6]_11 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[6] [8]));
   FDCE \array_reg_reg[6][9] 
        (.C(clk),
-        .CE(\array_reg[6]_12 ),
+        .CE(\array_reg[6]_11 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[6] [9]));
   FDCE \array_reg_reg[7][0] 
        (.C(clk),
-        .CE(\array_reg[7]_13 ),
+        .CE(\array_reg[7]_3 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[7] [0]));
   FDCE \array_reg_reg[7][10] 
        (.C(clk),
-        .CE(\array_reg[7]_13 ),
+        .CE(\array_reg[7]_3 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[7] [10]));
   FDCE \array_reg_reg[7][12] 
        (.C(clk),
-        .CE(\array_reg[7]_13 ),
+        .CE(\array_reg[7]_3 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[7] [12]));
   FDCE \array_reg_reg[7][13] 
        (.C(clk),
-        .CE(\array_reg[7]_13 ),
+        .CE(\array_reg[7]_3 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[7] [13]));
   FDCE \array_reg_reg[7][14] 
        (.C(clk),
-        .CE(\array_reg[7]_13 ),
+        .CE(\array_reg[7]_3 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[7] [14]));
   FDCE \array_reg_reg[7][15] 
        (.C(clk),
-        .CE(\array_reg[7]_13 ),
+        .CE(\array_reg[7]_3 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[7] [15]));
   FDCE \array_reg_reg[7][1] 
        (.C(clk),
-        .CE(\array_reg[7]_13 ),
+        .CE(\array_reg[7]_3 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[7] [1]));
   FDCE \array_reg_reg[7][2] 
        (.C(clk),
-        .CE(\array_reg[7]_13 ),
+        .CE(\array_reg[7]_3 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[7] [2]));
   FDCE \array_reg_reg[7][3] 
        (.C(clk),
-        .CE(\array_reg[7]_13 ),
+        .CE(\array_reg[7]_3 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[7] [3]));
   FDCE \array_reg_reg[7][4] 
        (.C(clk),
-        .CE(\array_reg[7]_13 ),
+        .CE(\array_reg[7]_3 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[7] [4]));
   FDCE \array_reg_reg[7][5] 
        (.C(clk),
-        .CE(\array_reg[7]_13 ),
+        .CE(\array_reg[7]_3 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[7] [5]));
   FDCE \array_reg_reg[7][6] 
        (.C(clk),
-        .CE(\array_reg[7]_13 ),
+        .CE(\array_reg[7]_3 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[7] [6]));
   FDCE \array_reg_reg[7][7] 
        (.C(clk),
-        .CE(\array_reg[7]_13 ),
+        .CE(\array_reg[7]_3 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[7] [7]));
   FDCE \array_reg_reg[7][8] 
        (.C(clk),
-        .CE(\array_reg[7]_13 ),
+        .CE(\array_reg[7]_3 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[7] [8]));
   FDCE \array_reg_reg[7][9] 
        (.C(clk),
-        .CE(\array_reg[7]_13 ),
+        .CE(\array_reg[7]_3 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[7] [9]));
   FDCE \array_reg_reg[8][0] 
        (.C(clk),
-        .CE(\array_reg[8]_4 ),
+        .CE(\array_reg[8]_10 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[8] [0]));
   FDCE \array_reg_reg[8][10] 
        (.C(clk),
-        .CE(\array_reg[8]_4 ),
+        .CE(\array_reg[8]_10 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[8] [10]));
   FDCE \array_reg_reg[8][12] 
        (.C(clk),
-        .CE(\array_reg[8]_4 ),
+        .CE(\array_reg[8]_10 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[8] [12]));
   FDCE \array_reg_reg[8][13] 
        (.C(clk),
-        .CE(\array_reg[8]_4 ),
+        .CE(\array_reg[8]_10 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[8] [13]));
   FDCE \array_reg_reg[8][14] 
        (.C(clk),
-        .CE(\array_reg[8]_4 ),
+        .CE(\array_reg[8]_10 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[8] [14]));
   FDCE \array_reg_reg[8][15] 
        (.C(clk),
-        .CE(\array_reg[8]_4 ),
+        .CE(\array_reg[8]_10 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[8] [15]));
   FDCE \array_reg_reg[8][1] 
        (.C(clk),
-        .CE(\array_reg[8]_4 ),
+        .CE(\array_reg[8]_10 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[8] [1]));
   FDCE \array_reg_reg[8][2] 
        (.C(clk),
-        .CE(\array_reg[8]_4 ),
+        .CE(\array_reg[8]_10 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[8] [2]));
   FDCE \array_reg_reg[8][3] 
        (.C(clk),
-        .CE(\array_reg[8]_4 ),
+        .CE(\array_reg[8]_10 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[8] [3]));
   FDCE \array_reg_reg[8][4] 
        (.C(clk),
-        .CE(\array_reg[8]_4 ),
+        .CE(\array_reg[8]_10 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[8] [4]));
   FDCE \array_reg_reg[8][5] 
        (.C(clk),
-        .CE(\array_reg[8]_4 ),
+        .CE(\array_reg[8]_10 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[8] [5]));
   FDCE \array_reg_reg[8][6] 
        (.C(clk),
-        .CE(\array_reg[8]_4 ),
+        .CE(\array_reg[8]_10 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[8] [6]));
   FDCE \array_reg_reg[8][7] 
        (.C(clk),
-        .CE(\array_reg[8]_4 ),
+        .CE(\array_reg[8]_10 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[8] [7]));
   FDCE \array_reg_reg[8][8] 
        (.C(clk),
-        .CE(\array_reg[8]_4 ),
+        .CE(\array_reg[8]_10 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[8] [8]));
   FDCE \array_reg_reg[8][9] 
        (.C(clk),
-        .CE(\array_reg[8]_4 ),
+        .CE(\array_reg[8]_10 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[8] [9]));
   FDCE \array_reg_reg[9][0] 
        (.C(clk),
-        .CE(\array_reg[9]_7 ),
+        .CE(\array_reg[9]_9 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[0]),
         .Q(\array_reg_reg[9] [0]));
   FDCE \array_reg_reg[9][10] 
        (.C(clk),
-        .CE(\array_reg[9]_7 ),
+        .CE(\array_reg[9]_9 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[10]),
         .Q(\array_reg_reg[9] [10]));
   FDCE \array_reg_reg[9][12] 
        (.C(clk),
-        .CE(\array_reg[9]_7 ),
+        .CE(\array_reg[9]_9 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[11]),
         .Q(\array_reg_reg[9] [12]));
   FDCE \array_reg_reg[9][13] 
        (.C(clk),
-        .CE(\array_reg[9]_7 ),
+        .CE(\array_reg[9]_9 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[12]),
         .Q(\array_reg_reg[9] [13]));
   FDCE \array_reg_reg[9][14] 
        (.C(clk),
-        .CE(\array_reg[9]_7 ),
+        .CE(\array_reg[9]_9 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[13]),
         .Q(\array_reg_reg[9] [14]));
   FDCE \array_reg_reg[9][15] 
        (.C(clk),
-        .CE(\array_reg[9]_7 ),
+        .CE(\array_reg[9]_9 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[14]),
         .Q(\array_reg_reg[9] [15]));
   FDCE \array_reg_reg[9][1] 
        (.C(clk),
-        .CE(\array_reg[9]_7 ),
+        .CE(\array_reg[9]_9 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[1]),
         .Q(\array_reg_reg[9] [1]));
   FDCE \array_reg_reg[9][2] 
        (.C(clk),
-        .CE(\array_reg[9]_7 ),
+        .CE(\array_reg[9]_9 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[2]),
         .Q(\array_reg_reg[9] [2]));
   FDCE \array_reg_reg[9][3] 
        (.C(clk),
-        .CE(\array_reg[9]_7 ),
+        .CE(\array_reg[9]_9 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[3]),
         .Q(\array_reg_reg[9] [3]));
   FDCE \array_reg_reg[9][4] 
        (.C(clk),
-        .CE(\array_reg[9]_7 ),
+        .CE(\array_reg[9]_9 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[4]),
         .Q(\array_reg_reg[9] [4]));
   FDCE \array_reg_reg[9][5] 
        (.C(clk),
-        .CE(\array_reg[9]_7 ),
+        .CE(\array_reg[9]_9 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[5]),
         .Q(\array_reg_reg[9] [5]));
   FDCE \array_reg_reg[9][6] 
        (.C(clk),
-        .CE(\array_reg[9]_7 ),
+        .CE(\array_reg[9]_9 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[6]),
         .Q(\array_reg_reg[9] [6]));
   FDCE \array_reg_reg[9][7] 
        (.C(clk),
-        .CE(\array_reg[9]_7 ),
+        .CE(\array_reg[9]_9 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[7]),
         .Q(\array_reg_reg[9] [7]));
   FDCE \array_reg_reg[9][8] 
        (.C(clk),
-        .CE(\array_reg[9]_7 ),
+        .CE(\array_reg[9]_9 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[8]),
         .Q(\array_reg_reg[9] [8]));
   FDCE \array_reg_reg[9][9] 
        (.C(clk),
-        .CE(\array_reg[9]_7 ),
+        .CE(\array_reg[9]_9 ),
         .CLR(fifo_reset),
         .D(GPIOPortWr[9]),
         .Q(\array_reg_reg[9] [9]));
@@ -4597,9 +4713,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \edges[0]_i_4 
        (.I0(\array_reg_reg[3] [12]),
         .I1(\array_reg_reg[2] [12]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[1] [12]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[0] [12]),
         .O(\edges[0]_i_4_n_0 ));
   LUT6 #(
@@ -4607,9 +4723,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \edges[0]_i_5 
        (.I0(\array_reg_reg[7] [12]),
         .I1(\array_reg_reg[6] [12]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[5] [12]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[4] [12]),
         .O(\edges[0]_i_5_n_0 ));
   LUT6 #(
@@ -4617,9 +4733,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \edges[0]_i_6 
        (.I0(\array_reg_reg[11] [12]),
         .I1(\array_reg_reg[10] [12]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[9] [12]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[8] [12]),
         .O(\edges[0]_i_6_n_0 ));
   LUT6 #(
@@ -4627,9 +4743,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \edges[0]_i_7 
        (.I0(\array_reg_reg[15] [12]),
         .I1(\array_reg_reg[14] [12]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[13] [12]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[12] [12]),
         .O(\edges[0]_i_7_n_0 ));
   LUT6 #(
@@ -4637,9 +4753,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \edges[1]_i_4 
        (.I0(\array_reg_reg[3] [13]),
         .I1(\array_reg_reg[2] [13]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[1] [13]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[0] [13]),
         .O(\edges[1]_i_4_n_0 ));
   LUT6 #(
@@ -4647,9 +4763,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \edges[1]_i_5 
        (.I0(\array_reg_reg[7] [13]),
         .I1(\array_reg_reg[6] [13]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[5] [13]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[4] [13]),
         .O(\edges[1]_i_5_n_0 ));
   LUT6 #(
@@ -4657,9 +4773,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \edges[1]_i_6 
        (.I0(\array_reg_reg[11] [13]),
         .I1(\array_reg_reg[10] [13]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[9] [13]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[8] [13]),
         .O(\edges[1]_i_6_n_0 ));
   LUT6 #(
@@ -4667,9 +4783,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \edges[1]_i_7 
        (.I0(\array_reg_reg[15] [13]),
         .I1(\array_reg_reg[14] [13]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[13] [13]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[12] [13]),
         .O(\edges[1]_i_7_n_0 ));
   LUT6 #(
@@ -4677,9 +4793,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \edges[2]_i_4 
        (.I0(\array_reg_reg[3] [14]),
         .I1(\array_reg_reg[2] [14]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[1] [14]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[0] [14]),
         .O(\edges[2]_i_4_n_0 ));
   LUT6 #(
@@ -4687,9 +4803,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \edges[2]_i_5 
        (.I0(\array_reg_reg[7] [14]),
         .I1(\array_reg_reg[6] [14]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[5] [14]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[4] [14]),
         .O(\edges[2]_i_5_n_0 ));
   LUT6 #(
@@ -4697,9 +4813,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \edges[2]_i_6 
        (.I0(\array_reg_reg[11] [14]),
         .I1(\array_reg_reg[10] [14]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[9] [14]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[8] [14]),
         .O(\edges[2]_i_6_n_0 ));
   LUT6 #(
@@ -4707,9 +4823,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \edges[2]_i_7 
        (.I0(\array_reg_reg[15] [14]),
         .I1(\array_reg_reg[14] [14]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[13] [14]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[12] [14]),
         .O(\edges[2]_i_7_n_0 ));
   LUT6 #(
@@ -4717,9 +4833,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \edges[3]_i_4 
        (.I0(\array_reg_reg[3] [15]),
         .I1(\array_reg_reg[2] [15]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[1] [15]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[0] [15]),
         .O(\edges[3]_i_4_n_0 ));
   LUT6 #(
@@ -4727,9 +4843,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \edges[3]_i_5 
        (.I0(\array_reg_reg[7] [15]),
         .I1(\array_reg_reg[6] [15]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[5] [15]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[4] [15]),
         .O(\edges[3]_i_5_n_0 ));
   LUT6 #(
@@ -4737,9 +4853,9 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \edges[3]_i_6 
        (.I0(\array_reg_reg[11] [15]),
         .I1(\array_reg_reg[10] [15]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[9] [15]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[8] [15]),
         .O(\edges[3]_i_6_n_0 ));
   LUT6 #(
@@ -4747,100 +4863,99 @@ module GPIOTest_GPIOInterface_0_0_fifo
     \edges[3]_i_7 
        (.I0(\array_reg_reg[15] [15]),
         .I1(\array_reg_reg[14] [15]),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg[13] [15]),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg[12] [15]),
         .O(\edges[3]_i_7_n_0 ));
   MUXF8 \edges_reg[0]_i_1 
        (.I0(\edges_reg[0]_i_2_n_0 ),
         .I1(\edges_reg[0]_i_3_n_0 ),
         .O(D[0]),
-        .S(r_ptr_reg_reg__0[3]));
+        .S(r_ptr_reg_reg[3]));
   MUXF7 \edges_reg[0]_i_2 
        (.I0(\edges[0]_i_4_n_0 ),
         .I1(\edges[0]_i_5_n_0 ),
         .O(\edges_reg[0]_i_2_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF7 \edges_reg[0]_i_3 
        (.I0(\edges[0]_i_6_n_0 ),
         .I1(\edges[0]_i_7_n_0 ),
         .O(\edges_reg[0]_i_3_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF8 \edges_reg[1]_i_1 
        (.I0(\edges_reg[1]_i_2_n_0 ),
         .I1(\edges_reg[1]_i_3_n_0 ),
         .O(D[1]),
-        .S(r_ptr_reg_reg__0[3]));
+        .S(r_ptr_reg_reg[3]));
   MUXF7 \edges_reg[1]_i_2 
        (.I0(\edges[1]_i_4_n_0 ),
         .I1(\edges[1]_i_5_n_0 ),
         .O(\edges_reg[1]_i_2_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF7 \edges_reg[1]_i_3 
        (.I0(\edges[1]_i_6_n_0 ),
         .I1(\edges[1]_i_7_n_0 ),
         .O(\edges_reg[1]_i_3_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF8 \edges_reg[2]_i_1 
        (.I0(\edges_reg[2]_i_2_n_0 ),
         .I1(\edges_reg[2]_i_3_n_0 ),
         .O(D[2]),
-        .S(r_ptr_reg_reg__0[3]));
+        .S(r_ptr_reg_reg[3]));
   MUXF7 \edges_reg[2]_i_2 
        (.I0(\edges[2]_i_4_n_0 ),
         .I1(\edges[2]_i_5_n_0 ),
         .O(\edges_reg[2]_i_2_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF7 \edges_reg[2]_i_3 
        (.I0(\edges[2]_i_6_n_0 ),
         .I1(\edges[2]_i_7_n_0 ),
         .O(\edges_reg[2]_i_3_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF8 \edges_reg[3]_i_1 
        (.I0(\edges_reg[3]_i_2_n_0 ),
         .I1(\edges_reg[3]_i_3_n_0 ),
         .O(D[3]),
-        .S(r_ptr_reg_reg__0[3]));
+        .S(r_ptr_reg_reg[3]));
   MUXF7 \edges_reg[3]_i_2 
        (.I0(\edges[3]_i_4_n_0 ),
         .I1(\edges[3]_i_5_n_0 ),
         .O(\edges_reg[3]_i_2_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   MUXF7 \edges_reg[3]_i_3 
        (.I0(\edges[3]_i_6_n_0 ),
         .I1(\edges[3]_i_7_n_0 ),
         .O(\edges_reg[3]_i_3_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
-  LUT6 #(
-    .INIT(64'hBABBBABBAAAAA0AA)) 
+        .S(r_ptr_reg_reg[2]));
+  LUT5 #(
+    .INIT(32'hFB00FB30)) 
     empty_reg_i_1
-       (.I0(fifo_empty),
-        .I1(empty_reg_i_2__0_n_0),
-        .I2(blClkIn[0]),
-        .I3(blClkIn[1]),
-        .I4(full),
-        .I5(rd),
+       (.I0(full),
+        .I1(ClkInTick),
+        .I2(rd),
+        .I3(fifo_empty),
+        .I4(empty_reg_i_2__0_n_0),
         .O(empty_reg_i_1_n_0));
   LUT6 #(
     .INIT(64'hEBBBBBBBBEEEEEEE)) 
     empty_reg_i_2__0
        (.I0(empty_reg_i_3__0_n_0),
-        .I1(r_ptr_reg_reg__0[3]),
-        .I2(r_ptr_reg_reg__0[0]),
-        .I3(r_ptr_reg_reg__0[1]),
-        .I4(r_ptr_reg_reg__0[2]),
-        .I5(w_ptr_reg_reg__0[3]),
+        .I1(r_ptr_reg_reg[3]),
+        .I2(r_ptr_reg_reg[0]),
+        .I3(r_ptr_reg_reg[1]),
+        .I4(r_ptr_reg_reg[2]),
+        .I5(w_ptr_reg_reg[3]),
         .O(empty_reg_i_2__0_n_0));
   LUT6 #(
     .INIT(64'hFFFF6FF6F96FFFFF)) 
     empty_reg_i_3__0
-       (.I0(r_ptr_reg_reg__0[2]),
-        .I1(w_ptr_reg_reg__0[2]),
-        .I2(w_ptr_reg_reg__0[1]),
-        .I3(r_ptr_reg_reg__0[1]),
-        .I4(r_ptr_reg_reg__0[0]),
-        .I5(w_ptr_reg_reg__0[0]),
+       (.I0(r_ptr_reg_reg[2]),
+        .I1(w_ptr_reg_reg[2]),
+        .I2(w_ptr_reg_reg[1]),
+        .I3(r_ptr_reg_reg[1]),
+        .I4(r_ptr_reg_reg[0]),
+        .I5(w_ptr_reg_reg[0]),
         .O(empty_reg_i_3__0_n_0));
   FDPE empty_reg_reg
        (.C(clk),
@@ -4849,44 +4964,43 @@ module GPIOTest_GPIOInterface_0_0_fifo
         .PRE(fifo_reset),
         .Q(fifo_empty));
   LUT6 #(
-    .INIT(64'hFFFFFCDF00000010)) 
+    .INIT(64'hFFFFFFC700000004)) 
     fifo_rd_i_1
        (.I0(fifo_empty),
-        .I1(out[2]),
-        .I2(out[0]),
-        .I3(out[1]),
-        .I4(fifo_reset),
+        .I1(fifoState[0]),
+        .I2(fifoState[1]),
+        .I3(fifo_reset),
+        .I4(fifoState[2]),
         .I5(rd),
-        .O(fifo_rd_reg));
-  LUT6 #(
-    .INIT(64'hAF00AF00FF0CAF00)) 
+        .O(empty_reg_reg_0));
+  LUT5 #(
+    .INIT(32'hFFAF0C00)) 
     full_reg_i_1
        (.I0(fifo_empty),
         .I1(full_reg_i_2_n_0),
         .I2(rd),
-        .I3(full),
-        .I4(blClkIn[1]),
-        .I5(blClkIn[0]),
+        .I3(ClkInTick),
+        .I4(full),
         .O(full_reg_i_1_n_0));
   LUT6 #(
-    .INIT(64'h000000006CCC9333)) 
+    .INIT(64'h2888888882222222)) 
     full_reg_i_2
-       (.I0(w_ptr_reg_reg__0[2]),
-        .I1(w_ptr_reg_reg__0[3]),
-        .I2(w_ptr_reg_reg__0[0]),
-        .I3(w_ptr_reg_reg__0[1]),
-        .I4(r_ptr_reg_reg__0[3]),
-        .I5(full_reg_i_3_n_0),
+       (.I0(full_reg_i_3_n_0),
+        .I1(w_ptr_reg_reg[3]),
+        .I2(w_ptr_reg_reg[0]),
+        .I3(w_ptr_reg_reg[1]),
+        .I4(w_ptr_reg_reg[2]),
+        .I5(r_ptr_reg_reg[3]),
         .O(full_reg_i_2_n_0));
   LUT6 #(
-    .INIT(64'hFFFF6FF6F96FFFFF)) 
+    .INIT(64'h0000900906900000)) 
     full_reg_i_3
-       (.I0(w_ptr_reg_reg__0[2]),
-        .I1(r_ptr_reg_reg__0[2]),
-        .I2(r_ptr_reg_reg__0[1]),
-        .I3(w_ptr_reg_reg__0[1]),
-        .I4(w_ptr_reg_reg__0[0]),
-        .I5(r_ptr_reg_reg__0[0]),
+       (.I0(w_ptr_reg_reg[2]),
+        .I1(r_ptr_reg_reg[2]),
+        .I2(r_ptr_reg_reg[1]),
+        .I3(w_ptr_reg_reg[1]),
+        .I4(w_ptr_reg_reg[0]),
+        .I5(r_ptr_reg_reg[0]),
         .O(full_reg_i_3_n_0));
   FDCE full_reg_reg
        (.C(clk),
@@ -4894,155 +5008,154 @@ module GPIOTest_GPIOInterface_0_0_fifo
         .CLR(fifo_reset),
         .D(full_reg_i_1_n_0),
         .Q(full));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT1 #(
     .INIT(2'h1)) 
     \r_ptr_reg[0]_i_1__0 
-       (.I0(r_ptr_reg_reg__0[0]),
+       (.I0(r_ptr_reg_reg[0]),
         .O(plusOp[0]));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \r_ptr_reg[1]_i_1__0 
-       (.I0(r_ptr_reg_reg__0[0]),
-        .I1(r_ptr_reg_reg__0[1]),
+       (.I0(r_ptr_reg_reg[0]),
+        .I1(r_ptr_reg_reg[1]),
         .O(plusOp[1]));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT3 #(
     .INIT(8'h6A)) 
     \r_ptr_reg[2]_i_1__0 
-       (.I0(r_ptr_reg_reg__0[2]),
-        .I1(r_ptr_reg_reg__0[1]),
-        .I2(r_ptr_reg_reg__0[0]),
+       (.I0(r_ptr_reg_reg[2]),
+        .I1(r_ptr_reg_reg[1]),
+        .I2(r_ptr_reg_reg[0]),
         .O(\r_ptr_reg[2]_i_1__0_n_0 ));
-  LUT4 #(
-    .INIT(16'h20F0)) 
+  LUT3 #(
+    .INIT(8'h8C)) 
     \r_ptr_reg[3]_i_1 
-       (.I0(blClkIn[1]),
-        .I1(blClkIn[0]),
-        .I2(rd),
-        .I3(fifo_empty),
+       (.I0(ClkInTick),
+        .I1(rd),
+        .I2(fifo_empty),
         .O(\r_ptr_reg[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT4 #(
     .INIT(16'h7F80)) 
     \r_ptr_reg[3]_i_2__0 
-       (.I0(r_ptr_reg_reg__0[2]),
-        .I1(r_ptr_reg_reg__0[1]),
-        .I2(r_ptr_reg_reg__0[0]),
-        .I3(r_ptr_reg_reg__0[3]),
+       (.I0(r_ptr_reg_reg[2]),
+        .I1(r_ptr_reg_reg[1]),
+        .I2(r_ptr_reg_reg[0]),
+        .I3(r_ptr_reg_reg[3]),
         .O(plusOp[3]));
   FDCE \r_ptr_reg_reg[0] 
        (.C(clk),
         .CE(\r_ptr_reg[3]_i_1_n_0 ),
         .CLR(fifo_reset),
         .D(plusOp[0]),
-        .Q(r_ptr_reg_reg__0[0]));
+        .Q(r_ptr_reg_reg[0]));
   FDCE \r_ptr_reg_reg[1] 
        (.C(clk),
         .CE(\r_ptr_reg[3]_i_1_n_0 ),
         .CLR(fifo_reset),
         .D(plusOp[1]),
-        .Q(r_ptr_reg_reg__0[1]));
+        .Q(r_ptr_reg_reg[1]));
   FDCE \r_ptr_reg_reg[2] 
        (.C(clk),
         .CE(\r_ptr_reg[3]_i_1_n_0 ),
         .CLR(fifo_reset),
         .D(\r_ptr_reg[2]_i_1__0_n_0 ),
-        .Q(r_ptr_reg_reg__0[2]));
+        .Q(r_ptr_reg_reg[2]));
   FDCE \r_ptr_reg_reg[3] 
        (.C(clk),
         .CE(\r_ptr_reg[3]_i_1_n_0 ),
         .CLR(fifo_reset),
         .D(plusOp[3]),
-        .Q(r_ptr_reg_reg__0[3]));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+        .Q(r_ptr_reg_reg[3]));
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT1 #(
     .INIT(2'h1)) 
     \w_ptr_reg[0]_i_1 
-       (.I0(w_ptr_reg_reg__0[0]),
+       (.I0(w_ptr_reg_reg[0]),
         .O(plusOp0_in[0]));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \w_ptr_reg[1]_i_1 
-       (.I0(w_ptr_reg_reg__0[0]),
-        .I1(w_ptr_reg_reg__0[1]),
+       (.I0(w_ptr_reg_reg[0]),
+        .I1(w_ptr_reg_reg[1]),
         .O(plusOp0_in[1]));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT3 #(
-    .INIT(8'h6A)) 
+    .INIT(8'h78)) 
     \w_ptr_reg[2]_i_1 
-       (.I0(w_ptr_reg_reg__0[2]),
-        .I1(w_ptr_reg_reg__0[1]),
-        .I2(w_ptr_reg_reg__0[0]),
+       (.I0(w_ptr_reg_reg[0]),
+        .I1(w_ptr_reg_reg[1]),
+        .I2(w_ptr_reg_reg[2]),
         .O(plusOp0_in[2]));
-  LUT4 #(
-    .INIT(16'h0C04)) 
+  LUT3 #(
+    .INIT(8'h8C)) 
     \w_ptr_reg[3]_i_1 
-       (.I0(full),
-        .I1(blClkIn[1]),
-        .I2(blClkIn[0]),
-        .I3(rd),
+       (.I0(rd),
+        .I1(ClkInTick),
+        .I2(full),
         .O(\w_ptr_reg[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT4 #(
-    .INIT(16'h6CCC)) 
+    .INIT(16'h7F80)) 
     \w_ptr_reg[3]_i_2 
-       (.I0(w_ptr_reg_reg__0[2]),
-        .I1(w_ptr_reg_reg__0[3]),
-        .I2(w_ptr_reg_reg__0[0]),
-        .I3(w_ptr_reg_reg__0[1]),
+       (.I0(w_ptr_reg_reg[2]),
+        .I1(w_ptr_reg_reg[1]),
+        .I2(w_ptr_reg_reg[0]),
+        .I3(w_ptr_reg_reg[3]),
         .O(plusOp0_in[3]));
   FDCE \w_ptr_reg_reg[0] 
        (.C(clk),
         .CE(\w_ptr_reg[3]_i_1_n_0 ),
         .CLR(fifo_reset),
         .D(plusOp0_in[0]),
-        .Q(w_ptr_reg_reg__0[0]));
+        .Q(w_ptr_reg_reg[0]));
   FDCE \w_ptr_reg_reg[1] 
        (.C(clk),
         .CE(\w_ptr_reg[3]_i_1_n_0 ),
         .CLR(fifo_reset),
         .D(plusOp0_in[1]),
-        .Q(w_ptr_reg_reg__0[1]));
+        .Q(w_ptr_reg_reg[1]));
   FDCE \w_ptr_reg_reg[2] 
        (.C(clk),
         .CE(\w_ptr_reg[3]_i_1_n_0 ),
         .CLR(fifo_reset),
         .D(plusOp0_in[2]),
-        .Q(w_ptr_reg_reg__0[2]));
+        .Q(w_ptr_reg_reg[2]));
   FDCE \w_ptr_reg_reg[3] 
        (.C(clk),
         .CE(\w_ptr_reg[3]_i_1_n_0 ),
         .CLR(fifo_reset),
         .D(plusOp0_in[3]),
-        .Q(w_ptr_reg_reg__0[3]));
+        .Q(w_ptr_reg_reg[3]));
 endmodule
 
 (* ORIG_REF_NAME = "fifo" *) 
 module GPIOTest_GPIOInterface_0_0_fifo_2
    (fifo_reset,
+    out_fifo_full,
     GPIOPortRd,
     clk,
-    wr,
     GPIOPortWr,
-    blClkOut,
-    full,
+    wr,
+    ClkOutTick,
     reset_n,
     D);
   output fifo_reset;
-  output [17:0]GPIOPortRd;
+  output out_fifo_full;
+  output [16:0]GPIOPortRd;
   input clk;
-  input wr;
   input [1:0]GPIOPortWr;
-  input [1:0]blClkOut;
-  input full;
+  input wr;
+  input ClkOutTick;
   input reset_n;
   input [15:0]D;
 
+  wire ClkOutTick;
   wire [15:0]D;
-  wire [17:0]GPIOPortRd;
+  wire [16:0]GPIOPortRd;
   wire \GPIOPortRd[0]_INST_0_i_1_n_0 ;
   wire \GPIOPortRd[0]_INST_0_i_2_n_0 ;
   wire \GPIOPortRd[0]_INST_0_i_3_n_0 ;
@@ -5124,22 +5237,22 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
   wire \GPIOPortRd[9]_INST_0_i_4_n_0 ;
   wire \GPIOPortRd[9]_INST_0_i_5_n_0 ;
   wire [1:0]GPIOPortWr;
-  wire \array_reg[0]_29 ;
-  wire \array_reg[10]_23 ;
+  wire \array_reg[0]_30 ;
+  wire \array_reg[10]_24 ;
   wire \array_reg[11]_17 ;
-  wire \array_reg[12]_22 ;
-  wire \array_reg[13]_21 ;
-  wire \array_reg[14]_20 ;
-  wire \array_reg[15][15]_i_1__0_n_0 ;
-  wire \array_reg[1]_30 ;
-  wire \array_reg[2]_31 ;
+  wire \array_reg[12]_23 ;
+  wire \array_reg[13]_22 ;
+  wire \array_reg[14]_21 ;
+  wire \array_reg[15]_20 ;
+  wire \array_reg[1]_31 ;
+  wire \array_reg[2]_32 ;
   wire \array_reg[3]_18 ;
-  wire \array_reg[4]_28 ;
-  wire \array_reg[5]_27 ;
-  wire \array_reg[6]_26 ;
+  wire \array_reg[4]_29 ;
+  wire \array_reg[5]_28 ;
+  wire \array_reg[6]_27 ;
   wire \array_reg[7]_19 ;
-  wire \array_reg[8]_25 ;
-  wire \array_reg[9]_24 ;
+  wire \array_reg[8]_26 ;
+  wire \array_reg[9]_25 ;
   wire \array_reg_reg_n_0_[0][0] ;
   wire \array_reg_reg_n_0_[0][10] ;
   wire \array_reg_reg_n_0_[0][11] ;
@@ -5396,14 +5509,12 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
   wire \array_reg_reg_n_0_[9][7] ;
   wire \array_reg_reg_n_0_[9][8] ;
   wire \array_reg_reg_n_0_[9][9] ;
-  wire [1:0]blClkOut;
   wire clk;
   wire empty_reg;
   wire empty_reg_i_1__0_n_0;
   wire empty_reg_i_2_n_0;
   wire empty_reg_i_3_n_0;
   wire fifo_reset;
-  wire full;
   wire full_reg_i_1__0_n_0;
   wire full_reg_i_2__0_n_0;
   wire full_reg_i_3__0_n_0;
@@ -5413,14 +5524,14 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
   wire \r_ptr_reg[2]_i_1_n_0 ;
   wire \r_ptr_reg[3]_i_1__0_n_0 ;
   wire \r_ptr_reg[3]_i_2_n_0 ;
-  wire [3:0]r_ptr_reg_reg__0;
+  wire [3:0]r_ptr_reg_reg;
   wire reset_n;
   wire \w_ptr_reg[0]_i_1__0_n_0 ;
   wire \w_ptr_reg[1]_i_1__0_n_0 ;
   wire \w_ptr_reg[2]_i_1__0_n_0 ;
   wire \w_ptr_reg[3]_i_1__0_n_0 ;
   wire \w_ptr_reg[3]_i_2__0_n_0 ;
-  wire [3:0]w_ptr_reg_reg__0;
+  wire [3:0]w_ptr_reg_reg;
   wire wr;
 
   LUT2 #(
@@ -5433,9 +5544,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     .INIT(64'hEEE222E200000000)) 
     \GPIOPortRd[0]_INST_0 
        (.I0(\GPIOPortRd[0]_INST_0_i_1_n_0 ),
-        .I1(r_ptr_reg_reg__0[3]),
+        .I1(r_ptr_reg_reg[3]),
         .I2(\GPIOPortRd[0]_INST_0_i_2_n_0 ),
-        .I3(r_ptr_reg_reg__0[2]),
+        .I3(r_ptr_reg_reg[2]),
         .I4(\GPIOPortRd[0]_INST_0_i_3_n_0 ),
         .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[0]));
@@ -5443,15 +5554,15 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
        (.I0(\GPIOPortRd[0]_INST_0_i_4_n_0 ),
         .I1(\GPIOPortRd[0]_INST_0_i_5_n_0 ),
         .O(\GPIOPortRd[0]_INST_0_i_1_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \GPIOPortRd[0]_INST_0_i_2 
        (.I0(\array_reg_reg_n_0_[11][0] ),
         .I1(\array_reg_reg_n_0_[10][0] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[9][0] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[8][0] ),
         .O(\GPIOPortRd[0]_INST_0_i_2_n_0 ));
   LUT6 #(
@@ -5459,9 +5570,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[0]_INST_0_i_3 
        (.I0(\array_reg_reg_n_0_[15][0] ),
         .I1(\array_reg_reg_n_0_[14][0] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[13][0] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[12][0] ),
         .O(\GPIOPortRd[0]_INST_0_i_3_n_0 ));
   LUT6 #(
@@ -5469,9 +5580,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[0]_INST_0_i_4 
        (.I0(\array_reg_reg_n_0_[3][0] ),
         .I1(\array_reg_reg_n_0_[2][0] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[1][0] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[0][0] ),
         .O(\GPIOPortRd[0]_INST_0_i_4_n_0 ));
   LUT6 #(
@@ -5479,18 +5590,18 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[0]_INST_0_i_5 
        (.I0(\array_reg_reg_n_0_[7][0] ),
         .I1(\array_reg_reg_n_0_[6][0] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[5][0] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[4][0] ),
         .O(\GPIOPortRd[0]_INST_0_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hEEE222E200000000)) 
     \GPIOPortRd[10]_INST_0 
        (.I0(\GPIOPortRd[10]_INST_0_i_1_n_0 ),
-        .I1(r_ptr_reg_reg__0[3]),
+        .I1(r_ptr_reg_reg[3]),
         .I2(\GPIOPortRd[10]_INST_0_i_2_n_0 ),
-        .I3(r_ptr_reg_reg__0[2]),
+        .I3(r_ptr_reg_reg[2]),
         .I4(\GPIOPortRd[10]_INST_0_i_3_n_0 ),
         .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[10]));
@@ -5498,15 +5609,15 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
        (.I0(\GPIOPortRd[10]_INST_0_i_4_n_0 ),
         .I1(\GPIOPortRd[10]_INST_0_i_5_n_0 ),
         .O(\GPIOPortRd[10]_INST_0_i_1_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \GPIOPortRd[10]_INST_0_i_2 
        (.I0(\array_reg_reg_n_0_[11][10] ),
         .I1(\array_reg_reg_n_0_[10][10] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[9][10] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[8][10] ),
         .O(\GPIOPortRd[10]_INST_0_i_2_n_0 ));
   LUT6 #(
@@ -5514,9 +5625,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[10]_INST_0_i_3 
        (.I0(\array_reg_reg_n_0_[15][10] ),
         .I1(\array_reg_reg_n_0_[14][10] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[13][10] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[12][10] ),
         .O(\GPIOPortRd[10]_INST_0_i_3_n_0 ));
   LUT6 #(
@@ -5524,9 +5635,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[10]_INST_0_i_4 
        (.I0(\array_reg_reg_n_0_[3][10] ),
         .I1(\array_reg_reg_n_0_[2][10] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[1][10] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[0][10] ),
         .O(\GPIOPortRd[10]_INST_0_i_4_n_0 ));
   LUT6 #(
@@ -5534,18 +5645,18 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[10]_INST_0_i_5 
        (.I0(\array_reg_reg_n_0_[7][10] ),
         .I1(\array_reg_reg_n_0_[6][10] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[5][10] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[4][10] ),
         .O(\GPIOPortRd[10]_INST_0_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hEEE222E200000000)) 
     \GPIOPortRd[11]_INST_0 
        (.I0(\GPIOPortRd[11]_INST_0_i_1_n_0 ),
-        .I1(r_ptr_reg_reg__0[3]),
+        .I1(r_ptr_reg_reg[3]),
         .I2(\GPIOPortRd[11]_INST_0_i_2_n_0 ),
-        .I3(r_ptr_reg_reg__0[2]),
+        .I3(r_ptr_reg_reg[2]),
         .I4(\GPIOPortRd[11]_INST_0_i_3_n_0 ),
         .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[11]));
@@ -5553,15 +5664,15 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
        (.I0(\GPIOPortRd[11]_INST_0_i_4_n_0 ),
         .I1(\GPIOPortRd[11]_INST_0_i_5_n_0 ),
         .O(\GPIOPortRd[11]_INST_0_i_1_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \GPIOPortRd[11]_INST_0_i_2 
        (.I0(\array_reg_reg_n_0_[11][11] ),
         .I1(\array_reg_reg_n_0_[10][11] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[9][11] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[8][11] ),
         .O(\GPIOPortRd[11]_INST_0_i_2_n_0 ));
   LUT6 #(
@@ -5569,9 +5680,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[11]_INST_0_i_3 
        (.I0(\array_reg_reg_n_0_[15][11] ),
         .I1(\array_reg_reg_n_0_[14][11] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[13][11] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[12][11] ),
         .O(\GPIOPortRd[11]_INST_0_i_3_n_0 ));
   LUT6 #(
@@ -5579,9 +5690,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[11]_INST_0_i_4 
        (.I0(\array_reg_reg_n_0_[3][11] ),
         .I1(\array_reg_reg_n_0_[2][11] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[1][11] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[0][11] ),
         .O(\GPIOPortRd[11]_INST_0_i_4_n_0 ));
   LUT6 #(
@@ -5589,18 +5700,18 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[11]_INST_0_i_5 
        (.I0(\array_reg_reg_n_0_[7][11] ),
         .I1(\array_reg_reg_n_0_[6][11] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[5][11] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[4][11] ),
         .O(\GPIOPortRd[11]_INST_0_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hEEE222E200000000)) 
     \GPIOPortRd[12]_INST_0 
        (.I0(\GPIOPortRd[12]_INST_0_i_1_n_0 ),
-        .I1(r_ptr_reg_reg__0[3]),
+        .I1(r_ptr_reg_reg[3]),
         .I2(\GPIOPortRd[12]_INST_0_i_2_n_0 ),
-        .I3(r_ptr_reg_reg__0[2]),
+        .I3(r_ptr_reg_reg[2]),
         .I4(\GPIOPortRd[12]_INST_0_i_3_n_0 ),
         .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[12]));
@@ -5608,15 +5719,15 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
        (.I0(\GPIOPortRd[12]_INST_0_i_4_n_0 ),
         .I1(\GPIOPortRd[12]_INST_0_i_5_n_0 ),
         .O(\GPIOPortRd[12]_INST_0_i_1_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \GPIOPortRd[12]_INST_0_i_2 
        (.I0(\array_reg_reg_n_0_[11][12] ),
         .I1(\array_reg_reg_n_0_[10][12] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[9][12] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[8][12] ),
         .O(\GPIOPortRd[12]_INST_0_i_2_n_0 ));
   LUT6 #(
@@ -5624,9 +5735,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[12]_INST_0_i_3 
        (.I0(\array_reg_reg_n_0_[15][12] ),
         .I1(\array_reg_reg_n_0_[14][12] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[13][12] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[12][12] ),
         .O(\GPIOPortRd[12]_INST_0_i_3_n_0 ));
   LUT6 #(
@@ -5634,9 +5745,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[12]_INST_0_i_4 
        (.I0(\array_reg_reg_n_0_[3][12] ),
         .I1(\array_reg_reg_n_0_[2][12] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[1][12] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[0][12] ),
         .O(\GPIOPortRd[12]_INST_0_i_4_n_0 ));
   LUT6 #(
@@ -5644,18 +5755,18 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[12]_INST_0_i_5 
        (.I0(\array_reg_reg_n_0_[7][12] ),
         .I1(\array_reg_reg_n_0_[6][12] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[5][12] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[4][12] ),
         .O(\GPIOPortRd[12]_INST_0_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hEEE222E200000000)) 
     \GPIOPortRd[13]_INST_0 
        (.I0(\GPIOPortRd[13]_INST_0_i_1_n_0 ),
-        .I1(r_ptr_reg_reg__0[3]),
+        .I1(r_ptr_reg_reg[3]),
         .I2(\GPIOPortRd[13]_INST_0_i_2_n_0 ),
-        .I3(r_ptr_reg_reg__0[2]),
+        .I3(r_ptr_reg_reg[2]),
         .I4(\GPIOPortRd[13]_INST_0_i_3_n_0 ),
         .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[13]));
@@ -5663,15 +5774,15 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
        (.I0(\GPIOPortRd[13]_INST_0_i_4_n_0 ),
         .I1(\GPIOPortRd[13]_INST_0_i_5_n_0 ),
         .O(\GPIOPortRd[13]_INST_0_i_1_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \GPIOPortRd[13]_INST_0_i_2 
        (.I0(\array_reg_reg_n_0_[11][13] ),
         .I1(\array_reg_reg_n_0_[10][13] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[9][13] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[8][13] ),
         .O(\GPIOPortRd[13]_INST_0_i_2_n_0 ));
   LUT6 #(
@@ -5679,9 +5790,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[13]_INST_0_i_3 
        (.I0(\array_reg_reg_n_0_[15][13] ),
         .I1(\array_reg_reg_n_0_[14][13] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[13][13] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[12][13] ),
         .O(\GPIOPortRd[13]_INST_0_i_3_n_0 ));
   LUT6 #(
@@ -5689,9 +5800,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[13]_INST_0_i_4 
        (.I0(\array_reg_reg_n_0_[3][13] ),
         .I1(\array_reg_reg_n_0_[2][13] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[1][13] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[0][13] ),
         .O(\GPIOPortRd[13]_INST_0_i_4_n_0 ));
   LUT6 #(
@@ -5699,18 +5810,18 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[13]_INST_0_i_5 
        (.I0(\array_reg_reg_n_0_[7][13] ),
         .I1(\array_reg_reg_n_0_[6][13] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[5][13] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[4][13] ),
         .O(\GPIOPortRd[13]_INST_0_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hEEE222E200000000)) 
     \GPIOPortRd[14]_INST_0 
        (.I0(\GPIOPortRd[14]_INST_0_i_1_n_0 ),
-        .I1(r_ptr_reg_reg__0[3]),
+        .I1(r_ptr_reg_reg[3]),
         .I2(\GPIOPortRd[14]_INST_0_i_2_n_0 ),
-        .I3(r_ptr_reg_reg__0[2]),
+        .I3(r_ptr_reg_reg[2]),
         .I4(\GPIOPortRd[14]_INST_0_i_3_n_0 ),
         .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[14]));
@@ -5718,15 +5829,15 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
        (.I0(\GPIOPortRd[14]_INST_0_i_4_n_0 ),
         .I1(\GPIOPortRd[14]_INST_0_i_5_n_0 ),
         .O(\GPIOPortRd[14]_INST_0_i_1_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \GPIOPortRd[14]_INST_0_i_2 
        (.I0(\array_reg_reg_n_0_[11][14] ),
         .I1(\array_reg_reg_n_0_[10][14] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[9][14] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[8][14] ),
         .O(\GPIOPortRd[14]_INST_0_i_2_n_0 ));
   LUT6 #(
@@ -5734,9 +5845,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[14]_INST_0_i_3 
        (.I0(\array_reg_reg_n_0_[15][14] ),
         .I1(\array_reg_reg_n_0_[14][14] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[13][14] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[12][14] ),
         .O(\GPIOPortRd[14]_INST_0_i_3_n_0 ));
   LUT6 #(
@@ -5744,9 +5855,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[14]_INST_0_i_4 
        (.I0(\array_reg_reg_n_0_[3][14] ),
         .I1(\array_reg_reg_n_0_[2][14] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[1][14] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[0][14] ),
         .O(\GPIOPortRd[14]_INST_0_i_4_n_0 ));
   LUT6 #(
@@ -5754,18 +5865,18 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[14]_INST_0_i_5 
        (.I0(\array_reg_reg_n_0_[7][14] ),
         .I1(\array_reg_reg_n_0_[6][14] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[5][14] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[4][14] ),
         .O(\GPIOPortRd[14]_INST_0_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hEEE222E200000000)) 
     \GPIOPortRd[15]_INST_0 
        (.I0(\GPIOPortRd[15]_INST_0_i_1_n_0 ),
-        .I1(r_ptr_reg_reg__0[3]),
+        .I1(r_ptr_reg_reg[3]),
         .I2(\GPIOPortRd[15]_INST_0_i_2_n_0 ),
-        .I3(r_ptr_reg_reg__0[2]),
+        .I3(r_ptr_reg_reg[2]),
         .I4(\GPIOPortRd[15]_INST_0_i_3_n_0 ),
         .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[15]));
@@ -5773,15 +5884,15 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
        (.I0(\GPIOPortRd[15]_INST_0_i_4_n_0 ),
         .I1(\GPIOPortRd[15]_INST_0_i_5_n_0 ),
         .O(\GPIOPortRd[15]_INST_0_i_1_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \GPIOPortRd[15]_INST_0_i_2 
        (.I0(\array_reg_reg_n_0_[11][15] ),
         .I1(\array_reg_reg_n_0_[10][15] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[9][15] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[8][15] ),
         .O(\GPIOPortRd[15]_INST_0_i_2_n_0 ));
   LUT6 #(
@@ -5789,9 +5900,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[15]_INST_0_i_3 
        (.I0(\array_reg_reg_n_0_[15][15] ),
         .I1(\array_reg_reg_n_0_[14][15] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[13][15] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[12][15] ),
         .O(\GPIOPortRd[15]_INST_0_i_3_n_0 ));
   LUT6 #(
@@ -5799,9 +5910,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[15]_INST_0_i_4 
        (.I0(\array_reg_reg_n_0_[3][15] ),
         .I1(\array_reg_reg_n_0_[2][15] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[1][15] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[0][15] ),
         .O(\GPIOPortRd[15]_INST_0_i_4_n_0 ));
   LUT6 #(
@@ -5809,18 +5920,18 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[15]_INST_0_i_5 
        (.I0(\array_reg_reg_n_0_[7][15] ),
         .I1(\array_reg_reg_n_0_[6][15] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[5][15] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[4][15] ),
         .O(\GPIOPortRd[15]_INST_0_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hEEE222E200000000)) 
     \GPIOPortRd[1]_INST_0 
        (.I0(\GPIOPortRd[1]_INST_0_i_1_n_0 ),
-        .I1(r_ptr_reg_reg__0[3]),
+        .I1(r_ptr_reg_reg[3]),
         .I2(\GPIOPortRd[1]_INST_0_i_2_n_0 ),
-        .I3(r_ptr_reg_reg__0[2]),
+        .I3(r_ptr_reg_reg[2]),
         .I4(\GPIOPortRd[1]_INST_0_i_3_n_0 ),
         .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[1]));
@@ -5828,15 +5939,15 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
        (.I0(\GPIOPortRd[1]_INST_0_i_4_n_0 ),
         .I1(\GPIOPortRd[1]_INST_0_i_5_n_0 ),
         .O(\GPIOPortRd[1]_INST_0_i_1_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \GPIOPortRd[1]_INST_0_i_2 
        (.I0(\array_reg_reg_n_0_[11][1] ),
         .I1(\array_reg_reg_n_0_[10][1] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[9][1] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[8][1] ),
         .O(\GPIOPortRd[1]_INST_0_i_2_n_0 ));
   LUT6 #(
@@ -5844,9 +5955,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[1]_INST_0_i_3 
        (.I0(\array_reg_reg_n_0_[15][1] ),
         .I1(\array_reg_reg_n_0_[14][1] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[13][1] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[12][1] ),
         .O(\GPIOPortRd[1]_INST_0_i_3_n_0 ));
   LUT6 #(
@@ -5854,9 +5965,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[1]_INST_0_i_4 
        (.I0(\array_reg_reg_n_0_[3][1] ),
         .I1(\array_reg_reg_n_0_[2][1] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[1][1] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[0][1] ),
         .O(\GPIOPortRd[1]_INST_0_i_4_n_0 ));
   LUT6 #(
@@ -5864,24 +5975,18 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[1]_INST_0_i_5 
        (.I0(\array_reg_reg_n_0_[7][1] ),
         .I1(\array_reg_reg_n_0_[6][1] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[5][1] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[4][1] ),
         .O(\GPIOPortRd[1]_INST_0_i_5_n_0 ));
-  LUT2 #(
-    .INIT(4'hE)) 
-    \GPIOPortRd[29]_INST_0 
-       (.I0(out_fifo_full),
-        .I1(full),
-        .O(GPIOPortRd[16]));
   LUT6 #(
     .INIT(64'hEEE222E200000000)) 
     \GPIOPortRd[2]_INST_0 
        (.I0(\GPIOPortRd[2]_INST_0_i_1_n_0 ),
-        .I1(r_ptr_reg_reg__0[3]),
+        .I1(r_ptr_reg_reg[3]),
         .I2(\GPIOPortRd[2]_INST_0_i_2_n_0 ),
-        .I3(r_ptr_reg_reg__0[2]),
+        .I3(r_ptr_reg_reg[2]),
         .I4(\GPIOPortRd[2]_INST_0_i_3_n_0 ),
         .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[2]));
@@ -5889,15 +5994,15 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
        (.I0(\GPIOPortRd[2]_INST_0_i_4_n_0 ),
         .I1(\GPIOPortRd[2]_INST_0_i_5_n_0 ),
         .O(\GPIOPortRd[2]_INST_0_i_1_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \GPIOPortRd[2]_INST_0_i_2 
        (.I0(\array_reg_reg_n_0_[11][2] ),
         .I1(\array_reg_reg_n_0_[10][2] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[9][2] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[8][2] ),
         .O(\GPIOPortRd[2]_INST_0_i_2_n_0 ));
   LUT6 #(
@@ -5905,9 +6010,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[2]_INST_0_i_3 
        (.I0(\array_reg_reg_n_0_[15][2] ),
         .I1(\array_reg_reg_n_0_[14][2] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[13][2] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[12][2] ),
         .O(\GPIOPortRd[2]_INST_0_i_3_n_0 ));
   LUT6 #(
@@ -5915,9 +6020,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[2]_INST_0_i_4 
        (.I0(\array_reg_reg_n_0_[3][2] ),
         .I1(\array_reg_reg_n_0_[2][2] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[1][2] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[0][2] ),
         .O(\GPIOPortRd[2]_INST_0_i_4_n_0 ));
   LUT6 #(
@@ -5925,23 +6030,24 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[2]_INST_0_i_5 
        (.I0(\array_reg_reg_n_0_[7][2] ),
         .I1(\array_reg_reg_n_0_[6][2] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[5][2] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[4][2] ),
         .O(\GPIOPortRd[2]_INST_0_i_5_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT1 #(
     .INIT(2'h1)) 
     \GPIOPortRd[30]_INST_0 
        (.I0(empty_reg),
-        .O(GPIOPortRd[17]));
+        .O(GPIOPortRd[16]));
   LUT6 #(
     .INIT(64'hEEE222E200000000)) 
     \GPIOPortRd[3]_INST_0 
        (.I0(\GPIOPortRd[3]_INST_0_i_1_n_0 ),
-        .I1(r_ptr_reg_reg__0[3]),
+        .I1(r_ptr_reg_reg[3]),
         .I2(\GPIOPortRd[3]_INST_0_i_2_n_0 ),
-        .I3(r_ptr_reg_reg__0[2]),
+        .I3(r_ptr_reg_reg[2]),
         .I4(\GPIOPortRd[3]_INST_0_i_3_n_0 ),
         .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[3]));
@@ -5949,15 +6055,15 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
        (.I0(\GPIOPortRd[3]_INST_0_i_4_n_0 ),
         .I1(\GPIOPortRd[3]_INST_0_i_5_n_0 ),
         .O(\GPIOPortRd[3]_INST_0_i_1_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \GPIOPortRd[3]_INST_0_i_2 
        (.I0(\array_reg_reg_n_0_[11][3] ),
         .I1(\array_reg_reg_n_0_[10][3] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[9][3] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[8][3] ),
         .O(\GPIOPortRd[3]_INST_0_i_2_n_0 ));
   LUT6 #(
@@ -5965,9 +6071,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[3]_INST_0_i_3 
        (.I0(\array_reg_reg_n_0_[15][3] ),
         .I1(\array_reg_reg_n_0_[14][3] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[13][3] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[12][3] ),
         .O(\GPIOPortRd[3]_INST_0_i_3_n_0 ));
   LUT6 #(
@@ -5975,9 +6081,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[3]_INST_0_i_4 
        (.I0(\array_reg_reg_n_0_[3][3] ),
         .I1(\array_reg_reg_n_0_[2][3] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[1][3] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[0][3] ),
         .O(\GPIOPortRd[3]_INST_0_i_4_n_0 ));
   LUT6 #(
@@ -5985,18 +6091,18 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[3]_INST_0_i_5 
        (.I0(\array_reg_reg_n_0_[7][3] ),
         .I1(\array_reg_reg_n_0_[6][3] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[5][3] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[4][3] ),
         .O(\GPIOPortRd[3]_INST_0_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hEEE222E200000000)) 
     \GPIOPortRd[4]_INST_0 
        (.I0(\GPIOPortRd[4]_INST_0_i_1_n_0 ),
-        .I1(r_ptr_reg_reg__0[3]),
+        .I1(r_ptr_reg_reg[3]),
         .I2(\GPIOPortRd[4]_INST_0_i_2_n_0 ),
-        .I3(r_ptr_reg_reg__0[2]),
+        .I3(r_ptr_reg_reg[2]),
         .I4(\GPIOPortRd[4]_INST_0_i_3_n_0 ),
         .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[4]));
@@ -6004,15 +6110,15 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
        (.I0(\GPIOPortRd[4]_INST_0_i_4_n_0 ),
         .I1(\GPIOPortRd[4]_INST_0_i_5_n_0 ),
         .O(\GPIOPortRd[4]_INST_0_i_1_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \GPIOPortRd[4]_INST_0_i_2 
        (.I0(\array_reg_reg_n_0_[11][4] ),
         .I1(\array_reg_reg_n_0_[10][4] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[9][4] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[8][4] ),
         .O(\GPIOPortRd[4]_INST_0_i_2_n_0 ));
   LUT6 #(
@@ -6020,9 +6126,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[4]_INST_0_i_3 
        (.I0(\array_reg_reg_n_0_[15][4] ),
         .I1(\array_reg_reg_n_0_[14][4] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[13][4] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[12][4] ),
         .O(\GPIOPortRd[4]_INST_0_i_3_n_0 ));
   LUT6 #(
@@ -6030,9 +6136,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[4]_INST_0_i_4 
        (.I0(\array_reg_reg_n_0_[3][4] ),
         .I1(\array_reg_reg_n_0_[2][4] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[1][4] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[0][4] ),
         .O(\GPIOPortRd[4]_INST_0_i_4_n_0 ));
   LUT6 #(
@@ -6040,18 +6146,18 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[4]_INST_0_i_5 
        (.I0(\array_reg_reg_n_0_[7][4] ),
         .I1(\array_reg_reg_n_0_[6][4] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[5][4] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[4][4] ),
         .O(\GPIOPortRd[4]_INST_0_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hEEE222E200000000)) 
     \GPIOPortRd[5]_INST_0 
        (.I0(\GPIOPortRd[5]_INST_0_i_1_n_0 ),
-        .I1(r_ptr_reg_reg__0[3]),
+        .I1(r_ptr_reg_reg[3]),
         .I2(\GPIOPortRd[5]_INST_0_i_2_n_0 ),
-        .I3(r_ptr_reg_reg__0[2]),
+        .I3(r_ptr_reg_reg[2]),
         .I4(\GPIOPortRd[5]_INST_0_i_3_n_0 ),
         .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[5]));
@@ -6059,15 +6165,15 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
        (.I0(\GPIOPortRd[5]_INST_0_i_4_n_0 ),
         .I1(\GPIOPortRd[5]_INST_0_i_5_n_0 ),
         .O(\GPIOPortRd[5]_INST_0_i_1_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \GPIOPortRd[5]_INST_0_i_2 
        (.I0(\array_reg_reg_n_0_[11][5] ),
         .I1(\array_reg_reg_n_0_[10][5] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[9][5] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[8][5] ),
         .O(\GPIOPortRd[5]_INST_0_i_2_n_0 ));
   LUT6 #(
@@ -6075,9 +6181,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[5]_INST_0_i_3 
        (.I0(\array_reg_reg_n_0_[15][5] ),
         .I1(\array_reg_reg_n_0_[14][5] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[13][5] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[12][5] ),
         .O(\GPIOPortRd[5]_INST_0_i_3_n_0 ));
   LUT6 #(
@@ -6085,9 +6191,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[5]_INST_0_i_4 
        (.I0(\array_reg_reg_n_0_[3][5] ),
         .I1(\array_reg_reg_n_0_[2][5] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[1][5] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[0][5] ),
         .O(\GPIOPortRd[5]_INST_0_i_4_n_0 ));
   LUT6 #(
@@ -6095,18 +6201,18 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[5]_INST_0_i_5 
        (.I0(\array_reg_reg_n_0_[7][5] ),
         .I1(\array_reg_reg_n_0_[6][5] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[5][5] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[4][5] ),
         .O(\GPIOPortRd[5]_INST_0_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hEEE222E200000000)) 
     \GPIOPortRd[6]_INST_0 
        (.I0(\GPIOPortRd[6]_INST_0_i_1_n_0 ),
-        .I1(r_ptr_reg_reg__0[3]),
+        .I1(r_ptr_reg_reg[3]),
         .I2(\GPIOPortRd[6]_INST_0_i_2_n_0 ),
-        .I3(r_ptr_reg_reg__0[2]),
+        .I3(r_ptr_reg_reg[2]),
         .I4(\GPIOPortRd[6]_INST_0_i_3_n_0 ),
         .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[6]));
@@ -6114,15 +6220,15 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
        (.I0(\GPIOPortRd[6]_INST_0_i_4_n_0 ),
         .I1(\GPIOPortRd[6]_INST_0_i_5_n_0 ),
         .O(\GPIOPortRd[6]_INST_0_i_1_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \GPIOPortRd[6]_INST_0_i_2 
        (.I0(\array_reg_reg_n_0_[11][6] ),
         .I1(\array_reg_reg_n_0_[10][6] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[9][6] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[8][6] ),
         .O(\GPIOPortRd[6]_INST_0_i_2_n_0 ));
   LUT6 #(
@@ -6130,9 +6236,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[6]_INST_0_i_3 
        (.I0(\array_reg_reg_n_0_[15][6] ),
         .I1(\array_reg_reg_n_0_[14][6] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[13][6] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[12][6] ),
         .O(\GPIOPortRd[6]_INST_0_i_3_n_0 ));
   LUT6 #(
@@ -6140,9 +6246,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[6]_INST_0_i_4 
        (.I0(\array_reg_reg_n_0_[3][6] ),
         .I1(\array_reg_reg_n_0_[2][6] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[1][6] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[0][6] ),
         .O(\GPIOPortRd[6]_INST_0_i_4_n_0 ));
   LUT6 #(
@@ -6150,18 +6256,18 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[6]_INST_0_i_5 
        (.I0(\array_reg_reg_n_0_[7][6] ),
         .I1(\array_reg_reg_n_0_[6][6] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[5][6] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[4][6] ),
         .O(\GPIOPortRd[6]_INST_0_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hEEE222E200000000)) 
     \GPIOPortRd[7]_INST_0 
        (.I0(\GPIOPortRd[7]_INST_0_i_1_n_0 ),
-        .I1(r_ptr_reg_reg__0[3]),
+        .I1(r_ptr_reg_reg[3]),
         .I2(\GPIOPortRd[7]_INST_0_i_2_n_0 ),
-        .I3(r_ptr_reg_reg__0[2]),
+        .I3(r_ptr_reg_reg[2]),
         .I4(\GPIOPortRd[7]_INST_0_i_3_n_0 ),
         .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[7]));
@@ -6169,15 +6275,15 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
        (.I0(\GPIOPortRd[7]_INST_0_i_4_n_0 ),
         .I1(\GPIOPortRd[7]_INST_0_i_5_n_0 ),
         .O(\GPIOPortRd[7]_INST_0_i_1_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \GPIOPortRd[7]_INST_0_i_2 
        (.I0(\array_reg_reg_n_0_[11][7] ),
         .I1(\array_reg_reg_n_0_[10][7] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[9][7] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[8][7] ),
         .O(\GPIOPortRd[7]_INST_0_i_2_n_0 ));
   LUT6 #(
@@ -6185,9 +6291,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[7]_INST_0_i_3 
        (.I0(\array_reg_reg_n_0_[15][7] ),
         .I1(\array_reg_reg_n_0_[14][7] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[13][7] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[12][7] ),
         .O(\GPIOPortRd[7]_INST_0_i_3_n_0 ));
   LUT6 #(
@@ -6195,9 +6301,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[7]_INST_0_i_4 
        (.I0(\array_reg_reg_n_0_[3][7] ),
         .I1(\array_reg_reg_n_0_[2][7] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[1][7] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[0][7] ),
         .O(\GPIOPortRd[7]_INST_0_i_4_n_0 ));
   LUT6 #(
@@ -6205,18 +6311,18 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[7]_INST_0_i_5 
        (.I0(\array_reg_reg_n_0_[7][7] ),
         .I1(\array_reg_reg_n_0_[6][7] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[5][7] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[4][7] ),
         .O(\GPIOPortRd[7]_INST_0_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hEEE222E200000000)) 
     \GPIOPortRd[8]_INST_0 
        (.I0(\GPIOPortRd[8]_INST_0_i_1_n_0 ),
-        .I1(r_ptr_reg_reg__0[3]),
+        .I1(r_ptr_reg_reg[3]),
         .I2(\GPIOPortRd[8]_INST_0_i_2_n_0 ),
-        .I3(r_ptr_reg_reg__0[2]),
+        .I3(r_ptr_reg_reg[2]),
         .I4(\GPIOPortRd[8]_INST_0_i_3_n_0 ),
         .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[8]));
@@ -6224,15 +6330,15 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
        (.I0(\GPIOPortRd[8]_INST_0_i_4_n_0 ),
         .I1(\GPIOPortRd[8]_INST_0_i_5_n_0 ),
         .O(\GPIOPortRd[8]_INST_0_i_1_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \GPIOPortRd[8]_INST_0_i_2 
        (.I0(\array_reg_reg_n_0_[11][8] ),
         .I1(\array_reg_reg_n_0_[10][8] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[9][8] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[8][8] ),
         .O(\GPIOPortRd[8]_INST_0_i_2_n_0 ));
   LUT6 #(
@@ -6240,9 +6346,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[8]_INST_0_i_3 
        (.I0(\array_reg_reg_n_0_[15][8] ),
         .I1(\array_reg_reg_n_0_[14][8] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[13][8] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[12][8] ),
         .O(\GPIOPortRd[8]_INST_0_i_3_n_0 ));
   LUT6 #(
@@ -6250,9 +6356,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[8]_INST_0_i_4 
        (.I0(\array_reg_reg_n_0_[3][8] ),
         .I1(\array_reg_reg_n_0_[2][8] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[1][8] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[0][8] ),
         .O(\GPIOPortRd[8]_INST_0_i_4_n_0 ));
   LUT6 #(
@@ -6260,18 +6366,18 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[8]_INST_0_i_5 
        (.I0(\array_reg_reg_n_0_[7][8] ),
         .I1(\array_reg_reg_n_0_[6][8] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[5][8] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[4][8] ),
         .O(\GPIOPortRd[8]_INST_0_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hEEE222E200000000)) 
     \GPIOPortRd[9]_INST_0 
        (.I0(\GPIOPortRd[9]_INST_0_i_1_n_0 ),
-        .I1(r_ptr_reg_reg__0[3]),
+        .I1(r_ptr_reg_reg[3]),
         .I2(\GPIOPortRd[9]_INST_0_i_2_n_0 ),
-        .I3(r_ptr_reg_reg__0[2]),
+        .I3(r_ptr_reg_reg[2]),
         .I4(\GPIOPortRd[9]_INST_0_i_3_n_0 ),
         .I5(GPIOPortWr[0]),
         .O(GPIOPortRd[9]));
@@ -6279,15 +6385,15 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
        (.I0(\GPIOPortRd[9]_INST_0_i_4_n_0 ),
         .I1(\GPIOPortRd[9]_INST_0_i_5_n_0 ),
         .O(\GPIOPortRd[9]_INST_0_i_1_n_0 ),
-        .S(r_ptr_reg_reg__0[2]));
+        .S(r_ptr_reg_reg[2]));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \GPIOPortRd[9]_INST_0_i_2 
        (.I0(\array_reg_reg_n_0_[11][9] ),
         .I1(\array_reg_reg_n_0_[10][9] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[9][9] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[8][9] ),
         .O(\GPIOPortRd[9]_INST_0_i_2_n_0 ));
   LUT6 #(
@@ -6295,9 +6401,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[9]_INST_0_i_3 
        (.I0(\array_reg_reg_n_0_[15][9] ),
         .I1(\array_reg_reg_n_0_[14][9] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[13][9] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[12][9] ),
         .O(\GPIOPortRd[9]_INST_0_i_3_n_0 ));
   LUT6 #(
@@ -6305,9 +6411,9 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[9]_INST_0_i_4 
        (.I0(\array_reg_reg_n_0_[3][9] ),
         .I1(\array_reg_reg_n_0_[2][9] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[1][9] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[0][9] ),
         .O(\GPIOPortRd[9]_INST_0_i_4_n_0 ));
   LUT6 #(
@@ -6315,360 +6421,360 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
     \GPIOPortRd[9]_INST_0_i_5 
        (.I0(\array_reg_reg_n_0_[7][9] ),
         .I1(\array_reg_reg_n_0_[6][9] ),
-        .I2(r_ptr_reg_reg__0[1]),
+        .I2(r_ptr_reg_reg[1]),
         .I3(\array_reg_reg_n_0_[5][9] ),
-        .I4(r_ptr_reg_reg__0[0]),
+        .I4(r_ptr_reg_reg[0]),
         .I5(\array_reg_reg_n_0_[4][9] ),
         .O(\GPIOPortRd[9]_INST_0_i_5_n_0 ));
   LUT6 #(
     .INIT(64'h0000000000010000)) 
     \array_reg[0][15]_i_1__0 
-       (.I0(w_ptr_reg_reg__0[2]),
-        .I1(w_ptr_reg_reg__0[0]),
-        .I2(w_ptr_reg_reg__0[1]),
+       (.I0(w_ptr_reg_reg[0]),
+        .I1(w_ptr_reg_reg[1]),
+        .I2(w_ptr_reg_reg[2]),
         .I3(out_fifo_full),
         .I4(wr),
-        .I5(w_ptr_reg_reg__0[3]),
-        .O(\array_reg[0]_29 ));
+        .I5(w_ptr_reg_reg[3]),
+        .O(\array_reg[0]_30 ));
   LUT6 #(
     .INIT(64'h0000040000000000)) 
     \array_reg[10][15]_i_1__0 
-       (.I0(w_ptr_reg_reg__0[2]),
-        .I1(w_ptr_reg_reg__0[1]),
-        .I2(w_ptr_reg_reg__0[0]),
-        .I3(w_ptr_reg_reg__0[3]),
+       (.I0(w_ptr_reg_reg[2]),
+        .I1(w_ptr_reg_reg[1]),
+        .I2(w_ptr_reg_reg[0]),
+        .I3(w_ptr_reg_reg[3]),
         .I4(out_fifo_full),
         .I5(wr),
-        .O(\array_reg[10]_23 ));
+        .O(\array_reg[10]_24 ));
   LUT6 #(
     .INIT(64'h0000080000000000)) 
     \array_reg[11][15]_i_1__0 
-       (.I0(w_ptr_reg_reg__0[0]),
-        .I1(w_ptr_reg_reg__0[1]),
-        .I2(w_ptr_reg_reg__0[2]),
-        .I3(w_ptr_reg_reg__0[3]),
+       (.I0(w_ptr_reg_reg[0]),
+        .I1(w_ptr_reg_reg[1]),
+        .I2(w_ptr_reg_reg[2]),
+        .I3(w_ptr_reg_reg[3]),
         .I4(out_fifo_full),
         .I5(wr),
         .O(\array_reg[11]_17 ));
   LUT6 #(
-    .INIT(64'h0000100000000000)) 
+    .INIT(64'h0000000000000800)) 
     \array_reg[12][15]_i_1__0 
-       (.I0(w_ptr_reg_reg__0[1]),
-        .I1(w_ptr_reg_reg__0[0]),
-        .I2(w_ptr_reg_reg__0[2]),
-        .I3(wr),
-        .I4(out_fifo_full),
-        .I5(w_ptr_reg_reg__0[3]),
-        .O(\array_reg[12]_22 ));
+       (.I0(w_ptr_reg_reg[2]),
+        .I1(wr),
+        .I2(out_fifo_full),
+        .I3(w_ptr_reg_reg[3]),
+        .I4(w_ptr_reg_reg[1]),
+        .I5(w_ptr_reg_reg[0]),
+        .O(\array_reg[12]_23 ));
   LUT6 #(
     .INIT(64'h0000400000000000)) 
     \array_reg[13][15]_i_1__0 
-       (.I0(w_ptr_reg_reg__0[1]),
-        .I1(w_ptr_reg_reg__0[0]),
-        .I2(w_ptr_reg_reg__0[2]),
+       (.I0(w_ptr_reg_reg[1]),
+        .I1(w_ptr_reg_reg[0]),
+        .I2(w_ptr_reg_reg[2]),
         .I3(wr),
         .I4(out_fifo_full),
-        .I5(w_ptr_reg_reg__0[3]),
-        .O(\array_reg[13]_21 ));
+        .I5(w_ptr_reg_reg[3]),
+        .O(\array_reg[13]_22 ));
   LUT6 #(
     .INIT(64'h0000400000000000)) 
     \array_reg[14][15]_i_1__0 
-       (.I0(w_ptr_reg_reg__0[0]),
-        .I1(w_ptr_reg_reg__0[1]),
-        .I2(w_ptr_reg_reg__0[2]),
+       (.I0(w_ptr_reg_reg[0]),
+        .I1(w_ptr_reg_reg[1]),
+        .I2(w_ptr_reg_reg[2]),
         .I3(wr),
         .I4(out_fifo_full),
-        .I5(w_ptr_reg_reg__0[3]),
-        .O(\array_reg[14]_20 ));
+        .I5(w_ptr_reg_reg[3]),
+        .O(\array_reg[14]_21 ));
   LUT6 #(
     .INIT(64'h0000800000000000)) 
     \array_reg[15][15]_i_1__0 
-       (.I0(w_ptr_reg_reg__0[1]),
-        .I1(w_ptr_reg_reg__0[0]),
-        .I2(w_ptr_reg_reg__0[2]),
-        .I3(wr),
+       (.I0(w_ptr_reg_reg[0]),
+        .I1(w_ptr_reg_reg[1]),
+        .I2(w_ptr_reg_reg[2]),
+        .I3(w_ptr_reg_reg[3]),
         .I4(out_fifo_full),
-        .I5(w_ptr_reg_reg__0[3]),
-        .O(\array_reg[15][15]_i_1__0_n_0 ));
+        .I5(wr),
+        .O(\array_reg[15]_20 ));
   LUT6 #(
     .INIT(64'h0000000000040000)) 
     \array_reg[1][15]_i_1__0 
-       (.I0(w_ptr_reg_reg__0[2]),
-        .I1(w_ptr_reg_reg__0[0]),
-        .I2(w_ptr_reg_reg__0[1]),
+       (.I0(w_ptr_reg_reg[2]),
+        .I1(w_ptr_reg_reg[0]),
+        .I2(w_ptr_reg_reg[1]),
         .I3(out_fifo_full),
         .I4(wr),
-        .I5(w_ptr_reg_reg__0[3]),
-        .O(\array_reg[1]_30 ));
+        .I5(w_ptr_reg_reg[3]),
+        .O(\array_reg[1]_31 ));
   LUT6 #(
     .INIT(64'h0000000000040000)) 
     \array_reg[2][15]_i_1__0 
-       (.I0(w_ptr_reg_reg__0[2]),
-        .I1(w_ptr_reg_reg__0[1]),
-        .I2(w_ptr_reg_reg__0[0]),
+       (.I0(w_ptr_reg_reg[2]),
+        .I1(w_ptr_reg_reg[1]),
+        .I2(w_ptr_reg_reg[0]),
         .I3(out_fifo_full),
         .I4(wr),
-        .I5(w_ptr_reg_reg__0[3]),
-        .O(\array_reg[2]_31 ));
+        .I5(w_ptr_reg_reg[3]),
+        .O(\array_reg[2]_32 ));
   LUT6 #(
     .INIT(64'h0000000000080000)) 
     \array_reg[3][15]_i_1__0 
-       (.I0(w_ptr_reg_reg__0[0]),
-        .I1(w_ptr_reg_reg__0[1]),
-        .I2(w_ptr_reg_reg__0[2]),
+       (.I0(w_ptr_reg_reg[0]),
+        .I1(w_ptr_reg_reg[1]),
+        .I2(w_ptr_reg_reg[2]),
         .I3(out_fifo_full),
         .I4(wr),
-        .I5(w_ptr_reg_reg__0[3]),
+        .I5(w_ptr_reg_reg[3]),
         .O(\array_reg[3]_18 ));
   LUT6 #(
     .INIT(64'h0000000000100000)) 
     \array_reg[4][15]_i_1__0 
-       (.I0(w_ptr_reg_reg__0[1]),
-        .I1(w_ptr_reg_reg__0[0]),
-        .I2(w_ptr_reg_reg__0[2]),
-        .I3(w_ptr_reg_reg__0[3]),
+       (.I0(w_ptr_reg_reg[1]),
+        .I1(w_ptr_reg_reg[0]),
+        .I2(w_ptr_reg_reg[2]),
+        .I3(w_ptr_reg_reg[3]),
         .I4(wr),
         .I5(out_fifo_full),
-        .O(\array_reg[4]_28 ));
+        .O(\array_reg[4]_29 ));
   LUT6 #(
     .INIT(64'h0000000000400000)) 
     \array_reg[5][15]_i_1__0 
-       (.I0(w_ptr_reg_reg__0[1]),
-        .I1(w_ptr_reg_reg__0[0]),
-        .I2(w_ptr_reg_reg__0[2]),
-        .I3(w_ptr_reg_reg__0[3]),
+       (.I0(w_ptr_reg_reg[1]),
+        .I1(w_ptr_reg_reg[0]),
+        .I2(w_ptr_reg_reg[2]),
+        .I3(w_ptr_reg_reg[3]),
         .I4(wr),
         .I5(out_fifo_full),
-        .O(\array_reg[5]_27 ));
+        .O(\array_reg[5]_28 ));
   LUT6 #(
     .INIT(64'h0000000000400000)) 
     \array_reg[6][15]_i_1__0 
-       (.I0(w_ptr_reg_reg__0[0]),
-        .I1(w_ptr_reg_reg__0[1]),
-        .I2(w_ptr_reg_reg__0[2]),
-        .I3(w_ptr_reg_reg__0[3]),
+       (.I0(w_ptr_reg_reg[0]),
+        .I1(w_ptr_reg_reg[1]),
+        .I2(w_ptr_reg_reg[2]),
+        .I3(w_ptr_reg_reg[3]),
         .I4(wr),
         .I5(out_fifo_full),
-        .O(\array_reg[6]_26 ));
+        .O(\array_reg[6]_27 ));
   LUT6 #(
     .INIT(64'h0000000040000000)) 
     \array_reg[7][15]_i_1__0 
-       (.I0(w_ptr_reg_reg__0[3]),
-        .I1(w_ptr_reg_reg__0[2]),
-        .I2(w_ptr_reg_reg__0[1]),
-        .I3(w_ptr_reg_reg__0[0]),
+       (.I0(w_ptr_reg_reg[3]),
+        .I1(w_ptr_reg_reg[2]),
+        .I2(w_ptr_reg_reg[1]),
+        .I3(w_ptr_reg_reg[0]),
         .I4(wr),
         .I5(out_fifo_full),
         .O(\array_reg[7]_19 ));
   LUT6 #(
     .INIT(64'h0000010000000000)) 
     \array_reg[8][15]_i_1__0 
-       (.I0(w_ptr_reg_reg__0[2]),
-        .I1(w_ptr_reg_reg__0[0]),
-        .I2(w_ptr_reg_reg__0[1]),
-        .I3(w_ptr_reg_reg__0[3]),
+       (.I0(w_ptr_reg_reg[0]),
+        .I1(w_ptr_reg_reg[1]),
+        .I2(w_ptr_reg_reg[2]),
+        .I3(w_ptr_reg_reg[3]),
         .I4(out_fifo_full),
         .I5(wr),
-        .O(\array_reg[8]_25 ));
+        .O(\array_reg[8]_26 ));
   LUT6 #(
     .INIT(64'h0000040000000000)) 
     \array_reg[9][15]_i_1__0 
-       (.I0(w_ptr_reg_reg__0[2]),
-        .I1(w_ptr_reg_reg__0[0]),
-        .I2(w_ptr_reg_reg__0[1]),
-        .I3(w_ptr_reg_reg__0[3]),
+       (.I0(w_ptr_reg_reg[2]),
+        .I1(w_ptr_reg_reg[0]),
+        .I2(w_ptr_reg_reg[1]),
+        .I3(w_ptr_reg_reg[3]),
         .I4(out_fifo_full),
         .I5(wr),
-        .O(\array_reg[9]_24 ));
+        .O(\array_reg[9]_25 ));
   FDCE \array_reg_reg[0][0] 
        (.C(clk),
-        .CE(\array_reg[0]_29 ),
+        .CE(\array_reg[0]_30 ),
         .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[0][0] ));
   FDCE \array_reg_reg[0][10] 
        (.C(clk),
-        .CE(\array_reg[0]_29 ),
+        .CE(\array_reg[0]_30 ),
         .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[0][10] ));
   FDCE \array_reg_reg[0][11] 
        (.C(clk),
-        .CE(\array_reg[0]_29 ),
+        .CE(\array_reg[0]_30 ),
         .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[0][11] ));
   FDCE \array_reg_reg[0][12] 
        (.C(clk),
-        .CE(\array_reg[0]_29 ),
+        .CE(\array_reg[0]_30 ),
         .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[0][12] ));
   FDCE \array_reg_reg[0][13] 
        (.C(clk),
-        .CE(\array_reg[0]_29 ),
+        .CE(\array_reg[0]_30 ),
         .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[0][13] ));
   FDCE \array_reg_reg[0][14] 
        (.C(clk),
-        .CE(\array_reg[0]_29 ),
+        .CE(\array_reg[0]_30 ),
         .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[0][14] ));
   FDCE \array_reg_reg[0][15] 
        (.C(clk),
-        .CE(\array_reg[0]_29 ),
+        .CE(\array_reg[0]_30 ),
         .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[0][15] ));
   FDCE \array_reg_reg[0][1] 
        (.C(clk),
-        .CE(\array_reg[0]_29 ),
+        .CE(\array_reg[0]_30 ),
         .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[0][1] ));
   FDCE \array_reg_reg[0][2] 
        (.C(clk),
-        .CE(\array_reg[0]_29 ),
+        .CE(\array_reg[0]_30 ),
         .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[0][2] ));
   FDCE \array_reg_reg[0][3] 
        (.C(clk),
-        .CE(\array_reg[0]_29 ),
+        .CE(\array_reg[0]_30 ),
         .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[0][3] ));
   FDCE \array_reg_reg[0][4] 
        (.C(clk),
-        .CE(\array_reg[0]_29 ),
+        .CE(\array_reg[0]_30 ),
         .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[0][4] ));
   FDCE \array_reg_reg[0][5] 
        (.C(clk),
-        .CE(\array_reg[0]_29 ),
+        .CE(\array_reg[0]_30 ),
         .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[0][5] ));
   FDCE \array_reg_reg[0][6] 
        (.C(clk),
-        .CE(\array_reg[0]_29 ),
+        .CE(\array_reg[0]_30 ),
         .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[0][6] ));
   FDCE \array_reg_reg[0][7] 
        (.C(clk),
-        .CE(\array_reg[0]_29 ),
+        .CE(\array_reg[0]_30 ),
         .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[0][7] ));
   FDCE \array_reg_reg[0][8] 
        (.C(clk),
-        .CE(\array_reg[0]_29 ),
+        .CE(\array_reg[0]_30 ),
         .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[0][8] ));
   FDCE \array_reg_reg[0][9] 
        (.C(clk),
-        .CE(\array_reg[0]_29 ),
+        .CE(\array_reg[0]_30 ),
         .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[0][9] ));
   FDCE \array_reg_reg[10][0] 
        (.C(clk),
-        .CE(\array_reg[10]_23 ),
+        .CE(\array_reg[10]_24 ),
         .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[10][0] ));
   FDCE \array_reg_reg[10][10] 
        (.C(clk),
-        .CE(\array_reg[10]_23 ),
+        .CE(\array_reg[10]_24 ),
         .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[10][10] ));
   FDCE \array_reg_reg[10][11] 
        (.C(clk),
-        .CE(\array_reg[10]_23 ),
+        .CE(\array_reg[10]_24 ),
         .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[10][11] ));
   FDCE \array_reg_reg[10][12] 
        (.C(clk),
-        .CE(\array_reg[10]_23 ),
+        .CE(\array_reg[10]_24 ),
         .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[10][12] ));
   FDCE \array_reg_reg[10][13] 
        (.C(clk),
-        .CE(\array_reg[10]_23 ),
+        .CE(\array_reg[10]_24 ),
         .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[10][13] ));
   FDCE \array_reg_reg[10][14] 
        (.C(clk),
-        .CE(\array_reg[10]_23 ),
+        .CE(\array_reg[10]_24 ),
         .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[10][14] ));
   FDCE \array_reg_reg[10][15] 
        (.C(clk),
-        .CE(\array_reg[10]_23 ),
+        .CE(\array_reg[10]_24 ),
         .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[10][15] ));
   FDCE \array_reg_reg[10][1] 
        (.C(clk),
-        .CE(\array_reg[10]_23 ),
+        .CE(\array_reg[10]_24 ),
         .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[10][1] ));
   FDCE \array_reg_reg[10][2] 
        (.C(clk),
-        .CE(\array_reg[10]_23 ),
+        .CE(\array_reg[10]_24 ),
         .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[10][2] ));
   FDCE \array_reg_reg[10][3] 
        (.C(clk),
-        .CE(\array_reg[10]_23 ),
+        .CE(\array_reg[10]_24 ),
         .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[10][3] ));
   FDCE \array_reg_reg[10][4] 
        (.C(clk),
-        .CE(\array_reg[10]_23 ),
+        .CE(\array_reg[10]_24 ),
         .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[10][4] ));
   FDCE \array_reg_reg[10][5] 
        (.C(clk),
-        .CE(\array_reg[10]_23 ),
+        .CE(\array_reg[10]_24 ),
         .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[10][5] ));
   FDCE \array_reg_reg[10][6] 
        (.C(clk),
-        .CE(\array_reg[10]_23 ),
+        .CE(\array_reg[10]_24 ),
         .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[10][6] ));
   FDCE \array_reg_reg[10][7] 
        (.C(clk),
-        .CE(\array_reg[10]_23 ),
+        .CE(\array_reg[10]_24 ),
         .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[10][7] ));
   FDCE \array_reg_reg[10][8] 
        (.C(clk),
-        .CE(\array_reg[10]_23 ),
+        .CE(\array_reg[10]_24 ),
         .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[10][8] ));
   FDCE \array_reg_reg[10][9] 
        (.C(clk),
-        .CE(\array_reg[10]_23 ),
+        .CE(\array_reg[10]_24 ),
         .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[10][9] ));
@@ -6770,577 +6876,577 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
         .Q(\array_reg_reg_n_0_[11][9] ));
   FDCE \array_reg_reg[12][0] 
        (.C(clk),
-        .CE(\array_reg[12]_22 ),
+        .CE(\array_reg[12]_23 ),
         .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[12][0] ));
   FDCE \array_reg_reg[12][10] 
        (.C(clk),
-        .CE(\array_reg[12]_22 ),
+        .CE(\array_reg[12]_23 ),
         .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[12][10] ));
   FDCE \array_reg_reg[12][11] 
        (.C(clk),
-        .CE(\array_reg[12]_22 ),
+        .CE(\array_reg[12]_23 ),
         .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[12][11] ));
   FDCE \array_reg_reg[12][12] 
        (.C(clk),
-        .CE(\array_reg[12]_22 ),
+        .CE(\array_reg[12]_23 ),
         .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[12][12] ));
   FDCE \array_reg_reg[12][13] 
        (.C(clk),
-        .CE(\array_reg[12]_22 ),
+        .CE(\array_reg[12]_23 ),
         .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[12][13] ));
   FDCE \array_reg_reg[12][14] 
        (.C(clk),
-        .CE(\array_reg[12]_22 ),
+        .CE(\array_reg[12]_23 ),
         .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[12][14] ));
   FDCE \array_reg_reg[12][15] 
        (.C(clk),
-        .CE(\array_reg[12]_22 ),
+        .CE(\array_reg[12]_23 ),
         .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[12][15] ));
   FDCE \array_reg_reg[12][1] 
        (.C(clk),
-        .CE(\array_reg[12]_22 ),
+        .CE(\array_reg[12]_23 ),
         .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[12][1] ));
   FDCE \array_reg_reg[12][2] 
        (.C(clk),
-        .CE(\array_reg[12]_22 ),
+        .CE(\array_reg[12]_23 ),
         .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[12][2] ));
   FDCE \array_reg_reg[12][3] 
        (.C(clk),
-        .CE(\array_reg[12]_22 ),
+        .CE(\array_reg[12]_23 ),
         .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[12][3] ));
   FDCE \array_reg_reg[12][4] 
        (.C(clk),
-        .CE(\array_reg[12]_22 ),
+        .CE(\array_reg[12]_23 ),
         .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[12][4] ));
   FDCE \array_reg_reg[12][5] 
        (.C(clk),
-        .CE(\array_reg[12]_22 ),
+        .CE(\array_reg[12]_23 ),
         .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[12][5] ));
   FDCE \array_reg_reg[12][6] 
        (.C(clk),
-        .CE(\array_reg[12]_22 ),
+        .CE(\array_reg[12]_23 ),
         .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[12][6] ));
   FDCE \array_reg_reg[12][7] 
        (.C(clk),
-        .CE(\array_reg[12]_22 ),
+        .CE(\array_reg[12]_23 ),
         .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[12][7] ));
   FDCE \array_reg_reg[12][8] 
        (.C(clk),
-        .CE(\array_reg[12]_22 ),
+        .CE(\array_reg[12]_23 ),
         .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[12][8] ));
   FDCE \array_reg_reg[12][9] 
        (.C(clk),
-        .CE(\array_reg[12]_22 ),
+        .CE(\array_reg[12]_23 ),
         .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[12][9] ));
   FDCE \array_reg_reg[13][0] 
        (.C(clk),
-        .CE(\array_reg[13]_21 ),
+        .CE(\array_reg[13]_22 ),
         .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[13][0] ));
   FDCE \array_reg_reg[13][10] 
        (.C(clk),
-        .CE(\array_reg[13]_21 ),
+        .CE(\array_reg[13]_22 ),
         .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[13][10] ));
   FDCE \array_reg_reg[13][11] 
        (.C(clk),
-        .CE(\array_reg[13]_21 ),
+        .CE(\array_reg[13]_22 ),
         .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[13][11] ));
   FDCE \array_reg_reg[13][12] 
        (.C(clk),
-        .CE(\array_reg[13]_21 ),
+        .CE(\array_reg[13]_22 ),
         .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[13][12] ));
   FDCE \array_reg_reg[13][13] 
        (.C(clk),
-        .CE(\array_reg[13]_21 ),
+        .CE(\array_reg[13]_22 ),
         .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[13][13] ));
   FDCE \array_reg_reg[13][14] 
        (.C(clk),
-        .CE(\array_reg[13]_21 ),
+        .CE(\array_reg[13]_22 ),
         .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[13][14] ));
   FDCE \array_reg_reg[13][15] 
        (.C(clk),
-        .CE(\array_reg[13]_21 ),
+        .CE(\array_reg[13]_22 ),
         .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[13][15] ));
   FDCE \array_reg_reg[13][1] 
        (.C(clk),
-        .CE(\array_reg[13]_21 ),
+        .CE(\array_reg[13]_22 ),
         .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[13][1] ));
   FDCE \array_reg_reg[13][2] 
        (.C(clk),
-        .CE(\array_reg[13]_21 ),
+        .CE(\array_reg[13]_22 ),
         .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[13][2] ));
   FDCE \array_reg_reg[13][3] 
        (.C(clk),
-        .CE(\array_reg[13]_21 ),
+        .CE(\array_reg[13]_22 ),
         .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[13][3] ));
   FDCE \array_reg_reg[13][4] 
        (.C(clk),
-        .CE(\array_reg[13]_21 ),
+        .CE(\array_reg[13]_22 ),
         .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[13][4] ));
   FDCE \array_reg_reg[13][5] 
        (.C(clk),
-        .CE(\array_reg[13]_21 ),
+        .CE(\array_reg[13]_22 ),
         .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[13][5] ));
   FDCE \array_reg_reg[13][6] 
        (.C(clk),
-        .CE(\array_reg[13]_21 ),
+        .CE(\array_reg[13]_22 ),
         .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[13][6] ));
   FDCE \array_reg_reg[13][7] 
        (.C(clk),
-        .CE(\array_reg[13]_21 ),
+        .CE(\array_reg[13]_22 ),
         .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[13][7] ));
   FDCE \array_reg_reg[13][8] 
        (.C(clk),
-        .CE(\array_reg[13]_21 ),
+        .CE(\array_reg[13]_22 ),
         .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[13][8] ));
   FDCE \array_reg_reg[13][9] 
        (.C(clk),
-        .CE(\array_reg[13]_21 ),
+        .CE(\array_reg[13]_22 ),
         .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[13][9] ));
   FDCE \array_reg_reg[14][0] 
        (.C(clk),
-        .CE(\array_reg[14]_20 ),
+        .CE(\array_reg[14]_21 ),
         .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[14][0] ));
   FDCE \array_reg_reg[14][10] 
        (.C(clk),
-        .CE(\array_reg[14]_20 ),
+        .CE(\array_reg[14]_21 ),
         .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[14][10] ));
   FDCE \array_reg_reg[14][11] 
        (.C(clk),
-        .CE(\array_reg[14]_20 ),
+        .CE(\array_reg[14]_21 ),
         .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[14][11] ));
   FDCE \array_reg_reg[14][12] 
        (.C(clk),
-        .CE(\array_reg[14]_20 ),
+        .CE(\array_reg[14]_21 ),
         .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[14][12] ));
   FDCE \array_reg_reg[14][13] 
        (.C(clk),
-        .CE(\array_reg[14]_20 ),
+        .CE(\array_reg[14]_21 ),
         .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[14][13] ));
   FDCE \array_reg_reg[14][14] 
        (.C(clk),
-        .CE(\array_reg[14]_20 ),
+        .CE(\array_reg[14]_21 ),
         .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[14][14] ));
   FDCE \array_reg_reg[14][15] 
        (.C(clk),
-        .CE(\array_reg[14]_20 ),
+        .CE(\array_reg[14]_21 ),
         .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[14][15] ));
   FDCE \array_reg_reg[14][1] 
        (.C(clk),
-        .CE(\array_reg[14]_20 ),
+        .CE(\array_reg[14]_21 ),
         .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[14][1] ));
   FDCE \array_reg_reg[14][2] 
        (.C(clk),
-        .CE(\array_reg[14]_20 ),
+        .CE(\array_reg[14]_21 ),
         .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[14][2] ));
   FDCE \array_reg_reg[14][3] 
        (.C(clk),
-        .CE(\array_reg[14]_20 ),
+        .CE(\array_reg[14]_21 ),
         .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[14][3] ));
   FDCE \array_reg_reg[14][4] 
        (.C(clk),
-        .CE(\array_reg[14]_20 ),
+        .CE(\array_reg[14]_21 ),
         .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[14][4] ));
   FDCE \array_reg_reg[14][5] 
        (.C(clk),
-        .CE(\array_reg[14]_20 ),
+        .CE(\array_reg[14]_21 ),
         .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[14][5] ));
   FDCE \array_reg_reg[14][6] 
        (.C(clk),
-        .CE(\array_reg[14]_20 ),
+        .CE(\array_reg[14]_21 ),
         .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[14][6] ));
   FDCE \array_reg_reg[14][7] 
        (.C(clk),
-        .CE(\array_reg[14]_20 ),
+        .CE(\array_reg[14]_21 ),
         .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[14][7] ));
   FDCE \array_reg_reg[14][8] 
        (.C(clk),
-        .CE(\array_reg[14]_20 ),
+        .CE(\array_reg[14]_21 ),
         .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[14][8] ));
   FDCE \array_reg_reg[14][9] 
        (.C(clk),
-        .CE(\array_reg[14]_20 ),
+        .CE(\array_reg[14]_21 ),
         .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[14][9] ));
   FDCE \array_reg_reg[15][0] 
        (.C(clk),
-        .CE(\array_reg[15][15]_i_1__0_n_0 ),
+        .CE(\array_reg[15]_20 ),
         .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[15][0] ));
   FDCE \array_reg_reg[15][10] 
        (.C(clk),
-        .CE(\array_reg[15][15]_i_1__0_n_0 ),
+        .CE(\array_reg[15]_20 ),
         .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[15][10] ));
   FDCE \array_reg_reg[15][11] 
        (.C(clk),
-        .CE(\array_reg[15][15]_i_1__0_n_0 ),
+        .CE(\array_reg[15]_20 ),
         .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[15][11] ));
   FDCE \array_reg_reg[15][12] 
        (.C(clk),
-        .CE(\array_reg[15][15]_i_1__0_n_0 ),
+        .CE(\array_reg[15]_20 ),
         .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[15][12] ));
   FDCE \array_reg_reg[15][13] 
        (.C(clk),
-        .CE(\array_reg[15][15]_i_1__0_n_0 ),
+        .CE(\array_reg[15]_20 ),
         .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[15][13] ));
   FDCE \array_reg_reg[15][14] 
        (.C(clk),
-        .CE(\array_reg[15][15]_i_1__0_n_0 ),
+        .CE(\array_reg[15]_20 ),
         .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[15][14] ));
   FDCE \array_reg_reg[15][15] 
        (.C(clk),
-        .CE(\array_reg[15][15]_i_1__0_n_0 ),
+        .CE(\array_reg[15]_20 ),
         .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[15][15] ));
   FDCE \array_reg_reg[15][1] 
        (.C(clk),
-        .CE(\array_reg[15][15]_i_1__0_n_0 ),
+        .CE(\array_reg[15]_20 ),
         .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[15][1] ));
   FDCE \array_reg_reg[15][2] 
        (.C(clk),
-        .CE(\array_reg[15][15]_i_1__0_n_0 ),
+        .CE(\array_reg[15]_20 ),
         .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[15][2] ));
   FDCE \array_reg_reg[15][3] 
        (.C(clk),
-        .CE(\array_reg[15][15]_i_1__0_n_0 ),
+        .CE(\array_reg[15]_20 ),
         .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[15][3] ));
   FDCE \array_reg_reg[15][4] 
        (.C(clk),
-        .CE(\array_reg[15][15]_i_1__0_n_0 ),
+        .CE(\array_reg[15]_20 ),
         .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[15][4] ));
   FDCE \array_reg_reg[15][5] 
        (.C(clk),
-        .CE(\array_reg[15][15]_i_1__0_n_0 ),
+        .CE(\array_reg[15]_20 ),
         .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[15][5] ));
   FDCE \array_reg_reg[15][6] 
        (.C(clk),
-        .CE(\array_reg[15][15]_i_1__0_n_0 ),
+        .CE(\array_reg[15]_20 ),
         .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[15][6] ));
   FDCE \array_reg_reg[15][7] 
        (.C(clk),
-        .CE(\array_reg[15][15]_i_1__0_n_0 ),
+        .CE(\array_reg[15]_20 ),
         .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[15][7] ));
   FDCE \array_reg_reg[15][8] 
        (.C(clk),
-        .CE(\array_reg[15][15]_i_1__0_n_0 ),
+        .CE(\array_reg[15]_20 ),
         .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[15][8] ));
   FDCE \array_reg_reg[15][9] 
        (.C(clk),
-        .CE(\array_reg[15][15]_i_1__0_n_0 ),
+        .CE(\array_reg[15]_20 ),
         .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[15][9] ));
   FDCE \array_reg_reg[1][0] 
        (.C(clk),
-        .CE(\array_reg[1]_30 ),
+        .CE(\array_reg[1]_31 ),
         .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[1][0] ));
   FDCE \array_reg_reg[1][10] 
        (.C(clk),
-        .CE(\array_reg[1]_30 ),
+        .CE(\array_reg[1]_31 ),
         .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[1][10] ));
   FDCE \array_reg_reg[1][11] 
        (.C(clk),
-        .CE(\array_reg[1]_30 ),
+        .CE(\array_reg[1]_31 ),
         .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[1][11] ));
   FDCE \array_reg_reg[1][12] 
        (.C(clk),
-        .CE(\array_reg[1]_30 ),
+        .CE(\array_reg[1]_31 ),
         .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[1][12] ));
   FDCE \array_reg_reg[1][13] 
        (.C(clk),
-        .CE(\array_reg[1]_30 ),
+        .CE(\array_reg[1]_31 ),
         .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[1][13] ));
   FDCE \array_reg_reg[1][14] 
        (.C(clk),
-        .CE(\array_reg[1]_30 ),
+        .CE(\array_reg[1]_31 ),
         .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[1][14] ));
   FDCE \array_reg_reg[1][15] 
        (.C(clk),
-        .CE(\array_reg[1]_30 ),
+        .CE(\array_reg[1]_31 ),
         .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[1][15] ));
   FDCE \array_reg_reg[1][1] 
        (.C(clk),
-        .CE(\array_reg[1]_30 ),
+        .CE(\array_reg[1]_31 ),
         .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[1][1] ));
   FDCE \array_reg_reg[1][2] 
        (.C(clk),
-        .CE(\array_reg[1]_30 ),
+        .CE(\array_reg[1]_31 ),
         .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[1][2] ));
   FDCE \array_reg_reg[1][3] 
        (.C(clk),
-        .CE(\array_reg[1]_30 ),
+        .CE(\array_reg[1]_31 ),
         .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[1][3] ));
   FDCE \array_reg_reg[1][4] 
        (.C(clk),
-        .CE(\array_reg[1]_30 ),
+        .CE(\array_reg[1]_31 ),
         .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[1][4] ));
   FDCE \array_reg_reg[1][5] 
        (.C(clk),
-        .CE(\array_reg[1]_30 ),
+        .CE(\array_reg[1]_31 ),
         .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[1][5] ));
   FDCE \array_reg_reg[1][6] 
        (.C(clk),
-        .CE(\array_reg[1]_30 ),
+        .CE(\array_reg[1]_31 ),
         .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[1][6] ));
   FDCE \array_reg_reg[1][7] 
        (.C(clk),
-        .CE(\array_reg[1]_30 ),
+        .CE(\array_reg[1]_31 ),
         .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[1][7] ));
   FDCE \array_reg_reg[1][8] 
        (.C(clk),
-        .CE(\array_reg[1]_30 ),
+        .CE(\array_reg[1]_31 ),
         .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[1][8] ));
   FDCE \array_reg_reg[1][9] 
        (.C(clk),
-        .CE(\array_reg[1]_30 ),
+        .CE(\array_reg[1]_31 ),
         .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[1][9] ));
   FDCE \array_reg_reg[2][0] 
        (.C(clk),
-        .CE(\array_reg[2]_31 ),
+        .CE(\array_reg[2]_32 ),
         .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[2][0] ));
   FDCE \array_reg_reg[2][10] 
        (.C(clk),
-        .CE(\array_reg[2]_31 ),
+        .CE(\array_reg[2]_32 ),
         .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[2][10] ));
   FDCE \array_reg_reg[2][11] 
        (.C(clk),
-        .CE(\array_reg[2]_31 ),
+        .CE(\array_reg[2]_32 ),
         .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[2][11] ));
   FDCE \array_reg_reg[2][12] 
        (.C(clk),
-        .CE(\array_reg[2]_31 ),
+        .CE(\array_reg[2]_32 ),
         .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[2][12] ));
   FDCE \array_reg_reg[2][13] 
        (.C(clk),
-        .CE(\array_reg[2]_31 ),
+        .CE(\array_reg[2]_32 ),
         .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[2][13] ));
   FDCE \array_reg_reg[2][14] 
        (.C(clk),
-        .CE(\array_reg[2]_31 ),
+        .CE(\array_reg[2]_32 ),
         .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[2][14] ));
   FDCE \array_reg_reg[2][15] 
        (.C(clk),
-        .CE(\array_reg[2]_31 ),
+        .CE(\array_reg[2]_32 ),
         .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[2][15] ));
   FDCE \array_reg_reg[2][1] 
        (.C(clk),
-        .CE(\array_reg[2]_31 ),
+        .CE(\array_reg[2]_32 ),
         .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[2][1] ));
   FDCE \array_reg_reg[2][2] 
        (.C(clk),
-        .CE(\array_reg[2]_31 ),
+        .CE(\array_reg[2]_32 ),
         .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[2][2] ));
   FDCE \array_reg_reg[2][3] 
        (.C(clk),
-        .CE(\array_reg[2]_31 ),
+        .CE(\array_reg[2]_32 ),
         .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[2][3] ));
   FDCE \array_reg_reg[2][4] 
        (.C(clk),
-        .CE(\array_reg[2]_31 ),
+        .CE(\array_reg[2]_32 ),
         .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[2][4] ));
   FDCE \array_reg_reg[2][5] 
        (.C(clk),
-        .CE(\array_reg[2]_31 ),
+        .CE(\array_reg[2]_32 ),
         .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[2][5] ));
   FDCE \array_reg_reg[2][6] 
        (.C(clk),
-        .CE(\array_reg[2]_31 ),
+        .CE(\array_reg[2]_32 ),
         .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[2][6] ));
   FDCE \array_reg_reg[2][7] 
        (.C(clk),
-        .CE(\array_reg[2]_31 ),
+        .CE(\array_reg[2]_32 ),
         .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[2][7] ));
   FDCE \array_reg_reg[2][8] 
        (.C(clk),
-        .CE(\array_reg[2]_31 ),
+        .CE(\array_reg[2]_32 ),
         .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[2][8] ));
   FDCE \array_reg_reg[2][9] 
        (.C(clk),
-        .CE(\array_reg[2]_31 ),
+        .CE(\array_reg[2]_32 ),
         .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[2][9] ));
@@ -7442,289 +7548,289 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
         .Q(\array_reg_reg_n_0_[3][9] ));
   FDCE \array_reg_reg[4][0] 
        (.C(clk),
-        .CE(\array_reg[4]_28 ),
+        .CE(\array_reg[4]_29 ),
         .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[4][0] ));
   FDCE \array_reg_reg[4][10] 
        (.C(clk),
-        .CE(\array_reg[4]_28 ),
+        .CE(\array_reg[4]_29 ),
         .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[4][10] ));
   FDCE \array_reg_reg[4][11] 
        (.C(clk),
-        .CE(\array_reg[4]_28 ),
+        .CE(\array_reg[4]_29 ),
         .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[4][11] ));
   FDCE \array_reg_reg[4][12] 
        (.C(clk),
-        .CE(\array_reg[4]_28 ),
+        .CE(\array_reg[4]_29 ),
         .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[4][12] ));
   FDCE \array_reg_reg[4][13] 
        (.C(clk),
-        .CE(\array_reg[4]_28 ),
+        .CE(\array_reg[4]_29 ),
         .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[4][13] ));
   FDCE \array_reg_reg[4][14] 
        (.C(clk),
-        .CE(\array_reg[4]_28 ),
+        .CE(\array_reg[4]_29 ),
         .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[4][14] ));
   FDCE \array_reg_reg[4][15] 
        (.C(clk),
-        .CE(\array_reg[4]_28 ),
+        .CE(\array_reg[4]_29 ),
         .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[4][15] ));
   FDCE \array_reg_reg[4][1] 
        (.C(clk),
-        .CE(\array_reg[4]_28 ),
+        .CE(\array_reg[4]_29 ),
         .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[4][1] ));
   FDCE \array_reg_reg[4][2] 
        (.C(clk),
-        .CE(\array_reg[4]_28 ),
+        .CE(\array_reg[4]_29 ),
         .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[4][2] ));
   FDCE \array_reg_reg[4][3] 
        (.C(clk),
-        .CE(\array_reg[4]_28 ),
+        .CE(\array_reg[4]_29 ),
         .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[4][3] ));
   FDCE \array_reg_reg[4][4] 
        (.C(clk),
-        .CE(\array_reg[4]_28 ),
+        .CE(\array_reg[4]_29 ),
         .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[4][4] ));
   FDCE \array_reg_reg[4][5] 
        (.C(clk),
-        .CE(\array_reg[4]_28 ),
+        .CE(\array_reg[4]_29 ),
         .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[4][5] ));
   FDCE \array_reg_reg[4][6] 
        (.C(clk),
-        .CE(\array_reg[4]_28 ),
+        .CE(\array_reg[4]_29 ),
         .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[4][6] ));
   FDCE \array_reg_reg[4][7] 
        (.C(clk),
-        .CE(\array_reg[4]_28 ),
+        .CE(\array_reg[4]_29 ),
         .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[4][7] ));
   FDCE \array_reg_reg[4][8] 
        (.C(clk),
-        .CE(\array_reg[4]_28 ),
+        .CE(\array_reg[4]_29 ),
         .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[4][8] ));
   FDCE \array_reg_reg[4][9] 
        (.C(clk),
-        .CE(\array_reg[4]_28 ),
+        .CE(\array_reg[4]_29 ),
         .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[4][9] ));
   FDCE \array_reg_reg[5][0] 
        (.C(clk),
-        .CE(\array_reg[5]_27 ),
+        .CE(\array_reg[5]_28 ),
         .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[5][0] ));
   FDCE \array_reg_reg[5][10] 
        (.C(clk),
-        .CE(\array_reg[5]_27 ),
+        .CE(\array_reg[5]_28 ),
         .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[5][10] ));
   FDCE \array_reg_reg[5][11] 
        (.C(clk),
-        .CE(\array_reg[5]_27 ),
+        .CE(\array_reg[5]_28 ),
         .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[5][11] ));
   FDCE \array_reg_reg[5][12] 
        (.C(clk),
-        .CE(\array_reg[5]_27 ),
+        .CE(\array_reg[5]_28 ),
         .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[5][12] ));
   FDCE \array_reg_reg[5][13] 
        (.C(clk),
-        .CE(\array_reg[5]_27 ),
+        .CE(\array_reg[5]_28 ),
         .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[5][13] ));
   FDCE \array_reg_reg[5][14] 
        (.C(clk),
-        .CE(\array_reg[5]_27 ),
+        .CE(\array_reg[5]_28 ),
         .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[5][14] ));
   FDCE \array_reg_reg[5][15] 
        (.C(clk),
-        .CE(\array_reg[5]_27 ),
+        .CE(\array_reg[5]_28 ),
         .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[5][15] ));
   FDCE \array_reg_reg[5][1] 
        (.C(clk),
-        .CE(\array_reg[5]_27 ),
+        .CE(\array_reg[5]_28 ),
         .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[5][1] ));
   FDCE \array_reg_reg[5][2] 
        (.C(clk),
-        .CE(\array_reg[5]_27 ),
+        .CE(\array_reg[5]_28 ),
         .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[5][2] ));
   FDCE \array_reg_reg[5][3] 
        (.C(clk),
-        .CE(\array_reg[5]_27 ),
+        .CE(\array_reg[5]_28 ),
         .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[5][3] ));
   FDCE \array_reg_reg[5][4] 
        (.C(clk),
-        .CE(\array_reg[5]_27 ),
+        .CE(\array_reg[5]_28 ),
         .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[5][4] ));
   FDCE \array_reg_reg[5][5] 
        (.C(clk),
-        .CE(\array_reg[5]_27 ),
+        .CE(\array_reg[5]_28 ),
         .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[5][5] ));
   FDCE \array_reg_reg[5][6] 
        (.C(clk),
-        .CE(\array_reg[5]_27 ),
+        .CE(\array_reg[5]_28 ),
         .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[5][6] ));
   FDCE \array_reg_reg[5][7] 
        (.C(clk),
-        .CE(\array_reg[5]_27 ),
+        .CE(\array_reg[5]_28 ),
         .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[5][7] ));
   FDCE \array_reg_reg[5][8] 
        (.C(clk),
-        .CE(\array_reg[5]_27 ),
+        .CE(\array_reg[5]_28 ),
         .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[5][8] ));
   FDCE \array_reg_reg[5][9] 
        (.C(clk),
-        .CE(\array_reg[5]_27 ),
+        .CE(\array_reg[5]_28 ),
         .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[5][9] ));
   FDCE \array_reg_reg[6][0] 
        (.C(clk),
-        .CE(\array_reg[6]_26 ),
+        .CE(\array_reg[6]_27 ),
         .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[6][0] ));
   FDCE \array_reg_reg[6][10] 
        (.C(clk),
-        .CE(\array_reg[6]_26 ),
+        .CE(\array_reg[6]_27 ),
         .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[6][10] ));
   FDCE \array_reg_reg[6][11] 
        (.C(clk),
-        .CE(\array_reg[6]_26 ),
+        .CE(\array_reg[6]_27 ),
         .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[6][11] ));
   FDCE \array_reg_reg[6][12] 
        (.C(clk),
-        .CE(\array_reg[6]_26 ),
+        .CE(\array_reg[6]_27 ),
         .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[6][12] ));
   FDCE \array_reg_reg[6][13] 
        (.C(clk),
-        .CE(\array_reg[6]_26 ),
+        .CE(\array_reg[6]_27 ),
         .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[6][13] ));
   FDCE \array_reg_reg[6][14] 
        (.C(clk),
-        .CE(\array_reg[6]_26 ),
+        .CE(\array_reg[6]_27 ),
         .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[6][14] ));
   FDCE \array_reg_reg[6][15] 
        (.C(clk),
-        .CE(\array_reg[6]_26 ),
+        .CE(\array_reg[6]_27 ),
         .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[6][15] ));
   FDCE \array_reg_reg[6][1] 
        (.C(clk),
-        .CE(\array_reg[6]_26 ),
+        .CE(\array_reg[6]_27 ),
         .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[6][1] ));
   FDCE \array_reg_reg[6][2] 
        (.C(clk),
-        .CE(\array_reg[6]_26 ),
+        .CE(\array_reg[6]_27 ),
         .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[6][2] ));
   FDCE \array_reg_reg[6][3] 
        (.C(clk),
-        .CE(\array_reg[6]_26 ),
+        .CE(\array_reg[6]_27 ),
         .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[6][3] ));
   FDCE \array_reg_reg[6][4] 
        (.C(clk),
-        .CE(\array_reg[6]_26 ),
+        .CE(\array_reg[6]_27 ),
         .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[6][4] ));
   FDCE \array_reg_reg[6][5] 
        (.C(clk),
-        .CE(\array_reg[6]_26 ),
+        .CE(\array_reg[6]_27 ),
         .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[6][5] ));
   FDCE \array_reg_reg[6][6] 
        (.C(clk),
-        .CE(\array_reg[6]_26 ),
+        .CE(\array_reg[6]_27 ),
         .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[6][6] ));
   FDCE \array_reg_reg[6][7] 
        (.C(clk),
-        .CE(\array_reg[6]_26 ),
+        .CE(\array_reg[6]_27 ),
         .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[6][7] ));
   FDCE \array_reg_reg[6][8] 
        (.C(clk),
-        .CE(\array_reg[6]_26 ),
+        .CE(\array_reg[6]_27 ),
         .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[6][8] ));
   FDCE \array_reg_reg[6][9] 
        (.C(clk),
-        .CE(\array_reg[6]_26 ),
+        .CE(\array_reg[6]_27 ),
         .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[6][9] ));
@@ -7826,225 +7932,224 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
         .Q(\array_reg_reg_n_0_[7][9] ));
   FDCE \array_reg_reg[8][0] 
        (.C(clk),
-        .CE(\array_reg[8]_25 ),
+        .CE(\array_reg[8]_26 ),
         .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[8][0] ));
   FDCE \array_reg_reg[8][10] 
        (.C(clk),
-        .CE(\array_reg[8]_25 ),
+        .CE(\array_reg[8]_26 ),
         .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[8][10] ));
   FDCE \array_reg_reg[8][11] 
        (.C(clk),
-        .CE(\array_reg[8]_25 ),
+        .CE(\array_reg[8]_26 ),
         .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[8][11] ));
   FDCE \array_reg_reg[8][12] 
        (.C(clk),
-        .CE(\array_reg[8]_25 ),
+        .CE(\array_reg[8]_26 ),
         .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[8][12] ));
   FDCE \array_reg_reg[8][13] 
        (.C(clk),
-        .CE(\array_reg[8]_25 ),
+        .CE(\array_reg[8]_26 ),
         .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[8][13] ));
   FDCE \array_reg_reg[8][14] 
        (.C(clk),
-        .CE(\array_reg[8]_25 ),
+        .CE(\array_reg[8]_26 ),
         .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[8][14] ));
   FDCE \array_reg_reg[8][15] 
        (.C(clk),
-        .CE(\array_reg[8]_25 ),
+        .CE(\array_reg[8]_26 ),
         .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[8][15] ));
   FDCE \array_reg_reg[8][1] 
        (.C(clk),
-        .CE(\array_reg[8]_25 ),
+        .CE(\array_reg[8]_26 ),
         .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[8][1] ));
   FDCE \array_reg_reg[8][2] 
        (.C(clk),
-        .CE(\array_reg[8]_25 ),
+        .CE(\array_reg[8]_26 ),
         .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[8][2] ));
   FDCE \array_reg_reg[8][3] 
        (.C(clk),
-        .CE(\array_reg[8]_25 ),
+        .CE(\array_reg[8]_26 ),
         .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[8][3] ));
   FDCE \array_reg_reg[8][4] 
        (.C(clk),
-        .CE(\array_reg[8]_25 ),
+        .CE(\array_reg[8]_26 ),
         .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[8][4] ));
   FDCE \array_reg_reg[8][5] 
        (.C(clk),
-        .CE(\array_reg[8]_25 ),
+        .CE(\array_reg[8]_26 ),
         .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[8][5] ));
   FDCE \array_reg_reg[8][6] 
        (.C(clk),
-        .CE(\array_reg[8]_25 ),
+        .CE(\array_reg[8]_26 ),
         .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[8][6] ));
   FDCE \array_reg_reg[8][7] 
        (.C(clk),
-        .CE(\array_reg[8]_25 ),
+        .CE(\array_reg[8]_26 ),
         .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[8][7] ));
   FDCE \array_reg_reg[8][8] 
        (.C(clk),
-        .CE(\array_reg[8]_25 ),
+        .CE(\array_reg[8]_26 ),
         .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[8][8] ));
   FDCE \array_reg_reg[8][9] 
        (.C(clk),
-        .CE(\array_reg[8]_25 ),
+        .CE(\array_reg[8]_26 ),
         .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[8][9] ));
   FDCE \array_reg_reg[9][0] 
        (.C(clk),
-        .CE(\array_reg[9]_24 ),
+        .CE(\array_reg[9]_25 ),
         .CLR(fifo_reset),
         .D(D[0]),
         .Q(\array_reg_reg_n_0_[9][0] ));
   FDCE \array_reg_reg[9][10] 
        (.C(clk),
-        .CE(\array_reg[9]_24 ),
+        .CE(\array_reg[9]_25 ),
         .CLR(fifo_reset),
         .D(D[10]),
         .Q(\array_reg_reg_n_0_[9][10] ));
   FDCE \array_reg_reg[9][11] 
        (.C(clk),
-        .CE(\array_reg[9]_24 ),
+        .CE(\array_reg[9]_25 ),
         .CLR(fifo_reset),
         .D(D[11]),
         .Q(\array_reg_reg_n_0_[9][11] ));
   FDCE \array_reg_reg[9][12] 
        (.C(clk),
-        .CE(\array_reg[9]_24 ),
+        .CE(\array_reg[9]_25 ),
         .CLR(fifo_reset),
         .D(D[12]),
         .Q(\array_reg_reg_n_0_[9][12] ));
   FDCE \array_reg_reg[9][13] 
        (.C(clk),
-        .CE(\array_reg[9]_24 ),
+        .CE(\array_reg[9]_25 ),
         .CLR(fifo_reset),
         .D(D[13]),
         .Q(\array_reg_reg_n_0_[9][13] ));
   FDCE \array_reg_reg[9][14] 
        (.C(clk),
-        .CE(\array_reg[9]_24 ),
+        .CE(\array_reg[9]_25 ),
         .CLR(fifo_reset),
         .D(D[14]),
         .Q(\array_reg_reg_n_0_[9][14] ));
   FDCE \array_reg_reg[9][15] 
        (.C(clk),
-        .CE(\array_reg[9]_24 ),
+        .CE(\array_reg[9]_25 ),
         .CLR(fifo_reset),
         .D(D[15]),
         .Q(\array_reg_reg_n_0_[9][15] ));
   FDCE \array_reg_reg[9][1] 
        (.C(clk),
-        .CE(\array_reg[9]_24 ),
+        .CE(\array_reg[9]_25 ),
         .CLR(fifo_reset),
         .D(D[1]),
         .Q(\array_reg_reg_n_0_[9][1] ));
   FDCE \array_reg_reg[9][2] 
        (.C(clk),
-        .CE(\array_reg[9]_24 ),
+        .CE(\array_reg[9]_25 ),
         .CLR(fifo_reset),
         .D(D[2]),
         .Q(\array_reg_reg_n_0_[9][2] ));
   FDCE \array_reg_reg[9][3] 
        (.C(clk),
-        .CE(\array_reg[9]_24 ),
+        .CE(\array_reg[9]_25 ),
         .CLR(fifo_reset),
         .D(D[3]),
         .Q(\array_reg_reg_n_0_[9][3] ));
   FDCE \array_reg_reg[9][4] 
        (.C(clk),
-        .CE(\array_reg[9]_24 ),
+        .CE(\array_reg[9]_25 ),
         .CLR(fifo_reset),
         .D(D[4]),
         .Q(\array_reg_reg_n_0_[9][4] ));
   FDCE \array_reg_reg[9][5] 
        (.C(clk),
-        .CE(\array_reg[9]_24 ),
+        .CE(\array_reg[9]_25 ),
         .CLR(fifo_reset),
         .D(D[5]),
         .Q(\array_reg_reg_n_0_[9][5] ));
   FDCE \array_reg_reg[9][6] 
        (.C(clk),
-        .CE(\array_reg[9]_24 ),
+        .CE(\array_reg[9]_25 ),
         .CLR(fifo_reset),
         .D(D[6]),
         .Q(\array_reg_reg_n_0_[9][6] ));
   FDCE \array_reg_reg[9][7] 
        (.C(clk),
-        .CE(\array_reg[9]_24 ),
+        .CE(\array_reg[9]_25 ),
         .CLR(fifo_reset),
         .D(D[7]),
         .Q(\array_reg_reg_n_0_[9][7] ));
   FDCE \array_reg_reg[9][8] 
        (.C(clk),
-        .CE(\array_reg[9]_24 ),
+        .CE(\array_reg[9]_25 ),
         .CLR(fifo_reset),
         .D(D[8]),
         .Q(\array_reg_reg_n_0_[9][8] ));
   FDCE \array_reg_reg[9][9] 
        (.C(clk),
-        .CE(\array_reg[9]_24 ),
+        .CE(\array_reg[9]_25 ),
         .CLR(fifo_reset),
         .D(D[9]),
         .Q(\array_reg_reg_n_0_[9][9] ));
-  LUT6 #(
-    .INIT(64'hCCCC00C0CCDCCCDC)) 
+  LUT5 #(
+    .INIT(32'hFB00FB30)) 
     empty_reg_i_1__0
-       (.I0(empty_reg_i_2_n_0),
-        .I1(empty_reg),
-        .I2(blClkOut[1]),
-        .I3(blClkOut[0]),
-        .I4(out_fifo_full),
-        .I5(wr),
+       (.I0(out_fifo_full),
+        .I1(wr),
+        .I2(ClkOutTick),
+        .I3(empty_reg),
+        .I4(empty_reg_i_2_n_0),
         .O(empty_reg_i_1__0_n_0));
   LUT6 #(
     .INIT(64'h95556AAAFFFFFFFF)) 
     empty_reg_i_2
-       (.I0(r_ptr_reg_reg__0[3]),
-        .I1(r_ptr_reg_reg__0[2]),
-        .I2(r_ptr_reg_reg__0[0]),
-        .I3(r_ptr_reg_reg__0[1]),
-        .I4(w_ptr_reg_reg__0[3]),
+       (.I0(r_ptr_reg_reg[3]),
+        .I1(r_ptr_reg_reg[2]),
+        .I2(r_ptr_reg_reg[0]),
+        .I3(r_ptr_reg_reg[1]),
+        .I4(w_ptr_reg_reg[3]),
         .I5(empty_reg_i_3_n_0),
         .O(empty_reg_i_2_n_0));
   LUT6 #(
     .INIT(64'h0000900906900000)) 
     empty_reg_i_3
-       (.I0(r_ptr_reg_reg__0[2]),
-        .I1(w_ptr_reg_reg__0[2]),
-        .I2(w_ptr_reg_reg__0[1]),
-        .I3(r_ptr_reg_reg__0[1]),
-        .I4(r_ptr_reg_reg__0[0]),
-        .I5(w_ptr_reg_reg__0[0]),
+       (.I0(r_ptr_reg_reg[2]),
+        .I1(w_ptr_reg_reg[2]),
+        .I2(w_ptr_reg_reg[1]),
+        .I3(r_ptr_reg_reg[1]),
+        .I4(r_ptr_reg_reg[0]),
+        .I5(w_ptr_reg_reg[0]),
         .O(empty_reg_i_3_n_0));
   FDPE empty_reg_reg
        (.C(clk),
@@ -8052,35 +8157,35 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
         .D(empty_reg_i_1__0_n_0),
         .PRE(fifo_reset),
         .Q(empty_reg));
-  LUT6 #(
-    .INIT(64'hFCE0FCFCF0E0F0F0)) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  LUT5 #(
+    .INIT(32'hFFAF0C00)) 
     full_reg_i_1__0
        (.I0(empty_reg),
-        .I1(wr),
-        .I2(out_fifo_full),
-        .I3(blClkOut[0]),
-        .I4(blClkOut[1]),
-        .I5(full_reg_i_2__0_n_0),
+        .I1(full_reg_i_2__0_n_0),
+        .I2(ClkOutTick),
+        .I3(wr),
+        .I4(out_fifo_full),
         .O(full_reg_i_1__0_n_0));
   LUT6 #(
     .INIT(64'h2888888882222222)) 
     full_reg_i_2__0
        (.I0(full_reg_i_3__0_n_0),
-        .I1(w_ptr_reg_reg__0[3]),
-        .I2(w_ptr_reg_reg__0[0]),
-        .I3(w_ptr_reg_reg__0[1]),
-        .I4(w_ptr_reg_reg__0[2]),
-        .I5(r_ptr_reg_reg__0[3]),
+        .I1(w_ptr_reg_reg[3]),
+        .I2(w_ptr_reg_reg[0]),
+        .I3(w_ptr_reg_reg[1]),
+        .I4(w_ptr_reg_reg[2]),
+        .I5(r_ptr_reg_reg[3]),
         .O(full_reg_i_2__0_n_0));
   LUT6 #(
     .INIT(64'h0840021010084002)) 
     full_reg_i_3__0
-       (.I0(r_ptr_reg_reg__0[0]),
-        .I1(r_ptr_reg_reg__0[2]),
-        .I2(w_ptr_reg_reg__0[0]),
-        .I3(w_ptr_reg_reg__0[1]),
-        .I4(w_ptr_reg_reg__0[2]),
-        .I5(r_ptr_reg_reg__0[1]),
+       (.I0(r_ptr_reg_reg[0]),
+        .I1(r_ptr_reg_reg[2]),
+        .I2(w_ptr_reg_reg[0]),
+        .I3(w_ptr_reg_reg[1]),
+        .I4(w_ptr_reg_reg[2]),
+        .I5(r_ptr_reg_reg[1]),
         .O(full_reg_i_3__0_n_0));
   FDCE full_reg_reg
        (.C(clk),
@@ -8088,130 +8193,128 @@ module GPIOTest_GPIOInterface_0_0_fifo_2
         .CLR(fifo_reset),
         .D(full_reg_i_1__0_n_0),
         .Q(out_fifo_full));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT1 #(
     .INIT(2'h1)) 
     \r_ptr_reg[0]_i_1 
-       (.I0(r_ptr_reg_reg__0[0]),
+       (.I0(r_ptr_reg_reg[0]),
         .O(\r_ptr_reg[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \r_ptr_reg[1]_i_1 
-       (.I0(r_ptr_reg_reg__0[0]),
-        .I1(r_ptr_reg_reg__0[1]),
+       (.I0(r_ptr_reg_reg[0]),
+        .I1(r_ptr_reg_reg[1]),
         .O(\r_ptr_reg[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT3 #(
     .INIT(8'h6A)) 
     \r_ptr_reg[2]_i_1 
-       (.I0(r_ptr_reg_reg__0[2]),
-        .I1(r_ptr_reg_reg__0[1]),
-        .I2(r_ptr_reg_reg__0[0]),
+       (.I0(r_ptr_reg_reg[2]),
+        .I1(r_ptr_reg_reg[1]),
+        .I2(r_ptr_reg_reg[0]),
         .O(\r_ptr_reg[2]_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'h080C)) 
+  LUT3 #(
+    .INIT(8'h8C)) 
     \r_ptr_reg[3]_i_1__0 
        (.I0(wr),
-        .I1(blClkOut[1]),
-        .I2(blClkOut[0]),
-        .I3(empty_reg),
+        .I1(ClkOutTick),
+        .I2(empty_reg),
         .O(\r_ptr_reg[3]_i_1__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT4 #(
     .INIT(16'h7F80)) 
     \r_ptr_reg[3]_i_2 
-       (.I0(r_ptr_reg_reg__0[1]),
-        .I1(r_ptr_reg_reg__0[0]),
-        .I2(r_ptr_reg_reg__0[2]),
-        .I3(r_ptr_reg_reg__0[3]),
+       (.I0(r_ptr_reg_reg[1]),
+        .I1(r_ptr_reg_reg[0]),
+        .I2(r_ptr_reg_reg[2]),
+        .I3(r_ptr_reg_reg[3]),
         .O(\r_ptr_reg[3]_i_2_n_0 ));
   FDCE \r_ptr_reg_reg[0] 
        (.C(clk),
         .CE(\r_ptr_reg[3]_i_1__0_n_0 ),
         .CLR(fifo_reset),
         .D(\r_ptr_reg[0]_i_1_n_0 ),
-        .Q(r_ptr_reg_reg__0[0]));
+        .Q(r_ptr_reg_reg[0]));
   FDCE \r_ptr_reg_reg[1] 
        (.C(clk),
         .CE(\r_ptr_reg[3]_i_1__0_n_0 ),
         .CLR(fifo_reset),
         .D(\r_ptr_reg[1]_i_1_n_0 ),
-        .Q(r_ptr_reg_reg__0[1]));
+        .Q(r_ptr_reg_reg[1]));
   FDCE \r_ptr_reg_reg[2] 
        (.C(clk),
         .CE(\r_ptr_reg[3]_i_1__0_n_0 ),
         .CLR(fifo_reset),
         .D(\r_ptr_reg[2]_i_1_n_0 ),
-        .Q(r_ptr_reg_reg__0[2]));
+        .Q(r_ptr_reg_reg[2]));
   FDCE \r_ptr_reg_reg[3] 
        (.C(clk),
         .CE(\r_ptr_reg[3]_i_1__0_n_0 ),
         .CLR(fifo_reset),
         .D(\r_ptr_reg[3]_i_2_n_0 ),
-        .Q(r_ptr_reg_reg__0[3]));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+        .Q(r_ptr_reg_reg[3]));
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT1 #(
     .INIT(2'h1)) 
     \w_ptr_reg[0]_i_1__0 
-       (.I0(w_ptr_reg_reg__0[0]),
+       (.I0(w_ptr_reg_reg[0]),
         .O(\w_ptr_reg[0]_i_1__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \w_ptr_reg[1]_i_1__0 
-       (.I0(w_ptr_reg_reg__0[0]),
-        .I1(w_ptr_reg_reg__0[1]),
+       (.I0(w_ptr_reg_reg[0]),
+        .I1(w_ptr_reg_reg[1]),
         .O(\w_ptr_reg[1]_i_1__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT3 #(
     .INIT(8'h78)) 
     \w_ptr_reg[2]_i_1__0 
-       (.I0(w_ptr_reg_reg__0[0]),
-        .I1(w_ptr_reg_reg__0[1]),
-        .I2(w_ptr_reg_reg__0[2]),
+       (.I0(w_ptr_reg_reg[0]),
+        .I1(w_ptr_reg_reg[1]),
+        .I2(w_ptr_reg_reg[2]),
         .O(\w_ptr_reg[2]_i_1__0_n_0 ));
-  LUT4 #(
-    .INIT(16'h20F0)) 
+  LUT3 #(
+    .INIT(8'h8C)) 
     \w_ptr_reg[3]_i_1__0 
-       (.I0(blClkOut[1]),
-        .I1(blClkOut[0]),
-        .I2(wr),
-        .I3(out_fifo_full),
+       (.I0(ClkOutTick),
+        .I1(wr),
+        .I2(out_fifo_full),
         .O(\w_ptr_reg[3]_i_1__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT4 #(
     .INIT(16'h7F80)) 
     \w_ptr_reg[3]_i_2__0 
-       (.I0(w_ptr_reg_reg__0[2]),
-        .I1(w_ptr_reg_reg__0[1]),
-        .I2(w_ptr_reg_reg__0[0]),
-        .I3(w_ptr_reg_reg__0[3]),
+       (.I0(w_ptr_reg_reg[2]),
+        .I1(w_ptr_reg_reg[1]),
+        .I2(w_ptr_reg_reg[0]),
+        .I3(w_ptr_reg_reg[3]),
         .O(\w_ptr_reg[3]_i_2__0_n_0 ));
   FDCE \w_ptr_reg_reg[0] 
        (.C(clk),
         .CE(\w_ptr_reg[3]_i_1__0_n_0 ),
         .CLR(fifo_reset),
         .D(\w_ptr_reg[0]_i_1__0_n_0 ),
-        .Q(w_ptr_reg_reg__0[0]));
+        .Q(w_ptr_reg_reg[0]));
   FDCE \w_ptr_reg_reg[1] 
        (.C(clk),
         .CE(\w_ptr_reg[3]_i_1__0_n_0 ),
         .CLR(fifo_reset),
         .D(\w_ptr_reg[1]_i_1__0_n_0 ),
-        .Q(w_ptr_reg_reg__0[1]));
+        .Q(w_ptr_reg_reg[1]));
   FDCE \w_ptr_reg_reg[2] 
        (.C(clk),
         .CE(\w_ptr_reg[3]_i_1__0_n_0 ),
         .CLR(fifo_reset),
         .D(\w_ptr_reg[2]_i_1__0_n_0 ),
-        .Q(w_ptr_reg_reg__0[2]));
+        .Q(w_ptr_reg_reg[2]));
   FDCE \w_ptr_reg_reg[3] 
        (.C(clk),
         .CE(\w_ptr_reg[3]_i_1__0_n_0 ),
         .CLR(fifo_reset),
         .D(\w_ptr_reg[3]_i_2__0_n_0 ),
-        .Q(w_ptr_reg_reg__0[3]));
+        .Q(w_ptr_reg_reg[3]));
 endmodule
 
 (* ORIG_REF_NAME = "sr_2B_16bit" *) 

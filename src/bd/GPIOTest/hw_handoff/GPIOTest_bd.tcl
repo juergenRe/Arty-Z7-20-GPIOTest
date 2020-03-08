@@ -20,7 +20,7 @@ set script_folder [_tcl::get_script_folder]
 ################################################################
 # Check if script is running in correct Vivado version.
 ################################################################
-set scripts_vivado_version 2017.4
+set scripts_vivado_version 2019.1
 set current_vivado_version [version -short]
 
 if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
@@ -155,9 +155,13 @@ proc create_root_design { parentCell } {
 
   # Create interface ports
   set BTN [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 BTN ]
+
   set DDR [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:ddrx_rtl:1.0 DDR ]
+
   set FIXED_IO [ create_bd_intf_port -mode Master -vlnv xilinx.com:display_processing_system7:fixedio_rtl:1.0 FIXED_IO ]
+
   set LED [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 LED ]
+
 
   # Create ports
   set DI_0 [ create_bd_port -dir I -from 7 -to 0 DI_0 ]
@@ -1004,9 +1008,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net DI_0_1 [get_bd_ports DI_0] [get_bd_pins GPIOInterface_0/DIn]
   connect_bd_net -net GPIOInterface_0_DO [get_bd_ports DO_0] [get_bd_pins GPIOInterface_0/DOut]
   connect_bd_net -net GPIOInterface_0_GPIOPortRd [get_bd_pins GPIOInterface_0/GPIOPortRd] [get_bd_pins axi_gpio_1/gpio2_io_i] [get_bd_pins system_ila_0/probe2]
-  set_property -dict [ list \
-HDL_ATTRIBUTE.DEBUG {true} \
- ] [get_bd_nets GPIOInterface_0_GPIOPortRd]
+  set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_nets GPIOInterface_0_GPIOPortRd]
   connect_bd_net -net GPIOInterface_0_MUX [get_bd_ports MUX_0] [get_bd_pins GPIOInterface_0/MUX]
   connect_bd_net -net GPIOInterface_0_SEL [get_bd_ports SEL_0] [get_bd_pins GPIOInterface_0/SEL]
   connect_bd_net -net GPIOInterface_0_nen_adh [get_bd_ports nen_adh_0] [get_bd_pins GPIOInterface_0/nen_adh]
@@ -1017,17 +1019,13 @@ HDL_ATTRIBUTE.DEBUG {true} \
   connect_bd_net -net GPIOInterface_0_phi2 [get_bd_ports phi2_0] [get_bd_pins GPIOInterface_0/phi2]
   connect_bd_net -net axi_gpio_0_ip2intc_irpt [get_bd_pins axi_gpio_0/ip2intc_irpt] [get_bd_pins xlconcat_0/In0]
   connect_bd_net -net axi_gpio_1_gpio_io_o [get_bd_pins GPIOInterface_0/GPIOPortWr] [get_bd_pins axi_gpio_1/gpio_io_o] [get_bd_pins system_ila_0/probe1]
-  set_property -dict [ list \
-HDL_ATTRIBUTE.DEBUG {true} \
- ] [get_bd_nets axi_gpio_1_gpio_io_o]
+  set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_nets axi_gpio_1_gpio_io_o]
   connect_bd_net -net axi_gpio_1_ip2intc_irpt [get_bd_pins axi_gpio_1/ip2intc_irpt] [get_bd_pins xlconcat_0/In1]
   connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins GPIOInterface_0/clk] [get_bd_pins axi_gpio_0/s_axi_aclk] [get_bd_pins axi_gpio_1/s_axi_aclk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_100M/slowest_sync_clk] [get_bd_pins system_ila_0/clk]
   connect_bd_net -net processing_system7_0_FCLK_RESET0_N [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins rst_ps7_0_100M/ext_reset_in]
   connect_bd_net -net rst_ps7_0_100M_interconnect_aresetn [get_bd_pins ps7_0_axi_periph/ARESETN] [get_bd_pins rst_ps7_0_100M/interconnect_aresetn]
   connect_bd_net -net rst_ps7_0_100M_peripheral_aresetn [get_bd_pins GPIOInterface_0/reset_n] [get_bd_pins axi_gpio_0/s_axi_aresetn] [get_bd_pins axi_gpio_1/s_axi_aresetn] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_100M/peripheral_aresetn] [get_bd_pins system_ila_0/probe0]
-  set_property -dict [ list \
-HDL_ATTRIBUTE.DEBUG {true} \
- ] [get_bd_nets rst_ps7_0_100M_peripheral_aresetn]
+  set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_nets rst_ps7_0_100M_peripheral_aresetn]
   connect_bd_net -net xlconcat_0_dout [get_bd_pins processing_system7_0/IRQ_F2P] [get_bd_pins xlconcat_0/dout]
 
   # Create address segments
@@ -1038,6 +1036,7 @@ HDL_ATTRIBUTE.DEBUG {true} \
   # Restore current instance
   current_bd_instance $oldCurInst
 
+  validate_bd_design
   save_bd_design
 }
 # End of create_root_design()

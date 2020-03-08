@@ -1,8 +1,8 @@
---Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+--Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
---Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
---Date        : Wed Oct  3 12:32:30 2018
---Host        : ASYS running 64-bit major release  (build 9200)
+--Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
+--Date        : Tue Dec 17 14:00:38 2019
+--Host        : CHGFN1A945754 running 64-bit major release  (build 9200)
 --Command     : generate_target GPIOTest_wrapper.bd
 --Design      : GPIOTest_wrapper
 --Purpose     : IP block netlist

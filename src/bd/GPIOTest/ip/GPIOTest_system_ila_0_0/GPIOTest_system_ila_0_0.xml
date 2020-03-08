@@ -66,6 +66,15 @@
             </xilinx:parameterInfo>
           </spirit:vendorExtensions>
         </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>INSERT_VIP</spirit:name>
+          <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="BUSIFPARAM_VALUE.CLK.CLK.INSERT_VIP">0</spirit:value>
+          <spirit:vendorExtensions>
+            <xilinx:parameterInfo>
+              <xilinx:parameterUsage>simulation.rtl</xilinx:parameterUsage>
+            </xilinx:parameterInfo>
+          </spirit:vendorExtensions>
+        </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
   </spirit:busInterfaces>
@@ -80,105 +89,12 @@
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
-            <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>7:9ddf1ba1</spirit:value>
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:view>
-      <spirit:view>
-        <spirit:name>xilinx_anylanguagesynthesis</spirit:name>
-        <spirit:displayName>Synthesis</spirit:displayName>
-        <spirit:envIdentifier>:vivado.xilinx.com:synthesis</spirit:envIdentifier>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>7:10b51edb</spirit:value>
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:view>
-      <spirit:view>
-        <spirit:name>xilinx_synthesisconstraints</spirit:name>
-        <spirit:displayName>Synthesis Constraints</spirit:displayName>
-        <spirit:envIdentifier>:vivado.xilinx.com:synthesis.constraints</spirit:envIdentifier>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_synthesisconstraints_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:parameters>
-          <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Oct 03 09:40:48 UTC 2018</spirit:value>
+            <spirit:value>Tue Dec 17 11:04:32 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>7:10b51edb</spirit:value>
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:view>
-      <spirit:view>
-        <spirit:name>xilinx_vhdlsynthesiswrapper</spirit:name>
-        <spirit:displayName>VHDL Synthesis Wrapper</spirit:displayName>
-        <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:synthesis.wrapper</spirit:envIdentifier>
-        <spirit:language>vhdl</spirit:language>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_vhdlsynthesiswrapper_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Oct 03 09:40:48 UTC 2018</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>7:10b51edb</spirit:value>
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:view>
-      <spirit:view>
-        <spirit:name>xilinx_vhdlbehavioralsimulation</spirit:name>
-        <spirit:displayName>VHDL Simulation</spirit:displayName>
-        <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:simulation</spirit:envIdentifier>
-        <spirit:language>vhdl</spirit:language>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>7:81902326</spirit:value>
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:view>
-      <spirit:view>
-        <spirit:name>xilinx_vhdlsimulationwrapper</spirit:name>
-        <spirit:displayName>VHDL Simulation Wrapper</spirit:displayName>
-        <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:simulation.wrapper</spirit:envIdentifier>
-        <spirit:language>vhdl</spirit:language>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_vhdlsimulationwrapper_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Oct 03 09:40:48 UTC 2018</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>7:81902326</spirit:value>
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:view>
-      <spirit:view>
-        <spirit:name>xilinx_externalfiles</spirit:name>
-        <spirit:displayName>External Files</spirit:displayName>
-        <spirit:envIdentifier>:vivado.xilinx.com:external.files</spirit:envIdentifier>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_externalfiles_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Oct 03 09:44:19 UTC 2018</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>7:10b51edb</spirit:value>
+            <spirit:value>9:b5f38d18</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -192,11 +108,113 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Oct 03 09:40:47 UTC 2018</spirit:value>
+            <spirit:value>Tue Dec 17 11:04:32 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>7:9ddf1ba1</spirit:value>
+            <spirit:value>9:08f3fa64</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_anylanguagesynthesis</spirit:name>
+        <spirit:displayName>Synthesis</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:synthesis</spirit:envIdentifier>
+        <spirit:modelName>bd_76a3</spirit:modelName>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>9:c689b227</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_synthesisconstraints</spirit:name>
+        <spirit:displayName>Synthesis Constraints</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:synthesis.constraints</spirit:envIdentifier>
+        <spirit:modelName>bd_76a3</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_synthesisconstraints_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>GENtimestamp</spirit:name>
+            <spirit:value>Tue Dec 17 13:00:57 UTC 2019</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>9:c689b227</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_vhdlsynthesiswrapper</spirit:name>
+        <spirit:displayName>VHDL Synthesis Wrapper</spirit:displayName>
+        <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:synthesis.wrapper</spirit:envIdentifier>
+        <spirit:language>vhdl</spirit:language>
+        <spirit:modelName>GPIOTest_system_ila_0_0</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlsynthesiswrapper_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>GENtimestamp</spirit:name>
+            <spirit:value>Tue Dec 17 13:00:57 UTC 2019</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>9:c689b227</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_vhdlbehavioralsimulation</spirit:name>
+        <spirit:displayName>VHDL Simulation</spirit:displayName>
+        <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:simulation</spirit:envIdentifier>
+        <spirit:language>vhdl</spirit:language>
+        <spirit:modelName>bd_76a3</spirit:modelName>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>9:7b739583</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_vhdlsimulationwrapper</spirit:name>
+        <spirit:displayName>VHDL Simulation Wrapper</spirit:displayName>
+        <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:simulation.wrapper</spirit:envIdentifier>
+        <spirit:language>vhdl</spirit:language>
+        <spirit:modelName>GPIOTest_system_ila_0_0</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlsimulationwrapper_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>GENtimestamp</spirit:name>
+            <spirit:value>Tue Dec 17 13:00:57 UTC 2019</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>9:7b739583</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_externalfiles</spirit:name>
+        <spirit:displayName>External Files</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:external.files</spirit:envIdentifier>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_externalfiles_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>GENtimestamp</spirit:name>
+            <spirit:value>Tue Dec 17 13:03:46 UTC 2019</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>9:c689b227</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1016,6 +1034,13 @@
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
+      <spirit:name>xilinx_elaboratebd_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>bd_0/bd_76a3.bd</spirit:name>
+        <spirit:userFileType>block_diagram</spirit:userFileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
       <spirit:name>xilinx_synthesisconstraints_view_fileset</spirit:name>
       <spirit:file>
         <spirit:name>GPIOTest_system_ila_0_0_ooc.xdc</spirit:name>
@@ -1075,13 +1100,6 @@
         <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
         <spirit:userFileType>USED_IN_single_language</spirit:userFileType>
         <spirit:logicalName>xil_defaultlib</spirit:logicalName>
-      </spirit:file>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_elaboratebd_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>bd_0/bd_76a3.bd</spirit:name>
-        <spirit:userFileType>block_diagram</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
   </spirit:fileSets>
@@ -2050,6 +2068,726 @@
           </xilinx:enablement>
         </xilinx:parameterInfo>
       </spirit:vendorExtensions>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_0_APC_MAX_AW_WAITS</spirit:name>
+      <spirit:displayName>SLOT_0 AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_0_APC_MAX_AW_WAITS" spirit:order="1.12058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_0_APC_MAX_AR_WAITS</spirit:name>
+      <spirit:displayName>SLOT_0 AR waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_0_APC_MAX_AR_WAITS" spirit:order="1.12058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_0_APC_MAX_W_WAITS</spirit:name>
+      <spirit:displayName>SLOT_0 W waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_0_APC_MAX_W_WAITS" spirit:order="1.12058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_0_APC_MAX_B_WAITS</spirit:name>
+      <spirit:displayName>SLOT_0 B waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_0_APC_MAX_B_WAITS" spirit:order="1.12058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_0_APC_MAX_R_WAITS</spirit:name>
+      <spirit:displayName>SLOT_0 R waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_0_APC_MAX_R_WAITS" spirit:order="1.12058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_0_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_0 W txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_0_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS" spirit:order="1.120581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_0_APC_MAX_WLAST_TO_AWVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_0 WLAST AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_0_APC_MAX_WLAST_TO_AWVALID_WAITS" spirit:order="1.120581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_0_APC_MAX_WRITE_TO_BVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_0 W to BVALID waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_0_APC_MAX_WRITE_TO_BVALID_WAITS" spirit:order="1.120581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_0_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_0 R txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_0_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS" spirit:order="1.120581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_1_APC_MAX_AW_WAITS</spirit:name>
+      <spirit:displayName>SLOT_1 AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_1_APC_MAX_AW_WAITS" spirit:order="1.13058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_1_APC_MAX_AR_WAITS</spirit:name>
+      <spirit:displayName>SLOT_1 AR waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_1_APC_MAX_AR_WAITS" spirit:order="1.13058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_1_APC_MAX_W_WAITS</spirit:name>
+      <spirit:displayName>SLOT_1 W waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_1_APC_MAX_W_WAITS" spirit:order="1.13058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_1_APC_MAX_B_WAITS</spirit:name>
+      <spirit:displayName>SLOT_1 B waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_1_APC_MAX_B_WAITS" spirit:order="1.13058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_1_APC_MAX_R_WAITS</spirit:name>
+      <spirit:displayName>SLOT_1 R waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_1_APC_MAX_R_WAITS" spirit:order="1.13058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_1_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_1 W txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_1_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS" spirit:order="1.130581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_1_APC_MAX_WLAST_TO_AWVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_1 WLAST AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_1_APC_MAX_WLAST_TO_AWVALID_WAITS" spirit:order="1.130581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_1_APC_MAX_WRITE_TO_BVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_1 W to BVALID waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_1_APC_MAX_WRITE_TO_BVALID_WAITS" spirit:order="1.130581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_1_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_1 R txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_1_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS" spirit:order="1.130581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_2_APC_MAX_AW_WAITS</spirit:name>
+      <spirit:displayName>SLOT_2 AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_2_APC_MAX_AW_WAITS" spirit:order="1.14058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_2_APC_MAX_AR_WAITS</spirit:name>
+      <spirit:displayName>SLOT_2 AR waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_2_APC_MAX_AR_WAITS" spirit:order="1.14058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_2_APC_MAX_W_WAITS</spirit:name>
+      <spirit:displayName>SLOT_2 W waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_2_APC_MAX_W_WAITS" spirit:order="1.14058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_2_APC_MAX_B_WAITS</spirit:name>
+      <spirit:displayName>SLOT_2 B waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_2_APC_MAX_B_WAITS" spirit:order="1.14058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_2_APC_MAX_R_WAITS</spirit:name>
+      <spirit:displayName>SLOT_2 R waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_2_APC_MAX_R_WAITS" spirit:order="1.14058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_2_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_2 W txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_2_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS" spirit:order="1.140581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_2_APC_MAX_WLAST_TO_AWVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_2 WLAST AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_2_APC_MAX_WLAST_TO_AWVALID_WAITS" spirit:order="1.140581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_2_APC_MAX_WRITE_TO_BVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_2 W to BVALID waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_2_APC_MAX_WRITE_TO_BVALID_WAITS" spirit:order="1.140581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_2_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_2 R txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_2_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS" spirit:order="1.140581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_3_APC_MAX_AW_WAITS</spirit:name>
+      <spirit:displayName>SLOT_3 AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_3_APC_MAX_AW_WAITS" spirit:order="1.15058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_3_APC_MAX_AR_WAITS</spirit:name>
+      <spirit:displayName>SLOT_3 AR waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_3_APC_MAX_AR_WAITS" spirit:order="1.15058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_3_APC_MAX_W_WAITS</spirit:name>
+      <spirit:displayName>SLOT_3 W waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_3_APC_MAX_W_WAITS" spirit:order="1.15058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_3_APC_MAX_B_WAITS</spirit:name>
+      <spirit:displayName>SLOT_3 B waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_3_APC_MAX_B_WAITS" spirit:order="1.15058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_3_APC_MAX_R_WAITS</spirit:name>
+      <spirit:displayName>SLOT_3 R waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_3_APC_MAX_R_WAITS" spirit:order="1.15058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_3_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_3 W txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_3_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS" spirit:order="1.150581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_3_APC_MAX_WLAST_TO_AWVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_3 WLAST AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_3_APC_MAX_WLAST_TO_AWVALID_WAITS" spirit:order="1.150581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_3_APC_MAX_WRITE_TO_BVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_3 W to BVALID waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_3_APC_MAX_WRITE_TO_BVALID_WAITS" spirit:order="1.150581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_3_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_3 R txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_3_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS" spirit:order="1.150581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_4_APC_MAX_AW_WAITS</spirit:name>
+      <spirit:displayName>SLOT_4 AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_4_APC_MAX_AW_WAITS" spirit:order="1.16058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_4_APC_MAX_AR_WAITS</spirit:name>
+      <spirit:displayName>SLOT_4 AR waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_4_APC_MAX_AR_WAITS" spirit:order="1.16058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_4_APC_MAX_W_WAITS</spirit:name>
+      <spirit:displayName>SLOT_4 W waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_4_APC_MAX_W_WAITS" spirit:order="1.16058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_4_APC_MAX_B_WAITS</spirit:name>
+      <spirit:displayName>SLOT_4 B waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_4_APC_MAX_B_WAITS" spirit:order="1.16058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_4_APC_MAX_R_WAITS</spirit:name>
+      <spirit:displayName>SLOT_4 R waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_4_APC_MAX_R_WAITS" spirit:order="1.16058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_4_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_4 W txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_4_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS" spirit:order="1.160581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_4_APC_MAX_WLAST_TO_AWVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_4 WLAST AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_4_APC_MAX_WLAST_TO_AWVALID_WAITS" spirit:order="1.160581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_4_APC_MAX_WRITE_TO_BVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_4 W to BVALID waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_4_APC_MAX_WRITE_TO_BVALID_WAITS" spirit:order="1.160581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_4_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_4 R txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_4_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS" spirit:order="1.160581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_5_APC_MAX_AW_WAITS</spirit:name>
+      <spirit:displayName>SLOT_5 AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_5_APC_MAX_AW_WAITS" spirit:order="1.17058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_5_APC_MAX_AR_WAITS</spirit:name>
+      <spirit:displayName>SLOT_5 AR waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_5_APC_MAX_AR_WAITS" spirit:order="1.17058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_5_APC_MAX_W_WAITS</spirit:name>
+      <spirit:displayName>SLOT_5 W waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_5_APC_MAX_W_WAITS" spirit:order="1.17058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_5_APC_MAX_B_WAITS</spirit:name>
+      <spirit:displayName>SLOT_5 B waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_5_APC_MAX_B_WAITS" spirit:order="1.17058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_5_APC_MAX_R_WAITS</spirit:name>
+      <spirit:displayName>SLOT_5 R waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_5_APC_MAX_R_WAITS" spirit:order="1.17058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_5_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_5 W txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_5_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS" spirit:order="1.170581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_5_APC_MAX_WLAST_TO_AWVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_5 WLAST AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_5_APC_MAX_WLAST_TO_AWVALID_WAITS" spirit:order="1.170581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_5_APC_MAX_WRITE_TO_BVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_5 W to BVALID waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_5_APC_MAX_WRITE_TO_BVALID_WAITS" spirit:order="1.170581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_5_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_5 R txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_5_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS" spirit:order="1.170581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_6_APC_MAX_AW_WAITS</spirit:name>
+      <spirit:displayName>SLOT_6 AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_6_APC_MAX_AW_WAITS" spirit:order="1.18058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_6_APC_MAX_AR_WAITS</spirit:name>
+      <spirit:displayName>SLOT_6 AR waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_6_APC_MAX_AR_WAITS" spirit:order="1.18058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_6_APC_MAX_W_WAITS</spirit:name>
+      <spirit:displayName>SLOT_6 W waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_6_APC_MAX_W_WAITS" spirit:order="1.18058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_6_APC_MAX_B_WAITS</spirit:name>
+      <spirit:displayName>SLOT_6 B waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_6_APC_MAX_B_WAITS" spirit:order="1.18058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_6_APC_MAX_R_WAITS</spirit:name>
+      <spirit:displayName>SLOT_6 R waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_6_APC_MAX_R_WAITS" spirit:order="1.18058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_6_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_6 W txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_6_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS" spirit:order="1.180581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_6_APC_MAX_WLAST_TO_AWVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_6 WLAST AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_6_APC_MAX_WLAST_TO_AWVALID_WAITS" spirit:order="1.180581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_6_APC_MAX_WRITE_TO_BVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_6 W to BVALID waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_6_APC_MAX_WRITE_TO_BVALID_WAITS" spirit:order="1.180581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_6_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_6 R txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_6_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS" spirit:order="1.180581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_7_APC_MAX_AW_WAITS</spirit:name>
+      <spirit:displayName>SLOT_7 AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_7_APC_MAX_AW_WAITS" spirit:order="1.19058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_7_APC_MAX_AR_WAITS</spirit:name>
+      <spirit:displayName>SLOT_7 AR waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_7_APC_MAX_AR_WAITS" spirit:order="1.19058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_7_APC_MAX_W_WAITS</spirit:name>
+      <spirit:displayName>SLOT_7 W waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_7_APC_MAX_W_WAITS" spirit:order="1.19058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_7_APC_MAX_B_WAITS</spirit:name>
+      <spirit:displayName>SLOT_7 B waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_7_APC_MAX_B_WAITS" spirit:order="1.19058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_7_APC_MAX_R_WAITS</spirit:name>
+      <spirit:displayName>SLOT_7 R waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_7_APC_MAX_R_WAITS" spirit:order="1.19058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_7_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_7 W txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_7_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS" spirit:order="1.190581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_7_APC_MAX_WLAST_TO_AWVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_7 WLAST AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_7_APC_MAX_WLAST_TO_AWVALID_WAITS" spirit:order="1.190581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_7_APC_MAX_WRITE_TO_BVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_7 W to BVALID waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_7_APC_MAX_WRITE_TO_BVALID_WAITS" spirit:order="1.190581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_7_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_7 R txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_7_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS" spirit:order="1.190581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_8_APC_MAX_AW_WAITS</spirit:name>
+      <spirit:displayName>SLOT_8 AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_8_APC_MAX_AW_WAITS" spirit:order="1.20058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_8_APC_MAX_AR_WAITS</spirit:name>
+      <spirit:displayName>SLOT_8 AR waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_8_APC_MAX_AR_WAITS" spirit:order="1.20058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_8_APC_MAX_W_WAITS</spirit:name>
+      <spirit:displayName>SLOT_8 W waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_8_APC_MAX_W_WAITS" spirit:order="1.20058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_8_APC_MAX_B_WAITS</spirit:name>
+      <spirit:displayName>SLOT_8 B waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_8_APC_MAX_B_WAITS" spirit:order="1.20058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_8_APC_MAX_R_WAITS</spirit:name>
+      <spirit:displayName>SLOT_8 R waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_8_APC_MAX_R_WAITS" spirit:order="1.20058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_8_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_8 W txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_8_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS" spirit:order="1.200581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_8_APC_MAX_WLAST_TO_AWVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_8 WLAST AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_8_APC_MAX_WLAST_TO_AWVALID_WAITS" spirit:order="1.200581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_8_APC_MAX_WRITE_TO_BVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_8 W to BVALID waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_8_APC_MAX_WRITE_TO_BVALID_WAITS" spirit:order="1.200581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_8_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_8 R txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_8_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS" spirit:order="1.200581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_9_APC_MAX_AW_WAITS</spirit:name>
+      <spirit:displayName>SLOT_9 AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_9_APC_MAX_AW_WAITS" spirit:order="1.21058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_9_APC_MAX_AR_WAITS</spirit:name>
+      <spirit:displayName>SLOT_9 AR waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_9_APC_MAX_AR_WAITS" spirit:order="1.21058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_9_APC_MAX_W_WAITS</spirit:name>
+      <spirit:displayName>SLOT_9 W waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_9_APC_MAX_W_WAITS" spirit:order="1.21058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_9_APC_MAX_B_WAITS</spirit:name>
+      <spirit:displayName>SLOT_9 B waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_9_APC_MAX_B_WAITS" spirit:order="1.21058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_9_APC_MAX_R_WAITS</spirit:name>
+      <spirit:displayName>SLOT_9 R waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_9_APC_MAX_R_WAITS" spirit:order="1.21058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_9_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_9 W txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_9_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS" spirit:order="1.210581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_9_APC_MAX_WLAST_TO_AWVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_9 WLAST AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_9_APC_MAX_WLAST_TO_AWVALID_WAITS" spirit:order="1.210581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_9_APC_MAX_WRITE_TO_BVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_9 W to BVALID waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_9_APC_MAX_WRITE_TO_BVALID_WAITS" spirit:order="1.210581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_9_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_9 R txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_9_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS" spirit:order="1.210581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_10_APC_MAX_AW_WAITS</spirit:name>
+      <spirit:displayName>SLOT_10 AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_10_APC_MAX_AW_WAITS" spirit:order="1.22058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_10_APC_MAX_AR_WAITS</spirit:name>
+      <spirit:displayName>SLOT_10 AR waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_10_APC_MAX_AR_WAITS" spirit:order="1.22058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_10_APC_MAX_W_WAITS</spirit:name>
+      <spirit:displayName>SLOT_10 W waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_10_APC_MAX_W_WAITS" spirit:order="1.22058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_10_APC_MAX_B_WAITS</spirit:name>
+      <spirit:displayName>SLOT_10 B waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_10_APC_MAX_B_WAITS" spirit:order="1.22058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_10_APC_MAX_R_WAITS</spirit:name>
+      <spirit:displayName>SLOT_10 R waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_10_APC_MAX_R_WAITS" spirit:order="1.22058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_10_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_10 W txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_10_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS" spirit:order="1.220581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_10_APC_MAX_WLAST_TO_AWVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_10 WLAST AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_10_APC_MAX_WLAST_TO_AWVALID_WAITS" spirit:order="1.220581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_10_APC_MAX_WRITE_TO_BVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_10 W to BVALID waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_10_APC_MAX_WRITE_TO_BVALID_WAITS" spirit:order="1.220581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_10_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_10 R txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_10_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS" spirit:order="1.220581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_11_APC_MAX_AW_WAITS</spirit:name>
+      <spirit:displayName>SLOT_11 AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_11_APC_MAX_AW_WAITS" spirit:order="1.23058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_11_APC_MAX_AR_WAITS</spirit:name>
+      <spirit:displayName>SLOT_11 AR waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_11_APC_MAX_AR_WAITS" spirit:order="1.23058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_11_APC_MAX_W_WAITS</spirit:name>
+      <spirit:displayName>SLOT_11 W waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_11_APC_MAX_W_WAITS" spirit:order="1.23058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_11_APC_MAX_B_WAITS</spirit:name>
+      <spirit:displayName>SLOT_11 B waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_11_APC_MAX_B_WAITS" spirit:order="1.23058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_11_APC_MAX_R_WAITS</spirit:name>
+      <spirit:displayName>SLOT_11 R waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_11_APC_MAX_R_WAITS" spirit:order="1.23058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_11_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_11 W txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_11_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS" spirit:order="1.230581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_11_APC_MAX_WLAST_TO_AWVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_11 WLAST AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_11_APC_MAX_WLAST_TO_AWVALID_WAITS" spirit:order="1.230581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_11_APC_MAX_WRITE_TO_BVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_11 W to BVALID waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_11_APC_MAX_WRITE_TO_BVALID_WAITS" spirit:order="1.230581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_11_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_11 R txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_11_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS" spirit:order="1.230581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_12_APC_MAX_AW_WAITS</spirit:name>
+      <spirit:displayName>SLOT_12 AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_12_APC_MAX_AW_WAITS" spirit:order="1.24058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_12_APC_MAX_AR_WAITS</spirit:name>
+      <spirit:displayName>SLOT_12 AR waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_12_APC_MAX_AR_WAITS" spirit:order="1.24058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_12_APC_MAX_W_WAITS</spirit:name>
+      <spirit:displayName>SLOT_12 W waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_12_APC_MAX_W_WAITS" spirit:order="1.24058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_12_APC_MAX_B_WAITS</spirit:name>
+      <spirit:displayName>SLOT_12 B waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_12_APC_MAX_B_WAITS" spirit:order="1.24058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_12_APC_MAX_R_WAITS</spirit:name>
+      <spirit:displayName>SLOT_12 R waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_12_APC_MAX_R_WAITS" spirit:order="1.24058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_12_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_12 W txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_12_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS" spirit:order="1.240581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_12_APC_MAX_WLAST_TO_AWVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_12 WLAST AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_12_APC_MAX_WLAST_TO_AWVALID_WAITS" spirit:order="1.240581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_12_APC_MAX_WRITE_TO_BVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_12 W to BVALID waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_12_APC_MAX_WRITE_TO_BVALID_WAITS" spirit:order="1.240581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_12_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_12 R txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_12_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS" spirit:order="1.240581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_13_APC_MAX_AW_WAITS</spirit:name>
+      <spirit:displayName>SLOT_13 AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_13_APC_MAX_AW_WAITS" spirit:order="1.25058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_13_APC_MAX_AR_WAITS</spirit:name>
+      <spirit:displayName>SLOT_13 AR waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_13_APC_MAX_AR_WAITS" spirit:order="1.25058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_13_APC_MAX_W_WAITS</spirit:name>
+      <spirit:displayName>SLOT_13 W waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_13_APC_MAX_W_WAITS" spirit:order="1.25058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_13_APC_MAX_B_WAITS</spirit:name>
+      <spirit:displayName>SLOT_13 B waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_13_APC_MAX_B_WAITS" spirit:order="1.25058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_13_APC_MAX_R_WAITS</spirit:name>
+      <spirit:displayName>SLOT_13 R waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_13_APC_MAX_R_WAITS" spirit:order="1.25058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_13_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_13 W txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_13_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS" spirit:order="1.250581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_13_APC_MAX_WLAST_TO_AWVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_13 WLAST AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_13_APC_MAX_WLAST_TO_AWVALID_WAITS" spirit:order="1.250581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_13_APC_MAX_WRITE_TO_BVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_13 W to BVALID waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_13_APC_MAX_WRITE_TO_BVALID_WAITS" spirit:order="1.250581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_13_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_13 R txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_13_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS" spirit:order="1.250581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_14_APC_MAX_AW_WAITS</spirit:name>
+      <spirit:displayName>SLOT_14 AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_14_APC_MAX_AW_WAITS" spirit:order="1.26058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_14_APC_MAX_AR_WAITS</spirit:name>
+      <spirit:displayName>SLOT_14 AR waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_14_APC_MAX_AR_WAITS" spirit:order="1.26058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_14_APC_MAX_W_WAITS</spirit:name>
+      <spirit:displayName>SLOT_14 W waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_14_APC_MAX_W_WAITS" spirit:order="1.26058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_14_APC_MAX_B_WAITS</spirit:name>
+      <spirit:displayName>SLOT_14 B waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_14_APC_MAX_B_WAITS" spirit:order="1.26058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_14_APC_MAX_R_WAITS</spirit:name>
+      <spirit:displayName>SLOT_14 R waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_14_APC_MAX_R_WAITS" spirit:order="1.26058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_14_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_14 W txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_14_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS" spirit:order="1.260581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_14_APC_MAX_WLAST_TO_AWVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_14 WLAST AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_14_APC_MAX_WLAST_TO_AWVALID_WAITS" spirit:order="1.260581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_14_APC_MAX_WRITE_TO_BVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_14 W to BVALID waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_14_APC_MAX_WRITE_TO_BVALID_WAITS" spirit:order="1.260581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_14_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_14 R txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_14_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS" spirit:order="1.260581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_15_APC_MAX_AW_WAITS</spirit:name>
+      <spirit:displayName>SLOT_15 AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_15_APC_MAX_AW_WAITS" spirit:order="1.27058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_15_APC_MAX_AR_WAITS</spirit:name>
+      <spirit:displayName>SLOT_15 AR waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_15_APC_MAX_AR_WAITS" spirit:order="1.27058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_15_APC_MAX_W_WAITS</spirit:name>
+      <spirit:displayName>SLOT_15 W waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_15_APC_MAX_W_WAITS" spirit:order="1.27058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_15_APC_MAX_B_WAITS</spirit:name>
+      <spirit:displayName>SLOT_15 B waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_15_APC_MAX_B_WAITS" spirit:order="1.27058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_15_APC_MAX_R_WAITS</spirit:name>
+      <spirit:displayName>SLOT_15 R waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_15_APC_MAX_R_WAITS" spirit:order="1.27058e+08" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_15_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_15 W txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_15_APC_MAX_CONTINUOUS_WTRANSFERS_WAITS" spirit:order="1.270581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_15_APC_MAX_WLAST_TO_AWVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_15 WLAST AW waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_15_APC_MAX_WLAST_TO_AWVALID_WAITS" spirit:order="1.270581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_15_APC_MAX_WRITE_TO_BVALID_WAITS</spirit:name>
+      <spirit:displayName>SLOT_15 W to BVALID waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_15_APC_MAX_WRITE_TO_BVALID_WAITS" spirit:order="1.270581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_SLOT_15_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS</spirit:name>
+      <spirit:displayName>SLOT_15 R txfr waits</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_SLOT_15_APC_MAX_CONTINUOUS_RTRANSFERS_WAITS" spirit:order="1.270581e+08" spirit:minimum="0" spirit:maximum="65536" spirit:rangeType="long">0</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>C_BRAM_CNT</spirit:name>
@@ -34600,7 +35338,8 @@
   <spirit:vendorExtensions>
     <xilinx:coreExtensions>
       <xilinx:displayName>System ILA</xilinx:displayName>
-      <xilinx:coreRevision>1</xilinx:coreRevision>
+      <xilinx:supportsDeferredElaboration>true</xilinx:supportsDeferredElaboration>
+      <xilinx:coreRevision>5</xilinx:coreRevision>
       <xilinx:tags>
         <xilinx:tag xilinx:name="xilinx.com:ip:system_ila:1.0_ARCHIVE_LOCATION">/proj/xhdhdstaff/niloyr/debug_tools/IP3_niloyr_cs/DEV/output/internal/vivado/data/ip/xilinx</xilinx:tag>
         <xilinx:tag xilinx:name="bd_viewable">false</xilinx:tag>
@@ -34620,10 +35359,10 @@
       </xilinx:configElementInfos>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2017.4</xilinx:xilinxVersion>
+      <xilinx:xilinxVersion>2019.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="ba9ced16"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="8d1fcefd"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="0bb93e97"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="7ad324c6"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="c3e91358"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

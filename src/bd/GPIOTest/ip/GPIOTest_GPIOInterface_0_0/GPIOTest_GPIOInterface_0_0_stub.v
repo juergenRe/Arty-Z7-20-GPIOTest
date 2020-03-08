@@ -1,10 +1,10 @@
-// Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
-// Date        : Wed Oct  3 12:33:26 2018
-// Host        : ASYS running 64-bit major release  (build 9200)
+// Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
+// Date        : Tue Dec 17 14:02:07 2019
+// Host        : CHGFN1A945754 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
-//               C:/Users/Juergen/Documents/FPGA/Arty-Z7/Arty-Z7-20-GPIOTest/src/bd/GPIOTest/ip/GPIOTest_GPIOInterface_0_0/GPIOTest_GPIOInterface_0_0_stub.v
+//               C:/Users/s91153/Documents/FPGA/Arty-Z7/Arty-Z7-20-GPIOTest/src/bd/GPIOTest/ip/GPIOTest_GPIOInterface_0_0/GPIOTest_GPIOInterface_0_0_stub.v
 // Design      : GPIOTest_GPIOInterface_0_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7z020clg400-1
@@ -13,7 +13,7 @@
 // This empty module with port declaration file causes synthesis tools to infer a black box for IP.
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
-(* x_core_info = "GPIOInterface,Vivado 2017.4" *)
+(* x_core_info = "GPIOInterface,Vivado 2019.1" *)
 module GPIOTest_GPIOInterface_0_0(GPIOPortWr, GPIOPortRd, clk, reset_n, DIn, DOut, MUX, 
   SEL, nen_ctrl0, nen_idb, nen_adl, nen_adh, phi1, phi2)
 /* synthesis syn_black_box black_box_pad_pin="GPIOPortWr[31:0],GPIOPortRd[31:0],clk,reset_n,DIn[7:0],DOut[7:0],MUX[2:0],SEL,nen_ctrl0,nen_idb,nen_adl,nen_adh,phi1,phi2" */;

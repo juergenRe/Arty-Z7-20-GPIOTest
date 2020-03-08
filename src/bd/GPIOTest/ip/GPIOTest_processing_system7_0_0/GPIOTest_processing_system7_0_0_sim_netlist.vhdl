@@ -1,10 +1,10 @@
--- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+-- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
--- Date        : Sun Sep 16 13:24:40 2018
--- Host        : ASYS running 64-bit major release  (build 9200)
+-- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
+-- Date        : Tue Dec 17 14:02:10 2019
+-- Host        : CHGFN1A945754 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
---               C:/Users/Juergen/Documents/FPGA/Arty-Z7/Arty-Z7-20-GPIOTest/src/bd/GPIOTest/ip/GPIOTest_processing_system7_0_0/GPIOTest_processing_system7_0_0_sim_netlist.vhdl
+--               C:/Users/s91153/Documents/FPGA/Arty-Z7/Arty-Z7-20-GPIOTest/src/bd/GPIOTest/ip/GPIOTest_processing_system7_0_0/GPIOTest_processing_system7_0_0_sim_netlist.vhdl
 -- Design      : GPIOTest_processing_system7_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -3433,7 +3433,7 @@ entity GPIOTest_processing_system7_0_0 is
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of GPIOTest_processing_system7_0_0 : entity is "yes";
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of GPIOTest_processing_system7_0_0 : entity is "processing_system7_v5_5_processing_system7,Vivado 2017.4";
+  attribute X_CORE_INFO of GPIOTest_processing_system7_0_0 : entity is "processing_system7_v5_5_processing_system7,Vivado 2019.1";
 end GPIOTest_processing_system7_0_0;
 
 architecture STRUCTURE of GPIOTest_processing_system7_0_0 is
